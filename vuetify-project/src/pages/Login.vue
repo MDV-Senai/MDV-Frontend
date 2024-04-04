@@ -7,8 +7,8 @@
       width="w-100"
       height="h-100"
     >
-      <v-container class="my-9">
-        <v-container id="posicao">
+      <v-container class="my-9"> 
+        <v-container id="posicao"> 
           <v-img src="../assets/img/fundoCard.png" width="780" height="800">
             <v-container class="my-16">
               <h1 align="center">Nome do Sistema</h1>
@@ -40,6 +40,7 @@
                     ><a href="#">Esqueci a Senha</a></v-card-text
                   >
 
+                  <RouterLink to="/home">
                   <v-btn
                     append-icon="mdi-chevron-right"
                     variant="outlined"
@@ -55,6 +56,8 @@
                       <v-icon color="pink-darken-4"></v-icon>
                     </template>
                   </v-btn>
+                  </RouterLink>
+
                 </v-form>
               </v-card>
             </v-container>
