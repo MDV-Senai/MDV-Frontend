@@ -12,12 +12,13 @@
         <v-icon>mdi-bell-outline</v-icon>
       </v-btn>
       <p>Nome do Usuário</p>
-      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
       <v-navigation-drawer
         v-model="drawer"
         temporary
         color="pink-darken-4"
+        location="right"
       >
         <v-list-item
           prepend-icon="mdi-account-circle-outline"
@@ -35,12 +36,17 @@
 </template>
 
 <script>
-  export default {
-    data () {
-      return {
-        drawer: null
-      }
-    }
+export default {
+    data: () => ({
+      drawer: false,
+      group: null,
+    }),
+
+    watch: {
+      group () {
+        this.drawer = false
+      },
+    },
   }
 </script>
 
