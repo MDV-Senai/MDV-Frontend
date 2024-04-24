@@ -1,5 +1,4 @@
 <template>
-  <v-img src="../assets/img/fundoDesenhos.svg">
     <v-toolbar extended color="#FFFFFF">
       <v-img src="../assets/img/Logo.svg"></v-img>
 
@@ -9,10 +8,44 @@
 
       <v-spacer></v-spacer>
       
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+      <v-btn icon>
+        <v-icon>mdi-bell-outline</v-icon>
+      </v-btn>
+      <p>Nome do Usuário</p>
+      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+
+      <v-navigation-drawer
+        v-model="drawer"
+        temporary
+        color="pink-darken-4"
+      >
+        <v-list-item
+          prepend-icon="mdi-account-circle-outline"
+          title="Nome do Usuário"
+        ></v-list-item>
+
+        <v-list density="compact" nav>
+          <v-list-item prepend-icon="mdi-chart-bar" title="Dashboard" value="dashboard"></v-list-item>
+          <v-list-item prepend-icon="mdi-information" title="Informações da Organização" value="informacao"></v-list-item>
+          <v-list-item prepend-icon="mdi-information" title="Menu de Vagas" value="vagas"></v-list-item>
+          <v-list-item prepend-icon="mdi-account-group" title="Administradores" value="administradores"></v-list-item>
+        </v-list>
+      </v-navigation-drawer>
     </v-toolbar>
-  </v-img>
 </template>
 
 <script>
+  export default {
+    data () {
+      return {
+        drawer: null
+      }
+    }
+  }
 </script>
+
+<style scoped>
+  p {
+    font-size: 15px;
+  }
+</style>
