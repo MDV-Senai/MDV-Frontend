@@ -1,13 +1,17 @@
 <template>
-  <v-app-bar :elevation="2">
-    <template v-slot:prepend>
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
-    </template>
+  <v-img src="../assets/img/fundoDesenhos.svg">
+    <v-toolbar extended color="#FFFFFF">
+      <v-img src="../assets/img/Logo.svg"></v-img>
 
-    <v-app-bar-title>Application Bar</v-app-bar-title>
-    <RouterLink to="/">Login</RouterLink>
-    <RouterLink to="/home">Home</RouterLink>
-  </v-app-bar>
+      <v-spacer></v-spacer>
+
+      <v-toolbar-title>Nome do Sistema</v-toolbar-title>
+
+      <v-spacer></v-spacer>
+      
+      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+    </v-toolbar>
+  </v-img>
 </template>
 
 <script>

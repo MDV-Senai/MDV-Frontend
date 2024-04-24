@@ -1,6 +1,6 @@
 <template>
     <v-main>
-        <h1>teste</h1>
+        <Header />
     </v-main>
 </template>
 
