@@ -1,24 +1,11 @@
 <template>
     <v-main>
 
-  <v-footer class="d-flex flex-column">
-    <div class="bg-teal d-flex w-100 align-center px-4">
-      <strong>Get connected with us on social networks!</strong>
+  <v-footer class="d-flex flex-column" style="background-color:#FF80AB; color:#FF80AB">
+   
 
-      <v-spacer></v-spacer>
-
-      <v-btn
-        v-for="icon in icons"
-        :key="icon"
-        :icon="icon"
-        class="mx-4"
-        size="small"
-        variant="plain"
-      ></v-btn>
-    </div>
-
-    <div class="px-4 py-2 bg-black text-center w-100">
-      {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
+    <div class="px-4 py-2  text-center  w-100">
+      {{ new Date().getFullYear() }} — <strong style="color: white">Maternidade Darcy Vargas &copy;</strong>
     </div>
   </v-footer>
   
