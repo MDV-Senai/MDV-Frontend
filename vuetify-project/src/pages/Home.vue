@@ -8,7 +8,7 @@
           <v-card-title>teste</v-card-title>
         </v-card>
       </v-container>
-
+    <Footer/>
     </v-img>
   </v-main>
 </template>
