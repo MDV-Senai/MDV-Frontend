@@ -1,26 +1,77 @@
 <template>
-  <v-main>
-    <v-img src="../assets/img/fundoDesenhos.svg">
-      <Header />
+  <v-main id="imagem">
+    <Header />
 
-      <div id="fundoCards">
-          <v-row>
-            <v-col>
-              <v-card color="pink-darken-4">
-                  <v-card-title>Teste</v-card-title>
-              </v-card>
-            </v-col>
+    <div id="fundoCards" class="text-center">
+      <v-row>
+        <v-col>
+          <v-card
+            color="pink-darken-4"
+            class="py-14 ma-10 my-15"
+            variant="outlined"
+          >
+            <v-btn icon flat>
+              <v-icon color="pink-darken-4">mdi-bell-outline</v-icon>
+            </v-btn>
+            <v-card-title>Teste</v-card-title>
+          </v-card>
+        </v-col>
 
-            <v-col>
-              <v-card color="pink-darken-4">
-                  
-              </v-card>
-            </v-col>
-          </v-row>
-      </div>
-      
+        <v-col>
+          <v-card
+            color="pink-darken-4"
+            class="py-14 ma-10 my-15"
+            variant="outlined"
+          >
+            <v-btn icon flat>
+              <v-icon color="pink-darken-4">mdi-bell-outline</v-icon>
+            </v-btn>
+            <v-card-title>Teste</v-card-title>
+          </v-card>
+        </v-col>
+
+        <v-col>
+          <v-card
+            color="pink-darken-4"
+            class="py-14 ma-10 my-15"
+            variant="outlined"
+          >
+            <v-btn icon flat>
+              <v-icon color="pink-darken-4">mdi-bell-outline</v-icon>
+            </v-btn>
+            <v-card-title>Teste</v-card-title>
+          </v-card>
+        </v-col>
+
+        <v-col>
+          <v-card
+            color="pink-darken-4"
+            class="py-14 ma-10 my-15"
+            variant="outlined"
+          >
+            <v-btn icon flat>
+              <v-icon color="pink-darken-4">mdi-bell-outline</v-icon>
+            </v-btn>
+            <v-card-title>Teste</v-card-title>
+          </v-card>
+        </v-col>
+
+        <v-col>
+          <v-card
+            color="pink-darken-4"
+            class="py-14 ma-10 my-15"
+            variant="outlined"
+          >
+            <v-btn icon flat>
+              <v-icon color="pink-darken-4">mdi-bell-outline</v-icon>
+            </v-btn>
+            <v-card-title>Teste</v-card-title>
+          </v-card>
+        </v-col>
+      </v-row>
+    </div>
+
     <Footer />
-    </v-img>
   </v-main>
 </template>
 
@@ -28,13 +79,19 @@
 </script>
 
 <style scoped>
-  #fundoCards {
-    background-color: #FFF;
-    width: 80%;
-    height: 70%;
-    margin: 2% auto;
-    display: flex;
-    /* justify-content: center;
+#fundoCards {
+  background-color: #fff;
+  width: 90%;
+  height: 75%;
+  margin: 2% auto;
+  display: flex;
+  /* justify-content: center;
     align-items: center; */
-  }
+}
+
+#imagem {
+  background-image: url("../assets/img/fundoDesenhos.svg");
+  background-size: cover;
+  height: 100%;
+}
 </style>
