@@ -1,7 +1,7 @@
 <template>
     <v-main>
 
-  <v-footer class="d-flex flex-column" color="pink-accent-1">
+  <v-footer class="d-flex flex-column position-absolute bottom-0 w-100" color="pink-accent-1">
    
 
     <div class="px-4 py-2  text-center  w-100">
@@ -15,3 +15,7 @@
 <script>
 
 </script>
+
+<style scoped>
+  
+</style>

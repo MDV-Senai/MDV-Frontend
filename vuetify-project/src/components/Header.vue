@@ -19,6 +19,7 @@
       temporary
       color="pink-darken-4"
       location="right"
+      :width="343"
     >
       <v-list-item
         prepend-icon="mdi-account-circle-outline"
@@ -37,7 +38,7 @@
           value="informacao"
         ></v-list-item>
         <v-list-item
-          prepend-icon="mdi-information"
+          prepend-icon="mdi-dots-horizontal-circle-outline"
           title="Menu de Vagas"
           value="vagas"
         ></v-list-item>
@@ -48,7 +49,7 @@
         ></v-list-item>
         <v-list-group value="Actions">
           <template v-slot:activator="{ props }">
-            <v-list-item v-bind="props" title="Actions"></v-list-item>
+            <v-list-item prepend-icon="mdi-account-file-outline" v-bind="props" title="Cadastrar"></v-list-item>
           </template>
 
           <v-list-item
@@ -70,10 +71,11 @@ export default {
     drawer: false,
     group: null,
      cruds: [
-        ['Cadastrar Instituição', 'mdi-plus-outline'],
-        ['Read', 'mdi-file-outline'],
-        ['Update', 'mdi-update'],
-        ['Delete', 'mdi-delete'],
+        ['Cadastrar Instituição', 'mdi-store-plus-outline'],
+        ['Cadastrar Estagiário', 'mdi-account-plus-outline'],
+        ['Cadastrar Setor', 'mdi-text-box-plus-outline'],
+        ['Gerar Contrato ', 'mdi-file-account-outline'],
+        ['Cadastro de Professor Responsável Pelo Estagiário ', 'mdi-human-male-board'],
       ],
   }),
 
