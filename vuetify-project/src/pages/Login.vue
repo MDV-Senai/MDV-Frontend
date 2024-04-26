@@ -14,7 +14,7 @@
                   <v-card
                     align="center"
                     class="mx-auto my-16"
-                    width="500"
+                    width="80%"
                     height="469"
                     id="transparente"
                   >

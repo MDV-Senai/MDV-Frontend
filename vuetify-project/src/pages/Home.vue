@@ -4,10 +4,10 @@
 
     <div id="fundoCards">
       <v-row class="d-flex justify-center">
-        <v-col sm="2" class="d-flex justify-center">
+        <v-col sm="2" id="teste">
           <v-card
             color="pink-darken-4"
-            class="py-14 ma-5 my-15 w-100"
+            class="py-14 my-15 w-100"
             variant="outlined"
           >
             <v-btn icon flat>
@@ -17,10 +17,10 @@
           </v-card>
         </v-col>
 
-        <v-col sm="2">
+        <v-col sm="2" id="teste">
           <v-card
             color="pink-darken-4"
-            class="py-14 ma-5 my-15 w-100"
+            class="py-14 my-15 w-100"
             variant="outlined"
           >
             <v-btn icon flat>
@@ -30,10 +30,10 @@
           </v-card>
         </v-col>
 
-        <v-col sm="2">
+        <v-col sm="2" id="teste">
           <v-card
             color="pink-darken-4"
-            class="py-14 ma-5 my-15 w-100"
+            class="py-14 my-15 w-100"
             variant="outlined"
           >
             <v-btn icon flat>
@@ -43,10 +43,10 @@
           </v-card>
         </v-col>
 
-        <v-col sm="2">
+        <v-col sm="2" id="teste">
           <v-card
             color="pink-darken-4"
-            class="py-14 ma-5 my-15 w-100"
+            class="py-14 my-15 w-100"
             variant="outlined"
           >
             <v-btn icon flat>
@@ -56,10 +56,10 @@
           </v-card>
         </v-col>
 
-        <v-col sm="2">
+        <v-col sm="2" id="teste">
           <v-card
             color="pink-darken-4"
-            class="py-14 ma-5 my-15 w-100"
+            class="py-14 my-15 w-100"
             variant="outlined"
           >
             <v-btn icon flat>
@@ -67,6 +67,12 @@
             </v-btn>
             <v-card-title>Consultas</v-card-title>
           </v-card>
+        </v-col>
+      </v-row>
+      <v-row class="w-100 d-flex justify-center">
+        <v-col sm="12">
+        <v-img src="../assets/img/mulher.svg"></v-img>
+          
         </v-col>
       </v-row>
     </div>
@@ -82,12 +88,22 @@
 #fundoCards {
   background-color: red;
   width: 90%;
-  height: 75%;
   margin: 2% auto;
   display: flex;
   text-align: center;
+  flex-direction: column;
   /* justify-content: center;
     align-items: center; */
+}
+
+#teste{
+  min-width: 230px;
+}
+
+@media(max-width: 768px){
+  #fundoCards {
+    height: auto;
+  }
 }
 
 #imagem {
