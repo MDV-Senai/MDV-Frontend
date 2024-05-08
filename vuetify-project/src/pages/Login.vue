@@ -44,13 +44,22 @@
                               v-bind="activatorProps"
                               color="pink darken-4"
                               text="Esqueci a senha"
-                              variant="flat"
+                              variant="text"
                             ></v-btn>
                           </template>
 
                           <template v-slot:default="{ isActive }">
-                            <v-card  class="d-flex justify-center align-center">
+                            <v-card class="d-flex justify-center align-center">
                               <v-card-text>
+                                <div class="d-flex justify-center align-center">
+                                  <v-col cols="auto">
+                                    <v-btn
+                                      icon="mdi-email-outline"
+                                      color="blue"
+                                      size="x-large"
+                                    ></v-btn>
+                                  </v-col>
+                                </div>
                                 Insira seu e-mail para recuperação de senha.
                               </v-card-text>
                               <v-col cols="12" sm="10">
