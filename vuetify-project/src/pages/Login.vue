@@ -35,10 +35,45 @@
                         ></v-text-field>
                       </v-col>
 
-                      <v-card-text 
-                        ><a href="#" id="textoSenha">Esqueci a Senha</a></v-card-text
-                      >
+                      <div class="d-flex justify-center align-center">
+                        <v-dialog max-width="500">
+                          <template
+                            v-slot:activator="{ props: activatorProps }"
+                          >
+                            <v-btn
+                              v-bind="activatorProps"
+                              color="pink darken-4"
+                              text="Esqueci a senha"
+                              variant="flat"
+                            ></v-btn>
+                          </template>
 
+                          <template v-slot:default="{ isActive }">
+                            <v-card  class="d-flex justify-center align-center">
+                              <v-card-text>
+                                Insira seu e-mail para recuperação de senha.
+                              </v-card-text>
+                              <v-col cols="12" sm="10">
+                                <v-text-field
+                                  label="E-mail"
+                                  variant="outlined"
+                                  color="pink-darken-4"
+                                ></v-text-field>
+                              </v-col>
+                              <v-card-actions>
+                                <v-spacer></v-spacer>
+
+                                <v-btn text @click="isActive.value = false">
+                                  <v-icon right
+                                    >mdi-chevron-right-circle-outline</v-icon
+                                  >
+                                  Enviar
+                                </v-btn>
+                              </v-card-actions>
+                            </v-card>
+                          </template>
+                        </v-dialog>
+                      </div>
                       <RouterLink to="/home">
                         <v-btn
                           append-icon="mdi-chevron-right"
@@ -83,7 +118,7 @@
 }
 
 #textoSenha {
-  color: #F178AC;
+  color: #f178ac;
   text-decoration: none;
 }
 

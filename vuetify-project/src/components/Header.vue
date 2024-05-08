@@ -61,7 +61,7 @@
           ></v-list-item>
         </v-list-group>
 
- <v-list-group value="Actions">
+ <v-list-group value="Action">
           <template v-slot:activator="{ props }">
             <v-list-item prepend-icon="mdi-account-file-outline" v-bind="props" title="Consultas"></v-list-item>
           </template>
