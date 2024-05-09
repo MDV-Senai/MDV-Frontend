@@ -43,7 +43,7 @@
                                 ></v-text-field>
                               </v-col>
         </v-row>
-          <v-row class="d-flex justify-center">
+          <v-row id="inputResponsivo" class="d-flex justify-center">
           <v-col cols="6" md="5">
                                 <v-text-field
                                   label="CNPJ"
@@ -74,6 +74,12 @@ font-size: 30px;
 width: 90%;
 height: 100px;
 color: gray;
+}
+
+@media (max-width: 768px) { 
+    #inputResponsivo { 
+        flex-direction: column;
+    }
 }
 
 
