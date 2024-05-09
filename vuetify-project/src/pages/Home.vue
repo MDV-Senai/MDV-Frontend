@@ -5,24 +5,18 @@
     <div id="fundoCards">
       <v-row class="d-flex justify-center">
         <v-col sm="2" id="teste">
-          <v-hover>
-            <template v-slot:default="{ isHovering, props }">
-              <v-card
-                v-bind="props"
-                :color="isHovering ? 'pink-darken-4' : 'white'"
-                class="py-14 my-15 w-100"
-                variant="flat"
-                id="testeCard"
-              >
-              <RouterLink to="/CadastrarInstituicao">
-                <v-btn icon flat>
-                  <v-icon color="pink-darken-4">mdi-store-plus-outline</v-icon>
-                </v-btn>
-              </RouterLink>
-                <v-card-title id="textoCard">Cadastrar Instituição</v-card-title>
-              </v-card>
-            </template>
-          </v-hover>
+          <v-card
+            color="pink-darken-4"
+            class="py-14 my-15 w-100"
+            variant="outlined"
+          >
+            <RouterLink to="/CadastrarInstituicao">
+              <v-btn icon flat>
+                <v-icon color="pink-darken-4">mdi-store-plus-outline</v-icon>
+              </v-btn>
+            </RouterLink>
+            <v-card-title>Cadastrar Instituição</v-card-title>
+          </v-card>
         </v-col>
 
         <v-col sm="2" id="teste">
@@ -31,9 +25,11 @@
             class="py-14 my-15 w-100"
             variant="outlined"
           >
+          <RouterLink to="/CadastrarEstagiario">
             <v-btn icon flat>
               <v-icon color="pink-darken-4">mdi-account-plus-outline</v-icon>
             </v-btn>
+          </RouterLink>
             <v-card-title>Cadastrar Estagiário</v-card-title>
           </v-card>
         </v-col>
@@ -130,11 +126,4 @@
   border: 1px solid #880e4f;
 }
 
-#textoCard {
-  color: #880e4f;
-}
-
-#textoCard:hover {
-  color: #ffff;
-}
 </style>
