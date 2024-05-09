@@ -14,9 +14,11 @@
                 variant="flat"
                 id="testeCard"
               >
+              <RouterLink to="/CadastrarInstituicao">
                 <v-btn icon flat>
                   <v-icon color="pink-darken-4">mdi-store-plus-outline</v-icon>
                 </v-btn>
+              </RouterLink>
                 <v-card-title id="textoCard">Cadastrar Instituição</v-card-title>
               </v-card>
             </template>

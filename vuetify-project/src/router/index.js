@@ -13,7 +13,14 @@ const router = createRouter({
       name: 'Home',
       
       component: () => import('../pages/Home.vue')
+    },
+    {
+      path:"/cadastrarInstituicao",
+      name:"CadastrarInstituicao",
+      component:()=> import('../pages/CadastrarInstituicao.vue')
+
     }
+
   ]
 })
 
