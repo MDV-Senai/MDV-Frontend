@@ -9,7 +9,7 @@
         <v-row class="d-flex justify-center mt-8">
           <v-col cols="12" sm="10">
                                 <v-text-field
-                                  label="Instituição"
+                                  label="Nome Social"
                                   variant="outlined"
                                   color="pink-darken-4"
                                 ></v-text-field>
@@ -19,7 +19,7 @@
         <v-row class="d-flex justify-center">
           <v-col cols="12" sm="10">
                                 <v-text-field
-                                  label="Razão Social"
+                                  label="Nome"
                                   variant="outlined"
                                   color="pink-darken-4"
                                 ></v-text-field>
