@@ -25,6 +25,12 @@ const router = createRouter({
       name:"CadastrarEstagiario",
       component:()=> import('../pages/CadastrarEstagiario.vue')
 
+    },
+    {
+      path:"/cadastrarSetor",
+      name:"CadastrarSetor",
+      component:()=> import('../pages/CadastrarSetor.vue')
+
     }
 
   ]

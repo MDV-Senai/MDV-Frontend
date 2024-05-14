@@ -40,9 +40,11 @@
             class="py-14 my-15 w-100"
             variant="outlined"
           >
+          <RouterLink to="/CadastrarSetor">
             <v-btn icon flat>
               <v-icon color="pink-darken-4">mdi-text-box-plus-outline</v-icon>
             </v-btn>
+          </RouterLink>
             <v-card-title>Cadastrar Setor</v-card-title>
           </v-card>
         </v-col>

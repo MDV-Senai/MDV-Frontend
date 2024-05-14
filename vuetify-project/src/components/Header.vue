@@ -49,7 +49,11 @@
         ></v-list-item>
         <v-list-group value="Actions">
           <template v-slot:activator="{ props }">
-            <v-list-item prepend-icon="mdi-account-file-outline" v-bind="props" title="Cadastrar"></v-list-item>
+            <v-list-item
+              prepend-icon="mdi-account-file-outline"
+              v-bind="props"
+              title="Cadastrar"
+            ></v-list-item>
           </template>
 
           <v-list-item
@@ -61,9 +65,13 @@
           ></v-list-item>
         </v-list-group>
 
- <v-list-group value="Action">
+        <v-list-group value="Action">
           <template v-slot:activator="{ props }">
-            <v-list-item prepend-icon="mdi-account-file-outline" v-bind="props" title="Consultas"></v-list-item>
+            <v-list-item
+              prepend-icon="mdi-account-file-outline"
+              v-bind="props"
+              title="Consultas"
+            ></v-list-item>
           </template>
 
           <v-list-item
@@ -74,7 +82,6 @@
             :value="title"
           ></v-list-item>
         </v-list-group>
-
       </v-list>
     </v-navigation-drawer>
   </v-toolbar>
@@ -85,20 +92,26 @@ export default {
   data: () => ({
     drawer: false,
     group: null,
-     cruds: [
-        ['Cadastrar Instituição', 'mdi-store-plus-outline'],
-        ['Cadastrar Estagiário', 'mdi-account-plus-outline'],
-        ['Cadastrar Setor', 'mdi-text-box-plus-outline'],
-        ['Gerar Contrato ', 'mdi-file-account-outline'],
-        ['Cadastro de Professor Responsável Pelo Estagiário ', 'mdi-human-male-board'],
+    cruds: [
+      ["Cadastrar Instituição", "mdi-store-plus-outline"],
+      ["Cadastrar Estagiário", "mdi-account-plus-outline"],
+      ["Cadastrar Setor", "mdi-text-box-plus-outline"],
+      ["Gerar Contrato ", "mdi-file-account-outline"],
+      [
+        "Cadastro de Professor Responsável Pelo Estagiário ",
+        "mdi-human-male-board",
       ],
-       consultas: [
-        ['Consulta de Instituição', 'mdi-store-search-outline'],
-        ['Consulta de Estagiário', 'mdi-account-search-outline'],
-        ['Consulta de Setor', 'mdi-clipboard-text-search-outline'],
-        ['Consulta de Contrato', 'mdi-file-search-outline'],
-        ['Informações do Professor Responsável', 'mdi-account-supervisor-outline'],
+    ],
+    consultas: [
+      ["Consulta de Instituição", "mdi-store-search-outline"],
+      ["Consulta de Estagiário", "mdi-account-search-outline"],
+      ["Consulta de Setor", "mdi-clipboard-text-search-outline"],
+      ["Consulta de Contrato", "mdi-file-search-outline"],
+      [
+        "Informações do Professor Responsável",
+        "mdi-account-supervisor-outline",
       ],
+    ],
   }),
 
   watch: {
