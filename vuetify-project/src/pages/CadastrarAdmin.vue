@@ -132,7 +132,19 @@
         :items="virtualBoats"
         height="400"
         item-value="name"
-      ></v-data-table>
+      >
+      <template v-slot:item="{ item }">
+        <tr>
+          <td>{{ item.name }}</td>
+          <td>{{ item.speed }}</td>
+          <td>
+            <v-btn @click="handleButtonClick(item.name)" color="red">
+              DELETE
+            </v-btn>
+          </td>
+        </tr>
+      </template>
+    </v-data-table>
     </v-container>
 
   </v-main>
@@ -182,107 +194,86 @@
 
 <script>
 
-export default {
-  data () {
-      return {
-        headers: [
-          { title: 'Boat Type', align: 'start', key: 'name' },
-          { title: 'Speed (knots)', align: 'end', key: 'speed' },
-          { title: 'Length (m)', align: 'end', key: 'length' },
-          { title: 'Price ($)', align: 'end', key: 'price' },
-          { title: 'Year', align: 'end', key: 'year' },
-        ],
-        boats: [
-          {
-            name: 'Speedster',
-            speed: 35,
-            length: 22,
-            price: 300000,
-            year: 2021,
-          },
-          {
-            name: 'OceanMaster',
-            speed: 25,
-            length: 35,
-            price: 500000,
-            year: 2020,
-          },
-          {
-            name: 'Voyager',
-            speed: 20,
-            length: 45,
-            price: 700000,
-            year: 2019,
-          },
-          {
-            name: 'WaveRunner',
-            speed: 40,
-            length: 19,
-            price: 250000,
-            year: 2022,
-          },
-          {
-            name: 'SeaBreeze',
-            speed: 28,
-            length: 31,
-            price: 450000,
-            year: 2018,
-          },
-          {
-            name: 'HarborGuard',
-            speed: 18,
-            length: 50,
-            price: 800000,
-            year: 2017,
-          },
-          {
-            name: 'SlickFin',
-            speed: 33,
-            length: 24,
-            price: 350000,
-            year: 2021,
-          },
-          {
-            name: 'StormBreaker',
-            speed: 22,
-            length: 38,
-            price: 600000,
-            year: 2020,
-          },
-          {
-            name: 'WindSail',
-            speed: 15,
-            length: 55,
-            price: 900000,
-            year: 2019,
-          },
-          {
-            name: 'FastTide',
-            speed: 37,
-            length: 20,
-            price: 280000,
-            year: 2022,
-          },
-        ],
-      }
-    },
+  export default {
+    data () {
+        return {
+          headers: [
+            { title: 'Nome', align: 'start', key: 'name' },
+            { title: 'Nº da matricula', align: 'start', key: 'speed' },
+            { title: 'Ações', align: 'start', sortable: false },
+          ],
+          boats: [
+            {
+              name: 'Speedster',
+              speed: 35,
+            },
+            {
+              name: 'OceanMaster',
+              speed: 25,
 
-    computed: {
-      virtualBoats () {
-        return [...Array(10000).keys()].map(i => {
-          const boat = { ...this.boats[i % this.boats.length] }
-          boat.name = `${boat.name} #${i}`
-          return boat
-        })
+            },
+            {
+              name: 'Voyager',
+              speed: 20,
+
+            },
+            {
+              name: 'WaveRunner',
+              speed: 40,
+
+            },
+            {
+              name: 'SeaBreeze',
+              speed: 28,
+
+            },
+            {
+              name: 'HarborGuard',
+              speed: 18,
+
+            },
+            {
+              name: 'SlickFin',
+              speed: 33,
+
+            },
+            {
+              name: 'StormBreaker',
+              speed: 22,
+
+            },
+            {
+              name: 'WindSail',
+              speed: 15,
+            },         {
+              name: 'FastTide',
+              speed: 37,
+            },
+          ],
+        }
       },
-    },
 
-    methods: {
-      reset() {
-        this.$refs.form.reset();
+      computed: {
+        virtualBoats () {
+          return [...Array(10).keys()].map(i => {
+            const boat = { ...this.boats[i % this.boats.length] }
+            boat.name = `${boat.name} #${i}`
+            return boat
+          })
+        },
       },
-    },
-  };
 
-</script>
+      methods: {
+        reset() {
+          this.$refs.form.reset();
+        },
+
+        handleButtonClick(item) {
+          alert('Button clicked for:' + item);
+        },
+
+      },
+    };
+
+  </script>
 
