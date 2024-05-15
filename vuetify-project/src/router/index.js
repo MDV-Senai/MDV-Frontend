@@ -31,7 +31,13 @@ const router = createRouter({
       name:"CadastrarSetor",
       component:()=> import('../pages/CadastrarSetor.vue')
 
+    },
+    { 
+      path:"/CadastrarResponsavel",
+      name:"CadastrarResponsavel",
+      component:()=>import('../pages/CadastrarResponsavel')
     }
+
 
   ]
 })

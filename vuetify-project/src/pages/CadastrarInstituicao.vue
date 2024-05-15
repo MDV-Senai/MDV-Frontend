@@ -10,7 +10,7 @@
       <v-form ref="form" id="form" class="mx-auto">
         <v-row class="d-flex justify-center mt-8">
           <v-col cols="12" md="12">
-            <v-text-field id="color"
+            <v-text-field
               label="Instituição"
               variant="outlined"
               color="pink-darken-4"
@@ -20,7 +20,7 @@
 
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="12">
-            <v-text-field id="color"
+            <v-text-field
               label="Razão Social"
               variant="outlined"
               color="pink-darken-4"
@@ -29,7 +29,7 @@
         </v-row>
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="12">
-            <v-text-field id="color"
+            <v-text-field
               label="Diretor"
               variant="outlined"
               color="pink-darken-4"
@@ -38,7 +38,7 @@
         </v-row>
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="12">
-            <v-text-field id="color"
+            <v-text-field
               label="Professor Responsável"
               variant="outlined"
               color="pink-darken-4"
@@ -47,7 +47,7 @@
         </v-row>
         <v-row id="inputResponsivo" class="d-flex justify-center">
           <v-col cols="6" md="6">
-            <v-text-field id="color"
+            <v-text-field
               label="CNPJ"
               variant="outlined"
               color="pink-darken-4"
@@ -55,7 +55,7 @@
           </v-col>
 
           <v-col cols="6" md="6">
-            <v-text-field id="color"
+            <v-text-field
               label="Inscrição Estadual"
               variant="outlined"
               color="pink-darken-4"
@@ -65,7 +65,7 @@
 
         <v-row id="inputResponsivo" class="d-flex justify-center">
           <v-col cols="6" md="4">
-            <v-text-field id="color" 
+            <v-text-field 
               label="Telefone"
               variant="outlined"
               color="pink-darken-4"
@@ -73,14 +73,14 @@
           </v-col>
 
           <v-col cols="6" md="4">
-            <v-text-field id="color"
+            <v-text-field
               label="Celular"
               variant="outlined"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
           <v-col cols="6" md="4">
-            <v-text-field id="color"
+            <v-text-field
               label="Email"
               variant="outlined"
               color="pink-darken-4"
@@ -90,7 +90,7 @@
 
         <v-row id="inputResponsivo" class="d-flex justify-center">
           <v-col cols="6" md="4">
-            <v-text-field id="color"
+            <v-text-field
               label="CEP"
               variant="outlined"
               color="pink-darken-4"
@@ -98,14 +98,14 @@
           </v-col>
 
           <v-col cols="6" md="4">
-            <v-select id="color"
+            <v-select
               label="Cidade"
               variant="outlined"
               color="pink-darken-4"
             ></v-select>
           </v-col>
           <v-col cols="6" md="2">
-            <v-select id="color"
+            <v-select
               label="UF"
               variant="outlined"
               color="pink-darken-4"
@@ -113,7 +113,7 @@
           </v-col>
 
           <v-col cols="6" md="2">
-            <v-text-field id="color"
+            <v-text-field
               label="Nº"
               variant="outlined"
               color="pink-darken-4"
@@ -123,7 +123,7 @@
 
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="12">
-            <v-text-field id="color"
+            <v-text-field
               label="Rua"
               variant="outlined"
               color="pink-darken-4"
@@ -133,7 +133,7 @@
 
         <v-row id="inputResponsivo" class="d-flex justify-center">
           <v-col cols="6" md="6">
-            <v-text-field id="color"
+            <v-text-field
               label="Bairro"
               variant="outlined"
               color="pink-darken-4"
@@ -141,48 +141,54 @@
           </v-col>
 
           <v-col cols="6" md="6">
-            <v-text-field id="color"
+            <v-text-field
               label="Complemento"
-              background-color="pink"
+              variant="outlined"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
         </v-row>
 
         <div class="d-flex justify-center">
-          <v-row>
-            <v-col cols="6" md="6">
-              <v-btn
-                @click="reset"
-                class="my-10"
-                color="pink-darken-4"
-                append-icon="mdi-chevron-right"
-                variant="outlined"
-                width="183"
-                height="62"
-              >
-                Limpar
-              </v-btn>
-            </v-col>
+           <v-row class="d-flex justify-center">
+          <v-col cols="12" md="3">
+            <div></div>
+          </v-col>
+          <v-col cols="12" md="3">
+            <v-btn
+              @click="reset"
+              class="my-10"
+              color="pink-darken-4"
+              append-icon="mdi-chevron-right"
+              variant="outlined"
+              width="183"
+              height="62"
+            >
+              Limpar
+            </v-btn>
+          </v-col>
 
-            <v-col cols="6" md="6">
-              <v-btn
-                append-icon="mdi-chevron-right"
-                variant="outlined"
-                color="pink-darken-4"
-                class="my-10"
-                 width="183"
-                height="62"
-                id="botaoEntrar"
-              >
-                Cadastrar
+          <v-col cols="12" md="3">
+            <v-btn
+              append-icon="mdi-chevron-right"
+              variant="outlined"
+              color="pink-darken-4"
+              class="my-10"
+              width="183"
+              height="62"
+              id="botaoEntrar"
+            >
+              Cadastrar
 
-                <template v-slot:append>
-                  <v-icon color="pink-darken-4"></v-icon>
-                </template>
-              </v-btn>
-            </v-col>
-          </v-row>
+              <template v-slot:append>
+                <v-icon color="pink-darken-4"></v-icon>
+              </template>
+            </v-btn>
+          </v-col>
+          <v-col cols="12" md="3">
+            <div></div>
+          </v-col>
+        </v-row>
         </div>
       </v-form>
     </div>
@@ -193,9 +199,6 @@
 
 <style scoped>
 
-#color input { 
-  background-color:pink !important; 
-}
 #imagem {
   background-image: url("../assets/img/fundoDesenhos.svg");
   background-size: contain;
