@@ -1,6 +1,9 @@
 <template>
   <v-toolbar extended color="#FFFFFF">
-    <v-img src="../assets/img/Logo.svg"></v-img>
+    
+    <RouterLink to="/home" id="logo_url"> 
+      <img src="../assets/img/Logo.svg" id="logo"> 
+    </RouterLink>
 
     <v-spacer></v-spacer>
 
@@ -57,10 +60,11 @@
           </template>
 
           <v-list-item
-            v-for="([title, icon], i) in cruds"
+            v-for="([title, icon, route], i) in cruds"
             :key="i"
             :prepend-icon="icon"
             :title="title"
+            :to="route"
             :value="title"
           ></v-list-item>
         </v-list-group>
@@ -93,13 +97,22 @@ export default {
     drawer: false,
     group: null,
     cruds: [
-      ["Cadastrar Instituição", "mdi-store-plus-outline"],
-      ["Cadastrar Estagiário", "mdi-account-plus-outline"],
-      ["Cadastrar Setor", "mdi-text-box-plus-outline"],
-      ["Gerar Contrato ", "mdi-file-account-outline"],
       [
-        "Cadastro de Professor Responsável Pelo Estagiário ",
+        "Cadastrar Instituição",
+        "mdi-store-plus-outline",
+        "/CadastrarInstituicao",
+      ],
+      [
+        "Cadastrar Estagiário",
+        "mdi-account-plus-outline",
+        "/cadastrarEstagiario",
+      ],
+      ["Cadastrar Setor", "mdi-text-box-plus-outline", "/cadastrarSetor"],
+      ["Cadastrar Admin", "mdi-file-account-outline", "/cadastrarAdmin"],
+      [
+        "Cadastro de Responsável Pelo Estagiário ",
         "mdi-human-male-board",
+        "/CadastrarResponsavel",
       ],
     ],
     consultas: [
@@ -126,6 +139,10 @@ export default {
 <style scoped>
 p {
   font-size: 15px;
+}
+
+#logo{
+  width: 50%;
 }
 </style>
 

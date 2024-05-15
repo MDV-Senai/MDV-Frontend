@@ -12,8 +12,9 @@
           <v-col cols="12" md="12">
             <v-text-field
               label="Instituição"
-              variant="outlined"
-              color="pink-darken-4"
+              clearable
+             class="text-pink-darken-1"
+             color="pink-darken-4"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -22,8 +23,9 @@
           <v-col cols="12" md="12">
             <v-text-field
               label="Razão Social"
-              variant="outlined"
-              color="pink-darken-4"
+              clearable
+             class="text-pink-darken-1"
+             color="pink-darken-4"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -31,8 +33,9 @@
           <v-col cols="12" md="12">
             <v-text-field
               label="Diretor"
-              variant="outlined"
-              color="pink-darken-4"
+              clearable
+             class="text-pink-darken-1"
+             color="pink-darken-4"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -40,83 +43,93 @@
           <v-col cols="12" md="12">
             <v-text-field
               label="Professor Responsável"
-              variant="outlined"
-              color="pink-darken-4"
+              clearable
+             class="text-pink-darken-1"
+             color="pink-darken-4"
             ></v-text-field>
           </v-col>
         </v-row>
         <v-row id="inputResponsivo" class="d-flex justify-center">
-          <v-col cols="6" md="6">
+          <v-col cols="12" md="6">
             <v-text-field
               label="CNPJ"
-              variant="outlined"
-              color="pink-darken-4"
+              clearable
+             class="text-pink-darken-1"
+             color="pink-darken-4"
             ></v-text-field>
           </v-col>
 
-          <v-col cols="6" md="6">
+          <v-col cols="12" md="6">
             <v-text-field
               label="Inscrição Estadual"
-              variant="outlined"
-              color="pink-darken-4"
+              clearable
+             class="text-pink-darken-1"
+             color="pink-darken-4"
             ></v-text-field>
           </v-col>
         </v-row>
 
         <v-row id="inputResponsivo" class="d-flex justify-center">
-          <v-col cols="6" md="4">
+          <v-col cols="12" md="4">
             <v-text-field 
               label="Telefone"
-              variant="outlined"
-              color="pink-darken-4"
+              clearable
+             class="text-pink-darken-1"
+             color="pink-darken-4"
             ></v-text-field>
           </v-col>
 
-          <v-col cols="6" md="4">
+          <v-col cols="12" md="4">
             <v-text-field
               label="Celular"
-              variant="outlined"
-              color="pink-darken-4"
+              clearable
+             class="text-pink-darken-1"
+             color="pink-darken-4"
             ></v-text-field>
           </v-col>
-          <v-col cols="6" md="4">
+          <v-col cols="12" md="4">
             <v-text-field
               label="Email"
-              variant="outlined"
-              color="pink-darken-4"
+              clearable
+             class="text-pink-darken-1"
+             color="pink-darken-4"
             ></v-text-field>
           </v-col>
         </v-row>
 
         <v-row id="inputResponsivo" class="d-flex justify-center">
-          <v-col cols="6" md="4">
+          <v-col cols="12" md="4">
             <v-text-field
               label="CEP"
-              variant="outlined"
-              color="pink-darken-4"
+              clearable
+             class="text-pink-darken-1"
+             color="pink-darken-4"
             ></v-text-field>
           </v-col>
 
-          <v-col cols="6" md="4">
+          <v-col cols="12" md="4">
             <v-select
               label="Cidade"
-              variant="outlined"
-              color="pink-darken-4"
+              clearable
+             class="text-pink-darken-1"
+             color="pink-darken-4"
             ></v-select>
           </v-col>
-          <v-col cols="6" md="2">
+          <v-col cols="12" md="2">
             <v-select
               label="UF"
-              variant="outlined"
-              color="pink-darken-4"
+              clearable
+             class="text-pink-darken-1"
+             color="pink-darken-4"
             ></v-select>
           </v-col>
 
-          <v-col cols="6" md="2">
+          <v-col cols="12" md="2">
             <v-text-field
               label="Nº"
-              variant="outlined"
-              color="pink-darken-4"
+              clearable
+             class="text-pink-darken-1"
+             color="pink-darken-4"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -125,27 +138,29 @@
           <v-col cols="12" md="12">
             <v-text-field
               label="Rua"
-              variant="outlined"
-              color="pink-darken-4"
+              clearable
+             class="text-pink-darken-1"
+             color="pink-darken-4"
             ></v-text-field>
           </v-col>
         </v-row>
 
-        <v-row id="inputResponsivo" class="d-flex justify-center">
-          <v-col cols="6" md="6">
+        <v-row  class="d-flex justify-center">
+          <v-col cols="12" md="6">
             <v-text-field
               label="Bairro"
-              variant="outlined"
-              color="pink-darken-4"
+              clearable
+             class="text-pink-darken-1"
+             color="pink-darken-4"
             ></v-text-field>
           </v-col>
 
-          <v-col cols="6" md="6">
+          <v-col cols="12" md="6">
             <v-text-field
-              label="Complemento"
-             
-             class="text-pink"
-              color="pink-darken-4"
+             label="Complemento"
+             clearable
+             class="text-pink-darken-1"
+             color="pink-darken-4"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -199,11 +214,6 @@
 </template>
 
 <style scoped>
-
-.text-pink input {
-  color: rgb(255, 163, 178) !important;
-  background-color: rgb(255, 223, 228) !important;
-}
 
 #imagem {
   background-image: url("../assets/img/fundoDesenhos.svg");
