@@ -11,7 +11,7 @@ const router = createRouter({
     {
       path: '/home',
       name: 'Home',
-      
+
       component: () => import('../pages/Home.vue')
     },
     {
@@ -32,11 +32,17 @@ const router = createRouter({
       component:()=> import('../pages/CadastrarSetor.vue')
 
     },
-    { 
+    {
       path:"/CadastrarResponsavel",
       name:"CadastrarResponsavel",
       component:()=>import('../pages/CadastrarResponsavel.vue')
-    }
+    },
+    {
+      path:"/cadastrarAdmin",
+      name:"CadastrarAdmin",
+      component:()=> import('../pages/CadastrarAdmin.vue')
+
+    },
 
 
   ]
