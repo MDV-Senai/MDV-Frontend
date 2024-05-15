@@ -143,7 +143,8 @@
           <v-col cols="6" md="6">
             <v-text-field
               label="Complemento"
-              variant="outlined"
+             
+             class="text-pink"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
@@ -198,6 +199,11 @@
 </template>
 
 <style scoped>
+
+.text-pink input {
+  color: rgb(255, 163, 178) !important;
+  background-color: rgb(255, 223, 228) !important;
+}
 
 #imagem {
   background-image: url("../assets/img/fundoDesenhos.svg");
