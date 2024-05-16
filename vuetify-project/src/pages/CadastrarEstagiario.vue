@@ -12,7 +12,8 @@
           <v-col cols="12" md="12">
             <v-text-field
               label="Nome Social"
-              variant="outlined"
+              clearable
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
@@ -22,7 +23,8 @@
           <v-col cols="12" md="12">
             <v-text-field
               label="Nome"
-              variant="outlined"
+              clearable
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
@@ -31,128 +33,144 @@
           <v-col cols="12" md="4">
             <v-text-field
               label="Nº Matrícula do Estudante"
-              variant="outlined"
+              clearable
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
             <v-text-field
               label="CPF"
-              variant="outlined"
+              clearable
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
-          <v-col cols="6" md="4">
+          <v-col cols="12" md="4">
             <v-text-field
               label="Data De Nasc."
-              variant="outlined"
+              clearable
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
         </v-row>
         <v-row id="inputResponsivo" class="d-flex justify-center">
-          <v-col cols="6" md="3">
+          <v-col cols="12" md="3">
             <v-text-field
               label="E-mail"
-              variant="outlined"
+              clearable
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
-          <v-col cols="6" md="3">
+          <v-col cols="12" md="3">
             <v-text-field
               label="Celular"
-              variant="outlined"
+              clearable
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
-          <v-col cols="6" md="3">
+          <v-col cols="12" md="3">
             <v-text-field
               label="Telefone"
-              variant="outlined"
+              clearable
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
-          <v-col cols="6" md="3">
+          <v-col cols="12" md="3">
             <v-text-field
               label="Número Emergencial"
-              variant="outlined"
+              clearable
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
         </v-row>
 
         <v-row id="inputResponsivo" class="d-flex justify-center">
-          <v-col cols="6" md="12">
+          <v-col cols="12" md="12">
             <v-text-field
               label="Nome do Contato Emergencial"
-              variant="outlined"
+              clearable
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
         </v-row>
 
         <v-row id="inputResponsivo" class="d-flex justify-center">
-          <v-col cols="6" md="4">
+          <v-col cols="12" md="4">
             <v-text-field
               label="Instituição De Ensino"
-              variant="outlined"
+              clearable
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
-          <v-col cols="6" md="4">
+          <v-col cols="12" md="4">
             <v-text-field
               label="Curso"
-              variant="outlined"
+              clearable
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
-          <v-col cols="6" md="4">
+          <v-col cols="12" md="4">
             <v-text-field
               label="Fase/Série"
-              variant="outlined"
+              clearable
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
         </v-row>
 
         <v-row id="inputResponsivo" class="d-flex justify-center">
-          <v-col cols="6" md="12">
+          <v-col cols="12" md="12">
             <v-text-field
               label="Nome do Professor Responsável"
-              variant="outlined"
+              clearable
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
         </v-row>
 
         <v-row id="inputResponsivo" class="d-flex justify-center">
-          <v-col cols="6" md="4">
+          <v-col cols="12" md="4">
             <v-text-field
               label="CEP"
-              variant="outlined"
+              clearable
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
 
-          <v-col cols="6" md="4">
+          <v-col cols="12" md="4">
             <v-select
               label="Cidade"
-              variant="outlined"
+              clearable
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-select>
           </v-col>
-          <v-col cols="6" md="2">
+          <v-col cols="12" md="2">
             <v-select
               label="UF"
-              variant="outlined"
+              clearable
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-select>
           </v-col>
 
-          <v-col cols="6" md="2">
+          <v-col cols="12" md="2">
             <v-text-field
               label="Nº"
-              variant="outlined"
+              clearable
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
@@ -162,70 +180,73 @@
           <v-col cols="12" md="12">
             <v-text-field
               label="Rua"
-              variant="outlined"
+              clearable
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
         </v-row>
 
         <v-row id="inputResponsivo" class="d-flex justify-center">
-          <v-col cols="6" md="6">
+          <v-col cols="12" md="6">
             <v-text-field
               label="Bairro"
-              variant="outlined"
+              clearable
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
 
-          <v-col cols="6" md="6">
+          <v-col cols="12" md="6">
             <v-text-field
               label="Complemento"
-              variant="outlined"
+              clearable
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
         </v-row>
 
         <div class="d-flex justify-center">
-       <v-row class="d-flex justify-center">
-          <v-col cols="12" md="3">
-            <div></div>
-          </v-col>
-          <v-col cols="12" md="3">
-            <v-btn
-              @click="reset"
-              class="my-10"
-              color="pink-darken-4"
-              append-icon="mdi-chevron-right"
-              variant="outlined"
-              width="183"
-              height="62"
-            >
-              Limpar
-            </v-btn>
-          </v-col>
+          <v-row class="d-flex justify-center">
+            <v-col cols="12" md="3">
+              <div></div>
+            </v-col>
+            <v-col cols="12" md="3">
+              <v-btn
+                @click="reset"
+                class="my-10"
+                color="pink-darken-4"
+                append-icon="mdi-chevron-right"
+                variant="outlined"
+                width="183"
+                height="62"
+              >
+                Limpar
+              </v-btn>
+            </v-col>
 
-          <v-col cols="12" md="3">
-            <v-btn
-              append-icon="mdi-chevron-right"
-              variant="outlined"
-              color="pink-darken-4"
-              class="my-10"
-              width="183"
-              height="62"
-              id="botaoEntrar"
-            >
-              Cadastrar
+            <v-col cols="12" md="3">
+              <v-btn
+                append-icon="mdi-chevron-right"
+                variant="outlined"
+                color="pink-darken-4"
+                class="my-10"
+                width="183"
+                height="62"
+                id="botaoEntrar"
+              >
+                Cadastrar
 
-              <template v-slot:append>
-                <v-icon color="pink-darken-4"></v-icon>
-              </template>
-            </v-btn>
-          </v-col>
-          <v-col cols="12" md="3">
-            <div></div>
-          </v-col>
-        </v-row>
+                <template v-slot:append>
+                  <v-icon color="pink-darken-4"></v-icon>
+                </template>
+              </v-btn>
+            </v-col>
+            <v-col cols="12" md="3">
+              <div></div>
+            </v-col>
+          </v-row>
         </div>
       </v-form>
     </div>
@@ -235,7 +256,6 @@
 </template>
 
 <style scoped>
-
 #imagem {
   background-image: url("../assets/img/fundoDesenhos.svg");
   background-size: contain;
@@ -263,7 +283,7 @@
 
 #fundoCards {
   background-color: white;
-  border-radius:8px;
+  border-radius: 8px;
   width: 90%;
   margin: 2% auto;
   display: flex;

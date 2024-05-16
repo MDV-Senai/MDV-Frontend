@@ -12,7 +12,8 @@
           <v-col cols="12" md="12">
             <v-text-field
               label="Supervisor"
-              variant="outlined"
+              clearable
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
@@ -22,7 +23,8 @@
           <v-col cols="12" md="12">
             <v-text-field
               label="Coordenador"
-              variant="outlined"
+              clearable
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
@@ -32,14 +34,16 @@
           <v-col cols="12" md="6">
             <v-text-field
               label="Setor"
-              variant="outlined"
+              clearable
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="6">
             <v-text-field
               label="E-mail do Setor"
-              variant="outlined"
+              clearable
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
@@ -49,14 +53,16 @@
           <v-col cols="12" md="6">
             <v-text-field
               label="E-mail"
-              variant="outlined"
+              clearable
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="6">
             <v-text-field
               label="Celular"
-              variant="outlined"
+              clearable
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>

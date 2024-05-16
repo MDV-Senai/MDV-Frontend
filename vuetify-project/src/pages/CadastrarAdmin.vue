@@ -3,7 +3,7 @@
     <Header />
     <div class="d-flex justify-center align-center">
       <v-card class="d-flex justify-center align-center" id="card_titulo"
-        >Cadastro administrador</v-card
+        >Cadastro De Administrador</v-card
       >
     </div>
     <div id="fundoCards">
@@ -12,7 +12,8 @@
           <v-col cols="12" md="12">
             <v-text-field
               label="Nome social"
-              variant="outlined"
+              clearable
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
@@ -22,7 +23,8 @@
           <v-col cols="12" md="12">
             <v-text-field
               label="Nome"
-              variant="outlined"
+              clearable
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
@@ -32,14 +34,16 @@
           <v-col cols="12" md="6">
             <v-text-field
               label="CPF"
-              variant="outlined"
+              clearable
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="6">
             <v-text-field
               label="Nº de Matrícula de Trabalho"
-              variant="outlined"
+              clearable
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
@@ -49,21 +53,24 @@
           <v-col cols="12" md="4">
             <v-text-field
               label="Telefone"
-              variant="outlined"
+              clearable
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
             <v-text-field
               label="Celular"
-              variant="outlined"
+              clearable
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
             <v-text-field
               label="E-mail"
-              variant="outlined"
+              clearable
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
@@ -73,14 +80,16 @@
           <v-col cols="12" md="6">
             <v-text-field
               label="Senha"
-              variant="outlined"
+              clearable
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="6">
             <v-text-field
               label="Confirme sua senha"
-              variant="outlined"
+              clearable
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>

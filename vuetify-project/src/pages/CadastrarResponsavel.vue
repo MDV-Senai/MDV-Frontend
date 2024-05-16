@@ -12,7 +12,8 @@
           <v-col cols="12" md="12">
             <v-text-field
               label="Nome"
-              variant="outlined"
+              clearable
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
@@ -22,7 +23,8 @@
           <v-col cols="12" md="12">
             <v-text-field
               label="Nome Social"
-              variant="outlined"
+              clearable
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
@@ -31,14 +33,16 @@
           <v-col cols="12" md="6">
             <v-text-field
               label="Nº Matrícula do Estudante"
-              variant="outlined"
+              clearable
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="6">
             <v-text-field
               label="CPF"
-              variant="outlined"
+              clearable
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
@@ -48,7 +52,8 @@
           <v-col cols="6" md="6">
             <v-text-field
               label="Instituição"
-              variant="outlined"
+              clearable
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
@@ -57,7 +62,8 @@
           <v-col cols="6" md="6">
             <v-text-field
               label="Curso"
-              variant="outlined"
+              clearable
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
