@@ -13,8 +13,11 @@ import App from './App.vue'
 // Composables
 import { createApp } from 'vue'
 
+import VueTheMask from 'vue-the-mask'
+
+
 const app = createApp(App)
 
 registerPlugins(app)
 
-app.mount('#app')
+app.use(VueTheMask).mount('#app')
