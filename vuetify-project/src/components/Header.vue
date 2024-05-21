@@ -114,6 +114,11 @@ export default {
         "mdi-human-male-board",
         "/CadastrarResponsavel",
       ],
+      [
+        "Cadastro de Vagas ",
+        "handshake-outline",
+        "/CadastrarVagas",
+      ],
     ],
     consultas: [
       ["Consulta de Instituição", "mdi-store-search-outline"],
