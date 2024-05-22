@@ -49,37 +49,42 @@
                           </template>
 
                           <template v-slot:default="{ isActive }">
-                            <v-card class="d-flex justify-center align-center">
-                              <v-card-text>
-                                <div class="d-flex justify-center align-center">
-                                  <v-col cols="auto">
-                                    <v-btn
-                                      icon="mdi-email-outline"
-                                      color="blue"
-                                      size="x-large"
-                                    ></v-btn>
-                                  </v-col>
-                                </div>
-                                Insira seu e-mail para recuperação de senha.
-                              </v-card-text>
-                              <v-col cols="12" sm="10">
+                            <v-window show-arrows>
+                              <template v-slot:prev="{ props }">
+                                <v-btn color="blue" @click="props.onClick"
+                                size= "x-large"
+                                icon="mdi-email-outline">
+                              Insira seu e-mail para recuperação de senha.
+                                </v-btn>
+                                <v-col cols="12" sm="10">
                                 <v-text-field
+                                
                                   label="E-mail"
                                   variant="outlined"
                                   color="pink-darken-4"
                                 ></v-text-field>
-                              </v-col>
-                              <v-card-actions>
-                                <v-spacer></v-spacer>
-
-                                <v-btn text @click="isActive.value = false">
-                                  <v-icon right
+                                 <v-icon right
                                     >mdi-chevron-right-circle-outline</v-icon
                                   >
                                   Enviar
+                              </v-col>
+                              </template>
+                              <template v-slot:next="{ props }">
+                                <v-btn color="info" @click="props.onClick">
+                                 
                                 </v-btn>
-                              </v-card-actions>
-                            </v-card>
+                               
+                              </template>
+                              <v-window-item v-for="n in 2" :key="`card-${n}`">
+                                <v-card
+                                  class="d-flex align-center justify-center ma-2"
+                                  elevation="2"
+                                  height="200"
+                                >
+                                 
+                                </v-card>
+                              </v-window-item>
+                            </v-window>
                           </template>
                         </v-dialog>
                       </div>
