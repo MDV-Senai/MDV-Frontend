@@ -6,3 +6,6 @@ attach para abrir o container. O caminho do attach é /MDV-fronted.
 
 No terminal do container rode o comando "cd vuetify-project" e depois "npm run dev". 
 
+Para salvar as alterações aplique "CTRL + S" e rode o comando "r" no terminal, senão a atualização
+não aplica na web.
+
