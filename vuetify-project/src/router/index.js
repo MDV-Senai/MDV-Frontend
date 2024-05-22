@@ -52,7 +52,12 @@ const router = createRouter({
       name:"CadastrarVagas",
       component:()=> import('../pages/CadastrarVagas.vue')
     },
+    {
+      path:"/ConsultarInstituicao",
+      name:"ConsultarInstituicao",
+      component:()=> import('../pages/ConsultarInstituicao.vue')
 
+    },
 
   ]
 })
