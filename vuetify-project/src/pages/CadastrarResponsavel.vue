@@ -49,7 +49,7 @@
            </v-row>
 
             <v-row id="inputResponsivo" class="d-flex justify-center">
-          <v-col cols="6" md="6">
+          <v-col cols="12" md="6">
             <v-text-field
               label="Instituição"
               clearable
@@ -59,7 +59,7 @@
           </v-col>
        
        
-          <v-col cols="6" md="6">
+          <v-col cols="12" md="6">
             <v-text-field
               label="Curso"
               clearable

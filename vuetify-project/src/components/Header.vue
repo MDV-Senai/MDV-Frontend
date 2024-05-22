@@ -115,8 +115,13 @@ export default {
         "/CadastrarResponsavel",
       ],
       [
+        "Cadastro de Organização ",
+        "mdi-domain",
+        "/cadastrarOrganizacao",
+      ],
+      [
         "Cadastro de Vagas ",
-        "handshake-outline",
+        "mdi-handshake-outline",
         "/CadastrarVagas",
       ],
     ],

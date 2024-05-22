@@ -55,10 +55,12 @@
             class="py-14 my-15 w-100"
             variant="outlined"
           >
+          <RouterLink to="/cadastrarVagas">
             <v-btn icon flat>
-              <v-icon color="pink-darken-4">mdi-chart-bar</v-icon>
+              <v-icon color="pink-darken-4">mdi-handshake-outline</v-icon>
             </v-btn>
-            <v-card-title>Dashboard</v-card-title>
+          </RouterLink>
+            <v-card-title>Cadastro De Vagas</v-card-title>
           </v-card>
         </v-col>
 
@@ -68,10 +70,12 @@
             class="py-14 my-15 w-100"
             variant="outlined"
           >
+          <RouterLink to="/cadastrarAdmin">
             <v-btn icon flat>
-              <v-icon color="pink-darken-4">mdi-magnify</v-icon>
+              <v-icon color="pink-darken-4">mdi-file-account-outline</v-icon>
             </v-btn>
-            <v-card-title>Consultas</v-card-title>
+            </RouterLink>
+            <v-card-title>Cadastro de Admin</v-card-title>
           </v-card>
         </v-col>
       </v-row>
