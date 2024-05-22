@@ -6,6 +6,8 @@ attach (obs:instalar extensão dev containers) para abrir o container. O caminho
 
 No terminal do container rode o comando "cd vuetify-project" e depois "npm run dev". 
 
+Para que o comando "cd vuetify-project" funcione precisa estar na pasta app do container
+
 Para salvar as alterações aplique "CTRL + S" e rode o comando "r" no terminal, senão a atualização
 não aplica na web.
 
