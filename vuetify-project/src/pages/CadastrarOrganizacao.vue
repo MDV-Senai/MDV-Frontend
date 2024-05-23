@@ -32,6 +32,8 @@
               label="CNPJ"
               variant="outlined"
               color="pink-darken-4"
+              maxlength="18"
+              v-mask="'##.###.###/####-##'"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
@@ -72,6 +74,8 @@
               label="Telefone"
               variant="outlined"
               color="pink-darken-4"
+              maxlength="14"
+              v-mask="'(##) ####-####'"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="3">
@@ -79,19 +83,21 @@
               label="Telefone responsavel"
               variant="outlined"
               color="pink-darken-4"
+              maxlength="14"
+              v-mask="'(##) ####-####'"
             ></v-text-field>
           </v-col>
         </v-row>
         <v-row id="inputResponsivo" class="d-flex justify-center">
           <v-col cols="12" md="4">
             <v-text-field
-            v-model="cep"
+              v-model="cep"
               label="CEP"
               variant="outlined"
               color="pink darken-4"
               maxlength="9"
               v-mask="'#####-###'"
-
+              @change="buscaCep(cep)"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
@@ -232,6 +238,9 @@
 </style>
 
 <script>
+
+import axios from 'axios';
+
 export default {
 
   data () {
@@ -273,6 +282,22 @@ export default {
     reset() {
       this.$refs.form.reset();
     },
+
+    async buscaCep(cep) {
+
+      const cepFormat = cep.replace('-','');
+      alert(cepFormat);
+
+      try {
+        const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
+        const address = response.data;
+
+        console.log(address);
+    
+      } catch (error) {
+        console.error('Error fetching address:', error);
+      }
+    }
   },
 };
 </script>
