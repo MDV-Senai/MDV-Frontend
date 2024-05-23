@@ -1,6 +1,6 @@
 {
-    "ufs": {
-        "items": [
+    "items": {
+        "ufs": [
             { "id": 1, "uf": "AC" },
             { "id": 2, "uf": "AL" },
             { "id": 3, "uf": "AP" },
