@@ -49,9 +49,9 @@
                           </template>
 
                           <template v-slot:default="{ isActive }">
-                            <v-window show-arrows>
+                            <v-window show-arrows >
                               <template v-slot:prev="{ props }">
-                                 <div class="d-flex justify-center align-center flex-column">
+                                
                                   <v-col cols="auto">
                                     <v-btn
                                       icon="mdi-email-outline"
@@ -69,11 +69,11 @@
                                    
                                     Ok
                                   </v-btn>
-                                 </div>
+                             
                               </template>
                                
                               <template v-slot:next="{ props }">
-                                    <v-conteiner class= "w-100 d-flex justify-center flex-column">
+                                    <v-container class= "w-100 d-flex justify-center flex-column">
                                   <v-col cols="auto">
                                     <v-btn
                                       icon="mdi-email-outline"
@@ -100,7 +100,7 @@
                                   </v-btn>
                                  
                                 </v-col>
-                                    </v-conteiner>
+                                    </v-container>
                                    
                               </template>
                              
