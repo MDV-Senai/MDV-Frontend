@@ -1,66 +1,146 @@
 <template>
   <v-main>
-    <v-img
-      src="../assets/img/fundo.png"
-      cover
-      aspect-ratio="16/9"
-      width="w-100"
-      height="h-100"
-    >
-      <v-container class="my-9">
-        <v-container id="posicao">
-          <v-img src="../assets/img/fundoCard.png" width="780" height="800">
-            <v-container class="my-16">
-              <h1 align="center">Nome do Sistema</h1>
-              <v-card
-                align="center"
-                class="mx-auto my-16"
-                width="500"
-                height="469"
-                id="transparente"
-              >
-                <v-form class="my-12">
-                  <v-col cols="12" sm="10">
-                    <v-text-field
-                      label="Usuário"
-                      variant="outlined"
-                      color="pink-darken-4"
-                    ></v-text-field>
-                  </v-col>
-
-                  <v-col cols="12" sm="10">
-                    <v-text-field
-                      label="Senha"
-                      variant="outlined"
-                      color="pink-darken-4"
-                    ></v-text-field>
-                  </v-col>
-
-                  <v-card-text id="textoSenha"
-                    ><a href="#">Esqueci a Senha</a></v-card-text
+    <v-img src="../assets/img/fundo.svg">
+      <v-row>
+        <v-col>
+          <div></div>
+        </v-col>
+        <v-col>
+          <v-container class="my-9">
+            <v-container>
+              <v-img src="../assets/img/retangulo.svg" width="780" height="800">
+                <v-container class="my-16">
+                  <h1 align="center">Nome do Sistema</h1>
+                  <v-card
+                    align="center"
+                    class="mx-auto my-16"
+                    width="80%"
+                    height="469"
+                    id="transparente"
                   >
+                    <v-form class="my-12">
+                      <v-col cols="12" sm="10">
+                        <v-text-field
+                          label="Usuário"
+                          variant="outlined"
+                          color="pink-darken-4"
+                        ></v-text-field>
+                      </v-col>
 
-                  <v-btn
-                    append-icon="mdi-chevron-right"
-                    variant="outlined"
-                    color="pink-darken-4"
-                    class="my-10"
-                    width="183"
-                    height="62"
-                    id="botaoEntrar"
-                  >
-                    Entrar
+                      <v-col cols="12" sm="10">
+                        <v-text-field
+                          label="Senha"
+                          variant="outlined"
+                          color="pink-darken-4"
+                        ></v-text-field>
+                      </v-col>
 
-                    <template v-slot:append>
-                      <v-icon color="pink-darken-4"></v-icon>
-                    </template>
-                  </v-btn>
-                </v-form>
-              </v-card>
+                      <div class="d-flex justify-center align-center">
+                        <v-dialog max-width="500">
+                          <template
+                            v-slot:activator="{ props: activatorProps }"
+                          >
+                            <v-btn
+                              v-bind="activatorProps"
+                              color="pink darken-4"
+                              text="Esqueci a senha"
+                              variant="text"
+                            ></v-btn>
+                          </template>
+
+                          <template v-slot:default="{ isActive }">
+                            <v-window show-arrows >
+                              <template v-slot:prev="{ props }">
+                                
+                                  <v-col cols="auto">
+                                    <v-btn
+                                      icon="mdi-email-outline"
+                                      color="blue"
+                                      size="x-large"
+                                    ></v-btn>
+                                  </v-col>
+                               
+                                  <h4>Enviamos um e-mail para f****o@gmail.com. Por
+                                  favor, verifique sua caixa de entrada.</h4>
+                                  <div></div>
+                                 <v-btn text @click="isActive.value = false"
+                                  variant="outlined"
+                                  color=pink-darken-4>
+                                   
+                                    Ok
+                                  </v-btn>
+                             
+                              </template>
+                               
+                              <template v-slot:next="{ props }">
+                                    <v-container class= "w-100 d-flex justify-center flex-column">
+                                  <v-col cols="auto">
+                                    <v-btn
+                                      icon="mdi-email-outline"
+                                      color="blue"
+                                      size="x-large"
+                                      class="text-center"
+                                    ></v-btn>
+                                  </v-col>
+                                      
+                                   <v-col cols="12" sm="10">
+                                  <v-text-field
+                                    label="E-mail"
+                                    variant="outlined"
+                                    color="pink-darken-4"
+                                    
+                                  ></v-text-field>
+                                  
+                                  <v-btn color="pink-darken-4" @click="props.onClick"
+                                  variant="outlined">
+                                    <v-icon right
+                                      >mdi-chevron-right-circle-outline</v-icon
+                                    >
+                                    Enviar
+                                  </v-btn>
+                                 
+                                </v-col>
+                                    </v-container>
+                                   
+                              </template>
+                             
+                              <v-window-item v-for="n in 2" :key="`card-${n}`">
+                                <v-card
+                                  class="d-flex align-center justify-center ma-2"
+                                  elevation="2"
+                                  height="200"
+                                >
+                                </v-card>
+                              </v-window-item>
+                            </v-window>
+                          </template>
+                        </v-dialog>
+                      </div>
+                      <RouterLink to="/home">
+                        <v-btn
+                          append-icon="mdi-chevron-right"
+                          variant="outlined"
+                          color="pink-darken-4"
+                          class="my-10"
+                          width="183"
+                          height="62"
+                          id="botaoEntrar"
+                        >
+                          Entrar
+
+                          <template v-slot:append>
+                            <v-icon color="pink-darken-4"></v-icon>
+                          </template>
+                        </v-btn>
+                      </RouterLink>
+                    </v-form>
+                  </v-card>
+                </v-container>
+              </v-img>
             </v-container>
-          </v-img>
-        </v-container>
-      </v-container>
+          </v-container>
+        </v-col>
+      </v-row>
     </v-img>
   </v-main>
 </template>
@@ -80,7 +160,8 @@
 }
 
 #textoSenha {
-  color: #3949ab;
+  color: #f178ac;
+  text-decoration: none;
 }
 
 #botaoEntrar {
