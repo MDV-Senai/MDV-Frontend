@@ -9,9 +9,17 @@
     <div id="fundoCards">
       <v-form ref="form" id="form" class="mx-auto">
         <v-row class="d-flex justify-center mt-8">
-          <v-col cols="12" md="12">
+          <v-col cols="12" md="6">
             <v-text-field
               label="Supervisor"
+              clearable
+              class="text-pink-darken-1"
+              color="pink-darken-4"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12" md="6">
+            <v-text-field
+              label="Email do Supervisor"
               clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
@@ -20,9 +28,17 @@
         </v-row>
 
         <v-row class="d-flex justify-center">
-          <v-col cols="12" md="12">
+          <v-col cols="12" md="6">
             <v-text-field
               label="Coordenador"
+              clearable
+              class="text-pink-darken-1"
+              color="pink-darken-4"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12" md="6">
+            <v-text-field
+              label="Email do Coordenador"
               clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
@@ -41,7 +57,7 @@
           </v-col>
           <v-col cols="12" md="6">
             <v-text-field
-              label="E-mail do Setor"
+              label="Celular do Respon. do Setor"
               clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
@@ -49,18 +65,11 @@
           </v-col>
         </v-row>
 
-        <v-row id="inputResponsivo" class="d-flex justify-center">
-          <v-col cols="12" md="6">
+        <v-row class="d-flex justify-center">
+          <v-col cols="12" md="12">
             <v-text-field
-              label="E-mail"
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
-          </v-col>
-          <v-col cols="12" md="6">
-            <v-text-field
-              label="Celular"
+              label="Atividades"
+              append-inner-icon="mdi-plus"
               clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
