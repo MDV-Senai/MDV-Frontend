@@ -12,6 +12,9 @@
           <v-col cols="12" md="6">
             <v-text-field
               label="Supervisor"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
               clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
@@ -20,6 +23,9 @@
           <v-col cols="12" md="6">
             <v-text-field
               label="Email do Supervisor"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
               clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
@@ -31,6 +37,9 @@
           <v-col cols="12" md="6">
             <v-text-field
               label="Coordenador"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
               clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
@@ -39,6 +48,9 @@
           <v-col cols="12" md="6">
             <v-text-field
               label="Email do Coordenador"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
               clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
@@ -50,6 +62,9 @@
           <v-col cols="12" md="6">
             <v-text-field
               label="Setor"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
               clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
@@ -58,6 +73,9 @@
           <v-col cols="12" md="6">
             <v-text-field
               label="Celular do Respon. do Setor"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
               clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
@@ -70,6 +88,9 @@
             <v-text-field
               label="Atividades"
               append-inner-icon="mdi-plus"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
               clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
@@ -164,6 +185,13 @@
 
 <script>
 export default {
+  data(){
+    return {
+      rules: {
+        required: value => !!value || 'Obrigatório.',
+      },
+    };
+  },
   methods: {
     reset() {
       this.$refs.form.reset();

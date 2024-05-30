@@ -12,6 +12,9 @@
           <v-col cols="12" md="12">
             <v-text-field
               label="Nome"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
               clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
@@ -23,6 +26,9 @@
           <v-col cols="12" md="12">
             <v-text-field
               label="Nome Social"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
               clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
@@ -33,6 +39,9 @@
           <v-col cols="12" md="6">
             <v-text-field
               label="Nº Matrícula do Estudante"
+              :rules="[rules.required]"
+              maxlength="25"
+              counter
               clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
@@ -41,6 +50,9 @@
           <v-col cols="12" md="6">
             <v-text-field
               label="CPF"
+              :rules="[rules.required]"
+              maxlength="14"
+              counter
               clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
@@ -51,7 +63,10 @@
             <v-row id="inputResponsivo" class="d-flex justify-center">
           <v-col cols="12" md="6">
             <v-text-field
-              label="Instituição"
+              label="Instituição de Ensino"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
               clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
@@ -62,6 +77,9 @@
           <v-col cols="12" md="6">
             <v-text-field
               label="Curso"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
               clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
@@ -160,6 +178,13 @@
 
 <script>
 export default {
+  data() {
+    return {
+      rules: {
+        required: value => !!value || 'Obrigatório.',
+      },
+    };
+  },
   methods: {
     reset() {
       this.$refs.form.reset();

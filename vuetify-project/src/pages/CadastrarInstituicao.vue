@@ -12,6 +12,9 @@
           <v-col cols="12" md="12">
             <v-text-field
               label="Instituição"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
               clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
@@ -23,6 +26,9 @@
           <v-col cols="12" md="12">
             <v-text-field
               label="Razão Social"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
               clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
@@ -33,6 +39,9 @@
           <v-col cols="12" md="12">
             <v-text-field
               label="Diretor"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
               clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
@@ -43,6 +52,9 @@
           <v-col cols="12" md="12">
             <v-text-field
               label="Professor Responsável"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
               clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
@@ -53,6 +65,9 @@
           <v-col cols="12" md="6">
             <v-text-field
               label="CNPJ"
+              :rules="[rules.required]"
+              maxlength="18"
+              counter
               clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
@@ -62,6 +77,9 @@
           <v-col cols="12" md="6">
             <v-text-field
               label="Inscrição Estadual"
+              :rules="[rules.required]"
+              maxlength="12"
+              counter
               clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
@@ -73,6 +91,9 @@
           <v-col cols="12" md="4">
             <v-text-field
               label="Telefone"
+              :rules="[rules.required]"
+              maxlength="13"
+              counter
               clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
@@ -82,6 +103,9 @@
           <v-col cols="12" md="4">
             <v-text-field
               label="Celular"
+              :rules="[rules.required]"
+              maxlength="14"
+              counter
               clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
@@ -90,6 +114,9 @@
           <v-col cols="12" md="4">
             <v-text-field
               label="Email"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
               clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
@@ -101,6 +128,9 @@
           <v-col cols="12" md="4">
             <v-text-field
               label="CEP"
+              :rules="[rules.required]"
+              maxlength="9"
+              counter
               clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
@@ -110,6 +140,9 @@
           <v-col cols="12" md="4">
             <v-text-field
               label="Cidade"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
               clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
@@ -130,6 +163,9 @@
           <v-col cols="12" md="2">
             <v-text-field
               label="Nº"
+              :rules="[rules.required]"
+              maxlength="10"
+              counter
               clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
@@ -141,6 +177,9 @@
           <v-col cols="12" md="12">
             <v-text-field
               label="Rua"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
               clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
@@ -152,6 +191,9 @@
           <v-col cols="12" md="6">
             <v-text-field
               label="Bairro"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
               clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
@@ -161,6 +203,44 @@
           <v-col cols="12" md="6">
             <v-text-field
               label="Complemento"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
+              clearable
+              class="text-pink-darken-1"
+              color="pink-darken-4"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row class="d-flex justify-center">
+          <v-col cols="12" md="4">
+            <v-text-field
+              label="Usuário"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
+              clearable
+              class="text-pink-darken-1"
+              color="pink-darken-4"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12" md="4">
+            <v-text-field
+              label="Senha"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
+              clearable
+              class="text-pink-darken-1"
+              color="pink-darken-4"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12" md="4">
+            <v-text-field
+              label="Confirmação de Senha"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
               clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
@@ -261,6 +341,9 @@ export default {
     return {
       ufs: [],
       selectedUF: null,
+      rules: {
+        required: value => !!value || 'Obrigatório.',
+      },
     };
   },
   methods: {
