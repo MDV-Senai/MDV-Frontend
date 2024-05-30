@@ -10,8 +10,8 @@
           <v-col cols="12" md="12">
             <v-text-field
               label="Nome fantasia"
-              variant="outlined"
               color="pink-darken-4"
+              class="text-pink-darken-1"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -20,8 +20,8 @@
           <v-col cols="12" md="12">
             <v-text-field
               label="Razão Social"
-              variant="outlined"
               color="pink-darken-4"
+              class="text-pink-darken-1"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -30,7 +30,7 @@
           <v-col cols="12" md="4">
             <v-text-field
               label="CNPJ"
-              variant="outlined"
+              class="text-pink-darken-1"
               color="pink-darken-4"
               maxlength="18"
               v-mask="'##.###.###/####-##'"
@@ -39,14 +39,14 @@
           <v-col cols="12" md="4">
             <v-text-field
               label="Inscrição Estadual"
-              variant="outlined"
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
             <v-text-field
               label="Logo da empresa"
-              variant="outlined"
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
@@ -56,14 +56,14 @@
           <v-col cols="12" md="3">
             <v-text-field
               label="E-mail"
-              variant="outlined"
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="3">
             <v-text-field
               label="Celular"
-              variant="outlined"
+              class="text-pink-darken-1"
               color="pink-darken-4"
               maxlength="15"
               v-mask="'(##) #####-####'"
@@ -72,7 +72,7 @@
           <v-col cols="12" md="3">
             <v-text-field
               label="Telefone"
-              variant="outlined"
+              class="text-pink-darken-1"
               color="pink-darken-4"
               maxlength="14"
               v-mask="'(##) ####-####'"
@@ -81,7 +81,7 @@
           <v-col cols="12" md="3">
             <v-text-field
               label="Telefone responsavel"
-              variant="outlined"
+              class="text-pink-darken-1"
               color="pink-darken-4"
               maxlength="14"
               v-mask="'(##) ####-####'"
@@ -93,18 +93,20 @@
             <v-text-field
               v-model="cep"
               label="CEP"
-              variant="outlined"
+              class="text-pink-darken-1"
               color="pink darken-4"
               maxlength="9"
               v-mask="'#####-###'"
-              @change="buscaCep(cep)"
+              @input.debounce="buscaCep($event.target.value)"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
             <v-text-field
               label="Cidade"
-              variant="outlined"
+              class="text-pink-darken-1"
               color="pink-darken-4"
+              v-model="cidade"
+              readonly
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="2">
@@ -115,13 +117,14 @@
               item-title="state"
               label="UF"
               color="pink-darken-4"
-              variant="outlined"
+              class="text-pink-darken-1"
+              readonly
             ></v-select>
           </v-col>
           <v-col cols="12" md="2">
             <v-text-field
               label="Nº"
-              variant="outlined"
+              class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
@@ -130,8 +133,10 @@
           <v-col cols="12" md="12">
             <v-text-field
             label="Rua"
-            variant="outlined"
+            class="text-pink-darken-1"
             color="pink-darken-4"
+            v-model="rua"
+            readonly
             ></v-text-field>
           </v-col>
         </v-row>
@@ -139,15 +144,17 @@
           <v-col cols="12" md="6">
             <v-text-field
             label="Bairro"
-            variant="outlined"
             color="pink-darken-4"
+            class="text-pink-darken-1"
+            v-model="bairro"
+            readonly
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="6">
             <v-text-field
             label="Complemento"
-            variant="outlined"
             color="pink-darken-4"
+            class="text-pink-darken-1"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -162,7 +169,6 @@
               class="my-10"
               color="pink-darken-4"
               append-icon="mdi-chevron-right"
-              variant="outlined"
               width="183"
               height="62"
             >
@@ -173,7 +179,7 @@
           <v-col cols="12" md="3">
             <v-btn
               append-icon="mdi-chevron-right"
-              variant="outlined"
+
               color="pink-darken-4"
               class="my-10"
               width="183"
@@ -245,35 +251,38 @@ export default {
 
   data () {
     return {
+      rua: null,
+      bairro: null,
+      cidade:null,
       selectId: null,
       items: [
-        { id: 'AC', state: 'Acre' },
-        { id: 'AL', state: 'Alagoas' },
-        { id: 'AP', state: 'Amapá' },
-        { id: 'AM', state: 'Amazonas' },
-        { id: 'BA', state: 'Bahia' },
-        { id: 'CE', state: 'Ceará' },
-        { id: 'DF', state: 'Distrito Federal' },
-        { id: 'ES', state: 'Espírito Santo' },
-        { id: 'GO', state: 'Goiás' },
-        { id: 'MA', state: 'Maranhão' },
-        { id: 'MT', state: 'Mato Grosso' },
-        { id: 'MS', state: 'Mato Grosso do Sul' },
-        { id: 'MG', state: 'Minas Gerais' },
-        { id: 'PA', state: 'Pará' },
-        { id: 'PB', state: 'Paraíba' },
-        { id: 'PR', state: 'Paraná' },
-        { id: 'PE', state: 'Pernambuco' },
-        { id: 'PI', state: 'Piauí' },
-        { id: 'RJ', state: 'Rio de Janeiro' },
-        { id: 'RN', state: 'Rio Grande do Norte' },
-        { id: 'RS', state: 'Rio Grande do Sul' },
-        { id: 'RO', state: 'Rondônia' },
-        { id: 'RR', state: 'Roraima' },
-        { id: 'SC', state: 'Santa Catarina' },
-        { id: 'SP', state: 'São Paulo' },
-        { id: 'SE', state: 'Sergipe' },
-        { id: 'TO', state: 'Tocantins' }
+      { id: 'AC', state: 'AC' },
+        { id: 'AL', state: 'AL' },
+        { id: 'AP', state: 'AP' },
+        { id: 'AM', state: 'AM' },
+        { id: 'BA', state: 'BA' },
+        { id: 'CE', state: 'CE' },
+        { id: 'DF', state: 'DF' },
+        { id: 'ES', state: 'ES' },
+        { id: 'GO', state: 'GO' },
+        { id: 'MA', state: 'MA' },
+        { id: 'MT', state: 'MT' },
+        { id: 'MS', state: 'MS' },
+        { id: 'MG', state: 'MG' },
+        { id: 'PA', state: 'PA' },
+        { id: 'PB', state: 'PB' },
+        { id: 'PR', state: 'PR' },
+        { id: 'PE', state: 'PE' },
+        { id: 'PI', state: 'PI' },
+        { id: 'RJ', state: 'RJ' },
+        { id: 'RN', state: 'RN' },
+        { id: 'RS', state: 'RS' },
+        { id: 'RO', state: 'RO' },
+        { id: 'RR', state: 'RR' },
+        { id: 'SC', state: 'SC' },
+        { id: 'SP', state: 'SP' },
+        { id: 'SE', state: 'SE' },
+        { id: 'TO', state: 'TO' }
       ]
     }
   },
@@ -286,16 +295,23 @@ export default {
     async buscaCep(cep) {
 
       const cepFormat = cep.replace('-','');
-      alert(cepFormat);
+
+      if(cepFormat.length !== 8) {
+        return false;
+      }
 
       try {
+
         const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
         const address = response.data;
 
-        console.log(address);
-    
+        this.cidade = address.localidade
+        this.bairro = address.bairro;
+        this.rua = address.logradouro;
+        this.selectId = address.uf;
+
       } catch (error) {
-        console.error('Error fetching address:', error);
+        console.error('Error pagar endereço:', error);
       }
     }
   },
