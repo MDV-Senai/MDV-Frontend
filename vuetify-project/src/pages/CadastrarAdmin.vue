@@ -96,8 +96,11 @@
         </v-row>
 
         <div class="d-flex justify-center">
-          <v-row>
-            <v-col cols="6" md="6">
+          <v-row class="d-flex justify-center">
+            <v-col cols="12" md="3">
+              <div></div>
+            </v-col>
+            <v-col cols="12" md="3">
               <v-btn
                 @click="reset"
                 class="my-10"
@@ -111,13 +114,13 @@
               </v-btn>
             </v-col>
 
-            <v-col cols="6" md="6">
+            <v-col cols="12" md="3">
               <v-btn
                 append-icon="mdi-chevron-right"
                 variant="outlined"
                 color="pink-darken-4"
                 class="my-10"
-                 width="183"
+                width="183"
                 height="62"
                 id="botaoEntrar"
               >
@@ -127,6 +130,9 @@
                   <v-icon color="pink-darken-4"></v-icon>
                 </template>
               </v-btn>
+            </v-col>
+            <v-col cols="12" md="3">
+              <div></div>
             </v-col>
           </v-row>
         </div>
