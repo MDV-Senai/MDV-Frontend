@@ -12,6 +12,9 @@
           <v-col cols="12" md="12">
             <v-text-field
               label="Curso"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
               clearable
               class="text-pink-darken-3"
               color="pink-darken-4"
@@ -23,6 +26,9 @@
           <v-col cols="12" md="12">
             <v-text-field
               label="Descrição Da Vaga"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
               clearable
               class="text-pink-darken-3"
               color="pink-darken-4"
@@ -33,6 +39,9 @@
           <v-col cols="12" md="6">
             <v-text-field
               label="Setor"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
               clearable
               class="text-pink-darken-3"
               color="pink-darken-4"
@@ -41,6 +50,9 @@
           <v-col cols="12" md="6">
             <v-text-field
               label="Turma"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
               clearable
               class="text-pink-darken-3"
               color="pink-darken-4"
@@ -52,6 +64,9 @@
           <v-col cols="12" md="6">
             <v-text-field
               label="Quantidade de Vagas"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
               clearable
               class="text-pink-darken-3"
               color="pink-darken-4"
@@ -62,6 +77,9 @@
           <v-col cols="12" md="6">
             <v-text-field
               label="Situação"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
               clearable
               class="text-pink-darken-3"
               color="pink-darken-4"
@@ -160,6 +178,13 @@
 
 <script>
 export default {
+  data() {
+    return {
+      rules: {
+        required: value => !!value || "Obrigatório.",
+      },
+    };
+  },
   methods: {
     reset() {
       this.$refs.form.reset();
