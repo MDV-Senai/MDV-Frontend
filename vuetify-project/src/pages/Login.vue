@@ -35,7 +35,7 @@
                         ></v-text-field>
                       </v-col>
 
-                      <div class="d-flex justify-center align-center">
+                      <div class="d-flex justify-center align-center text-center">
                         <v-dialog max-width="500">
                           <template
                             v-slot:activator="{ props: activatorProps }"
@@ -49,50 +49,56 @@
                           </template>
 
                           <template v-slot:default="{ isActive }">
+                            
                             <v-window show-arrows >
                               <template v-slot:prev="{ props }">
-                                
+             <v-container class= "d-flex justify-center align-center flex-column text-center">
+
                                   <v-col cols="auto">
                                     <v-btn
                                       icon="mdi-email-outline"
                                       color="blue"
                                       size="x-large"
+                                        class="mb-3"
                                     ></v-btn>
                                   </v-col>
                                
-                                  <h4>Enviamos um e-mail para f****o@gmail.com. Por
+                                  <h4 class="mb-2">Enviamos um e-mail para f****o@gmail.com. Por
                                   favor, verifique sua caixa de entrada.</h4>
                                   <div></div>
                                  <v-btn text @click="isActive.value = false"
                                   variant="outlined"
-                                  color=pink-darken-4>
+                                  color=pink-darken-4
+                                  class="mb-6">
                                    
                                     Ok
                                   </v-btn>
-                             
+             </v-container>
                               </template>
                                
                               <template v-slot:next="{ props }">
-                                    <v-container class= "w-100 d-flex justify-center flex-column">
-                                  <v-col cols="auto">
-                                    <v-btn
+                                    <v-container  color="red" class= "d-flex justify-center align-center flex-column py-3 text-center ">
+              
+                                <v-col cols="12" sm="10">
+
+                                              <v-btn
                                       icon="mdi-email-outline"
                                       color="blue"
                                       size="x-large"
-                                      class="text-center"
+                                      class="mt-4"
                                     ></v-btn>
-                                  </v-col>
-                                      
-                                   <v-col cols="12" sm="10">
-                                  <v-text-field
+
+                                  <v-text-field 
                                     label="E-mail"
                                     variant="outlined"
-                                    color="pink-darken-4"
-                                    
+                                    color="pink-darken-4" 
+                                    class="mt-2"                             
                                   ></v-text-field>
                                   
                                   <v-btn color="pink-darken-4" @click="props.onClick"
-                                  variant="outlined">
+                                  variant="outlined"
+                                  class="mb-5">
+                                  
                                     <v-icon right
                                       >mdi-chevron-right-circle-outline</v-icon
                                     >

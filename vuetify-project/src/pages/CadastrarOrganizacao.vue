@@ -9,9 +9,13 @@
         <v-row class="d-flex justify-center mt-8">
           <v-col cols="12" md="12">
             <v-text-field
-              label="Nome fantasia"
-              color="pink-darken-4"
+              label="Nome Fantasia"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
+              clearable
               class="text-pink-darken-1"
+              color="pink-darken-4"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -20,8 +24,12 @@
           <v-col cols="12" md="12">
             <v-text-field
               label="Razão Social"
-              color="pink-darken-4"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
+              clearable
               class="text-pink-darken-1"
+              color="pink-darken-4"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -30,25 +38,34 @@
           <v-col cols="12" md="4">
             <v-text-field
               label="CNPJ"
+              :rules="[rules.required]"
+              maxlength="18"
+              counter
+              clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
-              maxlength="18"
               v-mask="'##.###.###/####-##'"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
             <v-text-field
               label="Inscrição Estadual"
+              :rules="[rules.required]"
+              maxlength="12"
+              counter
+              clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
-            <v-text-field
-              label="Logo da empresa"
+            <v-file-input
+              label="Logo da Empresa"
+              :rules="[rules.required]"
+              clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
-            ></v-text-field>
+            ></v-file-input>
           </v-col>
         </v-row>
 
@@ -56,6 +73,10 @@
           <v-col cols="12" md="3">
             <v-text-field
               label="E-mail"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
+              clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
@@ -63,27 +84,36 @@
           <v-col cols="12" md="3">
             <v-text-field
               label="Celular"
+              :rules="[rules.required]"
+              maxlength="14"
+              counter
+              clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
-              maxlength="15"
               v-mask="'(##) #####-####'"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="3">
             <v-text-field
               label="Telefone"
+              :rules="[rules.required]"
+              maxlength="13"
+              counter
+              clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
-              maxlength="14"
               v-mask="'(##) ####-####'"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="3">
             <v-text-field
-              label="Telefone responsavel"
+              label="Telefone do Responsável"
+              :rules="[rules.required]"
+              maxlength="14"
+              counter
+              clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
-              maxlength="14"
               v-mask="'(##) ####-####'"
             ></v-text-field>
           </v-col>
@@ -93,9 +123,12 @@
             <v-text-field
 
               label="CEP"
-              class="text-pink-darken-1"
-              color="pink darken-4"
+              :rules="[rules.required]"
               maxlength="9"
+              counter
+              clearable
+              class="text-pink-darken-1"
+              color="pink-darken-4"
               v-mask="'#####-###'"
               @input.debounce="buscaCep($event.target.value)"
             ></v-text-field>
@@ -103,6 +136,10 @@
           <v-col cols="12" md="4">
             <v-text-field
               label="Cidade"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
+              clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
               v-model="cidade"
@@ -111,10 +148,10 @@
           </v-col>
           <v-col cols="12" md="2">
             <v-select
-            v-model="selectId"
-              :items="items"
-              item-value="id"
-              item-title="state"
+              v-model="selectedUF"
+              :items="ufs"
+              :item-title="'uf'"
+              :item-value="'id'"
               label="UF"
               color="pink-darken-4"
               class="text-pink-darken-1"
@@ -124,6 +161,10 @@
           <v-col cols="12" md="2">
             <v-text-field
               label="Nº"
+              :rules="[rules.required]"
+              maxlength="10"
+              counter
+              clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
@@ -133,10 +174,14 @@
           <v-col cols="12" md="12">
             <v-text-field
             label="Rua"
-            class="text-pink-darken-1"
-            color="pink-darken-4"
-            v-model="rua"
-            readonly
+            :rules="[rules.required]"
+              maxlength="255"
+              counter
+              clearable
+              class="text-pink-darken-1"
+              color="pink-darken-4"
+              v-model="rua"
+              readonly
             ></v-text-field>
           </v-col>
         </v-row>
@@ -144,17 +189,25 @@
           <v-col cols="12" md="6">
             <v-text-field
             label="Bairro"
-            color="pink-darken-4"
-            class="text-pink-darken-1"
-            v-model="bairro"
-            readonly
+            :rules="[rules.required]"
+              maxlength="255"
+              counter
+              clearable
+              class="text-pink-darken-1"
+              color="pink-darken-4"
+              v-model="bairro"
+              readonly
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="6">
             <v-text-field
             label="Complemento"
-            color="pink-darken-4"
-            class="text-pink-darken-1"
+            :rules="[rules.required]"
+              maxlength="255"
+              counter
+            clearable
+              class="text-pink-darken-1"
+              color="pink-darken-4"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -244,17 +297,18 @@
 </style>
 
 <script>
-
-import axios from 'axios';
+import axios from "axios";
 
 export default {
-
-  data () {
+  data() {
     return {
       rua: null,
       bairro: null,
       cidade:null,
       selectId: null,
+      rules: {
+        required: value => !!value || 'Obrigatório.',
+      },
       items: [
       { id: 'AC', state: 'AC' },
         { id: 'AL', state: 'AL' },
@@ -305,15 +359,12 @@ export default {
         const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
         const address = response.data;
 
-        this.cidade = address.localidade
-        this.bairro = address.bairro;
-        this.rua = address.logradouro;
-        this.selectId = address.uf;
+        console.log(address);
 
       } catch (error) {
         console.error('Error ao consultar endereço:', error);
       }
-    }
+    },
   },
 };
 </script>
