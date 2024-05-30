@@ -59,15 +59,17 @@
                                       icon="mdi-email-outline"
                                       color="blue"
                                       size="x-large"
+                                        class="mb-3"
                                     ></v-btn>
                                   </v-col>
                                
-                                  <h4>Enviamos um e-mail para f****o@gmail.com. Por
+                                  <h4 class="mb-2">Enviamos um e-mail para f****o@gmail.com. Por
                                   favor, verifique sua caixa de entrada.</h4>
                                   <div></div>
                                  <v-btn text @click="isActive.value = false"
                                   variant="outlined"
-                                  color=pink-darken-4>
+                                  color=pink-darken-4
+                                  class="mb-6">
                                    
                                     Ok
                                   </v-btn>
@@ -75,26 +77,28 @@
                               </template>
                                
                               <template v-slot:next="{ props }">
-                                    <v-container class= "d-flex justify-center align-center flex-column text-center">
-                                  <v-col cols="auto">
-                                    <v-btn
+                                    <v-container  color="red" class= "d-flex justify-center align-center flex-column py-3 text-center ">
+              
+                                <v-col cols="12" sm="10">
+
+                                              <v-btn
                                       icon="mdi-email-outline"
                                       color="blue"
                                       size="x-large"
-                                      class="text-center"
+                                      class="mt-4"
                                     ></v-btn>
-                                  </v-col>
-                                      
-                                   <v-col cols="12" sm="10">
-                                  <v-text-field class= "text-center"
+
+                                  <v-text-field 
                                     label="E-mail"
                                     variant="outlined"
-                                    color="pink-darken-4"
-                                    
+                                    color="pink-darken-4" 
+                                    class="mt-2"                             
                                   ></v-text-field>
                                   
                                   <v-btn color="pink-darken-4" @click="props.onClick"
-                                  variant="outlined">
+                                  variant="outlined"
+                                  class="mb-5">
+                                  
                                     <v-icon right
                                       >mdi-chevron-right-circle-outline</v-icon
                                     >
