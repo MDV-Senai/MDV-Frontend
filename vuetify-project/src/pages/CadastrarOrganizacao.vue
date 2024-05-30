@@ -91,7 +91,7 @@
         <v-row id="inputResponsivo" class="d-flex justify-center">
           <v-col cols="12" md="4">
             <v-text-field
-              v-model="cep"
+
               label="CEP"
               class="text-pink-darken-1"
               color="pink darken-4"
@@ -311,7 +311,7 @@ export default {
         this.selectId = address.uf;
 
       } catch (error) {
-        console.error('Error pagar endereço:', error);
+        console.error('Error ao consultar endereço:', error);
       }
     }
   },
