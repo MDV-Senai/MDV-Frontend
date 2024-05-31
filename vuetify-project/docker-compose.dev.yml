@@ -9,5 +9,6 @@ services:
       - ./:/usr/src/app
       - /usr/src/app/node_modules
     ports:
-      - 3000:3000
-    command: npm run dev
+      - "5173:5173"
+    stdin_open: true
+    tty: true
