@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/valid-v-on -->
 <template>
   <v-main id="imagem">
     <Header />
@@ -59,12 +60,11 @@
               color="pink-darken-4" v-mask="'#####-###'" @input.debounce="buscaCep($event.target.value)"></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
-            <v-text-field label="Cidade" :rules="[rules.required]" maxlength="255" counter class="text-pink-darken-1"
-              color="pink-darken-4" v-model="cidade" readonly></v-text-field>
+            <v-text-field v-model="cidade" label="Cidade" :rules="[rules.required]" maxlength="255" counter
+              class="text-pink-darken-1" color="pink-darken-4" readonly></v-text-field>
           </v-col>
           <v-col cols="12" md="2">
-            <v-select label="UF" color="pink-darken-4" class="text-pink-darken-1" v-model="selectedUF"
-              readonly></v-select>
+            <v-select v-model="uf" label="UF" class="text-pink-darken-1" color="pink-darken-4" readonly></v-select>
           </v-col>
           <v-col cols="12" md="2">
             <v-text-field label="Nº" :rules="[rules.required]" maxlength="10" counter clearable class="text-pink-darken-1"
@@ -73,14 +73,14 @@
         </v-row>
         <v-row>
           <v-col cols="12" md="12">
-            <v-text-field label="Rua" :rules="[rules.required]" maxlength="255" counter class="text-pink-darken-1"
-              color="pink-darken-4" v-model="rua" readonly></v-text-field>
+            <v-text-field v-model="rua" label="Rua" :rules="[rules.required]" maxlength="255" counter
+              class="text-pink-darken-1" color="pink-darken-4" readonly></v-text-field>
           </v-col>
         </v-row>
         <v-row>
           <v-col cols="12" md="6">
-            <v-text-field label="Bairro" :rules="[rules.required]" maxlength="255" counter class="text-pink-darken-1"
-              color="pink-darken-4" v-model="bairro" readonly></v-text-field>
+            <v-text-field v-model="bairro" label="Bairro" :rules="[rules.required]" maxlength="255" counter
+              class="text-pink-darken-1" color="pink-darken-4" readonly></v-text-field>
           </v-col>
           <v-col cols="12" md="6">
             <v-text-field label="Complemento" :rules="[rules.required]" maxlength="255" counter clearable
@@ -93,15 +93,15 @@
             <div></div>
           </v-col>
           <v-col cols="12" md="3">
-            <v-btn @click="reset" class="my-10" color="pink-darken-4" append-icon="mdi-chevron-right" width="183"
-              height="62">
+            <v-btn @click="reset" class="my-10" color="pink-darken-4" append-icon="mdi-chevron-right" variant="outlined"
+              width="183" height="62">
               Limpar
             </v-btn>
           </v-col>
 
           <v-col cols="12" md="3">
-            <v-btn append-icon="mdi-chevron-right" color="pink-darken-4" class="my-10" width="183" height="62"
-              id="botaoEntrar">
+            <v-btn append-icon="mdi-chevron-right" variant="outlined" color="pink-darken-4" class="my-10" width="183"
+              height="62" id="botaoEntrar">
               Cadastrar
 
               <template v-slot:append>
@@ -165,10 +165,10 @@ import axios from "axios";
 export default {
   data() {
     return {
-      rua: null,
-      bairro: null,
+      uf: null,
       cidade: null,
-      selectedUF: null,
+      bairro: null,
+      rua: null,
       rules: {
         required: value => !!value || 'Obrigatório.',
       },
@@ -199,9 +199,9 @@ export default {
         { id: 'SC', state: 'SC' },
         { id: 'SP', state: 'SP' },
         { id: 'SE', state: 'SE' },
-        { id: 'TO', state: 'TO' }
-      ]
-    }
+        { id: 'TO', state: 'TO' },
+      ],
+    };
   },
 
   methods: {
@@ -210,25 +210,23 @@ export default {
     },
 
     async buscaCep(cep) {
+      const cepFormat = cep.replace("-", "");
 
-      const cepFormat = cep.replace('-', '');
-
-      if (cepFormat.length !== 8) {
-        return false;
-      }
+      if (cepFormat.length !== 8) return false;
 
       try {
-
-        const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
+        const response = await axios.get(
+          `https://viacep.com.br/ws/${cep}/json/`
+        );
         const address = response.data;
 
-        this.cidade = address.localidade
+        this.uf = address.uf;
+        this.cidade = address.localidade;
         this.bairro = address.bairro;
-        this.rua = address.logradouro;
-        this.selectedUF = address.uf;
+        this.rua = address.logradouro
 
       } catch (error) {
-        console.error('Erro ao consultar endereço:', error);
+        console.error("Erro ao consultar CEP:", error);
       }
     },
   },
