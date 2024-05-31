@@ -2,269 +2,122 @@
   <v-main id="imagem">
     <Header />
     <div class="d-flex justify-center align-center">
-      <v-card class="d-flex justify-center align-center" id="card_titulo"
-        >Cadastro de Estagiário</v-card
-      >
+      <v-card class="d-flex justify-center align-center" id="card_titulo">Cadastro de Estagiário</v-card>
     </div>
     <div id="fundoCards">
       <v-form ref="form" id="form" class="mx-auto">
         <v-row class="d-flex justify-center mt-8">
           <v-col cols="12" md="12">
-            <v-text-field
-              label="Nome Social"
-              :rules="[rules.required]"
-              maxlength="255"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
+            <v-text-field label="Nome Social" :rules="[rules.required]" maxlength="255" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
           </v-col>
         </v-row>
 
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="12">
-            <v-text-field
-              label="Nome"
-              :rules="[rules.required]"
-              maxlength="255"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
+            <v-text-field label="Nome" :rules="[rules.required]" maxlength="255" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
           </v-col>
         </v-row>
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="4">
-            <v-text-field
-              label="Nº Matrícula do Estudante"
-              :rules="[rules.required]"
-              maxlength="25"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
+            <v-text-field label="Nº Matrícula do Estudante" :rules="[rules.required]" maxlength="25" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
-            <v-text-field
-              label="CPF"
-              :rules="[rules.required]"
-              maxlength="14"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
+            <v-text-field label="CPF" :rules="[rules.required]" maxlength="14" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
-            <v-text-field
-              label="Data De Nasc."
-              :rules="[rules.required]"
-              maxlength="10"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
+            <v-text-field label="Data De Nasc." :rules="[rules.required]" maxlength="10" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
           </v-col>
         </v-row>
         <v-row id="inputResponsivo" class="d-flex justify-center">
           <v-col cols="12" md="3">
-            <v-text-field
-              label="E-mail"
-              :rules="[rules.required]"
-              maxlength="255"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
+            <v-text-field label="E-mail" :rules="[rules.required]" maxlength="255" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
           </v-col>
           <v-col cols="12" md="3">
-            <v-text-field
-              label="Celular"
-              :rules="[rules.required]"
-              maxlength="14"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
+            <v-text-field label="Celular" :rules="[rules.required]" maxlength="14" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
           </v-col>
           <v-col cols="12" md="3">
-            <v-text-field
-              label="Telefone"
-              :rules="[rules.required]"
-              maxlength="13"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
+            <v-text-field label="Telefone" :rules="[rules.required]" maxlength="13" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
           </v-col>
           <v-col cols="12" md="3">
-            <v-text-field
-              label="Número Emergencial"
-              :rules="[rules.required]"
-              maxlength="14"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
+            <v-text-field label="Número Emergencial" :rules="[rules.required]" maxlength="14" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
           </v-col>
         </v-row>
 
         <v-row id="inputResponsivo" class="d-flex justify-center">
           <v-col cols="12" md="12">
-            <v-text-field
-              label="Nome do Contato Emergencial"
-              :rules="[rules.required]"
-              maxlength="255"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
+            <v-text-field label="Nome do Contato Emergencial" :rules="[rules.required]" maxlength="255" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
           </v-col>
         </v-row>
 
         <v-row id="inputResponsivo" class="d-flex justify-center">
           <v-col cols="12" md="4">
-            <v-text-field
-              label="Instituição De Ensino"
-              :rules="[rules.required]"
-              maxlength="255"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
+            <v-text-field label="Instituição De Ensino" :rules="[rules.required]" maxlength="255" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
-            <v-text-field
-              label="Curso"
-              :rules="[rules.required]"
-              maxlength="255"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
+            <v-text-field label="Curso" :rules="[rules.required]" maxlength="255" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
-            <v-text-field
-              label="Período"
-              :rules="[rules.required]"
-              maxlength="2"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
+            <v-text-field label="Período" :rules="[rules.required]" maxlength="2" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
           </v-col>
         </v-row>
 
         <v-row id="inputResponsivo" class="d-flex justify-center">
           <v-col cols="12" md="12">
-            <v-text-field
-              label="Nome do Professor Responsável"
-              :rules="[rules.required]"
-              maxlength="255"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
+            <v-text-field label="Nome do Professor Responsável" :rules="[rules.required]" maxlength="255" counter
+              clearable class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
           </v-col>
         </v-row>
 
         <v-row id="inputResponsivo" class="d-flex justify-center">
           <v-col cols="12" md="4">
-            <v-text-field
-              label="CEP"
-              :rules="[rules.required]"
-              maxlength="9"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
+            <v-text-field label="CEP" :rules="[rules.required]" maxlength="9" counter clearable class="text-pink-darken-1"
+              color="pink-darken-4"></v-text-field>
           </v-col>
 
           <v-col cols="12" md="4">
-            <v-text-field
-              label="Cidade"
-              :rules="[rules.required]"
-              maxlength="255"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
+            <v-text-field label="Cidade" :rules="[rules.required]" maxlength="255" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
           </v-col>
           <v-col cols="12" md="2">
-            <v-select
-              label="UF"
-              :rules="[rules.required]"
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-select>
+            <v-select label="UF" :rules="[rules.required]" clearable class="text-pink-darken-1"
+              color="pink-darken-4"></v-select>
           </v-col>
 
           <v-col cols="12" md="2">
-            <v-text-field
-              label="Nº"
-              :rules="[rules.required]"
-              maxlength="10"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
+            <v-text-field label="Nº" :rules="[rules.required]" maxlength="10" counter clearable class="text-pink-darken-1"
+              color="pink-darken-4"></v-text-field>
           </v-col>
         </v-row>
 
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="12">
-            <v-text-field
-              label="Rua"
-              :rules="[rules.required]"
-              maxlength="255"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
+            <v-text-field label="Rua" :rules="[rules.required]" maxlength="255" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
           </v-col>
         </v-row>
 
         <v-row id="inputResponsivo" class="d-flex justify-center">
           <v-col cols="12" md="6">
-            <v-text-field
-              label="Bairro"
-              :rules="[rules.required]"
-              maxlength="255"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
+            <v-text-field label="Bairro" :rules="[rules.required]" maxlength="255" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
           </v-col>
 
           <v-col cols="12" md="6">
-            <v-text-field
-              label="Complemento"
-              :rules="[rules.required]"
-              maxlength="255"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
+            <v-text-field label="Complemento" :rules="[rules.required]" maxlength="255" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
           </v-col>
         </v-row>
 
@@ -274,29 +127,15 @@
               <div></div>
             </v-col>
             <v-col cols="12" md="3">
-              <v-btn
-                @click="reset"
-                class="my-10"
-                color="pink-darken-4"
-                append-icon="mdi-chevron-right"
-                variant="outlined"
-                width="183"
-                height="62"
-              >
+              <v-btn @click="reset" class="my-10" color="pink-darken-4" append-icon="mdi-chevron-right" variant="outlined"
+                width="183" height="62">
                 Limpar
               </v-btn>
             </v-col>
 
             <v-col cols="12" md="3">
-              <v-btn
-                append-icon="mdi-chevron-right"
-                variant="outlined"
-                color="pink-darken-4"
-                class="my-10"
-                width="183"
-                height="62"
-                id="botaoEntrar"
-              >
+              <v-btn append-icon="mdi-chevron-right" variant="outlined" color="pink-darken-4" class="my-10" width="183"
+                height="62" id="botaoEntrar">
                 Cadastrar
 
                 <template v-slot:append>

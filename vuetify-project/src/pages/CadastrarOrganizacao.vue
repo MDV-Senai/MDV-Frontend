@@ -2,213 +2,89 @@
   <v-main id="imagem">
     <Header />
     <div class="d-flex justify-center align-center">
-      <v-card class="d-flex justify-center align-center" id="card_titulo" >Cadastro de Organização</v-card>
+      <v-card class="d-flex justify-center align-center" id="card_titulo">Cadastro de Organização</v-card>
     </div>
     <div id="fundoCards">
       <v-form ref="form" id="form" class="mx-auto">
         <v-row class="d-flex justify-center mt-8">
           <v-col cols="12" md="12">
-            <v-text-field
-              label="Nome Fantasia"
-              :rules="[rules.required]"
-              maxlength="255"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
+            <v-text-field label="Nome Fantasia" :rules="[rules.required]" maxlength="255" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
           </v-col>
         </v-row>
 
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="12">
-            <v-text-field
-              label="Razão Social"
-              :rules="[rules.required]"
-              maxlength="255"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
+            <v-text-field label="Razão Social" :rules="[rules.required]" maxlength="255" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
           </v-col>
         </v-row>
 
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="4">
-            <v-text-field
-              label="CNPJ"
-              :rules="[rules.required]"
-              maxlength="18"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-              v-mask="'##.###.###/####-##'"
-            ></v-text-field>
+            <v-text-field label="CNPJ" :rules="[rules.required]" maxlength="18" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4" v-mask="'##.###.###/####-##'"></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
-            <v-text-field
-              label="Inscrição Estadual"
-              :rules="[rules.required]"
-              maxlength="12"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
+            <v-text-field label="Inscrição Estadual" :rules="[rules.required]" maxlength="12" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
-            <v-file-input
-              label="Logo da Empresa"
-              :rules="[rules.required]"
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-file-input>
+            <v-file-input label="Logo da Empresa" :rules="[rules.required]" clearable class="text-pink-darken-1"
+              color="pink-darken-4"></v-file-input>
           </v-col>
         </v-row>
 
         <v-row id="inputResponsivo" class="d-flex justify-center">
           <v-col cols="12" md="3">
-            <v-text-field
-              label="E-mail"
-              :rules="[rules.required]"
-              maxlength="255"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
+            <v-text-field label="E-mail" :rules="[rules.required]" maxlength="255" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
           </v-col>
           <v-col cols="12" md="3">
-            <v-text-field
-              label="Celular"
-              :rules="[rules.required]"
-              maxlength="14"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-              v-mask="'(##) #####-####'"
-            ></v-text-field>
+            <v-text-field label="Celular" :rules="[rules.required]" maxlength="14" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4" v-mask="'(##) #####-####'"></v-text-field>
           </v-col>
           <v-col cols="12" md="3">
-            <v-text-field
-              label="Telefone"
-              :rules="[rules.required]"
-              maxlength="13"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-              v-mask="'(##) ####-####'"
-            ></v-text-field>
+            <v-text-field label="Telefone" :rules="[rules.required]" maxlength="13" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4" v-mask="'(##) ####-####'"></v-text-field>
           </v-col>
           <v-col cols="12" md="3">
-            <v-text-field
-              label="Telefone do Responsável"
-              :rules="[rules.required]"
-              maxlength="14"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-              v-mask="'(##) ####-####'"
-            ></v-text-field>
+            <v-text-field label="Telefone do Responsável" :rules="[rules.required]" maxlength="14" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4" v-mask="'(##) ####-####'"></v-text-field>
           </v-col>
         </v-row>
         <v-row id="inputResponsivo" class="d-flex justify-center">
           <v-col cols="12" md="4">
-            <v-text-field
-
-              label="CEP"
-              :rules="[rules.required]"
-              maxlength="9"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-              v-mask="'#####-###'"
-              @input.debounce="buscaCep($event.target.value)"
-            ></v-text-field>
+            <v-text-field label="CEP" :rules="[rules.required]" maxlength="9" counter clearable class="text-pink-darken-1"
+              color="pink-darken-4" v-mask="'#####-###'" @input.debounce="buscaCep($event.target.value)"></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
-            <v-text-field
-              label="Cidade"
-              :rules="[rules.required]"
-              maxlength="255"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-              v-model="cidade"
-              readonly
-            ></v-text-field>
+            <v-text-field label="Cidade" :rules="[rules.required]" maxlength="255" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4" v-model="cidade" readonly></v-text-field>
           </v-col>
           <v-col cols="12" md="2">
-            <v-select
-              v-model="selectedUF"
-              :items="ufs"
-              :item-title="'uf'"
-              :item-value="'id'"
-              label="UF"
-              color="pink-darken-4"
-              class="text-pink-darken-1"
-              readonly
-            ></v-select>
+            <v-select v-model="selectedUF" :items="ufs" :item-title="'uf'" :item-value="'id'" label="UF"
+              color="pink-darken-4" class="text-pink-darken-1" readonly></v-select>
           </v-col>
           <v-col cols="12" md="2">
-            <v-text-field
-              label="Nº"
-              :rules="[rules.required]"
-              maxlength="10"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
+            <v-text-field label="Nº" :rules="[rules.required]" maxlength="10" counter clearable class="text-pink-darken-1"
+              color="pink-darken-4"></v-text-field>
           </v-col>
         </v-row>
         <v-row>
           <v-col cols="12" md="12">
-            <v-text-field
-            label="Rua"
-            :rules="[rules.required]"
-              maxlength="255"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-              v-model="rua"
-              readonly
-            ></v-text-field>
+            <v-text-field label="Rua" :rules="[rules.required]" maxlength="255" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4" v-model="rua" readonly></v-text-field>
           </v-col>
         </v-row>
         <v-row>
           <v-col cols="12" md="6">
-            <v-text-field
-            label="Bairro"
-            :rules="[rules.required]"
-              maxlength="255"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-              v-model="bairro"
-              readonly
-            ></v-text-field>
+            <v-text-field label="Bairro" :rules="[rules.required]" maxlength="255" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4" v-model="bairro" readonly></v-text-field>
           </v-col>
           <v-col cols="12" md="6">
-            <v-text-field
-            label="Complemento"
-            :rules="[rules.required]"
-              maxlength="255"
-              counter
-            clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
+            <v-text-field label="Complemento" :rules="[rules.required]" maxlength="255" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
           </v-col>
         </v-row>
 
@@ -217,28 +93,15 @@
             <div></div>
           </v-col>
           <v-col cols="12" md="3">
-            <v-btn
-              @click="reset"
-              class="my-10"
-              color="pink-darken-4"
-              append-icon="mdi-chevron-right"
-              width="183"
-              height="62"
-            >
+            <v-btn @click="reset" class="my-10" color="pink-darken-4" append-icon="mdi-chevron-right" width="183"
+              height="62">
               Limpar
             </v-btn>
           </v-col>
 
           <v-col cols="12" md="3">
-            <v-btn
-              append-icon="mdi-chevron-right"
-
-              color="pink-darken-4"
-              class="my-10"
-              width="183"
-              height="62"
-              id="botaoEntrar"
-            >
+            <v-btn append-icon="mdi-chevron-right" color="pink-darken-4" class="my-10" width="183" height="62"
+              id="botaoEntrar">
               Cadastrar
 
               <template v-slot:append>
@@ -304,13 +167,13 @@ export default {
     return {
       rua: null,
       bairro: null,
-      cidade:null,
+      cidade: null,
       selectId: null,
       rules: {
         required: value => !!value || 'Obrigatório.',
       },
       items: [
-      { id: 'AC', state: 'AC' },
+        { id: 'AC', state: 'AC' },
         { id: 'AL', state: 'AL' },
         { id: 'AP', state: 'AP' },
         { id: 'AM', state: 'AM' },
@@ -348,9 +211,9 @@ export default {
 
     async buscaCep(cep) {
 
-      const cepFormat = cep.replace('-','');
+      const cepFormat = cep.replace('-', '');
 
-      if(cepFormat.length !== 8) {
+      if (cepFormat.length !== 8) {
         return false;
       }
 
