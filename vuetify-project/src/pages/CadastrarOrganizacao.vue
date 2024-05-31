@@ -59,8 +59,8 @@
               color="pink-darken-4" v-mask="'#####-###'" @input.debounce="buscaCep($event.target.value)"></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
-            <v-text-field label="Cidade" :rules="[rules.required]" maxlength="255" counter clearable
-              class="text-pink-darken-1" color="pink-darken-4" v-model="cidade" readonly></v-text-field>
+            <v-text-field label="Cidade" :rules="[rules.required]" maxlength="255" counter class="text-pink-darken-1"
+              color="pink-darken-4" v-model="cidade" readonly></v-text-field>
           </v-col>
           <v-col cols="12" md="2">
             <v-select label="UF" color="pink-darken-4" class="text-pink-darken-1" v-model="selectedUF"
@@ -73,14 +73,14 @@
         </v-row>
         <v-row>
           <v-col cols="12" md="12">
-            <v-text-field label="Rua" :rules="[rules.required]" maxlength="255" counter clearable
-              class="text-pink-darken-1" color="pink-darken-4" v-model="rua" readonly></v-text-field>
+            <v-text-field label="Rua" :rules="[rules.required]" maxlength="255" counter class="text-pink-darken-1"
+              color="pink-darken-4" v-model="rua" readonly></v-text-field>
           </v-col>
         </v-row>
         <v-row>
           <v-col cols="12" md="6">
-            <v-text-field label="Bairro" :rules="[rules.required]" maxlength="255" counter clearable
-              class="text-pink-darken-1" color="pink-darken-4" v-model="bairro" readonly></v-text-field>
+            <v-text-field label="Bairro" :rules="[rules.required]" maxlength="255" counter class="text-pink-darken-1"
+              color="pink-darken-4" v-model="bairro" readonly></v-text-field>
           </v-col>
           <v-col cols="12" md="6">
             <v-text-field label="Complemento" :rules="[rules.required]" maxlength="255" counter clearable
