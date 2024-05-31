@@ -63,8 +63,8 @@
               class="text-pink-darken-1" color="pink-darken-4" v-model="cidade" readonly></v-text-field>
           </v-col>
           <v-col cols="12" md="2">
-            <v-select v-model="selectedUF" :items="ufs" :item-title="'uf'" :item-value="'id'" label="UF"
-              color="pink-darken-4" class="text-pink-darken-1" readonly></v-select>
+            <v-select label="UF" color="pink-darken-4" class="text-pink-darken-1" v-model="selectedUF"
+              readonly></v-select>
           </v-col>
           <v-col cols="12" md="2">
             <v-text-field label="Nº" :rules="[rules.required]" maxlength="10" counter clearable class="text-pink-darken-1"
@@ -168,7 +168,7 @@ export default {
       rua: null,
       bairro: null,
       cidade: null,
-      selectId: null,
+      selectedUF: null,
       rules: {
         required: value => !!value || 'Obrigatório.',
       },
@@ -222,10 +222,13 @@ export default {
         const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
         const address = response.data;
 
-        console.log(address);
+        this.cidade = address.localidade
+        this.bairro = address.bairro;
+        this.rua = address.logradouro;
+        this.selectedUF = address.uf;
 
       } catch (error) {
-        console.error('Error ao consultar endereço:', error);
+        console.error('Erro ao consultar endereço:', error);
       }
     },
   },
