@@ -1,9 +1,15 @@
-FROM node:20 as development
+FROM node:16 AS base
 
 WORKDIR /usr/src/app
 
-COPY package*.json .
+COPY package*.json ./
 
 RUN npm install
 
 COPY . .
+
+FROM base AS development
+
+EXPOSE 5173
+
+CMD ["npm", "run", "dev"]
