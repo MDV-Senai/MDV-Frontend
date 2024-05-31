@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/valid-v-on -->
 <template>
   <v-main id="imagem">
     <Header />
@@ -121,7 +122,6 @@
         <v-row id="inputResponsivo" class="d-flex justify-center">
           <v-col cols="12" md="4">
             <v-text-field
-              v-model="cep"
               label="CEP"
               :rules="[rules.required]"
               maxlength="9"
@@ -130,11 +130,12 @@
               class="text-pink-darken-1"
               color="pink-darken-4"
               v-mask="'#####-###'"
-              @change="buscaCep(cep)"
+              @input.debounce="buscaCep($event.target.value)"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
             <v-text-field
+              v-model="cidade"
               label="Cidade"
               :rules="[rules.required]"
               maxlength="255"
@@ -142,17 +143,19 @@
               clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
+              readonly
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="2">
             <v-select
-              v-model="selectedUF"
-              :items="ufs"
-              :item-title="'uf'"
-              :item-value="'id'"
+              v-model="uf"
+              :items="items"
+              item-value="id"
+              item-title="state"
               label="UF"
               class="text-pink-darken-1"
               color="pink-darken-4"
+              readonly
             ></v-select>
           </v-col>
           <v-col cols="12" md="2">
@@ -170,26 +173,30 @@
         <v-row>
           <v-col cols="12" md="12">
             <v-text-field
-            label="Rua"
-            :rules="[rules.required]"
+              v-model="rua"
+              label="Rua"
+              :rules="[rules.required]"
               maxlength="255"
               counter
-            clearable
+              clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
+              readonly
             ></v-text-field>
           </v-col>
         </v-row>
         <v-row>
           <v-col cols="12" md="6">
             <v-text-field
-            label="Bairro"
-            :rules="[rules.required]"
+              v-model="bairro"
+              label="Bairro"
+              :rules="[rules.required]"
               maxlength="255"
               counter
-            clearable
+              clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
+              readonly
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="6">
@@ -296,38 +303,41 @@ import axios from "axios";
 export default {
   data() {
     return {
-      selectId: null,
+      uf: null,
+      cidade: null,
+      bairro: null,
+      rua: null,
       rules: {
         required: value => !!value || 'Obrigatório.',
       },
       items: [
-        { id: "AC", state: "Acre" },
-        { id: "AL", state: "Alagoas" },
-        { id: "AP", state: "Amapá" },
-        { id: "AM", state: "Amazonas" },
-        { id: "BA", state: "Bahia" },
-        { id: "CE", state: "Ceará" },
-        { id: "DF", state: "Distrito Federal" },
-        { id: "ES", state: "Espírito Santo" },
-        { id: "GO", state: "Goiás" },
-        { id: "MA", state: "Maranhão" },
-        { id: "MT", state: "Mato Grosso" },
-        { id: "MS", state: "Mato Grosso do Sul" },
-        { id: "MG", state: "Minas Gerais" },
-        { id: "PA", state: "Pará" },
-        { id: "PB", state: "Paraíba" },
-        { id: "PR", state: "Paraná" },
-        { id: "PE", state: "Pernambuco" },
-        { id: "PI", state: "Piauí" },
-        { id: "RJ", state: "Rio de Janeiro" },
-        { id: "RN", state: "Rio Grande do Norte" },
-        { id: "RS", state: "Rio Grande do Sul" },
-        { id: "RO", state: "Rondônia" },
-        { id: "RR", state: "Roraima" },
-        { id: "SC", state: "Santa Catarina" },
-        { id: "SP", state: "São Paulo" },
-        { id: "SE", state: "Sergipe" },
-        { id: "TO", state: "Tocantins" },
+        { id: 'AC', state: 'AC' },
+        { id: 'AL', state: 'AL' },
+        { id: 'AP', state: 'AP' },
+        { id: 'AM', state: 'AM' },
+        { id: 'BA', state: 'BA' },
+        { id: 'CE', state: 'CE' },
+        { id: 'DF', state: 'DF' },
+        { id: 'ES', state: 'ES' },
+        { id: 'GO', state: 'GO' },
+        { id: 'MA', state: 'MA' },
+        { id: 'MT', state: 'MT' },
+        { id: 'MS', state: 'MS' },
+        { id: 'MG', state: 'MG' },
+        { id: 'PA', state: 'PA' },
+        { id: 'PB', state: 'PB' },
+        { id: 'PR', state: 'PR' },
+        { id: 'PE', state: 'PE' },
+        { id: 'PI', state: 'PI' },
+        { id: 'RJ', state: 'RJ' },
+        { id: 'RN', state: 'RN' },
+        { id: 'RS', state: 'RS' },
+        { id: 'RO', state: 'RO' },
+        { id: 'RR', state: 'RR' },
+        { id: 'SC', state: 'SC' },
+        { id: 'SP', state: 'SP' },
+        { id: 'SE', state: 'SE' },
+        { id: 'TO', state: 'TO' },
       ],
     };
   },
@@ -339,17 +349,22 @@ export default {
 
     async buscaCep(cep) {
       const cepFormat = cep.replace("-", "");
-      alert(cepFormat);
+
+      if (cepFormat.length !== 8) return false;
 
       try {
         const response = await axios.get(
           `https://viacep.com.br/ws/${cep}/json/`
         );
         const address = response.data;
+        
+        this.uf = address.uf;
+        this.cidade = address.localidade;
+        this.bairro = address.bairro;
+        this.rua = address.logradouro
 
-        console.log(address);
       } catch (error) {
-        console.error("Error fetching address:", error);
+        console.error("Erro ao consultar CEP:", error);
       }
     },
   },
