@@ -140,12 +140,6 @@
   width: 90%;
 }
 
-@media (max-width: 768px) {
-  #inputResponsivo {
-    /* flex-direction: column; */
-  }
-}
-
 #fundoCards {
   background-color: white;
   border-radius: 8px;
@@ -172,35 +166,6 @@ export default {
       rules: {
         required: value => !!value || 'Obrigatório.',
       },
-      items: [
-        { id: 'AC', state: 'AC' },
-        { id: 'AL', state: 'AL' },
-        { id: 'AP', state: 'AP' },
-        { id: 'AM', state: 'AM' },
-        { id: 'BA', state: 'BA' },
-        { id: 'CE', state: 'CE' },
-        { id: 'DF', state: 'DF' },
-        { id: 'ES', state: 'ES' },
-        { id: 'GO', state: 'GO' },
-        { id: 'MA', state: 'MA' },
-        { id: 'MT', state: 'MT' },
-        { id: 'MS', state: 'MS' },
-        { id: 'MG', state: 'MG' },
-        { id: 'PA', state: 'PA' },
-        { id: 'PB', state: 'PB' },
-        { id: 'PR', state: 'PR' },
-        { id: 'PE', state: 'PE' },
-        { id: 'PI', state: 'PI' },
-        { id: 'RJ', state: 'RJ' },
-        { id: 'RN', state: 'RN' },
-        { id: 'RS', state: 'RS' },
-        { id: 'RO', state: 'RO' },
-        { id: 'RR', state: 'RR' },
-        { id: 'SC', state: 'SC' },
-        { id: 'SP', state: 'SP' },
-        { id: 'SE', state: 'SE' },
-        { id: 'TO', state: 'TO' },
-      ],
     };
   },
 
