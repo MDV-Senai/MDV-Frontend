@@ -2,29 +2,16 @@
   <v-main id="imagem">
     <Header />
     <div class="d-flex justify-center align-center">
-      <v-card class="d-flex justify-center align-center" id="card_titulo"
-        >Consultar Instituição de Ensino</v-card
-      >
+      <v-card class="d-flex justify-center align-center" id="card_titulo">Consultar Instituição de Ensino</v-card>
     </div>
     <div id="fundoCards">
       <v-card flat>
         <template v-slot:text>
-          <v-text-field
-            v-model="search"
-            label="Pesquise"
-            prepend-inner-icon="mdi-magnify"
-            variant="outlined"
-            color="pink-darken-4"
-            hide-details
-            single-line
-          ></v-text-field>
+          <v-text-field v-model="search" label="Pesquise" prepend-inner-icon="mdi-magnify" variant="outlined"
+            color="pink-darken-4" hide-details single-line></v-text-field>
         </template>
 
-        <v-data-table
-          :headers="headers"
-          :items="desserts"
-          :search="search"
-        ></v-data-table>
+        <v-data-table :headers="headers" :items="desserts" :search="search"></v-data-table>
       </v-card>
     </div>
   </v-main>
@@ -44,11 +31,11 @@ export default {
           sortable: false,
           title: "Dessert (100g serving)",
         },
-        { key: "calories", title: "Calories", align: "center"},
-        { key: "fat", title: "Fat (g)", align: "center"},
-        { key: "carbs", title: "Carbs (g)", align: "center"},
-        { key: "protein", title: "Protein (g)", align: "center"},
-        { key: "iron", title: "Iron (%)", align: "center"},
+        { key: "calories", title: "Calories", align: "center" },
+        { key: "fat", title: "Fat (g)", align: "center" },
+        { key: "carbs", title: "Carbs (g)", align: "center" },
+        { key: "protein", title: "Protein (g)", align: "center" },
+        { key: "iron", title: "Iron (%)", align: "center" },
       ],
       desserts: [
         {

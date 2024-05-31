@@ -2,169 +2,114 @@
   <v-main id="imagem">
     <Header />
     <div class="d-flex justify-center align-center">
-      <v-card class="d-flex justify-center align-center" id="card_titulo"
-        >Cadastro da Instituição de Ensino</v-card
-      >
+      <v-card class="d-flex justify-center align-center" id="card_titulo">Cadastro da Instituição de Ensino</v-card>
     </div>
     <div id="fundoCards">
       <v-form ref="form" id="form" class="mx-auto">
         <v-row class="d-flex justify-center mt-8">
           <v-col cols="12" md="12">
-            <v-text-field
-              label="Instituição"
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
+            <v-text-field label="Instituição" :rules="[rules.required]" maxlength="255" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
           </v-col>
         </v-row>
 
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="12">
-            <v-text-field
-              label="Razão Social"
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
+            <v-text-field label="Razão Social" :rules="[rules.required]" maxlength="255" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
           </v-col>
         </v-row>
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="12">
-            <v-text-field
-              label="Diretor"
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
+            <v-text-field label="Diretor" :rules="[rules.required]" maxlength="255" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
           </v-col>
         </v-row>
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="12">
-            <v-text-field
-              label="Professor Responsável"
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
+            <v-text-field label="Professor Responsável" :rules="[rules.required]" maxlength="255" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
           </v-col>
         </v-row>
         <v-row id="inputResponsivo" class="d-flex justify-center">
           <v-col cols="12" md="6">
-            <v-text-field
-              label="CNPJ"
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
+            <v-text-field label="CNPJ" :rules="[rules.required]" maxlength="18" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
           </v-col>
 
           <v-col cols="12" md="6">
-            <v-text-field
-              label="Inscrição Estadual"
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
+            <v-text-field label="Inscrição Estadual" :rules="[rules.required]" maxlength="12" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
           </v-col>
         </v-row>
 
         <v-row id="inputResponsivo" class="d-flex justify-center">
           <v-col cols="12" md="4">
-            <v-text-field
-              label="Telefone"
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
+            <v-text-field label="Telefone" :rules="[rules.required]" maxlength="13" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
           </v-col>
 
           <v-col cols="12" md="4">
-            <v-text-field
-              label="Celular"
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
+            <v-text-field label="Celular" :rules="[rules.required]" maxlength="14" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
-            <v-text-field
-              label="Email"
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
+            <v-text-field label="Email" :rules="[rules.required]" maxlength="255" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
           </v-col>
         </v-row>
 
         <v-row id="inputResponsivo" class="d-flex justify-center">
           <v-col cols="12" md="4">
-            <v-text-field
-              label="CEP"
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
+            <v-text-field label="CEP" :rules="[rules.required]" maxlength="9" counter clearable class="text-pink-darken-1"
+              color="pink-darken-4"></v-text-field>
           </v-col>
 
           <v-col cols="12" md="4">
-            <v-text-field
-              label="Cidade"
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
+            <v-text-field label="Cidade" :rules="[rules.required]" maxlength="255" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
           </v-col>
           <v-col cols="12" md="2">
-            <v-select
-              v-model="selectedUF"
-              :items="ufs"
-              :item-title="'uf'"
-              :item-value="'id'"
-              label="UF"
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-select>
+            <v-select v-model="selectedUF" :items="ufs" :item-title="'uf'" :item-value="'id'" label="UF"
+              class="text-pink-darken-1" color="pink-darken-4"></v-select>
           </v-col>
 
           <v-col cols="12" md="2">
-            <v-text-field
-              label="Nº"
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
+            <v-text-field label="Nº" :rules="[rules.required]" maxlength="10" counter clearable class="text-pink-darken-1"
+              color="pink-darken-4"></v-text-field>
           </v-col>
         </v-row>
 
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="12">
-            <v-text-field
-              label="Rua"
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
+            <v-text-field label="Rua" :rules="[rules.required]" maxlength="255" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
           </v-col>
         </v-row>
 
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="6">
-            <v-text-field
-              label="Bairro"
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
+            <v-text-field label="Bairro" :rules="[rules.required]" maxlength="255" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
           </v-col>
 
           <v-col cols="12" md="6">
-            <v-text-field
-              label="Complemento"
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
+            <v-text-field label="Complemento" :rules="[rules.required]" maxlength="255" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row class="d-flex justify-center">
+          <v-col cols="12" md="4">
+            <v-text-field label="Usuário" :rules="[rules.required]" maxlength="255" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
+          </v-col>
+          <v-col cols="12" md="4">
+            <v-text-field label="Senha" :rules="[rules.required]" maxlength="255" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
+          </v-col>
+          <v-col cols="12" md="4">
+            <v-text-field label="Confirmação de Senha" :rules="[rules.required]" maxlength="255" counter clearable
+              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
           </v-col>
         </v-row>
 
@@ -174,29 +119,15 @@
               <div></div>
             </v-col>
             <v-col cols="12" md="3">
-              <v-btn
-                @click="reset"
-                class="my-10"
-                color="pink-darken-4"
-                append-icon="mdi-chevron-right"
-                variant="outlined"
-                width="183"
-                height="62"
-              >
+              <v-btn @click="reset" class="my-10" color="pink-darken-4" append-icon="mdi-chevron-right" variant="outlined"
+                width="183" height="62">
                 Limpar
               </v-btn>
             </v-col>
 
             <v-col cols="12" md="3">
-              <v-btn
-                append-icon="mdi-chevron-right"
-                variant="outlined"
-                color="pink-darken-4"
-                class="my-10"
-                width="183"
-                height="62"
-                id="botaoEntrar"
-              >
+              <v-btn append-icon="mdi-chevron-right" variant="outlined" color="pink-darken-4" class="my-10" width="183"
+                height="62" id="botaoEntrar">
                 Cadastrar
 
                 <template v-slot:append>
@@ -261,6 +192,9 @@ export default {
     return {
       ufs: [],
       selectedUF: null,
+      rules: {
+        required: value => !!value || 'Obrigatório.',
+      },
     };
   },
   methods: {
@@ -269,7 +203,7 @@ export default {
         const req = await fetch("http://localhost:3000/items");
         const data = await req.json();
         this.ufs = data.ufs;
-        
+
       } catch (error) {
         console.error("Error fetching data:", error);
       }
