@@ -88,7 +88,27 @@
     </div>
 
     <v-container>
-      <v-data-table :headers="headers" :items="virtualBoats" height="400" item-value="name">
+      <v-card flat>
+      <v-card-title class="d-flex align-center pe-2">
+
+        Consulta de Admin
+
+        <v-spacer></v-spacer>
+
+        <v-text-field
+          v-model="search"
+          density="compact"
+          label="Consultar"
+          prepend-inner-icon="mdi-magnify"
+          variant="solo-filled"
+          flat
+          hide-details
+          single-line
+        ></v-text-field>
+      </v-card-title>
+
+      <v-divider></v-divider>
+      <v-data-table :headers="headers" :items="filteredBoats" height="400" item-value="name">
         <template v-slot:item="{ item }">
           <tr>
             <td>{{ item.name }}</td>
@@ -101,6 +121,7 @@
           </tr>
         </template>
       </v-data-table>
+    </v-card>
     </v-container>
   </v-main>
 
@@ -153,6 +174,7 @@ export default {
       rules: {
         required: (value) => !!value || "Obrigatório.",
       },
+      search: '',
       headers: [
         { title: "Nome", align: "start", key: "name" },
         { title: "Nº da matricula", align: "start", key: "speed" },
@@ -211,8 +233,17 @@ export default {
         return boat;
       });
     },
+    filteredBoats() {
+    if (!this.search) {
+      return this.virtualBoats;
+    }
+    const searchTerm = this.search.toLowerCase();
+    return this.virtualBoats.filter(boat =>
+      boat.name.toLowerCase().includes(searchTerm) ||
+      String(boat.speed).includes(searchTerm)
+    );
   },
-
+},
   methods: {
     reset() {
       this.$refs.form.reset();
