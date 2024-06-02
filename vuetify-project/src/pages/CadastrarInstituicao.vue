@@ -67,7 +67,7 @@
           </v-col>
 
           <v-col cols="12" md="4">
-            <v-text-field v-model="cidade" label="Cidade" :rules="[rules.required]" maxlength="255" counter clearable
+            <v-text-field v-model="cidade" label="Cidade" :rules="[rules.required]" maxlength="255" counter
               class="text-pink-darken-1" color="pink-darken-4" readonly></v-text-field>
           </v-col>
           <v-col cols="12" md="2">
@@ -83,14 +83,14 @@
 
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="12">
-            <v-text-field v-model="rua" label="Rua" :rules="[rules.required]" maxlength="255" counter clearable
+            <v-text-field v-model="rua" label="Rua" :rules="[rules.required]" maxlength="255" counter
               class="text-pink-darken-1" color="pink-darken-4" readonly></v-text-field>
           </v-col>
         </v-row>
 
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="6">
-            <v-text-field v-model="bairro" label="Bairro" :rules="[rules.required]" maxlength="255" counter clearable
+            <v-text-field v-model="bairro" label="Bairro" :rules="[rules.required]" maxlength="255" counter
               class="text-pink-darken-1" color="pink-darken-4" readonly></v-text-field>
           </v-col>
 
