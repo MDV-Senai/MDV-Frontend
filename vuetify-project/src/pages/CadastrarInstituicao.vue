@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/valid-v-on -->
 <template>
   <v-main id="imagem">
     <Header />
@@ -34,7 +35,7 @@
         <v-row id="inputResponsivo" class="d-flex justify-center">
           <v-col cols="12" md="6">
             <v-text-field label="CNPJ" :rules="[rules.required]" maxlength="18" counter clearable
-              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
+              class="text-pink-darken-1" color="pink-darken-4" v-mask="'##.###.###/####-##'"></v-text-field>
           </v-col>
 
           <v-col cols="12" md="6">
@@ -46,12 +47,12 @@
         <v-row id="inputResponsivo" class="d-flex justify-center">
           <v-col cols="12" md="4">
             <v-text-field label="Telefone" :rules="[rules.required]" maxlength="13" counter clearable
-              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
+              class="text-pink-darken-1" color="pink-darken-4" v-mask="'(##) ####-####'"></v-text-field>
           </v-col>
 
           <v-col cols="12" md="4">
             <v-text-field label="Celular" :rules="[rules.required]" maxlength="14" counter clearable
-              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
+              class="text-pink-darken-1" color="pink-darken-4" v-mask="'(##) #####-####'"></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
             <v-text-field label="Email" :rules="[rules.required]" maxlength="255" counter clearable
@@ -62,16 +63,16 @@
         <v-row id="inputResponsivo" class="d-flex justify-center">
           <v-col cols="12" md="4">
             <v-text-field label="CEP" :rules="[rules.required]" maxlength="9" counter clearable class="text-pink-darken-1"
-              color="pink-darken-4"></v-text-field>
+              color="pink-darken-4" v-mask="'#####-###'" @input.debounce="buscaCep($event.target.value)"></v-text-field>
           </v-col>
 
           <v-col cols="12" md="4">
-            <v-text-field label="Cidade" :rules="[rules.required]" maxlength="255" counter clearable
-              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
+            <v-text-field v-model="cidade" label="Cidade" :rules="[rules.required]" maxlength="255" counter
+              class="text-pink-darken-1" color="pink-darken-4" readonly></v-text-field>
           </v-col>
           <v-col cols="12" md="2">
-            <v-select v-model="selectedUF" :items="ufs" :item-title="'uf'" :item-value="'id'" label="UF"
-              class="text-pink-darken-1" color="pink-darken-4"></v-select>
+            <v-select v-model="uf" :items="ufs" :item-title="'uf'" :item-value="'id'" label="UF"
+              class="text-pink-darken-1" color="pink-darken-4" readonly></v-select>
           </v-col>
 
           <v-col cols="12" md="2">
@@ -82,15 +83,15 @@
 
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="12">
-            <v-text-field label="Rua" :rules="[rules.required]" maxlength="255" counter clearable
-              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
+            <v-text-field v-model="rua" label="Rua" :rules="[rules.required]" maxlength="255" counter
+              class="text-pink-darken-1" color="pink-darken-4" readonly></v-text-field>
           </v-col>
         </v-row>
 
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="6">
-            <v-text-field label="Bairro" :rules="[rules.required]" maxlength="255" counter clearable
-              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
+            <v-text-field v-model="bairro" label="Bairro" :rules="[rules.required]" maxlength="255" counter
+              class="text-pink-darken-1" color="pink-darken-4" readonly></v-text-field>
           </v-col>
 
           <v-col cols="12" md="6">
@@ -187,11 +188,16 @@
 </style>
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
+      uf: null,
+      cidade: null,
+      bairro: null,
+      rua: null,
       ufs: [],
-      selectedUF: null,
       rules: {
         required: value => !!value || 'Obrigatório.',
       },
@@ -200,14 +206,36 @@ export default {
   methods: {
     async getUfs() {
       try {
-        const req = await fetch("http://localhost:3000/items");
-        const data = await req.json();
-        this.ufs = data.ufs;
+        const response = await axios.get("./db/db.json");
+        const data = response.data;
+        this.ufs = data.items.ufs;
 
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     },
+
+    async buscaCep(cep) {
+      const cepFormat = cep.replace("-", "");
+
+      if (cepFormat.length !== 8) return false;
+
+      try {
+        const response = await axios.get(
+          `https://viacep.com.br/ws/${cep}/json/`
+        );
+        const address = response.data;
+
+        this.uf = address.uf;
+        this.cidade = address.localidade;
+        this.bairro = address.bairro;
+        this.rua = address.logradouro
+
+      } catch (error) {
+        console.error("Erro ao consultar CEP:", error);
+      }
+    },
+
     reset() {
       this.$refs.form.reset();
     },
