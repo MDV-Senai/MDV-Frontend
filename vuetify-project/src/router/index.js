@@ -1,14 +1,18 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Login from '../pages/Login.vue';
 import Home from '../pages/Home.vue';
-import CadastrarInstituicao from '../pages/CadastrarInstituicao.vue';
-import CadastrarEstagiario from '../pages/CadastrarEstagiario.vue';
-import CadastrarSetor from '../pages/CadastrarSetor.vue';
-import CadastrarResponsavel from '../pages/CadastrarResponsavel.vue';
-import CadastrarAdmin from '../pages/CadastrarAdmin.vue';
-import CadastrarOrganizacao from '../pages/CadastrarOrganizacao.vue';
-import CadastrarVagas from '../pages/CadastrarVagas.vue';
-import ConsultarInstituicao from '../pages/ConsultarInstituicao.vue';
+import CadastrarInstituicao from '../pages/Cadastros/CadastrarInstituicao.vue';
+import CadastrarEstagiario from '../pages/Cadastros/CadastrarEstagiario.vue';
+import CadastrarSetor from '../pages/Cadastros/CadastrarSetor.vue';
+import CadastrarResponsavel from '../pages/Cadastros/CadastrarResponsavel.vue';
+import CadastrarAdmin from '../pages/Cadastros/CadastrarAdmin.vue';
+import CadastrarOrganizacao from '../pages/Cadastros/CadastrarOrganizacao.vue';
+import CadastrarVagas from '../pages/Cadastros/CadastrarVagas.vue';
+import ConsultarInstituicao from '../pages/Consultas/ConsultarInstituicao.vue';
+import ConsultarEstagiario from '../pages/Consultas/ConsultarEstagiario.vue';
+import ConsultarResponsavel from '../pages/Consultas/ConsultarResponsavel.vue';
+import ConsultarSetor from '../pages/Consultas/ConsultarSetor.vue';
+import ConsultarVagas from '../pages/Consultas/ConsultarVagas.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -62,6 +66,26 @@ const router = createRouter({
       path: '/consultarInstituicao',
       name: 'ConsultarInstituicao',
       component: ConsultarInstituicao
+    },
+    {
+      path: '/consultarEstagiario',
+      name: 'ConsultarEstagiario',
+      component: ConsultarEstagiario
+    },
+    {
+      path: '/consultarResponsavel',
+      name: 'ConsultarResponsavel',
+      component: ConsultarResponsavel
+    },
+    {
+      path: '/consultarSetor',
+      name: 'ConsultarSetor',
+      component: ConsultarSetor
+    },
+    {
+      path: '/consultarVagas',
+      name: 'ConsultarVagas',
+      component: ConsultarVagas
     }
   ]
 })
