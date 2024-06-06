@@ -8,7 +8,11 @@ import CadastrarResponsavel from '../pages/CadastrarResponsavel.vue';
 import CadastrarAdmin from '../pages/CadastrarAdmin.vue';
 import CadastrarOrganizacao from '../pages/CadastrarOrganizacao.vue';
 import CadastrarVagas from '../pages/CadastrarVagas.vue';
-import ConsultarInstituicao from '../pages/ConsultarInstituicao.vue';
+import ConsultarInstituicao from '../pages/Consultas/ConsultarInstituicao.vue';
+import ConsultarEstagiario from '../pages/Consultas/ConsultarEstagiario.vue';
+import ConsultarResponsavel from '../pages/Consultas/ConsultarResponsavel.vue';
+import ConsultarSetor from '../pages/Consultas/ConsultarSetor.vue';
+import ConsultarVagas from '../pages/Consultas/ConsultarVagas.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -62,6 +66,26 @@ const router = createRouter({
       path: '/consultarInstituicao',
       name: 'ConsultarInstituicao',
       component: ConsultarInstituicao
+    },
+    {
+      path: '/consultarEstagiario',
+      name: 'ConsultarEstagiario',
+      component: ConsultarEstagiario
+    },
+    {
+      path: '/consultarResponsavel',
+      name: 'ConsultarResponsavel',
+      component: ConsultarResponsavel
+    },
+    {
+      path: '/consultarSetor',
+      name: 'ConsultarSetor',
+      component: ConsultarSetor
+    },
+    {
+      path: '/consultarVagas',
+      name: 'ConsultarVagas',
+      component: ConsultarVagas
     }
   ]
 })
