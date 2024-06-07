@@ -105,11 +105,11 @@
               class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
-            <v-text-field label="Senha" :rules="[rules.required]" maxlength="255" counter clearable
+            <v-text-field label="Senha" type="password" :rules="[rules.required]" maxlength="255" counter clearable
               class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
-            <v-text-field label="Confirmação de Senha" :rules="[rules.required]" maxlength="255" counter clearable
+            <v-text-field label="Confirmação de Senha" type="password" :rules="[rules.required]" maxlength="255" counter clearable
               class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
           </v-col>
         </v-row>
