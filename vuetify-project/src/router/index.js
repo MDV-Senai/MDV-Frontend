@@ -9,6 +9,7 @@ import CadastrarAdmin from '../pages/CadastrarAdmin.vue';
 import CadastrarOrganizacao from '../pages/CadastrarOrganizacao.vue';
 import CadastrarVagas from '../pages/CadastrarVagas.vue';
 import ConsultarInstituicao from '../pages/ConsultarInstituicao.vue';
+import AlterarSenha from '../pages/AlterarSenha.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -62,7 +63,12 @@ const router = createRouter({
       path: '/consultarInstituicao',
       name: 'ConsultarInstituicao',
       component: ConsultarInstituicao
-    }
+    },
+    {
+      path: '/alterarSenha/:token',
+      name: 'AlterarSenha',
+      component: AlterarSenha
+    },
   ]
 })
 
