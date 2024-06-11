@@ -39,7 +39,7 @@
             <v-list-item prepend-icon="mdi-account-file-outline" v-bind="props" title="Consultas"></v-list-item>
           </template>
 
-          <v-list-item v-for="([title, icon], i) in consultas" :key="i" :prepend-icon="icon" :title="title"
+          <v-list-item v-for="([title, icon, route], i) in consultas" :key="i" :prepend-icon="icon" :title="title" :to="route"
             :value="title"></v-list-item>
         </v-list-group>
       </v-list>
@@ -82,13 +82,14 @@ export default {
       ],
     ],
     consultas: [
-      ["Consulta de Instituição", "mdi-store-search-outline"],
-      ["Consulta de Estagiário", "mdi-account-search-outline"],
-      ["Consulta de Setor", "mdi-clipboard-text-search-outline"],
-      ["Consulta de Contrato", "mdi-file-search-outline"],
+      ["Consultar Instituição", "mdi-store-search-outline", "/consultarInstituicao"],
+      ["Consultar Estagiário", "mdi-account-search-outline", "/consultarEstagiario"],
+      ["Consultar Professor Responsável", "mdi-clipboard-text-search-outline", "/consultarResponsavel"],
+      ["Consultar Setor", "mdi-file-search-outline", "/consultarSetor"],
       [
-        "Informações do Professor Responsável",
+        "Consultar Vagas",
         "mdi-account-supervisor-outline",
+        "/consultarVagas"
       ],
     ],
   }),
