@@ -27,7 +27,7 @@
           </v-col>
           <v-col cols="12" md="6">
             <v-text-field label="CPF" :rules="[rules.required]" maxlength="14" counter clearable
-              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
+              class="text-pink-darken-1" color="pink-darken-4" v-mask="'###.###.###-##'"></v-text-field>
           </v-col>
         </v-row>
 
