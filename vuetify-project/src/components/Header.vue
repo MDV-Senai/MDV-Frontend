@@ -30,6 +30,17 @@
             <v-list-item prepend-icon="mdi-account-file-outline" v-bind="props" title="Cadastrar"></v-list-item>
           </template>
 
+          <v-col sm="2" id="estg">
+          <v-card color="pink-darken-4" class="py-14 my-15 w-100" variant="outlined">
+            <RouterLink to="/CadastrarEstagiario">
+              <v-btn icon flat>
+                <v-icon color="pink-darken-4">mdi-account-plus-outline</v-icon>
+              </v-btn>
+            </RouterLink>
+            <v-card-title>Cadastrar Estagiário</v-card-title>
+          </v-card>
+        </v-col>
+
           <v-list-item v-for="([title, icon, route], i) in cruds" :key="i" :prepend-icon="icon" :title="title" :to="route"
             :value="title"></v-list-item>
         </v-list-group>
