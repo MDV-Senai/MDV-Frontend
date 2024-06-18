@@ -7,23 +7,20 @@
     <div id="fundoCards">
      <v-container>
       <v-card flat>
-      <v-card-title class="d-flex align-center pe-2">
-
-      Instituição
-
+      
         <v-spacer></v-spacer>
 
         <v-text-field
           v-model="search"
-          density="compact"
-          label="Consultar"
+        
+          label="Pesquise"
           prepend-inner-icon="mdi-magnify"
-          variant="solo-filled"
-          flat
+          variant="outlined"
+          color="pink-darken-4"
           hide-details
           single-line
         ></v-text-field>
-      </v-card-title>
+     
 
       <v-divider></v-divider>
       <v-data-table :headers="headers" :items="filteredBoats" height="400" item-value="name">
@@ -64,7 +61,22 @@
      </v-col>
      </v-row>
                
-     
+      <v-row  class = "mx-5"> 
+
+      <v-col cols="12" md="6">
+              <v-text-field label="Email:" id="email" value="instituicao@gmail.com" reandoly
+              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
+               </v-col>
+                <v-col cols="12" md="3">
+               <v-text-field label="Telefone:" id="inscricao" value="3030-3030" reandoly
+              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
+     </v-col>
+     <v-col cols="12" md="3">
+               <v-text-field label="Celular" id="inscricao" value="(47) 99999-9999" reandoly
+              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
+     </v-col>
+     </v-row>
+               
    
  
                
