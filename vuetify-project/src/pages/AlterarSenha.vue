@@ -11,30 +11,12 @@
         <v-row class="d-flex justify-center mt-8">
           <v-col cols="12" md="12">
             <v-text-field
-              label="Senha Atual"
-              :append-inner-icon="visibleActual ? 'mdi-eye-off' : 'mdi-eye'"
-              :type="visibleActual ? 'text' : 'password'"
-              @click:append-inner="visibleActual = !visibleActual"
-              v-model="actualPassword"
-              :rules="[rules.required]"
-              maxlength="255"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
-          </v-col>
-        </v-row>
-
-        <v-row class="d-flex justify-center">
-          <v-col cols="12" md="12">
-            <v-text-field
               label="Nova Senha"
               :append-inner-icon="visibleNew ? 'mdi-eye-off' : 'mdi-eye'"
               :type="visibleNew ? 'text' : 'password'"
               @click:append-inner="visibleNew = !visibleNew"
               v-model="newPassword"
-              :rules="[rules.required]"
+              :rules="[rules.required, rules.minLenght]"
               maxlength="255"
               counter
               clearable
@@ -52,7 +34,7 @@
               :type="visibleNewConfirm ? 'text' : 'password'"
               @click:append-inner="visibleNewConfirm = !visibleNewConfirm"
               v-model="newPasswordConfirmation"
-              :rules="[rules.required]"
+              :rules="[rules.required, rules.minLenght]"
               maxlength="255"
               counter
               clearable
@@ -154,14 +136,14 @@
 export default {
   data() {
     return {
-      visibleActual: false,
       visibleNew: false,
       visibleNewConfirm: false,
-      actualPassword: "",
       newPassword: "",
       newPasswordConfirmation: "",
       rules: {
         required: (value) => !!value || "Obrigatório.",
+        minLenght: (value) =>
+          value.length >= 6 || "A senha deve ter no mínimo 6 caracteres.",
       },
     };
   },
@@ -170,8 +152,20 @@ export default {
       this.$refs.form.reset();
     },
     sendData() {
+      if (this.newPassword !== this.newPasswordConfirmation) {
+        alert("As senhas não coincidem");
+        return;
+      }
+
+      if (
+        this.newPassword.length < 6 ||
+        this.newPasswordConfirmation.length < 6
+      ) {
+        alert("A senha deve ter no mínimo 6 caracteres");
+        return;
+      }
+
       let requestObj = {
-        actualPassword: this.actualPassword,
         newPassword: this.newPassword,
         newPasswordConfirmation: this.newPasswordConfirmation,
       };
