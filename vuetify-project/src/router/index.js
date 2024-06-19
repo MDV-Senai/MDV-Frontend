@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Login from '../pages/Login.vue';
 import Home from '../pages/Home.vue';
+import AlterarSenha from '../pages/AlterarSenha.vue';
 import CadastrarInstituicao from '../pages/Cadastros/CadastrarInstituicao.vue';
 import CadastrarEstagiario from '../pages/Cadastros/CadastrarEstagiario.vue';
 import CadastrarSetor from '../pages/Cadastros/CadastrarSetor.vue';
@@ -68,6 +69,11 @@ const router = createRouter({
       component: ConsultarInstituicao
     },
     {
+      path: '/alterarSenha/:token',
+      name: 'AlterarSenha',
+      component: AlterarSenha
+    },
+    {
       path: '/consultarEstagiario',
       name: 'ConsultarEstagiario',
       component: ConsultarEstagiario
@@ -86,7 +92,7 @@ const router = createRouter({
       path: '/consultarVagas',
       name: 'ConsultarVagas',
       component: ConsultarVagas
-    }
+    },
   ]
 })
 
