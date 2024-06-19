@@ -5,64 +5,88 @@
     <div id="fundoCards">
       <v-row class="d-flex justify-center">
         <v-col sm="2" id="teste">
-          <v-card color="pink-darken-4" class="py-14 my-15 w-100" variant="outlined">
-            <RouterLink to="/CadastrarInstituicao">
+          <RouterLink to="/CadastrarInstituicao">
+            <v-card
+              color="pink-darken-4"
+              class="py-14 my-15 w-100"
+              variant="outlined"
+            >
               <v-btn icon flat>
                 <v-icon color="pink-darken-4">mdi-store-plus-outline</v-icon>
               </v-btn>
-            </RouterLink>
-            <v-card-title>Cadastrar Instituição</v-card-title>
-          </v-card>
+              <v-card-title>Cadastrar Instituição</v-card-title>
+            </v-card>
+          </RouterLink>
         </v-col>
 
         <v-col sm="2" id="teste">
-          <v-card color="pink-darken-4" class="py-14 my-15 w-100" variant="outlined">
-            <RouterLink to="/CadastrarEstagiario">
+          <RouterLink to="/CadastrarEstagiario">
+            <v-card
+              color="pink-darken-4"
+              class="py-14 my-15 w-100"
+              variant="outlined"
+            >
               <v-btn icon flat>
                 <v-icon color="pink-darken-4">mdi-account-plus-outline</v-icon>
               </v-btn>
-            </RouterLink>
-            <v-card-title>Cadastrar Estagiário</v-card-title>
-          </v-card>
+              <v-card-title>Cadastrar Estagiário</v-card-title>
+            </v-card>
+          </RouterLink>
         </v-col>
 
         <v-col sm="2" id="teste">
-          <v-card color="pink-darken-4" class="py-14 my-15 w-100" variant="outlined">
-            <RouterLink to="/CadastrarSetor">
+          <RouterLink to="/CadastrarSetor">
+            <v-card
+              color="pink-darken-4"
+              class="py-14 my-15 w-100"
+              variant="outlined"
+            >
               <v-btn icon flat>
                 <v-icon color="pink-darken-4">mdi-text-box-plus-outline</v-icon>
               </v-btn>
-            </RouterLink>
-            <v-card-title>Cadastrar Setor</v-card-title>
-          </v-card>
+              <v-card-title>Cadastrar Setor</v-card-title>
+            </v-card>
+          </RouterLink>
         </v-col>
 
         <v-col sm="2" id="teste">
-          <v-card color="pink-darken-4" class="py-14 my-15 w-100" variant="outlined">
-            <RouterLink to="/cadastrarVagas">
+          <RouterLink to="/cadastrarVagas">
+            <v-card
+              color="pink-darken-4"
+              class="py-14 my-15 w-100"
+              variant="outlined"
+            >
               <v-btn icon flat>
                 <v-icon color="pink-darken-4">mdi-handshake-outline</v-icon>
               </v-btn>
-            </RouterLink>
-            <v-card-title>Cadastro De Vagas</v-card-title>
-          </v-card>
+              <v-card-title>Cadastro De Vagas</v-card-title>
+            </v-card>
+          </RouterLink>
         </v-col>
 
         <v-col sm="2" id="teste">
-          <v-card color="pink-darken-4" class="py-14 my-15 w-100" variant="outlined">
-            <RouterLink to="/cadastrarAdmin">
+          <RouterLink to="/cadastrarAdmin">
+            <v-card
+              color="pink-darken-4"
+              class="py-14 my-15 w-100"
+              variant="outlined"
+            >
               <v-btn icon flat>
                 <v-icon color="pink-darken-4">mdi-file-account-outline</v-icon>
               </v-btn>
-            </RouterLink>
-            <v-card-title>Cadastro de Admin</v-card-title>
-          </v-card>
+              <v-card-title>Cadastro de Admin</v-card-title>
+            </v-card>
+          </RouterLink>
         </v-col>
       </v-row>
       <v-row class="w-100 d-flex justify-center">
         <v-col sm="12">
           <div class="d-flex justify-center align-center">
-            <v-img src="../assets/img/mulher.svg" height="500px" width="500px"></v-img>
+            <v-img
+              src="../assets/img/mulher.svg"
+              height="500px"
+              width="500px"
+            ></v-img>
           </div>
         </v-col>
       </v-row>
