@@ -2,17 +2,249 @@
   <v-main id="imagem">
     <Header />
     <div class="d-flex justify-center align-center">
-      <v-card class="d-flex justify-center align-center" id="card_titulo">Consultar Estagiário</v-card>
+      <v-card class="d-flex justify-center align-center" id="card_titulo"
+        >Consultar Estagiário</v-card
+      >
     </div>
     <div id="fundoCards">
-      <v-card flat>
-        <template v-slot:text>
-          <v-text-field v-model="search" label="Pesquise" prepend-inner-icon="mdi-magnify" variant="outlined"
-            color="pink-darken-4" hide-details single-line></v-text-field>
-        </template>
+      <v-container>
+        <v-card flat>
+          <v-spacer></v-spacer>
 
-        <v-data-table :headers="headers" :items="desserts" :search="search"></v-data-table>
-      </v-card>
+          <v-text-field
+            v-model="search"
+            label="Pesquise"
+            prepend-inner-icon="mdi-magnify"
+            variant="outlined"
+            color="pink-darken-4"
+            hide-details
+            single-line
+          ></v-text-field>
+
+          <v-divider></v-divider>
+          <v-data-table
+            :headers="headers"
+            :items="filteredBoats"
+            height="400"
+            item-value="name"
+          >
+            <template v-slot:item="{ item }">
+              <tr>
+                <td>{{ item.name }}</td>
+                <td>{{ item.speed }}</td>
+                <td>
+                  <v-dialog max-width="800">
+                    <template v-slot:activator="{ props: activatorProps }">
+                      <v-btn
+                        v-bind="activatorProps"
+                        text="Consultar"
+                        variant="outlined"
+                        color="pink-darken-4"
+                      ></v-btn>
+                    </template>
+
+                    <template v-slot:default="{ isActive }">
+                      <v-card
+                        title="Informações Do Estagiário"
+                        class="d-flex justify-center text-center"
+                      >
+                          <v-row class="mt-16 mx-5">
+                            <v-col cols="12" md="12">
+                              <v-text-field
+                                label="Nome / Nome Social"
+                                id="nome"
+                                value="Nome Completo"
+                                reandoly
+                                class="mt-16 text-pink-darken-1"
+                                color="pink-darken-4"
+                              ></v-text-field>
+                            </v-col>
+                          </v-row>
+                          <v-row class="mx-5">
+                            <v-col cols="12" md="4">
+                              <v-text-field
+                                label="CPF"
+                                id="cpf"
+                                value="000.000.000-00"
+                                reandoly
+                                class="text-pink-darken-1"
+                                color="pink-darken-4"
+                              ></v-text-field>
+                            </v-col>
+                            <v-col cols="12" md="4">
+                              <v-text-field
+                                label="Data de Nasc."
+                                id="data_nasc"
+                                value="00/00/0000"
+                                reandoly
+                                class="text-pink-darken-1"
+                                color="pink-darken-4"
+                              ></v-text-field>
+                            </v-col>
+                            <v-col cols="12" md="4">
+                              <v-text-field
+                                label="Telefone"
+                                id="telefone"
+                                value="3030-3030"
+                                reandoly
+                                class="text-pink-darken-1"
+                                color="pink-darken-4"
+                              ></v-text-field>
+                            </v-col>
+                          </v-row>
+
+                          <v-row class="mx-5">
+                            <v-col cols="12" md="4">
+                              <v-text-field
+                                label="Email:"
+                                id="email"
+                                value="instituicao@gmail.com"
+                                reandoly
+                                class="text-pink-darken-1"
+                                color="pink-darken-4"
+                              ></v-text-field>
+                            </v-col>
+
+                            <v-col cols="12" md="4">
+                              <v-text-field
+                                label="Celular"
+                                id="celular"
+                                value="(47) 99999-9999"
+                                reandoly
+                                class="text-pink-darken-1"
+                                color="pink-darken-4"
+                              ></v-text-field>
+                            </v-col>
+                            <v-col cols="12" md="4">
+                              <v-text-field
+                                label="Instituição"
+                                id="instituicao"
+                                value="Instituição de Ensino"
+                                reandoly
+                                class="text-pink-darken-1"
+                                color="pink-darken-4"
+                              ></v-text-field>
+                            </v-col>
+                          </v-row>
+
+                          <v-row class="mx-5">
+                            <v-col cols="12" md="4">
+                              <v-text-field
+                                label="Matrícula"
+                                id="matricula"
+                                value="0000000"
+                                reandoly
+                                class="text-pink-darken-1"
+                                color="pink-darken-4"
+                              ></v-text-field>
+                            </v-col>
+
+                            <v-col cols="12" md="4">
+                              <v-text-field
+                                label="Curso"
+                                id="curso"
+                                value="Curso"
+                                reandoly
+                                class="text-pink-darken-1"
+                                color="pink-darken-4"
+                              ></v-text-field>
+                            </v-col>
+                            <v-col cols="12" md="4">
+                              <v-text-field
+                                label="Fase/Série"
+                                id="faseSerie"
+                                value="0"
+                                reandoly
+                                class="text-pink-darken-1"
+                                color="pink-darken-4"
+                              ></v-text-field>
+                            </v-col>
+                          </v-row>
+
+                          <v-row class="mx-5">
+                            <v-col cols="12" md="4">
+                              <v-text-field
+                                label="CEP"
+                                id="cep"
+                                value="00.000-000"
+                                reandoly
+                                class="text-pink-darken-1"
+                                color="pink-darken-4"
+                              ></v-text-field>
+                            </v-col>
+
+                            <v-col cols="12" md="4">
+                              <v-text-field
+                                label="UF"
+                                id="uf"
+                                value="Estado"
+                                reandoly
+                                class="text-pink-darken-1"
+                                color="pink-darken-4"
+                              ></v-text-field>
+                            </v-col>
+                            <v-col cols="12" md="4">
+                              <v-text-field
+                                label="Cidade"
+                                id="cidade"
+                                value="Cidade"
+                                reandoly
+                                class="text-pink-darken-1"
+                                color="pink-darken-4"
+                              ></v-text-field>
+                            </v-col>
+                          </v-row>
+                          <v-row class="mx-5">
+                            <v-col cols="12" md="4">
+                              <v-text-field
+                                label="Bairro"
+                                id="bairro"
+                                value="Bairro"
+                                reandoly
+                                class="text-pink-darken-1"
+                                color="pink-darken-4"
+                              ></v-text-field>
+                            </v-col>
+
+                            <v-col cols="12" md="4">
+                              <v-text-field
+                                label="Rua"
+                                id="rua"
+                                value="Rua"
+                                reandoly
+                                class="text-pink-darken-1"
+                                color="pink-darken-4"
+                              ></v-text-field>
+                            </v-col>
+                            <v-col cols="12" md="4">
+                              <v-text-field
+                                label="Complemento"
+                                id="complemento"
+                                value="Complemento"
+                                reandoly
+                                class="text-pink-darken-1"
+                                color="pink-darken-4"
+                              ></v-text-field>
+                            </v-col>
+                          </v-row>
+                        
+                        <v-card-actions>
+                          <v-spacer></v-spacer>
+
+                          <v-btn
+                            text="Close Dialog"
+                            @click="isActive.value = false"
+                          ></v-btn>
+                        </v-card-actions>
+                      </v-card>
+                    </template>
+                  </v-dialog>
+                </td>
+              </tr>
+            </template>
+          </v-data-table>
+        </v-card>
+      </v-container>
     </div>
   </v-main>
 
@@ -24,113 +256,43 @@ export default {
   data() {
     return {
       search: "",
-      headers: [
+
+      boats: [
         {
-          align: "center",
-          key: "name",
-          sortable: false,
-          title: "Dessert (100g serving)",
-        },
-        { key: "calories", title: "Calories", align: "center" },
-        { key: "fat", title: "Fat (g)", align: "center" },
-        { key: "carbs", title: "Carbs (g)", align: "center" },
-        { key: "protein", title: "Protein (g)", align: "center" },
-        { key: "iron", title: "Iron (%)", align: "center" },
-      ],
-      desserts: [
-        {
-          name: "Frozen Yogurt",
-          calories: 159,
-          fat: 6.0,
-          carbs: 24,
-          protein: 4.0,
-          iron: 1,
+          name: "Maria",
         },
         {
-          name: "Ice cream sandwich",
-          calories: 237,
-          fat: 9.0,
-          carbs: 37,
-          protein: 4.3,
-          iron: 1,
+          name: "Murilo",
         },
         {
-          name: "Eclair",
-          calories: 262,
-          fat: 16.0,
-          carbs: 23,
-          protein: 6.0,
-          iron: 7,
+          name: "Aline",
         },
         {
-          name: "Cupcake",
-          calories: 305,
-          fat: 3.7,
-          carbs: 67,
-          protein: 4.3,
-          iron: 8,
-        },
-        {
-          name: "Gingerbread",
-          calories: 356,
-          fat: 16.0,
-          carbs: 49,
-          protein: 3.9,
-          iron: 16,
-        },
-        {
-          name: "Jelly bean",
-          calories: 375,
-          fat: 0.0,
-          carbs: 94,
-          protein: 0.0,
-          iron: 0,
-        },
-        {
-          name: "Lollipop",
-          calories: 392,
-          fat: 0.2,
-          carbs: 98,
-          protein: 0,
-          iron: 2,
-        },
-        {
-          name: "Honeycomb",
-          calories: 408,
-          fat: 3.2,
-          carbs: 87,
-          protein: 6.5,
-          iron: 45,
-        },
-        {
-          name: "Donut",
-          calories: 452,
-          fat: 25.0,
-          carbs: 51,
-          protein: 4.9,
-          iron: 22,
-        },
-        {
-          name: "KitKat",
-          calories: 518,
-          fat: 26.0,
-          carbs: 65,
-          protein: 7,
-          iron: 6,
-        },
-        {
-          name: "Teste",
-          calories: 222,
-          fat: 30.0,
-          carbs: 12,
-          protein: 10,
-          iron: 90,
+          name: "Geovana",
         },
       ],
     };
   },
+
+  computed: {
+    filteredBoats() {
+      if (!this.boats) {
+        return this.virtualBoats;
+      }
+      const searchTerm = this.search.toLowerCase();
+      return this.boats.filter(
+        (boat) =>
+          boat.name.toLowerCase().includes(searchTerm) ||
+          String(boat.speed).includes(searchTerm)
+      );
+    },
+  },
+  methods: {
+    handleButtonClick(item) {},
+  },
 };
 </script>
+
 
 <style scoped>
 #imagem {
@@ -170,3 +332,4 @@ export default {
     align-items: center; */
 }
 </style>
+
