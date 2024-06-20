@@ -230,7 +230,7 @@ export default {
     async listarVagas() {
       try {
         const response = await axios.get(
-          `https://run.mocky.io/v3/13e9ae01-eae2-4bca-956d-4b3d2f73ece6`
+          `https://run.mocky.io/v3/2aa2c1c0-22bf-4614-8cc9-32b3943d6c3b`
         );
         const info = response.data;
         const vagas = info.items.vagas;
