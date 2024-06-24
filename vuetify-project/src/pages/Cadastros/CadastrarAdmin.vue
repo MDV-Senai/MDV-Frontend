@@ -49,6 +49,10 @@
               v-mask="'###.###.###-##'"
             ></v-text-field>
           </v-col>
+
+
+
+
           <v-col cols="12" md="6">
             <v-text-field
               label="Nº de Matrícula de Trabalho"
@@ -98,6 +102,11 @@
             ></v-text-field>
           </v-col>
         </v-row>
+
+
+
+
+
 
         <v-row id="inputResponsivo" class="d-flex justify-center">
           <v-col cols="12" md="6">
