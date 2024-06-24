@@ -8,6 +8,13 @@
       <v-form ref="form" id="form" class="mx-auto">
         <v-row class="d-flex justify-center mt-8">
           <v-col cols="12" md="12">
+
+
+
+
+
+
+
             <v-text-field label="Nome social" :rules="[rules.required]" maxlength="255" counter clearable
               class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
           </v-col>
@@ -25,6 +32,10 @@
             <v-text-field label="CPF" :rules="[rules.required]" maxlength="14" counter clearable
               class="text-pink-darken-1" color="pink-darken-4" v-mask="'###.###.###-##'"></v-text-field>
           </v-col>
+
+
+
+
           <v-col cols="12" md="6">
             <v-text-field label="Nº de Matrícula de Trabalho" :rules="[rules.required]" maxlength="20" counter clearable
               class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
@@ -46,14 +57,19 @@
           </v-col>
         </v-row>
 
+
+
+
+
+
         <v-row id="inputResponsivo" class="d-flex justify-center">
           <v-col cols="12" md="6">
             <v-text-field label="Senha" type="password" :rules="[rules.required]" maxlength="255" counter clearable
               class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
           </v-col>
           <v-col cols="12" md="6">
-            <v-text-field label="Confirme sua senha" type="password" :rules="[rules.required]" maxlength="255" counter clearable
-              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
+                    <v-text-field label="Confirme sua senha" type="password" :rules="[rules.required]" maxlength="255" counter clearable
+               class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
           </v-col>
         </v-row>
 
