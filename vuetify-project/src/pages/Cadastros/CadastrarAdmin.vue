@@ -4,7 +4,7 @@
     <div class="d-flex justify-center align-center">
       <v-card class="d-flex justify-center align-center" id="card_titulo">Cadastro De Administrador</v-card>
     </div>
-    <div id="fundoCards">
+    <div id="fundoCardshtdsghjosghcjxkzlçxjkgjhklçç">
       <v-form ref="form" id="form" class="mx-auto">
         <v-row class="d-flex justify-center mt-8">
           <v-col cols="12" md="12">
