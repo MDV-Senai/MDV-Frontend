@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Login from '../pages/Login.vue';
 import Home from '../pages/Home.vue';
 import AlterarSenha from '../pages/AlterarSenha.vue';
+import InformacaoVagas from '../pages/InformacaoVagas.vue';
 import CadastrarInstituicao from '../pages/Cadastros/CadastrarInstituicao.vue';
 import CadastrarEstagiario from '../pages/Cadastros/CadastrarEstagiario.vue';
 import CadastrarSetor from '../pages/Cadastros/CadastrarSetor.vue';
@@ -92,6 +93,11 @@ const router = createRouter({
       path: '/consultarVagas',
       name: 'ConsultarVagas',
       component: ConsultarVagas
+    },
+    {
+      path: '/informacaoVagas',
+      name: 'InformacaoVagas',
+      component: InformacaoVagas
     },
   ]
 })

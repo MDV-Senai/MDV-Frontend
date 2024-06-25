@@ -23,7 +23,7 @@
       <v-list density="compact" nav>
         <v-list-item prepend-icon="mdi-chart-bar" title="Dashboard" value="dashboard"></v-list-item>
         <v-list-item prepend-icon="mdi-information" title="Informações da Organização" value="informacao"></v-list-item>
-        <v-list-item prepend-icon="mdi-dots-horizontal-circle-outline" title="Menu de Vagas" value="vagas"></v-list-item>
+        <v-list-item prepend-icon="mdi-dots-horizontal-circle-outline" title="Menu de Vagas" value="vagas" :to="pathInfoVagas"></v-list-item>
         <v-list-item prepend-icon="mdi-account-group" title="Administradores" value="administradores"></v-list-item>
         <v-list-group value="Actions">
           <template v-slot:activator="{ props }">
@@ -52,6 +52,7 @@ export default {
   data: () => ({
     drawer: false,
     group: null,
+    pathInfoVagas: "/informacaoVagas",
     cruds: [
       [
         "Cadastrar Instituição",
