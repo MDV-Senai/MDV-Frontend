@@ -75,15 +75,9 @@
               class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
      </v-col>
      </v-row>
-               
-   
- 
-               
-     
       </div>
       <v-card-actions>
         <v-spacer></v-spacer>
-
         <v-btn
           text="Fechar"
           @click="isActive.value = false"
@@ -108,9 +102,6 @@
 </template>
 
 <script>
-
-
-
 export default {
   data() {
     return {
@@ -155,9 +146,30 @@ export default {
 
     },
   },
+
+  computed: {
+    
+    filteredBoats() {
+    if (!this.boats) {
+      return this.virtualBoats;
+    }
+    const searchTerm = this.search.toLowerCase();
+    return this.boats.filter(boat =>
+      boat.name.toLowerCase().includes(searchTerm) ||
+      String(boat.speed).includes(searchTerm)
+    );
+  },
+},
+  methods: {
+    
+
+    handleButtonClick(item) {
+     
+
+    },
+  },
 };
 </script>
-
 
 <style scoped>
 #imagem {
@@ -179,12 +191,6 @@ export default {
   width: 90%;
 }
 
-@media (max-width: 768px) {
-  #inputResponsivo {
-    /* flex-direction: column; */
-  }
-}
-
 #fundoCards {
   background-color: white;
   border-radius: 8px;
@@ -197,4 +203,3 @@ export default {
     align-items: center; */
 }
 </style>
-
