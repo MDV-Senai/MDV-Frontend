@@ -233,7 +233,7 @@
                           <v-spacer></v-spacer>
 
                           <v-btn
-                            text="Close Dialog"
+                            text="Fechar"
                             @click="isActive.value = false"
                           ></v-btn>
                         </v-card-actions>
