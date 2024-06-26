@@ -45,9 +45,10 @@
 
                     <template v-slot:default="{ isActive }">
                       <v-card
-                        title="Informações Do Estagiário"
+                       
                         class="d-flex justify-center text-center"
                       >
+                  
                           <v-row class="mt-16 mx-5">
                             <v-col cols="12" md="12">
                               <v-text-field
