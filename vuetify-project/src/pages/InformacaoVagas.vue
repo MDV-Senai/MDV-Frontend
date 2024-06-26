@@ -80,7 +80,6 @@
   width: 90%;
   margin: 2% auto;
   display: flex;
-  text-align: center;
   flex-direction: column;
   /* justify-content: center;
     align-items: center; */
