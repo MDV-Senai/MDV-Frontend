@@ -12,7 +12,6 @@
 
         <v-text-field
           v-model="search"
-        
           label="Pesquise"
           prepend-inner-icon="mdi-magnify"
           variant="outlined"
@@ -41,15 +40,15 @@
   </template>
 
   <template v-slot:default="{ isActive }">
-    <v-card title="Informações Da Instituição" class="d-flex justify-center text-center"> 
+    <v-card class="d-flex justify-center text-center"> 
       <div>
-        <v-row  class = "mx-5">
+        <v-row  class = "mx-5 my-5">
 <v-col cols="12" md="12">
         <v-text-field label="Instituição" id="instituicao" value="Instituição de Ensino" reandoly
               class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
      </v-col>
         </v-row>
-     <v-row  class = "mx-5"> 
+     <v-row  class = "mx-5 my-5"> 
 
       <v-col cols="12" md="6">
               <v-text-field label="CNPJ" id="cnpj" value="00.000.000/0001-00" reandoly
@@ -76,17 +75,11 @@
               class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
      </v-col>
      </v-row>
-               
-   
- 
-               
-     
       </div>
       <v-card-actions>
         <v-spacer></v-spacer>
-
         <v-btn
-          text="Close Dialog"
+          text="Fechar"
           @click="isActive.value = false"
         ></v-btn>
       </v-card-actions>
@@ -109,9 +102,6 @@
 </template>
 
 <script>
-
-
-
 export default {
   data() {
     return {
@@ -156,9 +146,30 @@ export default {
 
     },
   },
+
+  computed: {
+    
+    filteredBoats() {
+    if (!this.boats) {
+      return this.virtualBoats;
+    }
+    const searchTerm = this.search.toLowerCase();
+    return this.boats.filter(boat =>
+      boat.name.toLowerCase().includes(searchTerm) ||
+      String(boat.speed).includes(searchTerm)
+    );
+  },
+},
+  methods: {
+    
+
+    handleButtonClick(item) {
+     
+
+    },
+  },
 };
 </script>
-
 
 <style scoped>
 #imagem {
@@ -180,12 +191,6 @@ export default {
   width: 90%;
 }
 
-@media (max-width: 768px) {
-  #inputResponsivo {
-    /* flex-direction: column; */
-  }
-}
-
 #fundoCards {
   background-color: white;
   border-radius: 8px;
@@ -198,4 +203,3 @@ export default {
     align-items: center; */
 }
 </style>
-
