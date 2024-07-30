@@ -6,16 +6,17 @@
     </div>
     <div id="fundoCards">
       <v-form ref="form" id="form" class="mx-auto">
+
         <v-row class="d-flex justify-center mt-8">
           <v-col cols="12" md="12">
-            <v-text-field label="Nome social" :rules="[rules.required]" maxlength="255" counter clearable
+            <v-text-field label="Nome" :rules="[rules.required]" maxlength="255" counter clearable
               class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
           </v-col>
         </v-row>
 
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="12">
-            <v-text-field label="Nome" :rules="[rules.required]" maxlength="255" counter clearable
+            <v-text-field label="Nome social" :rules="[rules.required]" maxlength="255" counter clearable
               class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
           </v-col>
         </v-row>
