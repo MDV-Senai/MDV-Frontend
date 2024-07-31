@@ -18,7 +18,8 @@
               clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
-            ></v-text-field>
+            >
+            </v-text-field>
           </v-col>
         </v-row>
 
@@ -32,9 +33,18 @@
               clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
-            ></v-text-field>
+              :disabled="!enableSocialName"
+            >
+            </v-text-field>
           </v-col>
         </v-row>
+
+        <v-switch
+          v-model="enableSocialName"
+          label="Inserir Nome social"
+          class="text-pink-darken-1"
+          color="pink-darken-4"
+        ></v-switch>
 
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="6">
@@ -258,8 +268,9 @@
 export default {
   data() {
     return {
+      enableSocialName: false,
       rules: {
-        required: (value) => !!value || "Obrigatório.",
+        required: (value) => !!value || "Campo obrigatório.",
       },
       search: "",
       headers: [
