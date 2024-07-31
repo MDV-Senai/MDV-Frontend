@@ -44,191 +44,187 @@
                     </template>
 
                     <template v-slot:default="{ isActive }">
-                      <v-card
-                       
-                        class="d-flex justify-center text-center"
-                      >
-                  
-                          <v-row class="mt-16 mx-5">
-                            <v-col cols="12" md="12">
-                              <v-text-field
-                                label="Nome / Nome Social"
-                                id="nome"
-                                value="Nome Completo"
-                                reandoly
-                                class="mt-16 text-pink-darken-1"
-                                color="pink-darken-4"
-                              ></v-text-field>
-                            </v-col>
-                          </v-row>
-                          <v-row class="mx-5">
-                            <v-col cols="12" md="4">
-                              <v-text-field
-                                label="CPF"
-                                id="cpf"
-                                value="000.000.000-00"
-                                reandoly
-                                class="text-pink-darken-1"
-                                color="pink-darken-4"
-                              ></v-text-field>
-                            </v-col>
-                            <v-col cols="12" md="4">
-                              <v-text-field
-                                label="Data de Nasc."
-                                id="data_nasc"
-                                value="00/00/0000"
-                                reandoly
-                                class="text-pink-darken-1"
-                                color="pink-darken-4"
-                              ></v-text-field>
-                            </v-col>
-                            <v-col cols="12" md="4">
-                              <v-text-field
-                                label="Telefone"
-                                id="telefone"
-                                value="3030-3030"
-                                reandoly
-                                class="text-pink-darken-1"
-                                color="pink-darken-4"
-                              ></v-text-field>
-                            </v-col>
-                          </v-row>
+                      <v-card class="d-flex justify-center text-center">
+                        <v-row class="mt-16 mx-5">
+                          <v-col cols="12" md="12">
+                            <v-text-field
+                              label="Nome / Nome Social"
+                              id="nome"
+                              value="Nome Completo"
+                              reandoly
+                              class="mt-16 text-pink-darken-1"
+                              color="pink-darken-4"
+                            ></v-text-field>
+                          </v-col>
+                        </v-row>
+                        <v-row class="mx-5">
+                          <v-col cols="12" md="4">
+                            <v-text-field
+                              label="CPF"
+                              id="cpf"
+                              value="000.000.000-00"
+                              reandoly
+                              class="text-pink-darken-1"
+                              color="pink-darken-4"
+                            ></v-text-field>
+                          </v-col>
+                          <v-col cols="12" md="4">
+                            <v-text-field
+                              label="Data de Nasc."
+                              id="data_nasc"
+                              value="00/00/0000"
+                              reandoly
+                              class="text-pink-darken-1"
+                              color="pink-darken-4"
+                            ></v-text-field>
+                          </v-col>
+                          <v-col cols="12" md="4">
+                            <v-text-field
+                              label="Telefone"
+                              id="telefone"
+                              value="3030-3030"
+                              reandoly
+                              class="text-pink-darken-1"
+                              color="pink-darken-4"
+                            ></v-text-field>
+                          </v-col>
+                        </v-row>
 
-                          <v-row class="mx-5">
-                            <v-col cols="12" md="4">
-                              <v-text-field
-                                label="Email:"
-                                id="email"
-                                value="instituicao@gmail.com"
-                                reandoly
-                                class="text-pink-darken-1"
-                                color="pink-darken-4"
-                              ></v-text-field>
-                            </v-col>
+                        <v-row class="mx-5">
+                          <v-col cols="12" md="4">
+                            <v-text-field
+                              label="Email:"
+                              id="email"
+                              value="instituicao@gmail.com"
+                              reandoly
+                              class="text-pink-darken-1"
+                              color="pink-darken-4"
+                            ></v-text-field>
+                          </v-col>
 
-                            <v-col cols="12" md="4">
-                              <v-text-field
-                                label="Celular"
-                                id="celular"
-                                value="(47) 99999-9999"
-                                reandoly
-                                class="text-pink-darken-1"
-                                color="pink-darken-4"
-                              ></v-text-field>
-                            </v-col>
-                            <v-col cols="12" md="4">
-                              <v-text-field
-                                label="Instituição"
-                                id="instituicao"
-                                value="Instituição de Ensino"
-                                reandoly
-                                class="text-pink-darken-1"
-                                color="pink-darken-4"
-                              ></v-text-field>
-                            </v-col>
-                          </v-row>
+                          <v-col cols="12" md="4">
+                            <v-text-field
+                              label="Celular"
+                              id="celular"
+                              value="(47) 99999-9999"
+                              reandoly
+                              class="text-pink-darken-1"
+                              color="pink-darken-4"
+                            ></v-text-field>
+                          </v-col>
+                          <v-col cols="12" md="4">
+                            <v-text-field
+                              label="Instituição"
+                              id="instituicao"
+                              value="Instituição de Ensino"
+                              reandoly
+                              class="text-pink-darken-1"
+                              color="pink-darken-4"
+                            ></v-text-field>
+                          </v-col>
+                        </v-row>
 
-                          <v-row class="mx-5">
-                            <v-col cols="12" md="4">
-                              <v-text-field
-                                label="Matrícula"
-                                id="matricula"
-                                value="0000000"
-                                reandoly
-                                class="text-pink-darken-1"
-                                color="pink-darken-4"
-                              ></v-text-field>
-                            </v-col>
+                        <v-row class="mx-5">
+                          <v-col cols="12" md="4">
+                            <v-text-field
+                              label="Matrícula"
+                              id="matricula"
+                              value="0000000"
+                              reandoly
+                              class="text-pink-darken-1"
+                              color="pink-darken-4"
+                            ></v-text-field>
+                          </v-col>
 
-                            <v-col cols="12" md="4">
-                              <v-text-field
-                                label="Curso"
-                                id="curso"
-                                value="Curso"
-                                reandoly
-                                class="text-pink-darken-1"
-                                color="pink-darken-4"
-                              ></v-text-field>
-                            </v-col>
-                            <v-col cols="12" md="4">
-                              <v-text-field
-                                label="Fase/Série"
-                                id="faseSerie"
-                                value="0"
-                                reandoly
-                                class="text-pink-darken-1"
-                                color="pink-darken-4"
-                              ></v-text-field>
-                            </v-col>
-                          </v-row>
+                          <v-col cols="12" md="4">
+                            <v-text-field
+                              label="Curso"
+                              id="curso"
+                              value="Curso"
+                              reandoly
+                              class="text-pink-darken-1"
+                              color="pink-darken-4"
+                            ></v-text-field>
+                          </v-col>
+                          <v-col cols="12" md="4">
+                            <v-text-field
+                              label="Fase/Série"
+                              id="faseSerie"
+                              value="0"
+                              reandoly
+                              class="text-pink-darken-1"
+                              color="pink-darken-4"
+                            ></v-text-field>
+                          </v-col>
+                        </v-row>
 
-                          <v-row class="mx-5">
-                            <v-col cols="12" md="4">
-                              <v-text-field
-                                label="CEP"
-                                id="cep"
-                                value="00.000-000"
-                                reandoly
-                                class="text-pink-darken-1"
-                                color="pink-darken-4"
-                              ></v-text-field>
-                            </v-col>
+                        <v-row class="mx-5">
+                          <v-col cols="12" md="4">
+                            <v-text-field
+                              label="CEP"
+                              id="cep"
+                              value="00.000-000"
+                              reandoly
+                              class="text-pink-darken-1"
+                              color="pink-darken-4"
+                            ></v-text-field>
+                          </v-col>
 
-                            <v-col cols="12" md="4">
-                              <v-text-field
-                                label="UF"
-                                id="uf"
-                                value="Estado"
-                                reandoly
-                                class="text-pink-darken-1"
-                                color="pink-darken-4"
-                              ></v-text-field>
-                            </v-col>
-                            <v-col cols="12" md="4">
-                              <v-text-field
-                                label="Cidade"
-                                id="cidade"
-                                value="Cidade"
-                                reandoly
-                                class="text-pink-darken-1"
-                                color="pink-darken-4"
-                              ></v-text-field>
-                            </v-col>
-                          </v-row>
-                          <v-row class="mx-5">
-                            <v-col cols="12" md="4">
-                              <v-text-field
-                                label="Bairro"
-                                id="bairro"
-                                value="Bairro"
-                                reandoly
-                                class="text-pink-darken-1"
-                                color="pink-darken-4"
-                              ></v-text-field>
-                            </v-col>
+                          <v-col cols="12" md="4">
+                            <v-text-field
+                              label="UF"
+                              id="uf"
+                              value="Estado"
+                              reandoly
+                              class="text-pink-darken-1"
+                              color="pink-darken-4"
+                            ></v-text-field>
+                          </v-col>
+                          <v-col cols="12" md="4">
+                            <v-text-field
+                              label="Cidade"
+                              id="cidade"
+                              value="Cidade"
+                              reandoly
+                              class="text-pink-darken-1"
+                              color="pink-darken-4"
+                            ></v-text-field>
+                          </v-col>
+                        </v-row>
+                        <v-row class="mx-5">
+                          <v-col cols="12" md="4">
+                            <v-text-field
+                              label="Bairro"
+                              id="bairro"
+                              value="Bairro"
+                              reandoly
+                              class="text-pink-darken-1"
+                              color="pink-darken-4"
+                            ></v-text-field>
+                          </v-col>
 
-                            <v-col cols="12" md="4">
-                              <v-text-field
-                                label="Rua"
-                                id="rua"
-                                value="Rua"
-                                reandoly
-                                class="text-pink-darken-1"
-                                color="pink-darken-4"
-                              ></v-text-field>
-                            </v-col>
-                            <v-col cols="12" md="4">
-                              <v-text-field
-                                label="Complemento"
-                                id="complemento"
-                                value="Complemento"
-                                reandoly
-                                class="text-pink-darken-1"
-                                color="pink-darken-4"
-                              ></v-text-field>
-                            </v-col>
-                          </v-row>
-                        
+                          <v-col cols="12" md="4">
+                            <v-text-field
+                              label="Rua"
+                              id="rua"
+                              value="Rua"
+                              reandoly
+                              class="text-pink-darken-1"
+                              color="pink-darken-4"
+                            ></v-text-field>
+                          </v-col>
+                          <v-col cols="12" md="4">
+                            <v-text-field
+                              label="Complemento"
+                              id="complemento"
+                              value="Complemento"
+                              reandoly
+                              class="text-pink-darken-1"
+                              color="pink-darken-4"
+                            ></v-text-field>
+                          </v-col>
+                        </v-row>
+
                         <v-card-actions>
                           <v-spacer></v-spacer>
 

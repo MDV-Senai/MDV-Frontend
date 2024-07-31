@@ -2,47 +2,100 @@
   <v-main id="imagem">
     <Header />
     <div class="d-flex justify-center align-center">
-      <v-card class="d-flex justify-center align-center" id="card_titulo">Cadastro de Setor</v-card>
+      <v-card class="d-flex justify-center align-center" id="card_titulo"
+        >Cadastro de Setor</v-card
+      >
     </div>
     <div id="fundoCards">
       <v-form ref="form" id="form" class="mx-auto">
         <v-row class="d-flex justify-center mt-8">
           <v-col cols="12" md="6">
-            <v-text-field label="Supervisor" :rules="[rules.required]" maxlength="255" counter clearable
-              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
+            <v-text-field
+              label="Supervisor"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
+              clearable
+              class="text-pink-darken-1"
+              color="pink-darken-4"
+            ></v-text-field>
           </v-col>
           <v-col cols="12" md="6">
-            <v-text-field label="Email do Supervisor" :rules="[rules.required]" maxlength="255" counter clearable
-              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
+            <v-text-field
+              label="Email do Supervisor"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
+              clearable
+              class="text-pink-darken-1"
+              color="pink-darken-4"
+            ></v-text-field>
           </v-col>
         </v-row>
 
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="6">
-            <v-text-field label="Coordenador" :rules="[rules.required]" maxlength="255" counter clearable
-              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
+            <v-text-field
+              label="Coordenador"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
+              clearable
+              class="text-pink-darken-1"
+              color="pink-darken-4"
+            ></v-text-field>
           </v-col>
           <v-col cols="12" md="6">
-            <v-text-field label="Email do Coordenador" :rules="[rules.required]" maxlength="255" counter clearable
-              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
+            <v-text-field
+              label="Email do Coordenador"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
+              clearable
+              class="text-pink-darken-1"
+              color="pink-darken-4"
+            ></v-text-field>
           </v-col>
         </v-row>
 
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="6">
-            <v-text-field label="Setor" :rules="[rules.required]" maxlength="255" counter clearable
-              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
+            <v-text-field
+              label="Setor"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
+              clearable
+              class="text-pink-darken-1"
+              color="pink-darken-4"
+            ></v-text-field>
           </v-col>
           <v-col cols="12" md="6">
-            <v-text-field label="Celular do Respon. do Setor" :rules="[rules.required]" maxlength="15" counter clearable
-              class="text-pink-darken-1" color="pink-darken-4" v-mask="'(##) #####-####'"></v-text-field>
+            <v-text-field
+              label="Celular do Respon. do Setor"
+              :rules="[rules.required]"
+              maxlength="15"
+              counter
+              clearable
+              class="text-pink-darken-1"
+              color="pink-darken-4"
+              v-mask="'(##) #####-####'"
+            ></v-text-field>
           </v-col>
         </v-row>
 
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="12">
-            <v-text-field label="Atividades" append-inner-icon="mdi-plus" :rules="[rules.required]" maxlength="255"
-              counter clearable class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
+            <v-text-field
+              label="Atividades"
+              append-inner-icon="mdi-plus"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
+              clearable
+              class="text-pink-darken-1"
+              color="pink-darken-4"
+            ></v-text-field>
           </v-col>
         </v-row>
 
@@ -51,15 +104,29 @@
             <div></div>
           </v-col>
           <v-col cols="12" md="3">
-            <v-btn @click="reset" class="my-10" color="pink-darken-4" append-icon="mdi-chevron-right" variant="outlined"
-              width="183" height="62">
+            <v-btn
+              @click="reset"
+              class="my-10"
+              color="pink-darken-4"
+              append-icon="mdi-chevron-right"
+              variant="outlined"
+              width="183"
+              height="62"
+            >
               Limpar
             </v-btn>
           </v-col>
 
           <v-col cols="12" md="3">
-            <v-btn append-icon="mdi-chevron-right" variant="outlined" color="pink-darken-4" class="my-10" width="183"
-              height="62" id="botaoEntrar">
+            <v-btn
+              append-icon="mdi-chevron-right"
+              variant="outlined"
+              color="pink-darken-4"
+              class="my-10"
+              width="183"
+              height="62"
+              id="botaoEntrar"
+            >
               Cadastrar
 
               <template v-slot:append>
@@ -122,7 +189,7 @@ export default {
   data() {
     return {
       rules: {
-        required: value => !!value || 'Obrigatório.',
+        required: (value) => !!value || "Obrigatório.",
       },
     };
   },
