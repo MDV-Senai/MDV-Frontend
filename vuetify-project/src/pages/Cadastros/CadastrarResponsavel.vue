@@ -25,16 +25,26 @@
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="12">
             <v-text-field
-              label="Nome Social"
+              label="Nome social"
               :rules="[rules.required]"
               maxlength="255"
               counter
               clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
-            ></v-text-field>
+              :disabled="!enableSocialName"
+            >
+            </v-text-field>
           </v-col>
         </v-row>
+
+        <v-switch
+          v-model="enableSocialName"
+          label="Inserir Nome social"
+          class="text-pink-darken-1"
+          color="pink-darken-4"
+        ></v-switch>
+
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="6">
             <v-text-field
@@ -155,12 +165,6 @@
   width: 90%;
 }
 
-@media (max-width: 768px) {
-  #inputResponsivo {
-    /* flex-direction: column; */
-  }
-}
-
 #fundoCards {
   background-color: white;
   border-radius: 8px;
@@ -178,6 +182,7 @@
 export default {
   data() {
     return {
+      enableSocialName: false,
       rules: {
         required: (value) => !!value || "Obrigatório.",
       },
