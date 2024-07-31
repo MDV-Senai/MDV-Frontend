@@ -2,99 +2,134 @@
   <v-main id="imagem">
     <Header />
     <div class="d-flex justify-center align-center">
-      <v-card class="d-flex justify-center align-center" id="card_titulo">Consultar Instituição de Ensino</v-card>
+      <v-card class="d-flex justify-center align-center" id="card_titulo"
+        >Consultar Instituição de Ensino</v-card
+      >
     </div>
     <div id="fundoCards">
-     <v-container>
-      <v-card flat>
-      
-        <v-spacer></v-spacer>
+      <v-container>
+        <v-card flat>
+          <v-spacer></v-spacer>
 
-        <v-text-field
-          v-model="search"
-          label="Pesquise"
-          prepend-inner-icon="mdi-magnify"
-          variant="outlined"
-          color="pink-darken-4"
-          hide-details
-          single-line
-        ></v-text-field>
-     
-
-      <v-divider></v-divider>
-      <v-data-table :headers="headers" :items="filteredBoats" height="400" item-value="name">
-        <template v-slot:item="{ item }">
-          <tr>
-            <td>{{ item.name }}</td>
-            <td>{{ item.speed }}</td>
-            <td>
-              <v-dialog max-width="800">
-  <template v-slot:activator="{ props: activatorProps }">
-    <v-btn
-      v-bind="activatorProps"
-    
-      text="Consultar"
-     variant="outlined"
+          <v-text-field
+            v-model="search"
+            label="Pesquise"
+            prepend-inner-icon="mdi-magnify"
+            variant="outlined"
             color="pink-darken-4"
-    ></v-btn>
-  </template>
+            hide-details
+            single-line
+          ></v-text-field>
 
-  <template v-slot:default="{ isActive }">
-    <v-card class="d-flex justify-center text-center"> 
-      <div>
-        <v-row  class = "mx-5 my-5">
-<v-col cols="12" md="12">
-        <v-text-field label="Instituição" id="instituicao" value="Instituição de Ensino" reandoly
-              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
-     </v-col>
-        </v-row>
-     <v-row  class = "mx-5 my-5"> 
+          <v-divider></v-divider>
+          <v-data-table
+            :headers="headers"
+            :items="filteredBoats"
+            height="400"
+            item-value="name"
+          >
+            <template v-slot:item="{ item }">
+              <tr>
+                <td>{{ item.name }}</td>
+                <td>{{ item.speed }}</td>
+                <td>
+                  <v-dialog max-width="800">
+                    <template v-slot:activator="{ props: activatorProps }">
+                      <v-btn
+                        v-bind="activatorProps"
+                        text="Consultar"
+                        variant="outlined"
+                        color="pink-darken-4"
+                      ></v-btn>
+                    </template>
 
-      <v-col cols="12" md="6">
-              <v-text-field label="CNPJ" id="cnpj" value="00.000.000/0001-00" reandoly
-              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
-               </v-col>
-                <v-col cols="12" md="6">
-               <v-text-field label="Inscrição Estadual" id="inscricao" value="00.000.000-0" reandoly
-              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
-     </v-col>
-     </v-row>
-               
-      <v-row  class = "mx-5"> 
+                    <template v-slot:default="{ isActive }">
+                      <v-card class="d-flex justify-center text-center">
+                        <div>
+                          <v-row class="mx-5 my-5">
+                            <v-col cols="12" md="12">
+                              <v-text-field
+                                label="Instituição"
+                                id="instituicao"
+                                value="Instituição de Ensino"
+                                reandoly
+                                class="text-pink-darken-1"
+                                color="pink-darken-4"
+                              ></v-text-field>
+                            </v-col>
+                          </v-row>
+                          <v-row class="mx-5 my-5">
+                            <v-col cols="12" md="6">
+                              <v-text-field
+                                label="CNPJ"
+                                id="cnpj"
+                                value="00.000.000/0001-00"
+                                reandoly
+                                class="text-pink-darken-1"
+                                color="pink-darken-4"
+                              ></v-text-field>
+                            </v-col>
+                            <v-col cols="12" md="6">
+                              <v-text-field
+                                label="Inscrição Estadual"
+                                id="inscricao"
+                                value="00.000.000-0"
+                                reandoly
+                                class="text-pink-darken-1"
+                                color="pink-darken-4"
+                              ></v-text-field>
+                            </v-col>
+                          </v-row>
 
-      <v-col cols="12" md="6">
-              <v-text-field label="Email:" id="email" value="instituicao@gmail.com" reandoly
-              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
-               </v-col>
-                <v-col cols="12" md="3">
-               <v-text-field label="Telefone:" id="inscricao" value="3030-3030" reandoly
-              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
-     </v-col>
-     <v-col cols="12" md="3">
-               <v-text-field label="Celular" id="inscricao" value="(47) 99999-9999" reandoly
-              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
-     </v-col>
-     </v-row>
-      </div>
-      <v-card-actions>
-        <v-spacer></v-spacer>
-        <v-btn
-          text="Fechar"
-          @click="isActive.value = false"
-        ></v-btn>
-      </v-card-actions>
-    </v-card>
-  </template>
-</v-dialog>
-             
-            </td>
-
-          </tr>
-          
-        </template>
-      </v-data-table>
-    </v-card>
-    </v-container>
+                          <v-row class="mx-5">
+                            <v-col cols="12" md="6">
+                              <v-text-field
+                                label="Email:"
+                                id="email"
+                                value="instituicao@gmail.com"
+                                reandoly
+                                class="text-pink-darken-1"
+                                color="pink-darken-4"
+                              ></v-text-field>
+                            </v-col>
+                            <v-col cols="12" md="3">
+                              <v-text-field
+                                label="Telefone:"
+                                id="inscricao"
+                                value="3030-3030"
+                                reandoly
+                                class="text-pink-darken-1"
+                                color="pink-darken-4"
+                              ></v-text-field>
+                            </v-col>
+                            <v-col cols="12" md="3">
+                              <v-text-field
+                                label="Celular"
+                                id="inscricao"
+                                value="(47) 99999-9999"
+                                reandoly
+                                class="text-pink-darken-1"
+                                color="pink-darken-4"
+                              ></v-text-field>
+                            </v-col>
+                          </v-row>
+                        </div>
+                        <v-card-actions>
+                          <v-spacer></v-spacer>
+                          <v-btn
+                            text="Fechar"
+                            @click="isActive.value = false"
+                          ></v-btn>
+                        </v-card-actions>
+                      </v-card>
+                    </template>
+                  </v-dialog>
+                </td>
+              </tr>
+            </template>
+          </v-data-table>
+        </v-card>
+      </v-container>
     </div>
   </v-main>
 
@@ -105,68 +140,57 @@
 export default {
   data() {
     return {
-      
-      search: '',
-    
+      search: "",
+
       boats: [
         {
-          name: "Unisenai"
+          name: "Unisenai",
         },
         {
-          name: "Univille"
+          name: "Univille",
         },
-         {
-          name: "Uniaselvi"
+        {
+          name: "Uniaselvi",
         },
-         {
-          name: "Cruzeiro do Sul"
+        {
+          name: "Cruzeiro do Sul",
         },
       ],
     };
   },
 
   computed: {
-    
     filteredBoats() {
-    if (!this.boats) {
-      return this.virtualBoats;
-    }
-    const searchTerm = this.search.toLowerCase();
-    return this.boats.filter(boat =>
-      boat.name.toLowerCase().includes(searchTerm) ||
-      String(boat.speed).includes(searchTerm)
-    );
-  },
-},
-  methods: {
-    
-
-    handleButtonClick(item) {
-     
-
+      if (!this.boats) {
+        return this.virtualBoats;
+      }
+      const searchTerm = this.search.toLowerCase();
+      return this.boats.filter(
+        (boat) =>
+          boat.name.toLowerCase().includes(searchTerm) ||
+          String(boat.speed).includes(searchTerm)
+      );
     },
+  },
+  methods: {
+    handleButtonClick(item) {},
   },
 
   computed: {
-    
     filteredBoats() {
-    if (!this.boats) {
-      return this.virtualBoats;
-    }
-    const searchTerm = this.search.toLowerCase();
-    return this.boats.filter(boat =>
-      boat.name.toLowerCase().includes(searchTerm) ||
-      String(boat.speed).includes(searchTerm)
-    );
-  },
-},
-  methods: {
-    
-
-    handleButtonClick(item) {
-     
-
+      if (!this.boats) {
+        return this.virtualBoats;
+      }
+      const searchTerm = this.search.toLowerCase();
+      return this.boats.filter(
+        (boat) =>
+          boat.name.toLowerCase().includes(searchTerm) ||
+          String(boat.speed).includes(searchTerm)
+      );
     },
+  },
+  methods: {
+    handleButtonClick(item) {},
   },
 };
 </script>
