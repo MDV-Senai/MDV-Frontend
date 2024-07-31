@@ -39,11 +39,17 @@
           </v-col>
         </v-row>
 
-        <v-row class="d-flex justify-center">
+        <v-row class="d-flex justify-center align-center">
           <v-col cols="12" md="12">
-            <v-text-field label="Atividades" append-inner-icon="mdi-plus" :rules="[rules.required]" maxlength="255"
+            <v-text-field label="Atividades"  :rules="[rules.required]" maxlength="255"
               counter clearable class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
+               <v-container>
+    
+        <v-btn density="compact" icon="mdi-plus" @click="onClick" ></v-btn>
+    
+ </v-container>
           </v-col>
+          
         </v-row>
 
         <v-row class="d-flex justify-center">
