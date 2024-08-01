@@ -25,8 +25,15 @@
 
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="12">
-            <v-textarea label="Descrição Da Vaga" :rules="[rules.required]" maxlength="255" counter clearable
-              class="text-pink-darken-3" color="pink-darken-4"></v-textarea>
+            <v-textarea
+              label="Descrição Da Vaga"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
+              clearable
+              class="text-pink-darken-3"
+              color="pink-darken-4"
+            ></v-textarea>
           </v-col>
         </v-row>
         <v-row class="d-flex justify-center">
@@ -67,8 +74,14 @@
           </v-col>
 
           <v-col cols="12" md="6">
-            <v-select label="Situação" :rules="[rules.required]" clearable :items="['Programada', 'Aberta', 'Encerrada']"
-              class="text-pink-darken-3" color="pink-darken-4"></v-select>
+            <v-select
+              label="Situação"
+              :rules="[rules.required]"
+              clearable
+              :items="['Programada', 'Aberta', 'Encerrada']"
+              class="text-pink-darken-3"
+              color="pink-darken-4"
+            ></v-select>
           </v-col>
         </v-row>
 
