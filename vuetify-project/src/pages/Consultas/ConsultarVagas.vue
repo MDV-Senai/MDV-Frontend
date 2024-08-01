@@ -2,108 +2,137 @@
   <v-main id="imagem">
     <Header />
     <div class="d-flex justify-center align-center">
-      <v-card class="d-flex justify-center align-center" id="card_titulo">Consultar Vagas</v-card>
+      <v-card class="d-flex justify-center align-center" id="card_titulo"
+        >Consultar Vagas</v-card
+      >
     </div>
     <div id="fundoCards">
-     <v-container>
-      <v-card flat>
-      
-        <v-spacer></v-spacer>
+      <v-container>
+        <v-card flat>
+          <v-spacer></v-spacer>
 
-        <v-text-field
-          v-model="search"
-          label="Pesquise"
-          prepend-inner-icon="mdi-magnify"
-          variant="outlined"
-          color="pink-darken-4"
-          hide-details
-          single-line
-        ></v-text-field>
-     
-
-      <v-divider></v-divider>
-      <v-data-table :headers="headers" :items="filteredBoats" height="400" item-value="name">
-        <template v-slot:item="{ item }">
-          <tr>
-            <td>{{ item.name }}</td>
-            <td>{{ item.speed }}</td>
-            <td>
-              <v-dialog max-width="800">
-  <template v-slot:activator="{ props: activatorProps }">
-    <v-btn
-      v-bind="activatorProps"
-    
-      text="Consultar"
-     variant="outlined"
+          <v-text-field
+            v-model="search"
+            label="Pesquise"
+            prepend-inner-icon="mdi-magnify"
+            variant="outlined"
             color="pink-darken-4"
-    ></v-btn>
-  </template>
+            hide-details
+            single-line
+          ></v-text-field>
 
-  <template v-slot:default="{ isActive }">
-    <v-card class="d-flex justify-center text-center"> 
-      <div>
+          <v-divider></v-divider>
+          <v-data-table
+            :headers="headers"
+            :items="filteredBoats"
+            height="400"
+            item-value="name"
+          >
+            <template v-slot:item="{ item }">
+              <tr>
+                <td>{{ item.name }}</td>
+                <td>{{ item.speed }}</td>
+                <td>
+                  <v-dialog max-width="800">
+                    <template v-slot:activator="{ props: activatorProps }">
+                      <v-btn
+                        v-bind="activatorProps"
+                        text="Consultar"
+                        variant="outlined"
+                        color="pink-darken-4"
+                      ></v-btn>
+                    </template>
 
+                    <template v-slot:default="{ isActive }">
+                      <v-card class="d-flex justify-center text-center">
+                        <div>
+                          <v-row class="mx-5 my-5">
+                            <v-col cols="12" md="12">
+                              <v-text-field
+                                label="Curso"
+                                id="curso"
+                                value="Fármacia"
+                                reandoly
+                                class="text-pink-darken-1"
+                                color="pink-darken-4"
+                              ></v-text-field>
+                            </v-col>
+                          </v-row>
+                          <v-row class="mx-5 my-5">
+                            <v-col cols="12" md="12">
+                              <v-text-field
+                                label="Descrição da Vaga"
+                                id="descricao"
+                                value=""
+                                reandoly
+                                class="text-pink-darken-1"
+                                color="pink-darken-4"
+                              ></v-text-field>
+                            </v-col>
+                          </v-row>
+                          <v-row class="mx-5 my-5">
+                            <v-col cols="12" md="6">
+                              <v-text-field
+                                label="Setor"
+                                id="setor"
+                                value="Setor A"
+                                reandoly
+                                class="text-pink-darken-1"
+                                color="pink-darken-4"
+                              ></v-text-field>
+                            </v-col>
+                            <v-col cols="12" md="6">
+                              <v-text-field
+                                label="Turno"
+                                id="turno"
+                                value="Noturno"
+                                reandoly
+                                class="text-pink-darken-1"
+                                color="pink-darken-4"
+                              ></v-text-field>
+                            </v-col>
+                          </v-row>
 
-         <v-row  class = "mx-5 my-5">
-<v-col cols="12" md="12">
-        <v-text-field label="Curso" id="curso" value="Fármacia" reandoly
-              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
-     </v-col>
-        </v-row>
-          <v-row  class = "mx-5 my-5">
-<v-col cols="12" md="12">
-        <v-text-field label="Descrição da Vaga" id="descricao" value="" reandoly
-              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
-     </v-col>
-        </v-row>
-     <v-row  class = "mx-5 my-5"> 
+                          <v-row class="mx-5">
+                            <v-col cols="12" md="6">
+                              <v-text-field
+                                label="Quantidade de Vagas"
+                                id="quant_vagas"
+                                value="10"
+                                reandoly
+                                class="text-pink-darken-1"
+                                color="pink-darken-4"
+                              ></v-text-field>
+                            </v-col>
+                            <v-col cols="12" md="6">
+                              <v-select
+                                label="Situação"
+                                id="situacao"
+                                value=""
+                                reandoly
+                                class="text-pink-darken-1"
+                                color="pink-darken-4"
+                              ></v-select>
+                            </v-col>
+                          </v-row>
+                        </div>
+                        <v-card-actions>
+                          <v-spacer></v-spacer>
 
-      <v-col cols="12" md="6">
-              <v-text-field label="Setor" id="setor" value="Setor A" reandoly
-              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
-               </v-col>
-                <v-col cols="12" md="6">
-               <v-text-field label="Turno" id="turno" value="Noturno" reandoly
-              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
-     </v-col>
-     </v-row>
-               
-      <v-row  class = "mx-5"> 
-
-      <v-col cols="12" md="6">
-              <v-text-field label="Quantidade de Vagas" id="quant_vagas" value="10" reandoly
-              class="text-pink-darken-1" color="pink-darken-4"></v-text-field>
-               </v-col>
-                <v-col cols="12" md="6">
-               <v-select label="Situação" id="situacao" value="" reandoly
-              class="text-pink-darken-1" color="pink-darken-4"></v-select>
-     </v-col>
-     
-     </v-row>
-               
- 
-     
-      </div>
-      <v-card-actions>
-        <v-spacer></v-spacer>
-
-        <v-btn
-          text="Fechar"
-          @click="isActive.value = false"
-        ></v-btn>
-      </v-card-actions>
-    </v-card>
-  </template>
-</v-dialog>
-             
-            </td>
-
-          </tr>
-          
-        </template>
-      </v-data-table>
-    </v-card>
-    </v-container>
+                          <v-btn
+                            text="Fechar"
+                            @click="isActive.value = false"
+                          ></v-btn>
+                        </v-card-actions>
+                      </v-card>
+                    </template>
+                  </v-dialog>
+                </td>
+              </tr>
+            </template>
+          </v-data-table>
+        </v-card>
+      </v-container>
     </div>
   </v-main>
 
@@ -111,52 +140,43 @@
 </template>
 
 <script>
-
-
-
 export default {
   data() {
     return {
-      
-      search: '',
-    
+      search: "",
+
       boats: [
         {
-          name: "Fulano"
+          name: "Fulano",
         },
         {
-          name: "Fulano"
+          name: "Fulano",
         },
-         {
-          name: "Fulano"
+        {
+          name: "Fulano",
         },
-         {
-          name: "Fulano"
+        {
+          name: "Fulano",
         },
       ],
     };
   },
 
   computed: {
-    
     filteredBoats() {
-    if (!this.boats) {
-      return this.virtualBoats;
-    }
-    const searchTerm = this.search.toLowerCase();
-    return this.boats.filter(boat =>
-      boat.name.toLowerCase().includes(searchTerm) ||
-      String(boat.speed).includes(searchTerm)
-    );
-  },
-},
-  methods: {
-    
-
-    handleButtonClick(item) {
-     
-
+      if (!this.boats) {
+        return this.virtualBoats;
+      }
+      const searchTerm = this.search.toLowerCase();
+      return this.boats.filter(
+        (boat) =>
+          boat.name.toLowerCase().includes(searchTerm) ||
+          String(boat.speed).includes(searchTerm)
+      );
     },
+  },
+  methods: {
+    handleButtonClick(item) {},
   },
 };
 </script>

@@ -2,7 +2,9 @@
   <v-main id="imagem">
     <Header />
     <div class="d-flex justify-center align-center">
-      <v-card class="d-flex justify-center align-center" id="card_titulo">Cadastro de Vagas</v-card>
+      <v-card class="d-flex justify-center align-center" id="card_titulo"
+        >Cadastro de Vagas</v-card
+      >
     </div>
     <div id="fundoCards">
       <v-form ref="form" id="form" class="mx-auto">
@@ -29,27 +31,45 @@
         </v-row>
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="6">
-            <v-text-field label="Setor" :rules="[rules.required]" maxlength="255" counter clearable
-              class="text-pink-darken-3" color="pink-darken-4"></v-text-field>
+            <v-text-field
+              label="Setor"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
+              clearable
+              class="text-pink-darken-3"
+              color="pink-darken-4"
+            ></v-text-field>
           </v-col>
           <v-col cols="12" md="6">
-            <v-select label="Turno" :rules="[rules.required]" clearable :items="['Matutino', 'Vespertino', 'Noturno', 'Integral']"
-              class="text-pink-darken-3" color="pink-darken-4"></v-select>
+            <v-select
+              label="Turno"
+              :rules="[rules.required]"
+              clearable
+              :items="['Matutino', 'Vespertino', 'Noturno', 'Integral']"
+              class="text-pink-darken-3"
+              color="pink-darken-4"
+            ></v-select>
           </v-col>
         </v-row>
 
         <v-row id="inputResponsivo" class="d-flex justify-center">
           <v-col cols="12" md="6">
-            <v-text-field label="Quantidade de Vagas" :rules="[rules.required]" maxlength="255" counter clearable
-              class="text-pink-darken-3" color="pink-darken-4"></v-text-field>
+            <v-text-field
+              label="Quantidade de Vagas"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
+              clearable
+              class="text-pink-darken-3"
+              color="pink-darken-4"
+            ></v-text-field>
           </v-col>
-
 
           <v-col cols="12" md="6">
             <v-select label="Situação" :rules="[rules.required]" clearable :items="['Programada', 'Aberta', 'Encerrada']"
               class="text-pink-darken-3" color="pink-darken-4"></v-select>
           </v-col>
-
         </v-row>
 
         <div class="d-flex justify-center">
@@ -58,15 +78,29 @@
               <div></div>
             </v-col>
             <v-col cols="12" md="3">
-              <v-btn @click="reset" class="my-10" color="pink-darken-4" append-icon="mdi-chevron-right" variant="outlined"
-                width="183" height="62">
+              <v-btn
+                @click="reset"
+                class="my-10"
+                color="pink-darken-4"
+                append-icon="mdi-chevron-right"
+                variant="outlined"
+                width="183"
+                height="62"
+              >
                 Limpar
               </v-btn>
             </v-col>
 
             <v-col cols="12" md="3">
-              <v-btn append-icon="mdi-chevron-right" variant="outlined" color="pink-darken-4" class="my-10" width="183"
-                height="62" id="botaoEntrar">
+              <v-btn
+                append-icon="mdi-chevron-right"
+                variant="outlined"
+                color="pink-darken-4"
+                class="my-10"
+                width="183"
+                height="62"
+                id="botaoEntrar"
+              >
                 Cadastrar
 
                 <template v-slot:append>
@@ -131,7 +165,7 @@ export default {
   data() {
     return {
       rules: {
-        required: value => !!value || "Obrigatório.",
+        required: (value) => !!value || "Obrigatório.",
       },
       estagiario: null,
       estagiarios: [],
