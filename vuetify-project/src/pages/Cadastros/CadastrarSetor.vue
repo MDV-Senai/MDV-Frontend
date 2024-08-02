@@ -96,28 +96,31 @@
           </v-col>
         </v-row>
 
-        <v-col
-          cols="12"
-          lg="12"
-          id="campoTeste"
-          v-for="(campo, index) in campos"
-          :key="index"
-        >
-          <v-text-field
-            :label="'Atividade ' + (index + 1)"
-            :rules="[rules.required]"
-            maxlength="255"
-            counter
-            clearable
-            class="text-pink-darken-1"
-            color="pink-darken-4"
-          ></v-text-field>
-          <v-btn
-            text="Remover Atividades"
-            @click="removerAtividade(index)"
-            class="text-pink-darken-1"
-          ></v-btn>
-        </v-col>
+        <v-row>
+          <v-col
+            cols="12"
+            lg="12"
+            v-for="(campo, index) in campos"
+            :key="campo.id"
+          >
+            <v-text-field
+              :label="'Atividade ' + (index + 1)"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
+              clearable
+              class="text-pink-darken-1"
+              color="pink-darken-4"
+            ></v-text-field>
+            <v-btn
+              text
+              @click="removerAtividade(index)"
+              class="text-pink-darken-1"
+            >
+              Remover Atividades
+            </v-btn>
+          </v-col>
+        </v-row>
 
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="3">
@@ -168,8 +171,8 @@
 export default {
   data() {
     return {
-      campos: [],
-      contadorAtividade: null,
+      campos: [{ id: 1 }],
+      nextId: 2,
       rules: {
         required: (value) => !!value || "Obrigatório.",
       },
@@ -180,15 +183,11 @@ export default {
       this.$refs.form.reset();
     },
     adicionarTeste() {
-      this.contadorAtividade++;
-      this.campos.push({}); // Adiciona um novo campo à lista
+      this.campos.push({ id: this.nextId++ });
     },
     removerAtividade(index) {
-      console.log(index); // Para verificar o valor de index
       if (index >= 0 && index < this.campos.length) {
-        this.campos.splice(index, 1); // Remove o item na posição 'index'
-      } else {
-        console.warn("Índice fora do intervalo.");
+        this.campos.splice(index, 1);
       }
     },
   },
