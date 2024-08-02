@@ -87,6 +87,7 @@ export default {
         ["Cadastro de Responsável Pelo Estagiário", "mdi-human-male-board", "/cadastrarResponsavel"],
         ["Cadastro de Organização", "mdi-domain", "/cadastrarOrganizacao"],
         ["Cadastro de Vagas", "mdi-handshake-outline", "/cadastrarVagas"],
+        ["Cadastro de Curso", "mdi-book-plus-outline", "/cadastrarCurso"],
       ],
       rotasConsulta: [
         ["Consultar Instituição", "mdi-store-search-outline", "/consultarInstituicao"],
