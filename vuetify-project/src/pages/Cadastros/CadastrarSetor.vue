@@ -86,23 +86,24 @@
 
         <v-row class="d-flex justify-center align-center">
           <v-col cols="12" md="12">
-           
             <v-container>
               <v-btn
-                
-                text = "Adicionar Atividades"
+                text="Adicionar Atividades"
                 @click="adicionarTeste()"
-                class = "text-pink-darken-1"
+                class="text-pink-darken-1"
               ></v-btn>
             </v-container>
           </v-col>
         </v-row>
 
-
-      
-        <v-col cols="12" lg="12"  id="campoTeste" v-for="(campo, index) in campos" :key="index">
+        <v-col
+          cols="12"
+          lg="12"
+          id="campoTeste"
+          v-for="(campo, index) in campos"
+          :key="index"
+        >
           <v-text-field
-
             :label="'Atividade ' + (index + 1)"
             :rules="[rules.required]"
             maxlength="255"
@@ -110,17 +111,13 @@
             clearable
             class="text-pink-darken-1"
             color="pink-darken-4"
-           
           ></v-text-field>
-        <v-btn
-                
-                text = "Remover Atividades"
-                @click="removerAtividade(index)"
-                class = "text-pink-darken-1"
-              ></v-btn>
+          <v-btn
+            text="Remover Atividades"
+            @click="removerAtividade(index)"
+            class="text-pink-darken-1"
+          ></v-btn>
         </v-col>
-    
- 
 
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="3">
@@ -163,9 +160,8 @@
         </v-row>
       </v-form>
     </div>
+    <Footer />
   </v-main>
-
-  <Footer />
 </template>
 
 <style scoped>
@@ -211,32 +207,29 @@
 export default {
   data() {
     return {
-
       campos: [],
-      contadorAtividade:null,
+      contadorAtividade: null,
       rules: {
         required: (value) => !!value || "Obrigatório.",
       },
     };
   },
   methods: {
-     reset() {
+    reset() {
       this.$refs.form.reset();
     },
     adicionarTeste() {
-       
       this.contadorAtividade++;
       this.campos.push({}); // Adiciona um novo campo à lista
     },
-  removerAtividade(index) {
-  console.log(index); // Para verificar o valor de index
-  if (index >= 0 && index < this.campos.length) {
-    this.campos.splice(index, 1); // Remove o item na posição 'index'
-    
-  } else {
-    console.warn('Índice fora do intervalo.');
-  }
-}
-  }
+    removerAtividade(index) {
+      console.log(index); // Para verificar o valor de index
+      if (index >= 0 && index < this.campos.length) {
+        this.campos.splice(index, 1); // Remove o item na posição 'index'
+      } else {
+        console.warn("Índice fora do intervalo.");
+      }
+    },
+  },
 };
 </script>
