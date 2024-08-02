@@ -115,7 +115,7 @@
         <v-btn
                 
                 text = "Remover Atividades"
-                @click="removerAtividade()"
+                @click="removerAtividade(index)"
                 class = "text-pink-darken-1"
               ></v-btn>
         </v-col>
@@ -228,11 +228,15 @@ export default {
       this.contadorAtividade++;
       this.campos.push({}); // Adiciona um novo campo à lista
     },
-     removerAtividade() {
-      const valor = this.contadorAtividade;
-
-   this.campos.splice({valor});
+  removerAtividade(index) {
+  console.log(index); // Para verificar o valor de index
+  if (index >= 0 && index < this.campos.length) {
+    this.campos.splice(index, 1); // Remove o item na posição 'index'
+    
+  } else {
+    console.warn('Índice fora do intervalo.');
   }
+}
   }
 };
 </script>
