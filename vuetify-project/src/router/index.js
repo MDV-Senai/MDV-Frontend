@@ -10,6 +10,7 @@ import CadastrarResponsavel from '../pages/Cadastros/CadastrarResponsavel.vue';
 import CadastrarAdmin from '../pages/Cadastros/CadastrarAdmin.vue';
 import CadastrarOrganizacao from '../pages/Cadastros/CadastrarOrganizacao.vue';
 import CadastrarVagas from '../pages/Cadastros/CadastrarVagas.vue';
+import CadastrarCurso from '../pages/Cadastros/CadastrarCurso';
 import ConsultarInstituicao from '../pages/Consultas/ConsultarInstituicao.vue';
 import ConsultarEstagiario from '../pages/Consultas/ConsultarEstagiario.vue';
 import ConsultarResponsavel from '../pages/Consultas/ConsultarResponsavel.vue';
@@ -63,6 +64,11 @@ const router = createRouter({
       path: '/cadastrarVagas',
       name: 'CadastrarVagas',
       component: CadastrarVagas
+    },
+    {
+      path: '/cadastrarCurso',
+      name: 'CadastrarCurso',
+      component: CadastrarCurso
     },
     {
       path: '/consultarInstituicao',
