@@ -95,6 +95,8 @@ export default {
         ["Consultar Professor Responsável", "mdi-clipboard-text-search-outline", "/consultarResponsavel"],
         ["Consultar Setor", "mdi-file-search-outline", "/consultarSetor"],
         ["Consultar Vagas", "mdi-account-supervisor-outline", "/consultarVagas"],
+        ["Consultar Curso", "mdi-bookshelf", "/consultarCurso"],
+        ["Consultar Contrato", "mdi-text-box-search-outline", "/consultarContrato"],
       ],
       localValue: this.value
     };
