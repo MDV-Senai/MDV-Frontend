@@ -10,11 +10,14 @@ import CadastrarResponsavel from '../pages/Cadastros/CadastrarResponsavel.vue';
 import CadastrarAdmin from '../pages/Cadastros/CadastrarAdmin.vue';
 import CadastrarOrganizacao from '../pages/Cadastros/CadastrarOrganizacao.vue';
 import CadastrarVagas from '../pages/Cadastros/CadastrarVagas.vue';
+import CadastrarCurso from '../pages/Cadastros/CadastrarCurso';
 import ConsultarInstituicao from '../pages/Consultas/ConsultarInstituicao.vue';
 import ConsultarEstagiario from '../pages/Consultas/ConsultarEstagiario.vue';
 import ConsultarResponsavel from '../pages/Consultas/ConsultarResponsavel.vue';
 import ConsultarSetor from '../pages/Consultas/ConsultarSetor.vue';
 import ConsultarVagas from '../pages/Consultas/ConsultarVagas.vue';
+import ConsultarCurso from '../pages/Consultas/ConsultarCurso.vue';
+import ConsultarContrato from '../pages/Consultas/ConsultarContrato.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -65,6 +68,11 @@ const router = createRouter({
       component: CadastrarVagas
     },
     {
+      path: '/cadastrarCurso',
+      name: 'CadastrarCurso',
+      component: CadastrarCurso
+    },
+    {
       path: '/consultarInstituicao',
       name: 'ConsultarInstituicao',
       component: ConsultarInstituicao
@@ -98,6 +106,16 @@ const router = createRouter({
       path: '/informacaoVagas',
       name: 'InformacaoVagas',
       component: InformacaoVagas
+    },
+    {
+      path: '/consultarCurso',
+      name: 'ConsultarCurso',
+      component: ConsultarCurso
+    },
+    {
+      path: '/consultarContrato',
+      name: 'ConsultarContrato',
+      component: ConsultarContrato
     },
   ]
 })

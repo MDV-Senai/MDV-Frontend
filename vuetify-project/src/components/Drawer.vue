@@ -87,6 +87,7 @@ export default {
         ["Cadastro de Responsável Pelo Estagiário", "mdi-human-male-board", "/cadastrarResponsavel"],
         ["Cadastro de Organização", "mdi-domain", "/cadastrarOrganizacao"],
         ["Cadastro de Vagas", "mdi-handshake-outline", "/cadastrarVagas"],
+        ["Cadastro de Curso", "mdi-book-plus-outline", "/cadastrarCurso"],
       ],
       rotasConsulta: [
         ["Consultar Instituição", "mdi-store-search-outline", "/consultarInstituicao"],
@@ -94,6 +95,8 @@ export default {
         ["Consultar Professor Responsável", "mdi-clipboard-text-search-outline", "/consultarResponsavel"],
         ["Consultar Setor", "mdi-file-search-outline", "/consultarSetor"],
         ["Consultar Vagas", "mdi-account-supervisor-outline", "/consultarVagas"],
+        ["Consultar Curso", "mdi-bookshelf", "/consultarCurso"],
+        ["Consultar Contrato", "mdi-text-box-search-outline", "/consultarContrato"],
       ],
       localValue: this.value
     };
