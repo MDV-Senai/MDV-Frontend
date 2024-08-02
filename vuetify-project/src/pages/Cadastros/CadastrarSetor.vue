@@ -164,6 +164,37 @@
   </v-main>
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      campos: [],
+      contadorAtividade: null,
+      rules: {
+        required: (value) => !!value || "Obrigatório.",
+      },
+    };
+  },
+  methods: {
+    reset() {
+      this.$refs.form.reset();
+    },
+    adicionarTeste() {
+      this.contadorAtividade++;
+      this.campos.push({}); // Adiciona um novo campo à lista
+    },
+    removerAtividade(index) {
+      console.log(index); // Para verificar o valor de index
+      if (index >= 0 && index < this.campos.length) {
+        this.campos.splice(index, 1); // Remove o item na posição 'index'
+      } else {
+        console.warn("Índice fora do intervalo.");
+      }
+    },
+  },
+};
+</script>
+
 <style scoped>
 #imagem {
   background-image: url("../assets/img/fundoDesenhos.svg");
@@ -202,34 +233,3 @@
     align-items: center; */
 }
 </style>
-
-<script>
-export default {
-  data() {
-    return {
-      campos: [],
-      contadorAtividade: null,
-      rules: {
-        required: (value) => !!value || "Obrigatório.",
-      },
-    };
-  },
-  methods: {
-    reset() {
-      this.$refs.form.reset();
-    },
-    adicionarTeste() {
-      this.contadorAtividade++;
-      this.campos.push({}); // Adiciona um novo campo à lista
-    },
-    removerAtividade(index) {
-      console.log(index); // Para verificar o valor de index
-      if (index >= 0 && index < this.campos.length) {
-        this.campos.splice(index, 1); // Remove o item na posição 'index'
-      } else {
-        console.warn("Índice fora do intervalo.");
-      }
-    },
-  },
-};
-</script>
