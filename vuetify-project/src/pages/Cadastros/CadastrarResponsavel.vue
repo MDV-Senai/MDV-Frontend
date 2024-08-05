@@ -22,7 +22,7 @@
           </v-col>
         </v-row>
 
-       <v-row class="d-flex justify-center">
+        <v-row class="d-flex justify-center">
           <v-col cols="8" md="11">
             <v-text-field
               label="Nome social"
@@ -99,10 +99,7 @@
 
         <div class="d-flex justify-center">
           <v-row class="d-flex justify-center">
-            <v-col cols="12" md="3">
-              <div></div>
-            </v-col>
-            <v-col cols="12" md="3">
+            <v-col cols="6" md="3">
               <v-btn
                 @click="reset"
                 class="my-10"
@@ -116,7 +113,7 @@
               </v-btn>
             </v-col>
 
-            <v-col cols="12" md="3">
+            <v-col cols="6" md="3">
               <v-btn
                 append-icon="mdi-chevron-right"
                 variant="outlined"
@@ -133,16 +130,12 @@
                 </template>
               </v-btn>
             </v-col>
-            <v-col cols="12" md="3">
-              <div></div>
-            </v-col>
           </v-row>
         </div>
       </v-form>
     </div>
+    <Footer />
   </v-main>
-
-  <Footer />
 </template>
 
 <style scoped>
