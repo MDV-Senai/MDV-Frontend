@@ -243,9 +243,8 @@
         </v-card>
       </v-container>
     </div>
+      <Footer />
   </v-main>
-
-  <Footer />
 </template>
 
 <script>
