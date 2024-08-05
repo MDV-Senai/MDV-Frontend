@@ -7,61 +7,12 @@
       >
     </div>
     <div id="fundoCards">
+      
       <v-form ref="form" id="form" class="mx-auto">
-        <v-row class="d-flex justify-center mt-8">
+         <v-row class="d-flex justify-center">
           <v-col cols="12" md="6">
             <v-text-field
-              label="Supervisor"
-              :rules="[rules.required]"
-              maxlength="255"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
-          </v-col>
-          <v-col cols="12" md="6">
-            <v-text-field
-              label="Email do Supervisor"
-              :rules="[rules.required]"
-              maxlength="255"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
-          </v-col>
-        </v-row>
-
-        <v-row class="d-flex justify-center">
-          <v-col cols="12" md="6">
-            <v-text-field
-              label="Coordenador"
-              :rules="[rules.required]"
-              maxlength="255"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
-          </v-col>
-          <v-col cols="12" md="6">
-            <v-text-field
-              label="Email do Coordenador"
-              :rules="[rules.required]"
-              maxlength="255"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
-          </v-col>
-        </v-row>
-
-        <v-row class="d-flex justify-center">
-          <v-col cols="12" md="6">
-            <v-text-field
-              label="Setor"
+              label="Nome do Setor"
               :rules="[rules.required]"
               maxlength="255"
               counter
@@ -83,6 +34,60 @@
             ></v-text-field>
           </v-col>
         </v-row>
+        <v-row class="d-flex justify-center mt-8">
+
+          
+          <v-col cols="12" md="6">
+            <v-text-field
+              label="Nome do Supervisor "
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
+              clearable
+              class="text-pink-darken-1"
+              color="pink-darken-4"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12" md="6">
+            <v-text-field
+              label="Email do Supervisor"
+              :rules="[rules.required, rules.email]"
+              maxlength="255"
+              counter
+              clearable
+              class="text-pink-darken-1"
+              color="pink-darken-4"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+
+        <v-row class="d-flex justify-center">
+          <v-col cols="12" md="6">
+            <v-text-field
+              label="Nome do Coordenador"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
+              clearable
+              class="text-pink-darken-1"
+              color="pink-darken-4"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12" md="6">
+           <v-text-field
+              label="Email do Coordenador"
+              :rules="[rules.required, rules.email]"
+              maxlength="255"
+              counter
+              clearable
+              class="text-pink-darken-1"
+              color="pink-darken-4"
+              
+            ></v-text-field>
+          </v-col>
+        </v-row>
+
+       
 
         <v-row class="d-flex justify-center align-center">
           <v-col cols="12" md="12">
@@ -111,14 +116,18 @@
               clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
-            ></v-text-field>
-            <v-btn
-              text
-              @click="removerAtividade(index)"
-              class="text-pink-darken-1"
             >
-              Remover Atividades
-            </v-btn>
+              <template v-slot:append>
+                <v-btn
+                  text
+                  id="apagar"
+                  @click="removerAtividade(index)"
+                  class="text-pink-darken-1"
+                  icon="mdi-alpha-x-circle-outline"
+                >
+                </v-btn>
+              </template>
+            </v-text-field>
           </v-col>
         </v-row>
 
@@ -168,14 +177,24 @@
 </template>
 
 <script>
+
+
+import {
+  fullNameValidation,
+  emailValidation,
+} from "@/validations/formValidations";
+
 export default {
   data() {
     return {
+       rules: {
+        required: (value) => !!value || "Obrigatório.",
+        email: (value) => emailValidation(value),
+       
+      },
       campos: [{ id: 1 }],
       nextId: 2,
-      rules: {
-        required: (value) => !!value || "Obrigatório.",
-      },
+     
     };
   },
   methods: {
@@ -190,6 +209,8 @@ export default {
         this.campos.splice(index, 1);
       }
     },
+
+    
   },
 };
 </script>
@@ -228,7 +249,5 @@ export default {
   display: flex;
   text-align: center;
   flex-direction: column;
-  /* justify-content: center;
-    align-items: center; */
 }
 </style>
