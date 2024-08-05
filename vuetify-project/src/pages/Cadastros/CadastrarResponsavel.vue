@@ -22,8 +22,8 @@
           </v-col>
         </v-row>
 
-        <v-row class="d-flex justify-center">
-          <v-col cols="12" md="12">
+       <v-row class="d-flex justify-center">
+          <v-col cols="8" md="11">
             <v-text-field
               label="Nome social"
               :rules="[rules.required]"
@@ -36,17 +36,17 @@
             >
             </v-text-field>
           </v-col>
+          <v-col cols="4" md="1">
+            <v-switch
+              v-model="enableSocialName"
+              class="text-pink-darken-1"
+              color="pink-darken-4"
+            ></v-switch>
+          </v-col>
         </v-row>
 
-        <v-switch
-          v-model="enableSocialName"
-          label="Inserir Nome social"
-          class="text-pink-darken-1"
-          color="pink-darken-4"
-        ></v-switch>
-
         <v-row class="d-flex justify-center">
-          <v-col cols="12" md="6">
+          <v-col cols="6" md="6">
             <v-text-field
               label="Nº Matrícula do Estudante"
               :rules="[rules.required]"
@@ -57,7 +57,7 @@
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
-          <v-col cols="12" md="6">
+          <v-col cols="6" md="6">
             <v-text-field
               label="CPF"
               :rules="[rules.required]"
