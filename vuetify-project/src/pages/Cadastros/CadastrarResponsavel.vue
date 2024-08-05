@@ -3,7 +3,7 @@
     <Header />
     <div class="d-flex justify-center align-center">
       <v-card class="d-flex justify-center align-center" id="card_titulo"
-        >Responsável Pelo Estagiário (Instituição de Ensino)</v-card
+        >Resp. Pelo Estagiário (Instituição de Ensino)</v-card
       >
     </div>
     <div id="fundoCards">
