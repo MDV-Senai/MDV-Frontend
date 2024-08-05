@@ -185,7 +185,7 @@
           <v-col cols="12" md="12">
             <v-text-field
               v-model="rua"
-              label="Rua"
+              label="Logradouro"
               :rules="[rules.required]"
               maxlength="255"
               counter
