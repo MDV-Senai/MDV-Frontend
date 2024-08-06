@@ -3,7 +3,7 @@
     <Header />
     <div class="d-flex justify-center align-center">
       <v-card class="d-flex justify-center align-center" id="card_titulo"
-        >Consultar Setor</v-card
+        >Consultar Contrato</v-card
       >
     </div>
     <div id="fundoCards">
@@ -37,7 +37,8 @@
                     <template v-slot:activator="{ props: activatorProps }">
                       <v-btn
                         v-bind="activatorProps"
-                        text="Consultar"
+                        density="compact"
+                        icon="mdi-eye-outline"
                         variant="outlined"
                         color="pink-darken-4"
                       ></v-btn>
@@ -49,21 +50,8 @@
                           <v-row class="mx-5 my-5">
                             <v-col cols="12" md="12">
                               <v-text-field
-                                label="Supervisor"
-                                id="supervisor"
-                                value="Fulano"
-                                reandoly
-                                class="text-pink-darken-1"
-                                color="pink-darken-4"
-                              ></v-text-field>
-                            </v-col>
-                          </v-row>
-
-                          <v-row class="mx-5 my-5">
-                            <v-col cols="12" md="12">
-                              <v-text-field
-                                label="Coordenador"
-                                id="coordenador"
+                                label="Nome/Nome Social"
+                                id="nome_prof"
                                 value="Fulano"
                                 reandoly
                                 class="text-pink-darken-1"
@@ -74,9 +62,9 @@
                           <v-row class="mx-5 my-5">
                             <v-col cols="12" md="6">
                               <v-text-field
-                                label="Setor"
-                                id="setor"
-                                value="Setor A"
+                                label="Número de Matrícula"
+                                id="numero_mat"
+                                value="00000000"
                                 reandoly
                                 class="text-pink-darken-1"
                                 color="pink-darken-4"
@@ -84,9 +72,9 @@
                             </v-col>
                             <v-col cols="12" md="6">
                               <v-text-field
-                                label="E-mail Do Setor"
-                                id="email"
-                                value="setor@hotmail.com"
+                                label="CPF"
+                                id="inscricao"
+                                value="000.000.000-00"
                                 reandoly
                                 class="text-pink-darken-1"
                                 color="pink-darken-4"
@@ -97,9 +85,9 @@
                           <v-row class="mx-5">
                             <v-col cols="12" md="6">
                               <v-text-field
-                                label="Telefone"
-                                id="telefone"
-                                value="(47) 3030-3030"
+                                label="Instituição de Ensino"
+                                id="instituicao_ensino"
+                                value="Instituição de Ensino"
                                 reandoly
                                 class="text-pink-darken-1"
                                 color="pink-darken-4"
@@ -107,21 +95,9 @@
                             </v-col>
                             <v-col cols="12" md="6">
                               <v-text-field
-                                label="Celular"
-                                id="celular"
-                                value="(47) 99999-9999"
-                                reandoly
-                                class="text-pink-darken-1"
-                                color="pink-darken-4"
-                              ></v-text-field>
-                            </v-col>
-                          </v-row>
-
-                          <v-row class="mx-5">
-                            <v-col cols="12" md="12">
-                              <v-text-field
-                                label="Atividade"
-                                id="atividade"
+                                label="Curso"
+                                id="curso"
+                                value="Curso"
                                 reandoly
                                 class="text-pink-darken-1"
                                 color="pink-darken-4"
@@ -140,6 +116,21 @@
                       </v-card>
                     </template>
                   </v-dialog>
+                  <v-btn
+                        v-bind="activatorProps"
+                        density="compact"
+                        icon="mdi-pencil"
+                        class="mx-5"
+                        variant="outlined"
+                        color="pink-darken-4"
+                      ></v-btn>
+                      <v-btn
+                        v-bind="activatorProps"
+                        density="compact"
+                        icon="mdi-delete"
+                        variant="outlined"
+                        color="pink-darken-4"
+                      ></v-btn>
                 </td>
               </tr>
             </template>
@@ -163,13 +154,13 @@ export default {
           name: "Fulano",
         },
         {
-          name: "Fulano",
+          name: "Teste",
         },
         {
-          name: "Fulano",
+          name: "Novo",
         },
         {
-          name: "Fulano",
+          name: "Cri",
         },
       ],
     };

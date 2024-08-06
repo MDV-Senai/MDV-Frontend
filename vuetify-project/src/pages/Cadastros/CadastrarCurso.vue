@@ -3,95 +3,32 @@
     <Header />
     <div class="d-flex justify-center align-center">
       <v-card class="d-flex justify-center align-center" id="card_titulo"
-        >Responsável Pelo Estagiário (Instituição de Ensino)</v-card
+        >Cadastro de Cursos</v-card
       >
     </div>
     <div id="fundoCards">
       <v-form ref="form" id="form" class="mx-auto">
         <v-row class="d-flex justify-center mt-8">
           <v-col cols="12" md="12">
-            <v-text-field
-              label="Nome"
-              :rules="[rules.required]"
-              maxlength="255"
-              counter
-              clearable
+            <v-select
+              :items="listaInstituicao"
+              item-title="nome"
+              label="Instituição para cadastro de curso"
               class="text-pink-darken-1"
               color="pink-darken-4"
-            ></v-text-field>
+            ></v-select>
           </v-col>
         </v-row>
-
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="12">
             <v-text-field
-              label="Nome social"
-              :rules="[rules.required]"
-              maxlength="255"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-              :disabled="!enableSocialName"
-            >
-            </v-text-field>
-          </v-col>
-        </v-row>
-
-        <v-switch
-          v-model="enableSocialName"
-          label="Inserir Nome social"
-          class="text-pink-darken-1"
-          color="pink-darken-4"
-        ></v-switch>
-
-        <v-row class="d-flex justify-center">
-          <v-col cols="12" md="6">
-            <v-text-field
-              label="Nº Matrícula do Estudante"
-              :rules="[rules.required]"
-              maxlength="25"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
-          </v-col>
-          <v-col cols="12" md="6">
-            <v-text-field
-              label="CPF"
-              :rules="[rules.required]"
-              maxlength="14"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-              v-mask="'###.###.###-##'"
-            ></v-text-field>
-          </v-col>
-        </v-row>
-
-        <v-row id="inputResponsivo" class="d-flex justify-center">
-          <v-col cols="12" md="6">
-            <v-text-field
-              label="Instituição de Ensino"
-              :rules="[rules.required]"
-              maxlength="255"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
-          </v-col>
-
-          <v-col cols="12" md="6">
-            <v-text-field
               label="Curso"
+              v-model="curso"
               :rules="[rules.required]"
               maxlength="255"
               counter
               clearable
-              class="text-pink-darken-1"
+              class="text-pink-darken-3"
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
@@ -140,10 +77,42 @@
         </div>
       </v-form>
     </div>
+    <Footer />
   </v-main>
-
-  <Footer />
 </template>
+
+<script>
+import axios from "axios";
+export default {
+  data() {
+    return {
+      rules: {
+        required: (value) => !!value || "Obrigatório.",
+      },
+      curso: "",
+      listaInstituicao: [],
+    };
+  },
+  methods: {
+    reset() {
+      this.$refs.form.reset();
+    },
+    async getInstituicao() {
+      try {
+        const response = await axios.get(
+          "https://run.mocky.io/v3/cdca6f61-b8c2-41f6-b255-4db2e83b5bec"
+        );
+        this.listaInstituicao = response.data.instituicoes;
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    },
+  },
+  mounted() {
+    this.getInstituicao();
+  },
+};
+</script>
 
 <style scoped>
 #imagem {
@@ -173,25 +142,5 @@
   display: flex;
   text-align: center;
   flex-direction: column;
-  /* justify-content: center;
-    align-items: center; */
 }
 </style>
-
-<script>
-export default {
-  data() {
-    return {
-      enableSocialName: false,
-      rules: {
-        required: (value) => !!value || "Obrigatório.",
-      },
-    };
-  },
-  methods: {
-    reset() {
-      this.$refs.form.reset();
-    },
-  },
-};
-</script>
