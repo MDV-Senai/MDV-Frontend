@@ -63,7 +63,7 @@
           </v-col>
         </v-row>
         <v-row id="inputResponsivo" class="d-flex justify-center">
-          <v-col cols="6" md="6">
+          <v-col cols="12" md="6">
             <v-text-field
               label="CNPJ"
               :rules="[rules.required]"
@@ -76,7 +76,7 @@
             ></v-text-field>
           </v-col>
 
-          <v-col cols="6" md="6">
+          <v-col cols="12" md="6">
             <v-text-field
               label="Inscrição Estadual"
               :rules="[rules.required]"
@@ -128,7 +128,7 @@
         </v-row>
 
         <v-row id="inputResponsivo" class="d-flex justify-center">
-          <v-col cols="6" md="4">
+          <v-col cols="12" md="6">
             <v-text-field
               label="CEP"
               :rules="[rules.required]"
@@ -141,48 +141,7 @@
               @input.debounce="preencheCep($event.target.value)"
             ></v-text-field>
           </v-col>
-
-          <v-col cols="6" md="4">
-            <v-text-field
-              v-model="cidade"
-              label="Cidade"
-              :rules="[rules.required]"
-              maxlength="255"
-              counter
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-              readonly
-            ></v-text-field>
-          </v-col>
-
-          <v-col cols="6" md="2">
-            <v-text-field
-              label="Nº"
-              :rules="[rules.required]"
-              maxlength="10"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
-          </v-col>
-
-          <v-col cols="6" md="2">
-            <v-select
-              v-model="uf"
-              :items="ufs"
-              :item-title="'uf'"
-              :item-value="'id'"
-              label="UF"
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-              readonly
-            ></v-select>
-          </v-col>
-        </v-row>
-
-        <v-row class="d-flex justify-center">
-          <v-col cols="12" md="12">
+          <v-col cols="12" md="6">
             <v-text-field
               v-model="rua"
               label="Logradouro"
@@ -195,9 +154,30 @@
             ></v-text-field>
           </v-col>
         </v-row>
-
-        <v-row class="d-flex justify-center">
-          <v-col cols="6" md="6">
+        <v-row>
+          <v-col cols="6" md="2">
+            <v-text-field
+              label="Nº"
+              :rules="[rules.required]"
+              maxlength="10"
+              counter
+              clearable
+              class="text-pink-darken-1"
+              color="pink-darken-4"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="6" md="5">
+            <v-text-field
+              label="Complemento"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
+              clearable
+              class="text-pink-darken-1"
+              color="pink-darken-4"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12" md="5">
             <v-text-field
               v-model="bairro"
               label="Bairro"
@@ -209,17 +189,31 @@
               readonly
             ></v-text-field>
           </v-col>
-
+        </v-row>
+        <v-row class="d-flex justify-center">
           <v-col cols="6" md="6">
             <v-text-field
-              label="Complemento"
+              v-model="cidade"
+              label="Cidade"
               :rules="[rules.required]"
               maxlength="255"
               counter
-              clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
+              readonly
             ></v-text-field>
+          </v-col>
+          <v-col cols="6" md="6">
+            <v-select
+              v-model="uf"
+              :items="ufs"
+              :item-title="'uf'"
+              :item-value="'id'"
+              label="UF"
+              class="text-pink-darken-1"
+              color="pink-darken-4"
+              readonly
+            ></v-select>
           </v-col>
         </v-row>
         <v-row class="d-flex justify-center">
@@ -297,7 +291,7 @@
         </div>
       </v-form>
     </div>
-  <Footer />
+    <Footer />
   </v-main>
 </template>
 
