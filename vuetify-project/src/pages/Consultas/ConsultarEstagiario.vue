@@ -205,9 +205,9 @@
 
                           <v-col cols="12" md="4">
                             <v-text-field
-                              label="Rua"
+                              label="Logradouro"
                               id="rua"
-                              value="Rua"
+                              value="Logradouro"
                               reandoly
                               class="text-pink-darken-1"
                               color="pink-darken-4"

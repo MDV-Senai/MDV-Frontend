@@ -3,7 +3,7 @@
     <Header />
     <div class="d-flex justify-center align-center">
       <v-card class="d-flex justify-center align-center" id="card_titulo"
-        >Responsável Pelo Estagiário (Instituição de Ensino)</v-card
+        >Resp. Pelo Estagiário (Instituição de Ensino)</v-card
       >
     </div>
     <div id="fundoCards">
@@ -23,7 +23,7 @@
         </v-row>
 
         <v-row class="d-flex justify-center">
-          <v-col cols="12" md="12">
+          <v-col cols="8" md="11">
             <v-text-field
               label="Nome social"
               :rules="[rules.required]"
@@ -36,17 +36,17 @@
             >
             </v-text-field>
           </v-col>
+          <v-col cols="4" md="1">
+            <v-switch
+              v-model="enableSocialName"
+              class="text-pink-darken-1"
+              color="pink-darken-4"
+            ></v-switch>
+          </v-col>
         </v-row>
 
-        <v-switch
-          v-model="enableSocialName"
-          label="Inserir Nome social"
-          class="text-pink-darken-1"
-          color="pink-darken-4"
-        ></v-switch>
-
         <v-row class="d-flex justify-center">
-          <v-col cols="12" md="6">
+          <v-col cols="6" md="6">
             <v-text-field
               label="Nº Matrícula do Estudante"
               :rules="[rules.required]"
@@ -57,7 +57,7 @@
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
-          <v-col cols="12" md="6">
+          <v-col cols="6" md="6">
             <v-text-field
               label="CPF"
               :rules="[rules.required]"
@@ -99,10 +99,7 @@
 
         <div class="d-flex justify-center">
           <v-row class="d-flex justify-center">
-            <v-col cols="12" md="3">
-              <div></div>
-            </v-col>
-            <v-col cols="12" md="3">
+            <v-col cols="6" md="3">
               <v-btn
                 @click="reset"
                 class="my-10"
@@ -116,7 +113,7 @@
               </v-btn>
             </v-col>
 
-            <v-col cols="12" md="3">
+            <v-col cols="6" md="3">
               <v-btn
                 append-icon="mdi-chevron-right"
                 variant="outlined"
@@ -133,16 +130,12 @@
                 </template>
               </v-btn>
             </v-col>
-            <v-col cols="12" md="3">
-              <div></div>
-            </v-col>
           </v-row>
         </div>
       </v-form>
     </div>
+    <Footer />
   </v-main>
-
-  <Footer />
 </template>
 
 <style scoped>

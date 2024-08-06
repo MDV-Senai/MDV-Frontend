@@ -22,7 +22,54 @@
             ></v-select>
           </v-col>
         </v-row>
+        <v-row class="d-flex justify-center">
+          <v-col cols="6" md="6">
+            <v-text-field
+              label="Setor"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
+              clearable
+              class="text-pink-darken-3"
+              color="pink-darken-4"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="6" md="6">
+            <v-select
+              label="Turno"
+              :rules="[rules.required]"
+              clearable
+              :items="['Matutino', 'Vespertino', 'Noturno', 'Integral']"
+              class="text-pink-darken-3"
+              color="pink-darken-4"
+            ></v-select>
+          </v-col>
+        </v-row>
 
+        <v-row id="inputResponsivo" class="d-flex justify-center">
+          <v-col cols="6" md="6">
+            <v-text-field
+              label="Quantidade de Vagas"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
+              clearable
+              class="text-pink-darken-3"
+              color="pink-darken-4"
+            ></v-text-field>
+          </v-col>
+
+          <v-col cols="6" md="6">
+            <v-select
+              label="Situação"
+              :rules="[rules.required]"
+              clearable
+              :items="['Programada', 'Aberta', 'Encerrada']"
+              class="text-pink-darken-3"
+              color="pink-darken-4"
+            ></v-select>
+          </v-col>
+        </v-row>
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="12">
             <v-textarea
@@ -36,61 +83,10 @@
             ></v-textarea>
           </v-col>
         </v-row>
-        <v-row class="d-flex justify-center">
-          <v-col cols="12" md="6">
-            <v-text-field
-              label="Setor"
-              :rules="[rules.required]"
-              maxlength="255"
-              counter
-              clearable
-              class="text-pink-darken-3"
-              color="pink-darken-4"
-            ></v-text-field>
-          </v-col>
-          <v-col cols="12" md="6">
-            <v-select
-              label="Turno"
-              :rules="[rules.required]"
-              clearable
-              :items="['Matutino', 'Vespertino', 'Noturno', 'Integral']"
-              class="text-pink-darken-3"
-              color="pink-darken-4"
-            ></v-select>
-          </v-col>
-        </v-row>
-
-        <v-row id="inputResponsivo" class="d-flex justify-center">
-          <v-col cols="12" md="6">
-            <v-text-field
-              label="Quantidade de Vagas"
-              :rules="[rules.required]"
-              maxlength="255"
-              counter
-              clearable
-              class="text-pink-darken-3"
-              color="pink-darken-4"
-            ></v-text-field>
-          </v-col>
-
-          <v-col cols="12" md="6">
-            <v-select
-              label="Situação"
-              :rules="[rules.required]"
-              clearable
-              :items="['Programada', 'Aberta', 'Encerrada']"
-              class="text-pink-darken-3"
-              color="pink-darken-4"
-            ></v-select>
-          </v-col>
-        </v-row>
 
         <div class="d-flex justify-center">
           <v-row class="d-flex justify-center">
-            <v-col cols="12" md="3">
-              <div></div>
-            </v-col>
-            <v-col cols="12" md="3">
+            <v-col cols="6" md="3">
               <v-btn
                 @click="reset"
                 class="my-10"
@@ -104,7 +100,7 @@
               </v-btn>
             </v-col>
 
-            <v-col cols="12" md="3">
+            <v-col cols="6" md="3">
               <v-btn
                 append-icon="mdi-chevron-right"
                 variant="outlined"
@@ -121,16 +117,12 @@
                 </template>
               </v-btn>
             </v-col>
-            <v-col cols="12" md="3">
-              <div></div>
-            </v-col>
           </v-row>
         </div>
       </v-form>
     </div>
+    <Footer />
   </v-main>
-
-  <Footer />
 </template>
 
 <style scoped>
