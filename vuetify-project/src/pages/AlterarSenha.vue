@@ -88,9 +88,8 @@
         </div>
       </v-form>
     </div>
+    <Footer />
   </v-main>
-
-  <Footer />
 </template>
 
 <style scoped>
@@ -111,12 +110,6 @@
 
 #form {
   width: 90%;
-}
-
-@media (max-width: 768px) {
-  #inputResponsivo {
-    /* flex-direction: column; */
-  }
 }
 
 #fundoCards {

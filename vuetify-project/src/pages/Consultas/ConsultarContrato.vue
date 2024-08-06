@@ -117,20 +117,20 @@
                     </template>
                   </v-dialog>
                   <v-btn
-                        v-bind="activatorProps"
-                        density="compact"
-                        icon="mdi-pencil"
-                        class="mx-5"
-                        variant="outlined"
-                        color="pink-darken-4"
-                      ></v-btn>
-                      <v-btn
-                        v-bind="activatorProps"
-                        density="compact"
-                        icon="mdi-delete"
-                        variant="outlined"
-                        color="pink-darken-4"
-                      ></v-btn>
+                    v-bind="activatorProps"
+                    density="compact"
+                    icon="mdi-pencil"
+                    class="mx-5"
+                    variant="outlined"
+                    color="pink-darken-4"
+                  ></v-btn>
+                  <v-btn
+                    v-bind="activatorProps"
+                    density="compact"
+                    icon="mdi-delete"
+                    variant="outlined"
+                    color="pink-darken-4"
+                  ></v-btn>
                 </td>
               </tr>
             </template>
@@ -138,9 +138,8 @@
         </v-card>
       </v-container>
     </div>
+    <Footer />
   </v-main>
-
-  <Footer />
 </template>
 
 <script>
@@ -204,12 +203,6 @@ export default {
 
 #form {
   width: 90%;
-}
-
-@media (max-width: 768px) {
-  #inputResponsivo {
-    /* flex-direction: column; */
-  }
 }
 
 #fundoCards {
