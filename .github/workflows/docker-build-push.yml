@@ -29,7 +29,8 @@ jobs:
       working-directory: vuetify-project
       run: |
         docker-compose -f docker-compose.prod.yml build
-        docker-compose -f docker-compose.prod.yml push
+        docker tag vuetify-project_front:latest josehenriquepatrocinio98/my-image:latest
+        docker push josehenriquepatrocinio98/my-image:latest
       env:
         DOCKER_BUILDKIT: 1
         COMPOSE_DOCKER_CLI_BUILD: 1
