@@ -91,8 +91,8 @@
         </v-col>
       </v-row>
     </div>
+    <Footer />
   </v-main>
-  <Footer />
 </template>
 
 <script>

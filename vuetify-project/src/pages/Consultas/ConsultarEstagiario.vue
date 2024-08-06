@@ -326,12 +326,6 @@ export default {
   width: 90%;
 }
 
-@media (max-width: 768px) {
-  #inputResponsivo {
-    /* flex-direction: column; */
-  }
-}
-
 #fundoCards {
   background-color: white;
   border-radius: 8px;
