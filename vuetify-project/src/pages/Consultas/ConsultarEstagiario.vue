@@ -37,7 +37,8 @@
                     <template v-slot:activator="{ props: activatorProps }">
                       <v-btn
                         v-bind="activatorProps"
-                        text="Consultar"
+                        density="compact"
+                        icon="mdi-eye-outline"
                         variant="outlined"
                         color="pink-darken-4"
                       ></v-btn>
@@ -236,6 +237,21 @@
                       </v-card>
                     </template>
                   </v-dialog>
+                  <v-btn
+                    v-bind="activatorProps"
+                    density="compact"
+                    icon="mdi-pencil"
+                    class="mx-5"
+                    variant="outlined"
+                    color="pink-darken-4"
+                  ></v-btn>
+                  <v-btn
+                    v-bind="activatorProps"
+                    density="compact"
+                    icon="mdi-delete"
+                    variant="outlined"
+                    color="pink-darken-4"
+                  ></v-btn>
                 </td>
               </tr>
             </template>
@@ -243,7 +259,7 @@
         </v-card>
       </v-container>
     </div>
-      <Footer />
+    <Footer />
   </v-main>
 </template>
 
