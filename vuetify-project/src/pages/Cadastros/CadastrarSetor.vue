@@ -8,60 +8,10 @@
     </div>
     <div id="fundoCards">
       <v-form ref="form" id="form" class="mx-auto">
-        <v-row class="d-flex justify-center mt-8">
-          <v-col cols="12" md="6">
-            <v-text-field
-              label="Supervisor"
-              :rules="[rules.required]"
-              maxlength="255"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
-          </v-col>
-          <v-col cols="12" md="6">
-            <v-text-field
-              label="Email do Supervisor"
-              :rules="[rules.required]"
-              maxlength="255"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
-          </v-col>
-        </v-row>
-
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="6">
             <v-text-field
-              label="Coordenador"
-              :rules="[rules.required]"
-              maxlength="255"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
-          </v-col>
-          <v-col cols="12" md="6">
-            <v-text-field
-              label="Email do Coordenador"
-              :rules="[rules.required]"
-              maxlength="255"
-              counter
-              clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
-          </v-col>
-        </v-row>
-
-        <v-row class="d-flex justify-center">
-          <v-col cols="12" md="6">
-            <v-text-field
-              label="Setor"
+              label="Nome do Setor"
               :rules="[rules.required]"
               maxlength="255"
               counter
@@ -83,12 +33,10 @@
             ></v-text-field>
           </v-col>
         </v-row>
-
-        <v-row class="d-flex justify-center">
-          <v-col cols="12" md="12">
+        <v-row class="d-flex justify-center mt-8">
+          <v-col cols="12" md="6">
             <v-text-field
-              label="Atividades"
-              append-inner-icon="mdi-plus"
+              label="Nome do Supervisor "
               :rules="[rules.required]"
               maxlength="255"
               counter
@@ -96,6 +44,84 @@
               class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
+          </v-col>
+          <v-col cols="12" md="6">
+            <v-text-field
+              label="Email do Supervisor"
+              :rules="[rules.required, rules.email]"
+              maxlength="255"
+              counter
+              clearable
+              class="text-pink-darken-1"
+              color="pink-darken-4"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+
+        <v-row class="d-flex justify-center">
+          <v-col cols="12" md="6">
+            <v-text-field
+              label="Nome do Coordenador"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
+              clearable
+              class="text-pink-darken-1"
+              color="pink-darken-4"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12" md="6">
+            <v-text-field
+              label="Email do Coordenador"
+              :rules="[rules.required, rules.email]"
+              maxlength="255"
+              counter
+              clearable
+              class="text-pink-darken-1"
+              color="pink-darken-4"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+
+        <v-row class="d-flex justify-center align-center">
+          <v-col cols="12" md="12">
+            <v-container>
+              <v-btn
+                text="Adicionar Atividades"
+                @click="adicionarTeste()"
+                class="text-pink-darken-1"
+              ></v-btn>
+            </v-container>
+          </v-col>
+        </v-row>
+
+        <v-row>
+          <v-col
+            cols="12"
+            lg="12"
+            v-for="(campo, index) in campos"
+            :key="campo.id"
+          >
+            <v-text-field
+              :label="'Atividade ' + (index + 1)"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
+              clearable
+              class="text-pink-darken-1"
+              color="pink-darken-4"
+            >
+              <template v-slot:append>
+                <v-btn
+                  text
+                  id="apagar"
+                  @click="removerAtividade(index)"
+                  class="text-pink-darken-1"
+                  icon="mdi-alpha-x-circle-outline"
+                >
+                </v-btn>
+              </template>
+            </v-text-field>
           </v-col>
         </v-row>
 
@@ -140,10 +166,42 @@
         </v-row>
       </v-form>
     </div>
+    <Footer />
   </v-main>
-
-  <Footer />
 </template>
+
+<script>
+import {
+  fullNameValidation,
+  emailValidation,
+} from "@/validations/formValidations";
+
+export default {
+  data() {
+    return {
+      rules: {
+        required: (value) => !!value || "Obrigatório.",
+        email: (value) => emailValidation(value),
+      },
+      campos: [{ id: 1 }],
+      nextId: 2,
+    };
+  },
+  methods: {
+    reset() {
+      this.$refs.form.reset();
+    },
+    adicionarTeste() {
+      this.campos.push({ id: this.nextId++ });
+    },
+    removerAtividade(index) {
+      if (index >= 0 && index < this.campos.length) {
+        this.campos.splice(index, 1);
+      }
+    },
+  },
+};
+</script>
 
 <style scoped>
 #imagem {
@@ -179,24 +237,5 @@
   display: flex;
   text-align: center;
   flex-direction: column;
-  /* justify-content: center;
-    align-items: center; */
 }
 </style>
-
-<script>
-export default {
-  data() {
-    return {
-      rules: {
-        required: (value) => !!value || "Obrigatório.",
-      },
-    };
-  },
-  methods: {
-    reset() {
-      this.$refs.form.reset();
-    },
-  },
-};
-</script>
