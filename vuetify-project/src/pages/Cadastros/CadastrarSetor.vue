@@ -7,9 +7,8 @@
       >
     </div>
     <div id="fundoCards">
-      
       <v-form ref="form" id="form" class="mx-auto">
-         <v-row class="d-flex justify-center">
+        <v-row class="d-flex justify-center">
           <v-col cols="12" md="6">
             <v-text-field
               label="Nome do Setor"
@@ -35,8 +34,6 @@
           </v-col>
         </v-row>
         <v-row class="d-flex justify-center mt-8">
-
-          
           <v-col cols="12" md="6">
             <v-text-field
               label="Nome do Supervisor "
@@ -74,7 +71,7 @@
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="6">
-           <v-text-field
+            <v-text-field
               label="Email do Coordenador"
               :rules="[rules.required, rules.email]"
               maxlength="255"
@@ -82,12 +79,9 @@
               clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
-              
             ></v-text-field>
           </v-col>
         </v-row>
-
-       
 
         <v-row class="d-flex justify-center align-center">
           <v-col cols="12" md="12">
@@ -177,8 +171,6 @@
 </template>
 
 <script>
-
-
 import {
   fullNameValidation,
   emailValidation,
@@ -187,14 +179,12 @@ import {
 export default {
   data() {
     return {
-       rules: {
+      rules: {
         required: (value) => !!value || "Obrigatório.",
         email: (value) => emailValidation(value),
-       
       },
       campos: [{ id: 1 }],
       nextId: 2,
-     
     };
   },
   methods: {
@@ -209,8 +199,6 @@ export default {
         this.campos.splice(index, 1);
       }
     },
-
-    
   },
 };
 </script>
