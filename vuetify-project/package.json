@@ -33,6 +33,7 @@
     "unplugin-vue-router": "^0.8.4",
     "vite": "^5.1.5",
     "vite-plugin-vuetify": "^2.0.3",
-    "vue-router": "^4.3.0"
+    "vue-router": "^4.3.0",
+    "serve": "^14.0.1"
   }
 }
