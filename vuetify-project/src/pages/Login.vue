@@ -2,56 +2,6 @@
   <v-main>
     <div id="imagem">
       <v-row>
-        <v-col cols="12" md="6">
-          <v-container class="my-13">
-            <v-card
-              class="mx-auto my-16 overflow-auto"
-              width="100%"
-              height="673"
-              id="fundoCardVagas"
-            >
-              <div class="d-flex flex-row flex-wrap" id="responsive-cards">
-                <v-col cols="12" md="6" v-for="vaga in vagas" :key="vaga.id">
-                  <v-card>
-                    <v-card-title v-model="titulo">
-                      {{ vaga.titulo }}
-                    </v-card-title>
-
-                    <v-card-subtitle v-model="quantidade">
-                      {{ vaga.quantidade }}
-                    </v-card-subtitle>
-
-                    <v-card-subtitle v-model="turno">
-                      {{ vaga.turno }}
-                    </v-card-subtitle>
-
-                    <v-card-actions>
-                      <v-btn color="pink-darken-4" text="Descrição"></v-btn>
-
-                      <v-spacer></v-spacer>
-
-                      <v-btn
-                        :icon="vaga.show ? 'mdi-chevron-up' : 'mdi-chevron-down'"
-                        @click="vaga.show = !vaga.show"
-                      ></v-btn>
-                    </v-card-actions>
-
-                    <v-expand-transition>
-                      <div v-show="vaga.show">
-                        <v-divider></v-divider>
-
-                        <v-card-text v-model="descricao">
-                          {{ vaga.descricao }}
-                        </v-card-text>
-                      </div>
-                    </v-expand-transition>
-                  </v-card>
-                </v-col>
-              </div>
-            </v-card>
-          </v-container>
-        </v-col>
-
         <div class="w-50" id="responsive-cards">
           <v-col cols="12" md="12">
             <v-container class="my-9">
@@ -205,6 +155,55 @@
             </v-container>
           </v-col>
         </div>
+        <v-col cols="12" md="6">
+          <v-container class="my-13">
+            <v-card
+              class="mx-auto my-16 overflow-auto"
+              width="100%"
+              height="673"
+              id="fundoCardVagas"
+            >
+              <div class="d-flex flex-row flex-wrap" id="responsive-cards">
+                <v-col cols="12" md="6" v-for="vaga in vagas" :key="vaga.id">
+                  <v-card>
+                    <v-card-title v-model="titulo">
+                      {{ vaga.titulo }}
+                    </v-card-title>
+
+                    <v-card-subtitle v-model="quantidade">
+                      {{ vaga.quantidade }}
+                    </v-card-subtitle>
+
+                    <v-card-subtitle v-model="turno">
+                      {{ vaga.turno }}
+                    </v-card-subtitle>
+
+                    <v-card-actions>
+                      <v-btn color="pink-darken-4" text="Descrição"></v-btn>
+
+                      <v-spacer></v-spacer>
+
+                      <v-btn
+                        :icon="vaga.show ? 'mdi-chevron-up' : 'mdi-chevron-down'"
+                        @click="vaga.show = !vaga.show"
+                      ></v-btn>
+                    </v-card-actions>
+
+                    <v-expand-transition>
+                      <div v-show="vaga.show">
+                        <v-divider></v-divider>
+
+                        <v-card-text v-model="descricao">
+                          {{ vaga.descricao }}
+                        </v-card-text>
+                      </div>
+                    </v-expand-transition>
+                  </v-card>
+                </v-col>
+              </div>
+            </v-card>
+          </v-container>
+        </v-col>
       </v-row>
     </div>
   </v-main>
@@ -262,7 +261,7 @@ export default {
 }
 
 #imagem {
-  background-image: url("../assets/img/fundo.svg");
+  background-image: url("../assets/img/fundo2.svg");
   background-size: 100%;
   background-repeat: no-repeat;
   background-color: #fff1f7;
