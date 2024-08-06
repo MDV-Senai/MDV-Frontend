@@ -24,7 +24,7 @@
         </v-row>
 
         <v-row class="d-flex justify-center">
-          <v-col cols="12" md="12">
+          <v-col cols="8" md="11">
             <v-text-field
               label="Nome social"
               :rules="[rules.required]"
@@ -37,17 +37,17 @@
             >
             </v-text-field>
           </v-col>
+          <v-col cols="4" md="1">
+            <v-switch
+              v-model="enableSocialName"
+              class="text-pink-darken-1"
+              color="pink-darken-4"
+            ></v-switch>
+          </v-col>
         </v-row>
 
-        <v-switch
-          v-model="enableSocialName"
-          label="Inserir Nome social"
-          class="text-pink-darken-1"
-          color="pink-darken-4"
-        ></v-switch>
-
         <v-row class="d-flex justify-center">
-          <v-col cols="12" md="6">
+          <v-col cols="6" md="6">
             <v-text-field
               label="CPF"
               :rules="[rules.required]"
@@ -59,7 +59,7 @@
               v-mask="'###.###.###-##'"
             ></v-text-field>
           </v-col>
-          <v-col cols="12" md="6">
+          <v-col cols="6" md="6">
             <v-text-field
               label="Nº de Matrícula de Trabalho"
               :rules="[rules.required]"
@@ -73,7 +73,7 @@
         </v-row>
 
         <v-row id="inputResponsivo" class="d-flex justify-center">
-          <v-col cols="12" md="4">
+          <v-col cols="6" md="4">
             <v-text-field
               label="Telefone"
               maxlength="14"
@@ -84,7 +84,7 @@
               v-mask="'(##) ####-####'"
             ></v-text-field>
           </v-col>
-          <v-col cols="12" md="4">
+          <v-col cols="6" md="4">
             <v-text-field
               label="Celular"
               :rules="[rules.required]"
@@ -110,7 +110,7 @@
         </v-row>
 
         <v-row id="inputResponsivo" class="d-flex justify-center">
-          <v-col cols="12" md="6">
+          <v-col cols="6" md="6">
             <v-text-field
               label="Senha"
               type="password"
@@ -122,7 +122,7 @@
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
-          <v-col cols="12" md="6">
+          <v-col cols="6" md="6">
             <v-text-field
               label="Confirme sua senha"
               type="password"
@@ -138,10 +138,7 @@
 
         <div class="d-flex justify-center">
           <v-row class="d-flex justify-center">
-            <v-col cols="12" md="3">
-              <div></div>
-            </v-col>
-            <v-col cols="12" md="3">
+            <v-col cols="6" md="3">
               <v-btn
                 @click="reset"
                 class="my-10"
@@ -155,7 +152,7 @@
               </v-btn>
             </v-col>
 
-            <v-col cols="12" md="3">
+            <v-col cols="6" md="3">
               <v-btn
                 append-icon="mdi-chevron-right"
                 variant="outlined"
@@ -171,9 +168,6 @@
                   <v-icon color="pink-darken-4"></v-icon>
                 </template>
               </v-btn>
-            </v-col>
-            <v-col cols="12" md="3">
-              <div></div>
             </v-col>
           </v-row>
         </div>
@@ -220,9 +214,8 @@
         </v-data-table>
       </v-card>
     </v-container>
+    <Footer />
   </v-main>
-
-  <Footer />
 </template>
 
 <style scoped>
