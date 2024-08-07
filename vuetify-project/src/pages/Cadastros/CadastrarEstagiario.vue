@@ -196,7 +196,7 @@
         </v-row>
 
         <v-row id="inputResponsivo" class="d-flex justify-center">
-          <v-col cols="12" md="6">
+          <v-col cols="12" md="12">
             <v-text-field
               label="CEP"
               :rules="[rules.required]"
@@ -209,7 +209,9 @@
               @input.debounce="preencheCep($event.target.value)"
             ></v-text-field>
           </v-col>
-          <v-col cols="12" md="6">
+        </v-row>
+        <v-row>
+          <v-col cols="12" md="12">
             <v-text-field
               v-model="rua"
               label="Logradouro"
@@ -223,7 +225,7 @@
           </v-col>
         </v-row>
         <v-row>
-          <v-col cols="6" md="2">
+          <v-col cols="6" md="4">
             <v-text-field
               label="Nº"
               :rules="[rules.required]"
@@ -234,7 +236,7 @@
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
-          <v-col cols="6" md="5">
+          <v-col cols="6" md="8">
             <v-text-field
               label="Complemento"
               :rules="[rules.required]"
@@ -245,7 +247,9 @@
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
-          <v-col cols="12" md="5">
+        </v-row>
+        <v-row class="d-flex justify-center">
+          <v-col cols="12" md="12">
             <v-text-field
               v-model="bairro"
               label="Bairro"
@@ -258,8 +262,8 @@
             ></v-text-field>
           </v-col>
         </v-row>
-        <v-row class="d-flex justify-center">
-          <v-col cols="6" md="6">
+        <v-row>
+          <v-col cols="6" md="8">
             <v-text-field
               v-model="cidade"
               label="Cidade"
@@ -271,7 +275,7 @@
               readonly
             ></v-text-field>
           </v-col>
-          <v-col cols="6" md="6">
+          <v-col cols="6" md="4">
             <v-select
               v-model="uf"
               :items="ufs"
