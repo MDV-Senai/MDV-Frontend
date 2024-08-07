@@ -205,9 +205,29 @@
               <td>{{ item.name }}</td>
               <td>{{ item.speed }}</td>
               <td>
-                <v-btn @click="handleButtonClick(item.name)" color="red">
-                  DELETE
-                </v-btn>
+                <v-btn
+                  v-bind="activatorProps"
+                  @click="handleButtonClick(item.name)"
+                  density="compact"
+                  icon="mdi-eye-outline"
+                  variant="outlined"
+                  color="red"
+                ></v-btn>
+                <v-btn
+                  v-bind="activatorProps"
+                  density="compact"
+                  icon="mdi-pencil"
+                  class="mx-5"
+                  variant="outlined"
+                  color="red"
+                ></v-btn>
+                <v-btn
+                  v-bind="activatorProps"
+                  density="compact"
+                  icon="mdi-delete"
+                  variant="outlined"
+                  color="red"
+                ></v-btn>
               </td>
             </tr>
           </template>
