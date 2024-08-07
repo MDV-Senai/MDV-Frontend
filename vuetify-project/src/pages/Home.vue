@@ -7,27 +7,36 @@
         <v-col sm="2" id="card">
           <RouterLink to="/CadastrarInstituicao">
             <v-card
-              color="pink-darken-4"
+              color="light-green-darken-3"
               class="py-14 my-15 w-100"
-              variant="outlined"
+             variant = "plain"
             >
               <v-btn icon flat>
-                <v-icon color="pink-darken-4">mdi-store-plus-outline</v-icon>
+                <v-icon color="light-green-darken-3">mdi-store-plus-outline</v-icon>
               </v-btn>
               <v-card-title>Cadastrar Instituição</v-card-title>
             </v-card>
           </RouterLink>
         </v-col>
-
+ <v-col cols="auto">
+        <v-btn
+          :ripple="false"
+          height="72"
+          min-width="164"
+        >
+          Without Ripple
+        </v-btn>
+      </v-col>
         <v-col sm="2" id="card">
           <RouterLink to="/CadastrarEstagiario">
             <v-card
-              color="pink-darken-4"
+              color="light-green-darken-3"
               class="py-14 my-15 w-100"
               variant="outlined"
+              
             >
               <v-btn icon flat>
-                <v-icon color="pink-darken-4">mdi-account-plus-outline</v-icon>
+                <v-icon color="light-green-darken-3">mdi-account-plus-outline</v-icon>
               </v-btn>
               <v-card-title>Cadastrar Estagiário</v-card-title>
             </v-card>
@@ -37,12 +46,12 @@
         <v-col sm="2" id="card">
           <RouterLink to="/CadastrarSetor">
             <v-card
-              color="pink-darken-4"
+              color="light-green-darken-3"
               class="py-14 my-15 w-100"
               variant="outlined"
             >
               <v-btn icon flat>
-                <v-icon color="pink-darken-4">mdi-text-box-plus-outline</v-icon>
+                <v-icon color="light-green-darken-3">mdi-text-box-plus-outline</v-icon>
               </v-btn>
               <v-card-title>Cadastrar Setor</v-card-title>
             </v-card>
@@ -52,12 +61,12 @@
         <v-col sm="2" id="card">
           <RouterLink to="/cadastrarVagas">
             <v-card
-              color="pink-darken-4"
+              color="light-green-darken-3"
               class="py-14 my-15 w-100"
               variant="outlined"
             >
               <v-btn icon flat>
-                <v-icon color="pink-darken-4">mdi-handshake-outline</v-icon>
+                <v-icon color="light-green-darken-3">mdi-handshake-outline</v-icon>
               </v-btn>
               <v-card-title>Cadastro De Vagas</v-card-title>
             </v-card>
@@ -67,12 +76,12 @@
         <v-col sm="2" id="card">
           <RouterLink to="/cadastrarAdmin">
             <v-card
-              color="pink-darken-4"
+              color="light-green-darken-3"
               class="py-14 my-15 w-100"
               variant="outlined"
             >
               <v-btn icon flat>
-                <v-icon color="pink-darken-4">mdi-file-account-outline</v-icon>
+                <v-icon color="light-green-darken-3">mdi-file-account-outline</v-icon>
               </v-btn>
               <v-card-title>Cadastro de Admin</v-card-title>
             </v-card>
@@ -90,6 +99,7 @@
           </div>
         </v-col>
       </v-row>
+      
     </div>
     <Footer />
   </v-main>
@@ -99,6 +109,8 @@
 </script>
 
 <style scoped>
+
+
 #fundoCards {
   background-color: #fff;
   width: 90%;
