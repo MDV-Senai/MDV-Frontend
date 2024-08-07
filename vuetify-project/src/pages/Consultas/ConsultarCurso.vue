@@ -23,7 +23,6 @@
 
           <v-divider></v-divider>
           <v-data-table
-            :headers="headers"
             :items="filteredBoats"
             height="400"
             item-value="name"
@@ -70,7 +69,6 @@
                     </template>
                   </v-dialog>
                   <v-btn
-                    v-bind="activatorProps"
                     density="compact"
                     icon="mdi-pencil"
                     class="mx-5"
@@ -78,7 +76,6 @@
                     color="pink-darken-4"
                   ></v-btn>
                   <v-btn
-                    v-bind="activatorProps"
                     density="compact"
                     icon="mdi-delete"
                     variant="outlined"
