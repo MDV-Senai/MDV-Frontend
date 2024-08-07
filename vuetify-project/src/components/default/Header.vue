@@ -9,14 +9,14 @@
       <v-spacer></v-spacer>
       <RouterLink to="/home" id="logo_url">
         <v-btn icon>
-          <v-icon class="custom-icon">mdi-home-outline</v-icon>
+          <v-icon color="red" class="custom-icon ">mdi-home-outline</v-icon>
         </v-btn>
       </RouterLink>
       <v-btn icon>
-        <v-icon>mdi-bell-outline</v-icon>
+        <v-icon color="red">mdi-bell-outline</v-icon>
       </v-btn>
-      <p>Nome do Usuário</p>
-      <v-app-bar-nav-icon @click.stop="toggleDrawer"></v-app-bar-nav-icon>
+      <p color="red">Nome do Usuário</p>
+      <v-app-bar-nav-icon @click.stop="toggleDrawer" color="red"></v-app-bar-nav-icon>
     </v-toolbar>
 
     <Drawer v-model="drawer" />
