@@ -71,7 +71,19 @@
             ></v-file-input>
           </v-col>
         </v-row>
-
+        <v-row id="inputResponsivo" class="d-flex justify-center">
+          <v-col cols="12" md="12">
+            <v-text-field
+              label="Nome do Responsável Legal"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
+              clearable
+              class="text-pink-darken-1"
+              color="pink-darken-4"
+            ></v-text-field>
+          </v-col>
+        </v-row>
         <v-row id="inputResponsivo" class="d-flex justify-center">
           <v-col cols="6" md="3">
             <v-text-field
@@ -110,7 +122,7 @@
           </v-col>
           <v-col cols="6" md="3">
             <v-text-field
-              label="Telefone do Responsável"
+              label="Telefone do Responsável Legal"
               :rules="[rules.required]"
               maxlength="14"
               counter
