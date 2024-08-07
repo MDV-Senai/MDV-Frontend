@@ -249,39 +249,6 @@
   </v-main>
 </template>
 
-<style scoped>
-#imagem {
-  background-image: url("../assets/img/fundoDesenhos.svg");
-  background-size: contain;
-  background-repeat: no-repeat;
-  height: 100%;
-  width: 100%;
-}
-
-#card_titulo {
-  font-size: 30px;
-  width: 90%;
-  height: 100px;
-  color: gray;
-}
-
-#form {
-  width: 90%;
-}
-
-#fundoCards {
-  background-color: white;
-  border-radius: 8px;
-  width: 90%;
-  margin: 2% auto;
-  display: flex;
-  text-align: center;
-  flex-direction: column;
-  /* justify-content: center;
-    align-items: center; */
-}
-</style>
-
 <script>
 import axios from "axios";
 
@@ -325,3 +292,7 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import '@/assets/styles/shared';
+</style>
