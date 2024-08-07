@@ -33,7 +33,7 @@
             ></v-text-field>
           </v-col>
         </v-row>
-        <v-row class="d-flex justify-center mt-8">
+        <v-row class="d-flex justify-center">
           <v-col cols="12" md="6">
             <v-text-field
               label="Nome do Supervisor "
