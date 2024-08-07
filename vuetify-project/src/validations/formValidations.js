@@ -15,3 +15,15 @@ export const fullNameValidation = (fullName) => {
     }
     return true;
 }
+
+export const confirmPasswordValidation = () => {
+    // Obtém os elementos de senha e confirmar senha
+    const valorSenha = document.getElementById("senha").value;
+    const valorConfirmarSenha = document.getElementById("confirmarSenha").value;
+
+    if (valorSenha !== valorConfirmarSenha) {
+        return "As senhas não são idênticas.";
+    }
+
+    return true;
+}
