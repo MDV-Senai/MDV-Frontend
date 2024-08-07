@@ -4,7 +4,7 @@
 
     <div id="fundoCards">
       <v-row class="d-flex justify-center">
-        <v-col sm="2" id="teste">
+        <v-col sm="2" id="card">
           <RouterLink to="/CadastrarInstituicao">
             <v-card
               color="pink-darken-4"
@@ -19,7 +19,7 @@
           </RouterLink>
         </v-col>
 
-        <v-col sm="2" id="teste">
+        <v-col sm="2" id="card">
           <RouterLink to="/CadastrarEstagiario">
             <v-card
               color="pink-darken-4"
@@ -34,7 +34,7 @@
           </RouterLink>
         </v-col>
 
-        <v-col sm="2" id="teste">
+        <v-col sm="2" id="card">
           <RouterLink to="/CadastrarSetor">
             <v-card
               color="pink-darken-4"
@@ -49,7 +49,7 @@
           </RouterLink>
         </v-col>
 
-        <v-col sm="2" id="teste">
+        <v-col sm="2" id="card">
           <RouterLink to="/cadastrarVagas">
             <v-card
               color="pink-darken-4"
@@ -64,7 +64,7 @@
           </RouterLink>
         </v-col>
 
-        <v-col sm="2" id="teste">
+        <v-col sm="2" id="card">
           <RouterLink to="/cadastrarAdmin">
             <v-card
               color="pink-darken-4"
@@ -106,11 +106,9 @@
   display: flex;
   text-align: center;
   flex-direction: column;
-  /* justify-content: center;
-    align-items: center; */
 }
 
-#teste {
+#card {
   min-width: 230px;
 }
 
@@ -126,9 +124,5 @@
   background-repeat: no-repeat;
   height: 100%;
   width: 100%;
-}
-
-#testeCard {
-  border: 1px solid #880e4f;
 }
 </style>
