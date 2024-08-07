@@ -46,7 +46,7 @@
         </v-row>
 
         <v-row class="d-flex justify-center">
-          <v-col cols="6" md="4">
+          <v-col cols="12" md="4">
             <v-text-field
               label="Nº Matrícula do Estudante"
               :rules="[rules.required]"
@@ -57,7 +57,7 @@
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
-          <v-col cols="6" md="4">
+          <v-col cols="12" md="4">
             <v-text-field
               label="CPF"
               :rules="[rules.required]"
@@ -119,7 +119,7 @@
           </v-col>
           <v-col cols="12" md="3">
             <v-text-field
-              label="Número Emergencial"
+              label="Número do Contato Emergencial"
               :rules="[rules.required]"
               maxlength="15"
               counter
@@ -196,7 +196,7 @@
         </v-row>
 
         <v-row id="inputResponsivo" class="d-flex justify-center">
-          <v-col cols="6" md="4">
+          <v-col cols="12" md="6">
             <v-text-field
               label="CEP"
               :rules="[rules.required]"
@@ -206,23 +206,23 @@
               class="text-pink-darken-1"
               color="pink-darken-4"
               v-mask="'#####-###'"
-              @input.debounce="buscaCep($event.target.value)"
+              @input.debounce="preencheCep($event.target.value)"
             ></v-text-field>
           </v-col>
-
-          <v-col cols="6" md="4">
+          <v-col cols="12" md="6">
             <v-text-field
-              v-model="cidade"
-              label="Cidade"
+              v-model="rua"
+              label="Logradouro"
               :rules="[rules.required]"
               maxlength="255"
               counter
-              readonly
               class="text-pink-darken-1"
               color="pink-darken-4"
+              readonly
             ></v-text-field>
           </v-col>
-
+        </v-row>
+        <v-row>
           <v-col cols="6" md="2">
             <v-text-field
               label="Nº"
@@ -234,49 +234,7 @@
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
-
-          <v-col cols="6" md="2">
-            <v-select
-              v-model="uf"
-              label="UF"
-              :rules="[rules.required]"
-              readonly
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-select>
-          </v-col>
-        </v-row>
-
-        <v-row class="d-flex justify-center">
-          <v-col cols="12" md="12">
-            <v-text-field
-              v-model="rua"
-              label="Logradouro"
-              :rules="[rules.required]"
-              maxlength="255"
-              counter
-              readonly
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
-          </v-col>
-        </v-row>
-
-        <v-row id="inputResponsivo" class="d-flex justify-center">
-          <v-col cols="6" md="6">
-            <v-text-field
-              v-model="bairro"
-              label="Bairro"
-              :rules="[rules.required]"
-              maxlength="255"
-              counter
-              readonly
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
-          </v-col>
-
-          <v-col cols="6" md="6">
+          <v-col cols="6" md="5">
             <v-text-field
               label="Complemento"
               :rules="[rules.required]"
@@ -286,6 +244,44 @@
               class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
+          </v-col>
+          <v-col cols="12" md="5">
+            <v-text-field
+              v-model="bairro"
+              label="Bairro"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
+              class="text-pink-darken-1"
+              color="pink-darken-4"
+              readonly
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row class="d-flex justify-center">
+          <v-col cols="6" md="6">
+            <v-text-field
+              v-model="cidade"
+              label="Cidade"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
+              class="text-pink-darken-1"
+              color="pink-darken-4"
+              readonly
+            ></v-text-field>
+          </v-col>
+          <v-col cols="6" md="6">
+            <v-select
+              v-model="uf"
+              :items="ufs"
+              :item-title="'uf'"
+              :item-value="'id'"
+              label="UF"
+              class="text-pink-darken-1"
+              color="pink-darken-4"
+              readonly
+            ></v-select>
           </v-col>
         </v-row>
 
