@@ -3,8 +3,8 @@
   <v-main id="imagem">
     <Header />
     <div class="d-flex justify-center align-center">
-      <v-card class="d-flex justify-center align-center" id="card_titulo"
-        >Cadastro da Instituição de Ensino</v-card
+      <v-card  class="d-flex justify-center align-center" id="card_titulo"
+        ><h3>Cadastro da Instituição de Ensino</h3></v-card
       >
     </div>
     <div id="fundoCards">
@@ -17,8 +17,9 @@
               maxlength="255"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-4"
+              variant="outlined"
+              
             ></v-text-field>
           </v-col>
         </v-row>
@@ -31,8 +32,8 @@
               maxlength="255"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-3"
+              variant= "outlined"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -44,8 +45,8 @@
               maxlength="255"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-3"
+              variant= "outlined"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -57,8 +58,8 @@
               maxlength="255"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-3"
+              variant= "outlined"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -70,8 +71,8 @@
               maxlength="18"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-3"
+              variant= "outlined"
               v-mask="'##.###.###/####-##'"
             ></v-text-field>
           </v-col>
@@ -83,8 +84,8 @@
               maxlength="12"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-3"
+              variant= "outlined"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -96,8 +97,8 @@
               maxlength="14"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-3"
+              variant= "outlined"
               v-mask="'(##) ####-####'"
             ></v-text-field>
           </v-col>
@@ -109,8 +110,8 @@
               maxlength="15"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-3"
+              variant= "outlined"
               v-mask="'(##) #####-####'"
             ></v-text-field>
           </v-col>
@@ -121,8 +122,8 @@
               maxlength="255"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-3"
+              variant= "outlined"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -135,8 +136,8 @@
               maxlength="9"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+            class="text-grey-darken-3"
+              variant= "outlined"
               v-mask="'#####-###'"
               @input.debounce="preencheCep($event.target.value)"
             ></v-text-field>
@@ -150,8 +151,8 @@
               :rules="[rules.required]"
               maxlength="255"
               counter
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+            class="text-grey-darken-3"
+              variant="outlined"
               readonly
             ></v-text-field>
           </v-col>
@@ -164,8 +165,8 @@
               maxlength="10"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+            class="text-grey-darken-3"
+              variant="outlined"
             ></v-text-field>
           </v-col>
           <v-col cols="6" md="8">
@@ -175,8 +176,8 @@
               maxlength="255"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+            class="text-grey-darken-3"
+              variant="outlined"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -188,8 +189,8 @@
               :rules="[rules.required]"
               maxlength="255"
               counter
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+            class="text-grey-darken-3"
+              variant="outlined"
               readonly
             ></v-text-field>
           </v-col>
@@ -202,8 +203,8 @@
               :rules="[rules.required]"
               maxlength="255"
               counter
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+            class="text-grey-darken-3"
+              variant="outlined"
               readonly
             ></v-text-field>
           </v-col>
@@ -214,8 +215,8 @@
               :item-title="'uf'"
               :item-value="'id'"
               label="UF"
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+            class="text-grey-darken-3"
+              variant="outlined"
               readonly
             ></v-select>
           </v-col>
@@ -228,8 +229,8 @@
               maxlength="255"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+            class="text-grey-darken-3"
+              variant="outlined"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
@@ -242,8 +243,8 @@
               maxlength="255"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+            class="text-grey-darken-3"
+              variant="outlined"
               @click:append="show1 = !show1"
             ></v-text-field>
           </v-col>
@@ -257,8 +258,8 @@
               maxlength="255"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+            class="text-grey-darken-3"
+              variant="outlined"
               @click:append="show2 = !show2"
             ></v-text-field>
           </v-col>
@@ -270,9 +271,9 @@
               <v-btn
                 @click="reset"
                 class="my-10"
-                color="pink-darken-4"
-                append-icon="mdi-chevron-right"
                 variant="outlined"
+                append-icon="mdi-chevron-right"
+                
                 width="183"
                 height="62"
               >
@@ -284,8 +285,7 @@
               <v-btn
                 append-icon="mdi-chevron-right"
                 variant="outlined"
-                color="pink-darken-4"
-                class="my-10"
+                class="text-grey-darken-4 my-10"
                 width="183"
                 height="62"
                 id="botaoEntrar"
@@ -318,7 +318,15 @@
   font-size: 30px;
   width: 90%;
   height: 100px;
-  color: gray;
+  
+}
+
+h3 { 
+     background: linear-gradient(to right, rgba(178, 34, 34, 1), rgba(0, 100, 0, 1));
+    -webkit-background-clip: text;
+    color: transparent;
+    background-clip: text;
+    
 }
 
 #form {
