@@ -7,17 +7,17 @@ export function useResponsiveHeight() {
   const height = computed(() => {
     switch (name.value) {
       case "xs":
-        return 220;
+        return "220px";
       case "sm":
-        return 400;
+        return "400px";
       case "md":
-        return 500;
+        return "500px";
       case "lg":
-        return 600;
+        return "600px";
       case "xl":
-        return 800;
+        return "800px";
       case "xxl":
-        return 1200;
+        return "1200px";
       default:
         return undefined;
     }
