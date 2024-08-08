@@ -3,7 +3,7 @@
   <v-main id="imagem">
     <Header />
     <div class="d-flex justify-center align-center">
-      <v-card  class="d-flex justify-center align-center" id="card_titulo"
+      <v-card class="d-flex justify-center align-center" id="card_titulo"
         ><h3>Cadastro da Instituição de Ensino</h3></v-card
       >
     </div>
@@ -19,7 +19,6 @@
               clearable
               class="text-grey-darken-4"
               variant="outlined"
-              
             ></v-text-field>
           </v-col>
         </v-row>
@@ -33,7 +32,7 @@
               counter
               clearable
               class="text-grey-darken-3"
-              variant= "outlined"
+              variant="outlined"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -46,7 +45,7 @@
               counter
               clearable
               class="text-grey-darken-3"
-              variant= "outlined"
+              variant="outlined"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -59,7 +58,7 @@
               counter
               clearable
               class="text-grey-darken-3"
-              variant= "outlined"
+              variant="outlined"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -72,7 +71,7 @@
               counter
               clearable
               class="text-grey-darken-3"
-              variant= "outlined"
+              variant="outlined"
               v-mask="'##.###.###/####-##'"
             ></v-text-field>
           </v-col>
@@ -85,7 +84,7 @@
               counter
               clearable
               class="text-grey-darken-3"
-              variant= "outlined"
+              variant="outlined"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -98,7 +97,7 @@
               counter
               clearable
               class="text-grey-darken-3"
-              variant= "outlined"
+              variant="outlined"
               v-mask="'(##) ####-####'"
             ></v-text-field>
           </v-col>
@@ -111,7 +110,7 @@
               counter
               clearable
               class="text-grey-darken-3"
-              variant= "outlined"
+              variant="outlined"
               v-mask="'(##) #####-####'"
             ></v-text-field>
           </v-col>
@@ -123,7 +122,7 @@
               counter
               clearable
               class="text-grey-darken-3"
-              variant= "outlined"
+              variant="outlined"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -136,8 +135,8 @@
               maxlength="9"
               counter
               clearable
-            class="text-grey-darken-3"
-              variant= "outlined"
+              class="text-grey-darken-3"
+              variant="outlined"
               v-mask="'#####-###'"
               @input.debounce="preencheCep($event.target.value)"
             ></v-text-field>
@@ -151,7 +150,7 @@
               :rules="[rules.required]"
               maxlength="255"
               counter
-            class="text-grey-darken-3"
+              class="text-grey-darken-3"
               variant="outlined"
               readonly
             ></v-text-field>
@@ -165,7 +164,7 @@
               maxlength="10"
               counter
               clearable
-            class="text-grey-darken-3"
+              class="text-grey-darken-3"
               variant="outlined"
             ></v-text-field>
           </v-col>
@@ -176,7 +175,7 @@
               maxlength="255"
               counter
               clearable
-            class="text-grey-darken-3"
+              class="text-grey-darken-3"
               variant="outlined"
             ></v-text-field>
           </v-col>
@@ -189,7 +188,7 @@
               :rules="[rules.required]"
               maxlength="255"
               counter
-            class="text-grey-darken-3"
+              class="text-grey-darken-3"
               variant="outlined"
               readonly
             ></v-text-field>
@@ -203,7 +202,7 @@
               :rules="[rules.required]"
               maxlength="255"
               counter
-            class="text-grey-darken-3"
+              class="text-grey-darken-3"
               variant="outlined"
               readonly
             ></v-text-field>
@@ -215,7 +214,7 @@
               :item-title="'uf'"
               :item-value="'id'"
               label="UF"
-            class="text-grey-darken-3"
+              class="text-grey-darken-3"
               variant="outlined"
               readonly
             ></v-select>
@@ -229,7 +228,7 @@
               maxlength="255"
               counter
               clearable
-            class="text-grey-darken-3"
+              class="text-grey-darken-3"
               variant="outlined"
             ></v-text-field>
           </v-col>
@@ -243,7 +242,7 @@
               maxlength="255"
               counter
               clearable
-            class="text-grey-darken-3"
+              class="text-grey-darken-3"
               variant="outlined"
               @click:append="show1 = !show1"
             ></v-text-field>
@@ -258,7 +257,7 @@
               maxlength="255"
               counter
               clearable
-            class="text-grey-darken-3"
+              class="text-grey-darken-3"
               variant="outlined"
               @click:append="show2 = !show2"
             ></v-text-field>
@@ -273,7 +272,6 @@
                 class="my-10"
                 variant="outlined"
                 append-icon="mdi-chevron-right"
-                
                 width="183"
                 height="62"
               >

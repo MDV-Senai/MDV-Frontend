@@ -16,7 +16,7 @@
             label="Pesquise"
             prepend-inner-icon="mdi-magnify"
             variant="outlined"
-            color="pink-darken-4"
+            color="light-green-darken-3"
             hide-details
             single-line
           ></v-text-field>
@@ -39,7 +39,7 @@
                         density="compact"
                         icon="mdi-eye-outline"
                         variant="outlined"
-                        color="pink-darken-4"
+                        color="light-green-darken-3"
                       ></v-btn>
                     </template>
 
@@ -53,7 +53,7 @@
                               value="Nome Completo"
                               reandoly
                               class="mt-16 text-pink-darken-1"
-                              color="pink-darken-4"
+                              color="light-green-darken-3"
                             ></v-text-field>
                           </v-col>
                         </v-row>
@@ -65,7 +65,7 @@
                               value="000.000.000-00"
                               reandoly
                               class="text-pink-darken-1"
-                              color="pink-darken-4"
+                              color="light-green-darken-3"
                             ></v-text-field>
                           </v-col>
                           <v-col cols="12" md="4">
@@ -75,7 +75,7 @@
                               value="00/00/0000"
                               reandoly
                               class="text-pink-darken-1"
-                              color="pink-darken-4"
+                              color="light-green-darken-3"
                             ></v-text-field>
                           </v-col>
                           <v-col cols="12" md="4">
@@ -85,7 +85,7 @@
                               value="3030-3030"
                               reandoly
                               class="text-pink-darken-1"
-                              color="pink-darken-4"
+                              color="light-green-darken-3"
                             ></v-text-field>
                           </v-col>
                         </v-row>
@@ -98,7 +98,7 @@
                               value="instituicao@gmail.com"
                               reandoly
                               class="text-pink-darken-1"
-                              color="pink-darken-4"
+                              color="light-green-darken-3"
                             ></v-text-field>
                           </v-col>
 
@@ -109,7 +109,7 @@
                               value="(47) 99999-9999"
                               reandoly
                               class="text-pink-darken-1"
-                              color="pink-darken-4"
+                              color="light-green-darken-3"
                             ></v-text-field>
                           </v-col>
                           <v-col cols="12" md="4">
@@ -119,7 +119,7 @@
                               value="Instituição de Ensino"
                               reandoly
                               class="text-pink-darken-1"
-                              color="pink-darken-4"
+                              color="light-green-darken-3"
                             ></v-text-field>
                           </v-col>
                         </v-row>
@@ -132,7 +132,7 @@
                               value="0000000"
                               reandoly
                               class="text-pink-darken-1"
-                              color="pink-darken-4"
+                              color="light-green-darken-3"
                             ></v-text-field>
                           </v-col>
 
@@ -143,7 +143,7 @@
                               value="Curso"
                               reandoly
                               class="text-pink-darken-1"
-                              color="pink-darken-4"
+                              color="light-green-darken-3"
                             ></v-text-field>
                           </v-col>
                           <v-col cols="12" md="4">
@@ -153,7 +153,7 @@
                               value="0"
                               reandoly
                               class="text-pink-darken-1"
-                              color="pink-darken-4"
+                              color="light-green-darken-3"
                             ></v-text-field>
                           </v-col>
                         </v-row>
@@ -166,7 +166,7 @@
                               value="00.000-000"
                               reandoly
                               class="text-pink-darken-1"
-                              color="pink-darken-4"
+                              color="light-green-darken-3"
                             ></v-text-field>
                           </v-col>
 
@@ -177,7 +177,7 @@
                               value="Estado"
                               reandoly
                               class="text-pink-darken-1"
-                              color="pink-darken-4"
+                              color="light-green-darken-3"
                             ></v-text-field>
                           </v-col>
                           <v-col cols="12" md="4">
@@ -187,7 +187,7 @@
                               value="Cidade"
                               reandoly
                               class="text-pink-darken-1"
-                              color="pink-darken-4"
+                              color="light-green-darken-3"
                             ></v-text-field>
                           </v-col>
                         </v-row>
@@ -199,7 +199,7 @@
                               value="Bairro"
                               reandoly
                               class="text-pink-darken-1"
-                              color="pink-darken-4"
+                              color="light-green-darken-3"
                             ></v-text-field>
                           </v-col>
 
@@ -210,7 +210,7 @@
                               value="Logradouro"
                               reandoly
                               class="text-pink-darken-1"
-                              color="pink-darken-4"
+                              color="light-green-darken-3"
                             ></v-text-field>
                           </v-col>
                           <v-col cols="12" md="4">
@@ -220,7 +220,7 @@
                               value="Complemento"
                               reandoly
                               class="text-pink-darken-1"
-                              color="pink-darken-4"
+                              color="light-green-darken-3"
                             ></v-text-field>
                           </v-col>
                         </v-row>
@@ -241,13 +241,13 @@
                     icon="mdi-pencil"
                     class="mx-5"
                     variant="outlined"
-                    color="pink-darken-4"
+                    color="light-green-darken-3"
                   ></v-btn>
                   <v-btn
                     density="compact"
                     icon="mdi-delete"
                     variant="outlined"
-                    color="pink-darken-4"
+                    color="light-green-darken-3"
                   ></v-btn>
                 </td>
               </tr>
@@ -268,16 +268,16 @@ export default {
 
       boats: [
         {
-          name: "Maria",
+          name: "Fulano",
         },
         {
-          name: "Murilo",
+          name: "Fulano",
         },
         {
-          name: "Aline",
+          name: "Fulano",
         },
         {
-          name: "Geovana",
+          name: "Fulano",
         },
       ],
     };

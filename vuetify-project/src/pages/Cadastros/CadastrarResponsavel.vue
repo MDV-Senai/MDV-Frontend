@@ -3,7 +3,8 @@
     <Header />
     <div class="d-flex justify-center align-center">
       <v-card class="d-flex justify-center align-center" id="card_titulo"
-        >Responsável Pelo Estagiário (Instituição de Ensino)</v-card
+        ><h3>Responsável Pelo Estagiário (Instituição de Ensino</h3>
+        )</v-card
       >
     </div>
     <div id="fundoCards">
@@ -16,8 +17,8 @@
               maxlength="255"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-3"
+              variant="outlined"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -30,8 +31,8 @@
               maxlength="255"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-3"
+              variant="outlined"
               v-show="isVisible"
             >
             </v-text-field>
@@ -42,9 +43,9 @@
           <v-col cols="12" md="12">
             <v-switch
               v-model="isVisible"
-              class="text-pink-darken-1"
+              class="text-grey-darken-3"
               label="Exibir Nome Social"
-              color="pink-darken-4"
+              variant="outlined"
               id="toggleSwitch"
             ></v-switch>
           </v-col>
@@ -58,8 +59,8 @@
               maxlength="25"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-3"
+              variant="outlined"
             ></v-text-field>
           </v-col>
           <v-col cols="6" md="6">
@@ -69,8 +70,8 @@
               maxlength="14"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-3"
+              variant="outlined"
               v-mask="'###.###.###-##'"
             ></v-text-field>
           </v-col>
@@ -84,8 +85,8 @@
               maxlength="255"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-3"
+              variant="outlined"
             ></v-text-field>
           </v-col>
 
@@ -96,8 +97,8 @@
               maxlength="255"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-3"
+              variant="outlined"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -107,10 +108,9 @@
             <v-col cols="6" md="3">
               <v-btn
                 @click="reset"
-                class="my-10"
-                color="pink-darken-4"
-                append-icon="mdi-chevron-right"
+                class="my-10 text-grey-darken-3"
                 variant="outlined"
+                append-icon="mdi-chevron-right"
                 width="183"
                 height="62"
               >
@@ -122,8 +122,7 @@
               <v-btn
                 append-icon="mdi-chevron-right"
                 variant="outlined"
-                color="pink-darken-4"
-                class="my-10"
+                class="my-10 text-grey-darken-3"
                 width="183"
                 height="62"
                 id="botaoEntrar"
@@ -131,7 +130,7 @@
                 Cadastrar
 
                 <template v-slot:append>
-                  <v-icon color="pink-darken-4"></v-icon>
+                  <v-icon variant="outlined"></v-icon>
                 </template>
               </v-btn>
             </v-col>

@@ -3,7 +3,7 @@
     <Header />
     <div class="d-flex justify-center align-center">
       <v-card class="d-flex justify-center align-center" id="card_titulo"
-        >Cadastro de Estagiário</v-card
+        ><h3>Cadastro de Estagiário</h3></v-card
       >
     </div>
     <div id="fundoCards">
@@ -16,8 +16,8 @@
               maxlength="255"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-4"
+              variant="outlined"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -30,8 +30,8 @@
               maxlength="255"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-4"
+              variant="outlined"
               v-show="isVisible"
             >
             </v-text-field>
@@ -42,9 +42,9 @@
           <v-col cols="12" md="12">
             <v-switch
               v-model="isVisible"
-              class="text-pink-darken-1"
+              class="text-grey-darken-4"
               label="Exibir Nome Social"
-              color="pink-darken-4"
+              variant="outlined"
               id="toggleSwitch"
             ></v-switch>
           </v-col>
@@ -58,8 +58,8 @@
               maxlength="25"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-4"
+              variant="outlined"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
@@ -69,8 +69,8 @@
               maxlength="14"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-4"
+              variant="outlined"
               v-mask="'###.###.###-##'"
             ></v-text-field>
           </v-col>
@@ -82,8 +82,8 @@
               maxlength="10"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-4"
+              variant="outlined"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -95,8 +95,8 @@
               maxlength="255"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-4"
+              variant="outlined"
             ></v-text-field>
           </v-col>
           <v-col cols="6" md="3">
@@ -106,8 +106,8 @@
               maxlength="15"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-4"
+              variant="outlined"
               v-mask="'(##) #####-####'"
             ></v-text-field>
           </v-col>
@@ -117,8 +117,8 @@
               maxlength="14"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-4"
+              variant="outlined"
               v-mask="'(##) ####-####'"
             ></v-text-field>
           </v-col>
@@ -129,8 +129,8 @@
               maxlength="15"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-4"
+              variant="outlined"
               v-mask="'(##) #####-####'"
             ></v-text-field>
           </v-col>
@@ -144,8 +144,8 @@
               maxlength="255"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-4"
+              variant="outlined"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -158,8 +158,8 @@
               maxlength="255"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-4"
+              variant="outlined"
             ></v-text-field>
           </v-col>
           <v-col cols="6" md="4">
@@ -169,8 +169,8 @@
               maxlength="255"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-4"
+              variant="outlined"
             ></v-text-field>
           </v-col>
           <v-col cols="6" md="4">
@@ -180,8 +180,8 @@
               maxlength="2"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-4"
+              variant="outlined"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -194,8 +194,8 @@
               maxlength="255"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-4"
+              variant="outlined"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -208,8 +208,8 @@
               maxlength="9"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-4"
+              variant="outlined"
               v-mask="'#####-###'"
               @input.debounce="preencheCep($event.target.value)"
             ></v-text-field>
@@ -223,8 +223,8 @@
               :rules="[rules.required]"
               maxlength="255"
               counter
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-4"
+              variant="outlined"
               readonly
             ></v-text-field>
           </v-col>
@@ -237,8 +237,8 @@
               maxlength="10"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-4"
+              variant="outlined"
             ></v-text-field>
           </v-col>
           <v-col cols="6" md="8">
@@ -248,8 +248,8 @@
               maxlength="255"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-4"
+              variant="outlined"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -261,8 +261,8 @@
               :rules="[rules.required]"
               maxlength="255"
               counter
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-4"
+              variant="outlined"
               readonly
             ></v-text-field>
           </v-col>
@@ -275,8 +275,8 @@
               :rules="[rules.required]"
               maxlength="255"
               counter
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-4"
+              variant="outlined"
               readonly
             ></v-text-field>
           </v-col>
@@ -287,8 +287,8 @@
               :item-title="'uf'"
               :item-value="'id'"
               label="UF"
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-4"
+              variant="outlined"
               readonly
             ></v-select>
           </v-col>
@@ -299,8 +299,7 @@
             <v-col cols="6" md="3">
               <v-btn
                 @click="reset"
-                class="my-10"
-                color="pink-darken-4"
+                class="my-10 text-grey-darken-4"
                 append-icon="mdi-chevron-right"
                 variant="outlined"
                 width="183"
@@ -314,7 +313,6 @@
               <v-btn
                 append-icon="mdi-chevron-right"
                 variant="outlined"
-                color="pink-darken-4"
                 class="my-10"
                 width="183"
                 height="62"
@@ -323,7 +321,7 @@
                 Cadastrar
 
                 <template v-slot:append>
-                  <v-icon color="pink-darken-4"></v-icon>
+                  <v-icon class="text-grey-darken-4"></v-icon>
                 </template>
               </v-btn>
             </v-col>
