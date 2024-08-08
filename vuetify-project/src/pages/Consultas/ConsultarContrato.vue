@@ -55,17 +55,18 @@
 </template>
 
 <script>
-import { onMounted } from "vue";
+import { ref, onMounted } from "vue";
 import { useResponsiveHeight } from "../../composables/useResponsiveHeight.js";
 import { fetchContratos } from "../../services/request.js";
 
 export default {
   setup() {
     const { height } = useResponsiveHeight();
+    const contratos = ref([]);
 
     const loadContratos = async () => {
       const response = await fetchContratos();
-      contratos.value = response.data.contratos;
+      contratos.value = response;
     };
 
     onMounted(() => {
@@ -74,8 +75,7 @@ export default {
 
     return {
       height,
-      contratos,
-      loadContratos,
+      contratos
     };
   },
 };
