@@ -22,8 +22,10 @@
           </v-col>
         </v-row>
 
+        
+
        <v-row class="d-flex justify-center">
-          <v-col cols="8" md="11">
+          <v-col cols="12" md="12">
             <v-text-field
               label="Nome social"
               :rules="[rules.required, rules.hidden]"
@@ -32,13 +34,18 @@
               clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
-              id="hidden"
+              v-show="isVisible"
             >
             </v-text-field>
           </v-col>
-          <v-col cols="4" md="1">
+        </v-row>
+
+        <v-row>
+          <v-col cols="12" md="12">
             <v-switch
+              v-model="isVisible"
               class="text-pink-darken-1"
+              label="Exibir Nome Social"
               color="pink-darken-4"
               id="toggleSwitch"
             ></v-switch>
@@ -383,6 +390,7 @@ export default {
   data() {
     return {
       uf: null,
+      isVisible: false,
       cidade: null,
       bairro: null,
       rua: null,

@@ -3,7 +3,7 @@
     <Header />
     <div class="d-flex justify-center align-center">
       <v-card class="d-flex justify-center align-center" id="card_titulo"
-        >Resp. Pelo Estagiário (Instituição de Ensino)</v-card
+        >Responsável Pelo Estagiário (Instituição de Ensino)</v-card
       >
     </div>
     <div id="fundoCards">
@@ -23,24 +23,29 @@
         </v-row>
 
         <v-row class="d-flex justify-center">
-          <v-col cols="8" md="11">
+          <v-col cols="12" md="12">
             <v-text-field
               label="Nome social"
-              :rules="[rules.required]"
+              :rules="[rules.required, rules.hidden]"
               maxlength="255"
               counter
               clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
-              :disabled="!enableSocialName"
+              v-show="isVisible"
             >
             </v-text-field>
           </v-col>
-          <v-col cols="4" md="1">
+        </v-row>
+
+        <v-row>
+          <v-col cols="12" md="12">
             <v-switch
-              v-model="enableSocialName"
+              v-model="isVisible"
               class="text-pink-darken-1"
+              label="Exibir Nome Social"
               color="pink-darken-4"
+              id="toggleSwitch"
             ></v-switch>
           </v-col>
         </v-row>
@@ -176,6 +181,7 @@ export default {
   data() {
     return {
       enableSocialName: false,
+      isVisible: false,
       rules: {
         required: (value) => !!value || "Obrigatório.",
       },
