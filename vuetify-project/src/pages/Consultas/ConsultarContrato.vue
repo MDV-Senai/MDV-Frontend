@@ -3,7 +3,7 @@
     <Header />
     <div class="d-flex justify-center align-center">
       <v-card class="d-flex justify-center align-center" id="card_titulo"
-        >Consultar Contrato</v-card
+        ><h3>Consultar Contrato</h3></v-card
       >
     </div>
     <div id="fundoCards">
@@ -16,7 +16,7 @@
             label="Pesquise"
             prepend-inner-icon="mdi-magnify"
             variant="outlined"
-            color="pink-darken-4"
+            color="light-green-darken-3"
             hide-details
             single-line
           ></v-text-field>
@@ -40,7 +40,7 @@
                         density="compact"
                         icon="mdi-eye-outline"
                         variant="outlined"
-                        color="pink-darken-4"
+                        color="light-green-darken-3"
                       ></v-btn>
                     </template>
 
@@ -55,7 +55,7 @@
                                 value="Fulano"
                                 reandoly
                                 class="text-pink-darken-1"
-                                color="pink-darken-4"
+                                color="light-green-darken-3"
                               ></v-text-field>
                             </v-col>
                           </v-row>
@@ -67,7 +67,7 @@
                                 value="00000000"
                                 reandoly
                                 class="text-pink-darken-1"
-                                color="pink-darken-4"
+                                color="light-green-darken-3"
                               ></v-text-field>
                             </v-col>
                             <v-col cols="12" md="6">
@@ -77,7 +77,7 @@
                                 value="000.000.000-00"
                                 reandoly
                                 class="text-pink-darken-1"
-                                color="pink-darken-4"
+                                color="light-green-darken-3"
                               ></v-text-field>
                             </v-col>
                           </v-row>
@@ -90,7 +90,7 @@
                                 value="Instituição de Ensino"
                                 reandoly
                                 class="text-pink-darken-1"
-                                color="pink-darken-4"
+                                color="light-green-darken-3"
                               ></v-text-field>
                             </v-col>
                             <v-col cols="12" md="6">
@@ -100,7 +100,7 @@
                                 value="Curso"
                                 reandoly
                                 class="text-pink-darken-1"
-                                color="pink-darken-4"
+                                color="light-green-darken-3"
                               ></v-text-field>
                             </v-col>
                           </v-row>
@@ -122,14 +122,14 @@
                     icon="mdi-pencil"
                     class="mx-5"
                     variant="outlined"
-                    color="pink-darken-4"
+                    color="light-green-darken-3"
                   ></v-btn>
                   <v-btn
                     v-bind="activatorProps"
                     density="compact"
                     icon="mdi-delete"
                     variant="outlined"
-                    color="pink-darken-4"
+                    color="light-green-darken-3"
                   ></v-btn>
                 </td>
               </tr>
@@ -186,6 +186,16 @@ export default {
 
 
 <style scoped>
+h3 {
+  background: linear-gradient(
+    to right,
+    rgba(178, 34, 34, 1),
+    rgba(0, 100, 0, 1)
+  );
+  -webkit-background-clip: text;
+  color: transparent;
+  background-clip: text;
+}
 #imagem {
   background-image: url("../assets/img/fundoDesenhos.svg");
   background-size: contain;

@@ -11,7 +11,7 @@
         <div id="button-team">
           <v-menu open-on-hover>
             <template v-slot:activator="{ props }">
-              <v-btn density="compact" icon="mdi-account-group-outline" class="mb-1" color="pink-darken-4" v-bind="props"></v-btn>
+              <v-btn density="compact" icon="mdi-account-group-outline" class="mb-1" color="grey-darken-4" v-bind="props"></v-btn>
             </template>
 
             <v-list>

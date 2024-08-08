@@ -3,7 +3,7 @@
     <Header />
     <div class="d-flex justify-center align-center">
       <v-card class="d-flex justify-center align-center" id="card_titulo"
-        >Consultar Setor</v-card
+        ><h3>Consultar Setor</h3></v-card
       >
     </div>
     <div id="fundoCards">
@@ -16,7 +16,7 @@
             label="Pesquise"
             prepend-inner-icon="mdi-magnify"
             variant="outlined"
-            color="pink-darken-4"
+            color="light-green-darken-3"
             hide-details
             single-line
           ></v-text-field>
@@ -40,7 +40,7 @@
                         density="compact"
                         icon="mdi-eye-outline"
                         variant="outlined"
-                        color="pink-darken-4"
+                        color="light-green-darken-3"
                       ></v-btn>
                     </template>
 
@@ -55,7 +55,7 @@
                                 value="Fulano"
                                 reandoly
                                 class="text-pink-darken-1"
-                                color="pink-darken-4"
+                                color="light-green-darken-3"
                               ></v-text-field>
                             </v-col>
                           </v-row>
@@ -68,7 +68,7 @@
                                 value="Fulano"
                                 reandoly
                                 class="text-pink-darken-1"
-                                color="pink-darken-4"
+                                color="light-green-darken-3"
                               ></v-text-field>
                             </v-col>
                           </v-row>
@@ -80,7 +80,7 @@
                                 value="Setor A"
                                 reandoly
                                 class="text-pink-darken-1"
-                                color="pink-darken-4"
+                                color="light-green-darken-3"
                               ></v-text-field>
                             </v-col>
                             <v-col cols="12" md="6">
@@ -90,7 +90,7 @@
                                 value="setor@hotmail.com"
                                 reandoly
                                 class="text-pink-darken-1"
-                                color="pink-darken-4"
+                                color="light-green-darken-3"
                               ></v-text-field>
                             </v-col>
                           </v-row>
@@ -103,7 +103,7 @@
                                 value="(47) 3030-3030"
                                 reandoly
                                 class="text-pink-darken-1"
-                                color="pink-darken-4"
+                                color="light-green-darken-3"
                               ></v-text-field>
                             </v-col>
                             <v-col cols="12" md="6">
@@ -113,7 +113,7 @@
                                 value="(47) 99999-9999"
                                 reandoly
                                 class="text-pink-darken-1"
-                                color="pink-darken-4"
+                                color="light-green-darken-3"
                               ></v-text-field>
                             </v-col>
                           </v-row>
@@ -125,7 +125,7 @@
                                 id="atividade"
                                 reandoly
                                 class="text-pink-darken-1"
-                                color="pink-darken-4"
+                                color="light-green-darken-3"
                               ></v-text-field>
                             </v-col>
                           </v-row>
@@ -147,14 +147,14 @@
                     icon="mdi-pencil"
                     class="mx-5"
                     variant="outlined"
-                    color="pink-darken-4"
+                    color="light-green-darken-3"
                   ></v-btn>
                   <v-btn
                     v-bind="activatorProps"
                     density="compact"
                     icon="mdi-delete"
                     variant="outlined"
-                    color="pink-darken-4"
+                    color="light-green-darken-3"
                   ></v-btn>
                 </td>
               </tr>
@@ -219,6 +219,16 @@ export default {
   width: 100%;
 }
 
+h3 {
+  background: linear-gradient(
+    to right,
+    rgba(178, 34, 34, 1),
+    rgba(0, 100, 0, 1)
+  );
+  -webkit-background-clip: text;
+  color: transparent;
+  background-clip: text;
+}
 #card_titulo {
   font-size: 30px;
   width: 90%;
