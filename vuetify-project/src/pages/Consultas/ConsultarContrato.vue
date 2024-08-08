@@ -57,7 +57,7 @@
 <script>
 import { ref, onMounted } from "vue";
 import { useResponsiveHeight } from "../../composables/useResponsiveHeight.js";
-import { fetchContratos } from "../../services/request.js";
+import { fetchContratos } from "../../services/ContratosService.js";
 
 export default {
   setup() {
