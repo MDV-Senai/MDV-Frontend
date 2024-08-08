@@ -26,21 +26,21 @@
           <v-col cols="8" md="11">
             <v-text-field
               label="Nome social"
-              :rules="[rules.required]"
+              :rules="[rules.required, rules.hidden]"
               maxlength="255"
               counter
               clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
-              :disabled="!enableSocialName"
+              id="hidden"
             >
             </v-text-field>
           </v-col>
           <v-col cols="4" md="1">
             <v-switch
-              v-model="enableSocialName"
               class="text-pink-darken-1"
               color="pink-darken-4"
+              id="toggleSwitch"
             ></v-switch>
           </v-col>
         </v-row>
@@ -340,6 +340,10 @@
   width: 100%;
 }
 
+#hidden {
+  display: none;
+}
+
 #card_titulo {
   font-size: 30px;
   width: 90%;
@@ -372,7 +376,9 @@
 
 <script>
 import axios from "axios";
-
+import {
+  hiddenSocialName,
+} from "@/validations/formValidations";
 export default {
   data() {
     return {
@@ -383,6 +389,7 @@ export default {
       enableSocialName: false,
       rules: {
         required: (value) => !!value || "Obrigatório.",
+        hidden: (value) => hiddenSocialName(value),
       },
     };
   },
