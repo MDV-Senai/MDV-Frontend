@@ -20,7 +20,7 @@
                           <v-text-field
                             label="Usuário"
                             variant="outlined"
-                            color="pink-darken-4"
+                            color="grey-darken-4"
                           ></v-text-field>
                         </v-col>
 
@@ -29,7 +29,7 @@
                             label="Senha"
                             type="password"
                             variant="outlined"
-                            color="pink-darken-4"
+                            color="grey-darken-4"
                           ></v-text-field>
                         </v-col>
 
@@ -42,7 +42,7 @@
                             >
                               <v-btn
                                 v-bind="activatorProps"
-                                color="pink darken-4"
+                               color="grey-darken-4"
                                 text="Esqueci a senha"
                                 variant="text"
                               ></v-btn>
@@ -72,8 +72,9 @@
                                       text
                                       @click="isActive.value = false"
                                       variant="outlined"
-                                      color="pink-darken-4"
-                                      class="mb-6"
+                                         class="mb-6 text-grey-darken-3"
+         
+                                     
                                     >
                                       Ok
                                     </v-btn>
@@ -96,12 +97,12 @@
                                       <v-text-field
                                         label="E-mail"
                                         variant="outlined"
-                                        color="pink-darken-4"
+                                        color="grey-darken-4"
                                         class="mt-2"
                                       ></v-text-field>
 
                                       <v-btn
-                                        color="pink-darken-4"
+                                        color="grey-darken-4"
                                         @click="props.onClick"
                                         variant="outlined"
                                         class="mb-5"
@@ -134,7 +135,7 @@
                           <v-btn
                             append-icon="mdi-chevron-right"
                             variant="outlined"
-                            color="pink-darken-4"
+                           color="red-darken-4"
                             class="my-10"
                             width="183"
                             height="62"
@@ -143,7 +144,7 @@
                             Entrar
 
                             <template v-slot:append>
-                              <v-icon color="pink-darken-4"></v-icon>
+                              <v-icon color="red-darken-4"></v-icon>
                             </template>
                           </v-btn>
                         </RouterLink>
@@ -261,10 +262,10 @@ export default {
 }
 
 #imagem {
-  background-image: url("../assets/img/fundo2.svg");
+  background-image: url("../assets/img/fundoBrancoBoneca.svg");
   background-size: 100%;
   background-repeat: no-repeat;
-  background-color: #fff1f7;
+  background-color: #ffff;
 }
 
 @media (max-width: 768px) {
@@ -283,7 +284,7 @@ export default {
 
 #imageLogin {
   border-radius: 20px;
-  background-image: url("../assets/img/retangulo.svg");
+  background-image: url("../assets/img/retanguloCinza2.svg");
 }
 
 #fundoCardVagas {
