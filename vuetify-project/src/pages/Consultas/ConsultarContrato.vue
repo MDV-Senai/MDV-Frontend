@@ -1,5 +1,5 @@
 <template>
-  <v-main id="imagem" :style="{ height: `${height.value}px` }">
+  <v-main id="imagem" :height="height">
     <Header />
     <div class="d-flex justify-center align-center">
       <v-card class="d-flex justify-center align-center" id="card_titulo">
@@ -8,7 +8,6 @@
     </div>
     <div id="fundoCards">
       <v-text-field
-        v-model="search"
         label="Pesquise"
         prepend-inner-icon="mdi-magnify"
         variant="outlined"
