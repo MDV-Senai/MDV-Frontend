@@ -1,5 +1,5 @@
 <template>
-  <v-dialog max-width="800" :height="height">
+  <v-dialog max-width="800">
     <template v-slot:activator="{ props: activatorProps }">
       <v-icon
         v-bind="activatorProps"

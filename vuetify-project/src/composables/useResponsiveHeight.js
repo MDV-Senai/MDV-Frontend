@@ -3,7 +3,7 @@ import { useDisplay } from "vuetify";
 
 export function useResponsiveHeight() {
   const { name } = useDisplay();
-  
+
   const height = computed(() => {
     switch (name.value) {
       case "xs":
@@ -19,7 +19,7 @@ export function useResponsiveHeight() {
       case "xxl":
         return "1200px";
       default:
-        return undefined;
+        return "auto";
     }
   });
 
