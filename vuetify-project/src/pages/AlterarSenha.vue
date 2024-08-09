@@ -3,7 +3,7 @@
     <HeaderNoLogin />
     <div class="d-flex justify-center align-center">
       <v-card class="d-flex justify-center align-center" id="card_titulo"
-        >Redefinição de senha</v-card
+        ><h3>Redefinição de senha</h3></v-card
       >
     </div>
     <div id="fundoCards">
@@ -20,8 +20,8 @@
               maxlength="255"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              variant="outlined"
+              class="text-grey-darken-4"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -38,8 +38,8 @@
               maxlength="255"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              variant="outlined"
+              class="text-grey-darken-4"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -52,10 +52,9 @@
             <v-col cols="12" md="3">
               <v-btn
                 @click="reset"
-                class="my-10"
-                color="pink-darken-4"
-                append-icon="mdi-chevron-right"
                 variant="outlined"
+                class="my-10 text-grey-darken-4"
+                append-icon="mdi-chevron-right"
                 width="183"
                 height="62"
               >
@@ -67,7 +66,6 @@
               <v-btn
                 append-icon="mdi-chevron-right"
                 variant="outlined"
-                color="pink-darken-4"
                 class="my-10"
                 width="183"
                 height="62"
@@ -77,7 +75,7 @@
                 Alterar senha
 
                 <template v-slot:append>
-                  <v-icon color="pink-darken-4"></v-icon>
+                  <v-icon class="text-grey-darken-4"></v-icon>
                 </template>
               </v-btn>
             </v-col>
@@ -93,6 +91,16 @@
 </template>
 
 <style scoped>
+h3 {
+  background: linear-gradient(
+    to right,
+    rgba(178, 34, 34, 1),
+    rgba(0, 100, 0, 1)
+  );
+  -webkit-background-clip: text;
+  color: transparent;
+  background-clip: text;
+}
 #imagem {
   background-image: url("../assets/img/fundoDesenhos.svg");
   background-size: contain;
