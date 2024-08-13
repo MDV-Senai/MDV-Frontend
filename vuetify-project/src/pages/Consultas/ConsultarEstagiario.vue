@@ -16,7 +16,7 @@
             label="Pesquise"
             prepend-inner-icon="mdi-magnify"
             variant="outlined"
-            color="light-green-darken-3"
+            color="light-grey-darken-3"
             hide-details
             single-line
           ></v-text-field>
@@ -55,7 +55,7 @@
                               reandoly
                               class="mt-16 text-grey-darken-1"
                               variant="outlined"
-                              color="light-green-darken-3"
+                              color="light-grey-darken-3"
                             ></v-text-field>
                           </v-col>
                         </v-row>
@@ -68,7 +68,7 @@
                               reandoly
                               class="text-grey-darken-1"
                               variant="outlined"
-                              color="light-green-darken-3"
+                              color="light-grey-darken-3"
                             ></v-text-field>
                           </v-col>
                           <v-col cols="12" md="4">
@@ -79,7 +79,7 @@
                               reandoly
                               class="text-grey-darken-1"
                               variant="outlined"
-                              color="light-green-darken-3"
+                              color="light-grey-darken-3"
                             ></v-text-field>
                           </v-col>
                           <v-col cols="12" md="4">
@@ -90,7 +90,7 @@
                               reandoly
                               class="text-grey-darken-1"
                               variant="outlined"
-                              color="light-green-darken-3"
+                              color="light-grey-darken-3"
                             ></v-text-field>
                           </v-col>
                         </v-row>
@@ -104,7 +104,7 @@
                               reandoly
                               class="text-grey-darken-1"
                               variant="outlined"
-                              color="light-green-darken-3"
+                              color="light-grey-darken-3"
                             ></v-text-field>
                           </v-col>
 
@@ -116,7 +116,7 @@
                               reandoly
                               class="text-grey-darken-1"
                               variant="outlined"
-                              color="light-green-darken-3"
+                              color="light-grey-darken-3"
                             ></v-text-field>
                           </v-col>
                           <v-col cols="12" md="4">
@@ -127,7 +127,7 @@
                               reandoly
                               class="text-grey-darken-1"
                               variant="outlined"
-                              color="light-green-darken-3"
+                              color="light-grey-darken-3"
                             ></v-text-field>
                           </v-col>
                         </v-row>
@@ -141,7 +141,7 @@
                               reandoly
                               class="text-grey-darken-1"
                               variant="outlined"
-                              color="light-green-darken-3"
+                              color="light-grey-darken-3"
                             ></v-text-field>
                           </v-col>
 
@@ -153,7 +153,7 @@
                               reandoly
                               class="text-grey-darken-1"
                               variant="outlined"
-                              color="light-green-darken-3"
+                              color="light-grey-darken-3"
                             ></v-text-field>
                           </v-col>
                           <v-col cols="12" md="4">
@@ -164,7 +164,7 @@
                               reandoly
                               class="text-grey-darken-1"
                               variant="outlined"
-                              color="light-green-darken-3"
+                              color="light-grey-darken-3"
                             ></v-text-field>
                           </v-col>
                         </v-row>
@@ -178,7 +178,7 @@
                               reandoly
                               class="text-grey-darken-1"
                               variant="outlined"
-                              color="light-green-darken-3"
+                              color="light-grey-darken-3"
                             ></v-text-field>
                           </v-col>
 
@@ -190,7 +190,7 @@
                               reandoly
                               class="text-grey-darken-1"
                               variant="outlined"
-                              color="light-green-darken-3"
+                              color="light-grey-darken-3"
                             ></v-text-field>
                           </v-col>
                           <v-col cols="12" md="4">
@@ -201,7 +201,7 @@
                               reandoly
                               class="text-grey-darken-1"
                               variant="outlined"
-                              color="light-green-darken-3"
+                              color="light-grey-darken-3"
                             ></v-text-field>
                           </v-col>
                         </v-row>
@@ -214,7 +214,7 @@
                               reandoly
                               class="text-grey-darken-1"
                               variant="outlined"
-                              color="light-green-darken-3"
+                              color="light-grey-darken-3"
                             ></v-text-field>
                           </v-col>
 
@@ -226,7 +226,7 @@
                               reandoly
                               class="text-grey-darken-1"
                               variant="outlined"
-                              color="light-green-darken-3"
+                              color="light-grey-darken-3"
                             ></v-text-field>
                           </v-col>
                           <v-col cols="12" md="4">
@@ -237,7 +237,7 @@
                               reandoly
                               class="text-grey-darken-1"
                               variant="outlined"
-                              color="light-green-darken-3"
+                              color="light-grey-darken-3"
                             ></v-text-field>
                           </v-col>
                         </v-row>
