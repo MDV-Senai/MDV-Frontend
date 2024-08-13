@@ -3,7 +3,7 @@
     <Header />
     <div class="d-flex justify-center align-center">
       <v-card class="d-flex justify-center align-center" id="card_titulo"
-        >Vagas Disponíveis</v-card
+        ><h3>Vagas Disponíveis</h3></v-card
       >
     </div>
     <div id="fundoCards">
@@ -67,6 +67,17 @@
 </template>
 
 <style scoped>
+
+h3 {
+  background: linear-gradient(
+    to right,
+    rgba(178, 34, 34, 1),
+    rgba(0, 100, 0, 1)
+  );
+  -webkit-background-clip: text;
+  color: transparent;
+  background-clip: text;
+}
 #imagem {
   background-image: url("../assets/img/fundoDesenhos.svg");
   background-size: contain;

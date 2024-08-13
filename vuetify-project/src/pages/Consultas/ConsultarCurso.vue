@@ -3,7 +3,7 @@
     <Header />
     <div class="d-flex justify-center align-center">
       <v-card class="d-flex justify-center align-center" id="card_titulo"
-        >Consultar Cursos</v-card
+        ><h3>Consultar Cursos</h3></v-card
       >
     </div>
     <div id="fundoCards">
@@ -16,7 +16,7 @@
             label="Pesquise"
             prepend-inner-icon="mdi-magnify"
             variant="outlined"
-            color="pink-darken-4"
+            color="light-grey-darken-3"
             hide-details
             single-line
           ></v-text-field>
@@ -39,7 +39,7 @@
                         density="compact"
                         icon="mdi-eye-outline"
                         variant="outlined"
-                        color="pink-darken-4"
+                        color="light-green-darken-3"
                       ></v-btn>
                     </template>
 
@@ -51,8 +51,8 @@
                               <v-text-field
                                 label="Instituição de Ensino"
                                 reandoly
-                                class="text-pink-darken-1"
-                                color="pink-darken-4"
+                                class="text-grey-darken-3"
+                               variant="outlined"
                               ></v-text-field>
                             </v-col>
                           </v-row>
@@ -73,13 +73,13 @@
                     icon="mdi-pencil"
                     class="mx-5"
                     variant="outlined"
-                    color="pink-darken-4"
+                    color="light-green-darken-3"
                   ></v-btn>
                   <v-btn
                     density="compact"
                     icon="mdi-delete"
                     variant="outlined"
-                    color="pink-darken-4"
+                    color="light-green-darken-3"
                   ></v-btn>
                 </td>
               </tr>

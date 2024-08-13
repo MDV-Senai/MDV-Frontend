@@ -2,16 +2,17 @@
   <v-main id="imagem" :height="height">
     <Header />
     <div class="d-flex justify-center align-center">
-      <v-card class="d-flex justify-center align-center" id="card_titulo">
-        Consultar Contrato
-      </v-card>
+      <v-card class="d-flex justify-center align-center" id="card_titulo"
+        ><h3>Consultar Contrato</h3></v-card
+      >
     </div>
     <div id="fundoCards">
       <v-text-field
         label="Pesquise"
         prepend-inner-icon="mdi-magnify"
         variant="outlined"
-        color="pink-darken-4"
+            class="text-grey-darken-4"
+          
         hide-details
         single-line
       ></v-text-field>

@@ -3,7 +3,7 @@
     <Header />
     <div class="d-flex justify-center align-center">
       <v-card class="d-flex justify-center align-center" id="card_titulo"
-        >Consultar Vagas</v-card
+        ><h3>Consultar Vagas</h3></v-card
       >
     </div>
     <div id="fundoCards">
@@ -16,7 +16,7 @@
             label="Pesquise"
             prepend-inner-icon="mdi-magnify"
             variant="outlined"
-            color="pink-darken-4"
+            color="light-grey-darken-3"
             hide-details
             single-line
           ></v-text-field>
@@ -39,7 +39,7 @@
                         density="compact"
                         icon="mdi-eye-outline"
                         variant="outlined"
-                        color="pink-darken-4"
+                        color="light-green-darken-3"
                       ></v-btn>
                     </template>
 
@@ -53,8 +53,9 @@
                                 id="curso"
                                 value="Fármacia"
                                 reandoly
-                                class="text-pink-darken-1"
-                                color="pink-darken-4"
+                                class="text-grey-darken-1"
+                                variant="outlined"
+                                color="light-grey-darken-3"
                               ></v-text-field>
                             </v-col>
                           </v-row>
@@ -65,8 +66,9 @@
                                 id="descricao"
                                 value=""
                                 reandoly
-                                class="text-pink-darken-1"
-                                color="pink-darken-4"
+                                class="text-grey-darken-1"
+                                variant="outlined"
+                                color="light-grey-darken-3"
                               ></v-text-field>
                             </v-col>
                           </v-row>
@@ -77,8 +79,9 @@
                                 id="setor"
                                 value="Setor A"
                                 reandoly
-                                class="text-pink-darken-1"
-                                color="pink-darken-4"
+                                class="text-grey-darken-1"
+                                variant="outlined"
+                                color="light-grey-darken-3"
                               ></v-text-field>
                             </v-col>
                             <v-col cols="12" md="6">
@@ -87,8 +90,9 @@
                                 id="turno"
                                 value="Noturno"
                                 reandoly
-                                class="text-pink-darken-1"
-                                color="pink-darken-4"
+                                class="text-grey-darken-1"
+                                variant="outlined"
+                                color="light-grey-darken-3"
                               ></v-text-field>
                             </v-col>
                           </v-row>
@@ -100,8 +104,9 @@
                                 id="quant_vagas"
                                 value="10"
                                 reandoly
-                                class="text-pink-darken-1"
-                                color="pink-darken-4"
+                                class="text-grey-darken-1"
+                                variant="outlined"
+                                color="light-grey-darken-3"
                               ></v-text-field>
                             </v-col>
                             <v-col cols="12" md="6">
@@ -110,8 +115,9 @@
                                 id="situacao"
                                 value=""
                                 reandoly
-                                class="text-pink-darken-1"
-                                color="pink-darken-4"
+                                class="text-grey-darken-1"
+                                variant="outlined"
+                                color="light-grey-darken-3"
                               ></v-select>
                             </v-col>
                           </v-row>
@@ -132,13 +138,13 @@
                     icon="mdi-pencil"
                     class="mx-5"
                     variant="outlined"
-                    color="pink-darken-4"
+                    color="light-green-darken-3"
                   ></v-btn>
                   <v-btn
                     density="compact"
                     icon="mdi-delete"
                     variant="outlined"
-                    color="pink-darken-4"
+                    color="light-green-darken-3"
                   ></v-btn>
                 </td>
               </tr>

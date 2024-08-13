@@ -3,7 +3,7 @@
     <Header />
     <div class="d-flex justify-center align-center">
       <v-card class="d-flex justify-center align-center" id="card_titulo"
-        >Consultar Responsável Pelo Estagiário</v-card
+        ><h3>Consultar Responsável Pelo Estagiário</h3></v-card
       >
     </div>
     <div id="fundoCards">
@@ -16,7 +16,7 @@
             label="Pesquise"
             prepend-inner-icon="mdi-magnify"
             variant="outlined"
-            color="pink-darken-4"
+            color="light-grey-darken-3"
             hide-details
             single-line
           ></v-text-field>
@@ -39,7 +39,7 @@
                         density="compact"
                         icon="mdi-eye-outline"
                         variant="outlined"
-                        color="pink-darken-4"
+                        color="light-grey-darken-3"
                       ></v-btn>
                     </template>
 
@@ -53,8 +53,9 @@
                                 id="nome_prof"
                                 value="Fulano"
                                 reandoly
-                                class="text-pink-darken-1"
-                                color="pink-darken-4"
+                                class="text-grey-darken-1"
+                                variant="outlined"
+                                color="light-grey-darken-3"
                               ></v-text-field>
                             </v-col>
                           </v-row>
@@ -65,8 +66,9 @@
                                 id="numero_mat"
                                 value="00000000"
                                 reandoly
-                                class="text-pink-darken-1"
-                                color="pink-darken-4"
+                                class="text-grey-darken-1"
+                                variant="outlined"
+                                color="light-grey-darken-3"
                               ></v-text-field>
                             </v-col>
                             <v-col cols="12" md="6">
@@ -75,8 +77,9 @@
                                 id="inscricao"
                                 value="000.000.000-00"
                                 reandoly
-                                class="text-pink-darken-1"
-                                color="pink-darken-4"
+                                class="text-grey-darken-1"
+                                variant="outlined"
+                                color="light-grey-darken-3"
                               ></v-text-field>
                             </v-col>
                           </v-row>
@@ -88,8 +91,9 @@
                                 id="instituicao_ensino"
                                 value="Instituição de Ensino"
                                 reandoly
-                                class="text-pink-darken-1"
-                                color="pink-darken-4"
+                                class="text-grey-darken-1"
+                                variant="outlined"
+                                color="light-grey-darken-3"
                               ></v-text-field>
                             </v-col>
                             <v-col cols="12" md="6">
@@ -98,8 +102,9 @@
                                 id="curso"
                                 value="Curso"
                                 reandoly
-                                class="text-pink-darken-1"
-                                color="pink-darken-4"
+                                class="text-grey-darken-1"
+                                variant="outlined"
+                                color="light-grey-darken-3"
                               ></v-text-field>
                             </v-col>
                           </v-row>
@@ -120,13 +125,13 @@
                     icon="mdi-pencil"
                     class="mx-5"
                     variant="outlined"
-                    color="pink-darken-4"
+                    color="light-grey-darken-3"
                   ></v-btn>
                   <v-btn
                     density="compact"
                     icon="mdi-delete"
                     variant="outlined"
-                    color="pink-darken-4"
+                    color="light-grey-darken-3"
                   ></v-btn>
                 </td>
               </tr>

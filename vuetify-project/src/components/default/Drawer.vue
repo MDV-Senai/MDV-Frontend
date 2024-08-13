@@ -2,7 +2,7 @@
   <v-navigation-drawer
     v-model="localValue"
     temporary
-    color="pink-darken-4"
+    color="grey-lighten-5"
     location="right"
     :width="343"
   >
