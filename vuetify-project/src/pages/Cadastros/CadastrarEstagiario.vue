@@ -26,27 +26,32 @@
           <v-col cols="8" md="11">
             <v-text-field
               label="Nome social"
-              :rules="[rules.required]"
+              :rules="[rules.required, rules.hidden]"
               maxlength="255"
               counter
               clearable
               class="text-pink-darken-1"
               color="pink-darken-4"
-              :disabled="!enableSocialName"
+              v-show="isVisible"
             >
             </v-text-field>
           </v-col>
-          <v-col cols="4" md="1">
+        </v-row>
+
+        <v-row>
+          <v-col cols="12" md="12">
             <v-switch
-              v-model="enableSocialName"
+              v-model="isVisible"
               class="text-pink-darken-1"
+              label="Exibir Nome Social"
               color="pink-darken-4"
+              id="toggleSwitch"
             ></v-switch>
           </v-col>
         </v-row>
 
         <v-row class="d-flex justify-center">
-          <v-col cols="6" md="4">
+          <v-col cols="12" md="4">
             <v-text-field
               label="Nº Matrícula do Estudante"
               :rules="[rules.required]"
@@ -57,7 +62,7 @@
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
-          <v-col cols="6" md="4">
+          <v-col cols="12" md="4">
             <v-text-field
               label="CPF"
               :rules="[rules.required]"
@@ -119,7 +124,7 @@
           </v-col>
           <v-col cols="12" md="3">
             <v-text-field
-              label="Número Emergencial"
+              label="Número do Contato Emergencial"
               :rules="[rules.required]"
               maxlength="15"
               counter
@@ -196,7 +201,7 @@
         </v-row>
 
         <v-row id="inputResponsivo" class="d-flex justify-center">
-          <v-col cols="6" md="4">
+          <v-col cols="12" md="12">
             <v-text-field
               label="CEP"
               :rules="[rules.required]"
@@ -206,24 +211,26 @@
               class="text-pink-darken-1"
               color="pink-darken-4"
               v-mask="'#####-###'"
-              @input.debounce="buscaCep($event.target.value)"
+              @input.debounce="preencheCep($event.target.value)"
             ></v-text-field>
           </v-col>
-
-          <v-col cols="6" md="4">
+        </v-row>
+        <v-row>
+          <v-col cols="12" md="12">
             <v-text-field
-              v-model="cidade"
-              label="Cidade"
+              v-model="rua"
+              label="Logradouro"
               :rules="[rules.required]"
               maxlength="255"
               counter
-              readonly
               class="text-pink-darken-1"
               color="pink-darken-4"
+              readonly
             ></v-text-field>
           </v-col>
-
-          <v-col cols="6" md="2">
+        </v-row>
+        <v-row>
+          <v-col cols="6" md="4">
             <v-text-field
               label="Nº"
               :rules="[rules.required]"
@@ -234,49 +241,7 @@
               color="pink-darken-4"
             ></v-text-field>
           </v-col>
-
-          <v-col cols="6" md="2">
-            <v-select
-              v-model="uf"
-              label="UF"
-              :rules="[rules.required]"
-              readonly
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-select>
-          </v-col>
-        </v-row>
-
-        <v-row class="d-flex justify-center">
-          <v-col cols="12" md="12">
-            <v-text-field
-              v-model="rua"
-              label="Logradouro"
-              :rules="[rules.required]"
-              maxlength="255"
-              counter
-              readonly
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
-          </v-col>
-        </v-row>
-
-        <v-row id="inputResponsivo" class="d-flex justify-center">
-          <v-col cols="6" md="6">
-            <v-text-field
-              v-model="bairro"
-              label="Bairro"
-              :rules="[rules.required]"
-              maxlength="255"
-              counter
-              readonly
-              class="text-pink-darken-1"
-              color="pink-darken-4"
-            ></v-text-field>
-          </v-col>
-
-          <v-col cols="6" md="6">
+          <v-col cols="6" md="8">
             <v-text-field
               label="Complemento"
               :rules="[rules.required]"
@@ -286,6 +251,46 @@
               class="text-pink-darken-1"
               color="pink-darken-4"
             ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row class="d-flex justify-center">
+          <v-col cols="12" md="12">
+            <v-text-field
+              v-model="bairro"
+              label="Bairro"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
+              class="text-pink-darken-1"
+              color="pink-darken-4"
+              readonly
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="6" md="8">
+            <v-text-field
+              v-model="cidade"
+              label="Cidade"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
+              class="text-pink-darken-1"
+              color="pink-darken-4"
+              readonly
+            ></v-text-field>
+          </v-col>
+          <v-col cols="6" md="4">
+            <v-select
+              v-model="uf"
+              :items="ufs"
+              :item-title="'uf'"
+              :item-value="'id'"
+              label="UF"
+              class="text-pink-darken-1"
+              color="pink-darken-4"
+              readonly
+            ></v-select>
           </v-col>
         </v-row>
 
@@ -332,17 +337,21 @@
 
 <script>
 import axios from "axios";
-
+import {
+  hiddenSocialName,
+} from "@/validations/formValidations";
 export default {
   data() {
     return {
       uf: null,
+      isVisible: false,
       cidade: null,
       bairro: null,
       rua: null,
       enableSocialName: false,
       rules: {
         required: (value) => !!value || "Obrigatório.",
+        hidden: (value) => hiddenSocialName(value),
       },
     };
   },

@@ -15,3 +15,30 @@ export const fullNameValidation = (fullName) => {
     }
     return true;
 }
+
+export const confirmPasswordValidation = () => {
+    // Obtém os elementos de senha e confirmar senha
+    const valorSenha = document.getElementById("senha").value;
+    const valorConfirmarSenha = document.getElementById("confirmarSenha").value;
+
+    if (valorSenha !== valorConfirmarSenha) {
+        return "As senhas não são idênticas.";
+    }
+
+    return true;
+}
+
+export const hiddenSocialName = () => {
+    document.addEventListener('DOMContentLoaded', () => {
+        const toggleSwitch = document.getElementById('toggleSwitch');
+        const content = document.getElementById('hidden');
+    
+        toggleSwitch.addEventListener('change', () => {
+            if (toggleSwitch.checked) {
+                content.style.display = 'block';
+            } else {
+                content.style.display = 'none';
+            }
+        });
+    });    
+}
