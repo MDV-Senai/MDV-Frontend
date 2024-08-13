@@ -22,10 +22,8 @@
           </v-col>
         </v-row>
 
-        
-
-       <v-row class="d-flex justify-center">
-          <v-col cols="12" md="12">
+        <v-row class="d-flex justify-center">
+          <v-col cols="8" md="11">
             <v-text-field
               label="Nome social"
               :rules="[rules.required, rules.hidden]"
@@ -333,53 +331,9 @@
         </div>
       </v-form>
     </div>
+    <Footer />
   </v-main>
-
-  <Footer />
 </template>
-
-<style scoped>
-#imagem {
-  background-image: url("../assets/img/fundoDesenhos.svg");
-  background-size: contain;
-  background-repeat: no-repeat;
-  height: 100%;
-  width: 100%;
-}
-
-#hidden {
-  display: none;
-}
-
-#card_titulo {
-  font-size: 30px;
-  width: 90%;
-  height: 100px;
-  color: gray;
-}
-
-#form {
-  width: 90%;
-}
-
-@media (max-width: 768px) {
-  #inputResponsivo {
-    /* flex-direction: column; */
-  }
-}
-
-#fundoCards {
-  background-color: white;
-  border-radius: 8px;
-  width: 90%;
-  margin: 2% auto;
-  display: flex;
-  text-align: center;
-  flex-direction: column;
-  /* justify-content: center;
-    align-items: center; */
-}
-</style>
 
 <script>
 import axios from "axios";
@@ -428,3 +382,7 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import "@/assets/styles/shared";
+</style>

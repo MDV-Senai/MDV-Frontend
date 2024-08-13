@@ -23,7 +23,6 @@
 
           <v-divider></v-divider>
           <v-data-table
-            :headers="headers"
             :items="filteredBoats"
             height="400"
             item-value="name"
@@ -117,7 +116,6 @@
                     </template>
                   </v-dialog>
                   <v-btn
-                    v-bind="activatorProps"
                     density="compact"
                     icon="mdi-pencil"
                     class="mx-5"
@@ -125,7 +123,6 @@
                     color="pink-darken-4"
                   ></v-btn>
                   <v-btn
-                    v-bind="activatorProps"
                     density="compact"
                     icon="mdi-delete"
                     variant="outlined"
@@ -184,37 +181,6 @@ export default {
 };
 </script>
 
-
-<style scoped>
-#imagem {
-  background-image: url("../assets/img/fundoDesenhos.svg");
-  background-size: contain;
-  background-repeat: no-repeat;
-  height: 100%;
-  width: 100%;
-}
-
-#card_titulo {
-  font-size: 30px;
-  width: 90%;
-  height: 100px;
-  color: gray;
-}
-
-#form {
-  width: 90%;
-}
-
-#fundoCards {
-  background-color: white;
-  border-radius: 8px;
-  width: 90%;
-  margin: 2% auto;
-  display: flex;
-  text-align: center;
-  flex-direction: column;
-  /* justify-content: center;
-    align-items: center; */
-}
+<style lang="scss">
+@import '@/assets/styles/shared';
 </style>
-
