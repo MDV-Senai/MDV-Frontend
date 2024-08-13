@@ -54,7 +54,8 @@
                                 id="instituicao"
                                 value="Instituição de Ensino"
                                 reandoly
-                                class="text-pink-darken-1"
+                                class="text-grey-darken-1"
+                                variant="outlined"
                                 color="light-green-darken-3"
                               ></v-text-field>
                             </v-col>
@@ -66,7 +67,8 @@
                                 id="cnpj"
                                 value="00.000.000/0001-00"
                                 reandoly
-                                class="text-pink-darken-1"
+                                class="text-grey-darken-1"
+                                variant="outlined"
                                 color="light-green-darken-3"
                               ></v-text-field>
                             </v-col>
@@ -76,7 +78,8 @@
                                 id="inscricao"
                                 value="00.000.000-0"
                                 reandoly
-                                class="text-pink-darken-1"
+                                class="text-grey-darken-1"
+                                variant="outlined"
                                 color="light-green-darken-3"
                               ></v-text-field>
                             </v-col>
@@ -89,7 +92,8 @@
                                 id="email"
                                 value="instituicao@gmail.com"
                                 reandoly
-                                class="text-pink-darken-1"
+                                class="text-grey-darken-1"
+                                variant="outlined"
                                 color="light-green-darken-3"
                               ></v-text-field>
                             </v-col>
@@ -99,7 +103,8 @@
                                 id="inscricao"
                                 value="3030-3030"
                                 reandoly
-                                class="text-pink-darken-1"
+                                class="text-grey-darken-1"
+                                variant="outlined"
                                 color="light-green-darken-3"
                               ></v-text-field>
                             </v-col>
@@ -109,7 +114,8 @@
                                 id="inscricao"
                                 value="(47) 99999-9999"
                                 reandoly
-                                class="text-pink-darken-1"
+                                class="text-grey-darken-1"
+                                variant="outlined"
                                 color="light-green-darken-3"
                               ></v-text-field>
                             </v-col>

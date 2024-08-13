@@ -54,8 +54,9 @@
                                 id="curso"
                                 value="Fármacia"
                                 reandoly
-                                class="text-pink-darken-1"
-                                color="light-green-darken-3"
+                                class="text-grey-darken-1"
+                                variant="outlined"
+                                color="light-grey-darken-3"
                               ></v-text-field>
                             </v-col>
                           </v-row>
@@ -66,8 +67,9 @@
                                 id="descricao"
                                 value=""
                                 reandoly
-                                class="text-pink-darken-1"
-                                color="light-green-darken-3"
+                                class="text-grey-darken-1"
+                                variant="outlined"
+                                color="light-grey-darken-3"
                               ></v-text-field>
                             </v-col>
                           </v-row>
@@ -78,8 +80,9 @@
                                 id="setor"
                                 value="Setor A"
                                 reandoly
-                                class="text-pink-darken-1"
-                                color="light-green-darken-3"
+                                class="text-grey-darken-1"
+                                variant="outlined"
+                                color="light-grey-darken-3"
                               ></v-text-field>
                             </v-col>
                             <v-col cols="12" md="6">
@@ -88,8 +91,9 @@
                                 id="turno"
                                 value="Noturno"
                                 reandoly
-                                class="text-pink-darken-1"
-                                color="light-green-darken-3"
+                                class="text-grey-darken-1"
+                                variant="outlined"
+                                color="light-grey-darken-3"
                               ></v-text-field>
                             </v-col>
                           </v-row>
@@ -101,8 +105,9 @@
                                 id="quant_vagas"
                                 value="10"
                                 reandoly
-                                class="text-pink-darken-1"
-                                color="light-green-darken-3"
+                                class="text-grey-darken-1"
+                                variant="outlined"
+                                color="light-grey-darken-3"
                               ></v-text-field>
                             </v-col>
                             <v-col cols="12" md="6">
@@ -111,8 +116,9 @@
                                 id="situacao"
                                 value=""
                                 reandoly
-                                class="text-pink-darken-1"
-                                color="light-green-darken-3"
+                                class="text-grey-darken-1"
+                                variant="outlined"
+                                color="light-grey-darken-3"
                               ></v-select>
                             </v-col>
                           </v-row>

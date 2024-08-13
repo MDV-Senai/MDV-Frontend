@@ -16,7 +16,8 @@
             label="Pesquise"
             prepend-inner-icon="mdi-magnify"
             variant="outlined"
-            color="light-green-darken-3"
+                class="text-grey-darken-4"
+          
             hide-details
             single-line
           ></v-text-field>
@@ -40,7 +41,8 @@
                         density="compact"
                         icon="mdi-eye-outline"
                         variant="outlined"
-                        color="light-green-darken-3"
+                            class="text-green-darken-3"
+             
                       ></v-btn>
                     </template>
 
@@ -54,8 +56,9 @@
                                 id="nome_prof"
                                 value="Fulano"
                                 reandoly
-                                class="text-pink-darken-1"
-                                color="light-green-darken-3"
+                               variant="outlined"
+                                    class="text-grey-darken-4"
+             
                               ></v-text-field>
                             </v-col>
                           </v-row>
@@ -66,8 +69,9 @@
                                 id="numero_mat"
                                 value="00000000"
                                 reandoly
-                                class="text-pink-darken-1"
-                                color="light-green-darken-3"
+                               variant="outlined"
+                                    class="text-grey-darken-4"
+           
                               ></v-text-field>
                             </v-col>
                             <v-col cols="12" md="6">
@@ -76,8 +80,9 @@
                                 id="inscricao"
                                 value="000.000.000-00"
                                 reandoly
-                                class="text-pink-darken-1"
-                                color="light-green-darken-3"
+                               variant="outlined"
+                                    class="text-grey-darken-4"
+              
                               ></v-text-field>
                             </v-col>
                           </v-row>
@@ -89,8 +94,9 @@
                                 id="instituicao_ensino"
                                 value="Instituição de Ensino"
                                 reandoly
-                                class="text-pink-darken-1"
-                                color="light-green-darken-3"
+                               
+                                    class="text-grey-darken-4"
+         variant="outlined"
                               ></v-text-field>
                             </v-col>
                             <v-col cols="12" md="6">
@@ -99,8 +105,9 @@
                                 id="curso"
                                 value="Curso"
                                 reandoly
-                                class="text-pink-darken-1"
-                                color="light-green-darken-3"
+                           
+                                    class="text-grey-darken-4"
+              variant="outlined"
                               ></v-text-field>
                             </v-col>
                           </v-row>
@@ -120,16 +127,18 @@
                     v-bind="activatorProps"
                     density="compact"
                     icon="mdi-pencil"
-                    class="mx-5"
-                    variant="outlined"
-                    color="light-green-darken-3"
+                
+                 
+                        class="mx-5 text-green-darken-3"
+              variant="outlined"
                   ></v-btn>
                   <v-btn
                     v-bind="activatorProps"
                     density="compact"
                     icon="mdi-delete"
-                    variant="outlined"
-                    color="light-green-darken-3"
+                   
+                        class="text-green-darken-3"
+              variant="outlined"
                   ></v-btn>
                 </td>
               </tr>

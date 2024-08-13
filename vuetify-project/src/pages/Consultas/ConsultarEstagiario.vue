@@ -53,7 +53,8 @@
                               id="nome"
                               value="Nome Completo"
                               reandoly
-                              class="mt-16 text-pink-darken-1"
+                              class="mt-16 text-grey-darken-1"
+                              variant="outlined"
                               color="light-green-darken-3"
                             ></v-text-field>
                           </v-col>
@@ -65,7 +66,8 @@
                               id="cpf"
                               value="000.000.000-00"
                               reandoly
-                              class="text-pink-darken-1"
+                              class="text-grey-darken-1"
+                              variant="outlined"
                               color="light-green-darken-3"
                             ></v-text-field>
                           </v-col>
@@ -75,7 +77,8 @@
                               id="data_nasc"
                               value="00/00/0000"
                               reandoly
-                              class="text-pink-darken-1"
+                              class="text-grey-darken-1"
+                              variant="outlined"
                               color="light-green-darken-3"
                             ></v-text-field>
                           </v-col>
@@ -85,7 +88,8 @@
                               id="telefone"
                               value="3030-3030"
                               reandoly
-                              class="text-pink-darken-1"
+                              class="text-grey-darken-1"
+                              variant="outlined"
                               color="light-green-darken-3"
                             ></v-text-field>
                           </v-col>
@@ -98,7 +102,8 @@
                               id="email"
                               value="instituicao@gmail.com"
                               reandoly
-                              class="text-pink-darken-1"
+                              class="text-grey-darken-1"
+                              variant="outlined"
                               color="light-green-darken-3"
                             ></v-text-field>
                           </v-col>
@@ -109,7 +114,8 @@
                               id="celular"
                               value="(47) 99999-9999"
                               reandoly
-                              class="text-pink-darken-1"
+                              class="text-grey-darken-1"
+                              variant="outlined"
                               color="light-green-darken-3"
                             ></v-text-field>
                           </v-col>
@@ -119,7 +125,8 @@
                               id="instituicao"
                               value="Instituição de Ensino"
                               reandoly
-                              class="text-pink-darken-1"
+                              class="text-grey-darken-1"
+                              variant="outlined"
                               color="light-green-darken-3"
                             ></v-text-field>
                           </v-col>
@@ -132,7 +139,8 @@
                               id="matricula"
                               value="0000000"
                               reandoly
-                              class="text-pink-darken-1"
+                              class="text-grey-darken-1"
+                              variant="outlined"
                               color="light-green-darken-3"
                             ></v-text-field>
                           </v-col>
@@ -143,7 +151,8 @@
                               id="curso"
                               value="Curso"
                               reandoly
-                              class="text-pink-darken-1"
+                              class="text-grey-darken-1"
+                              variant="outlined"
                               color="light-green-darken-3"
                             ></v-text-field>
                           </v-col>
@@ -153,7 +162,8 @@
                               id="faseSerie"
                               value="0"
                               reandoly
-                              class="text-pink-darken-1"
+                              class="text-grey-darken-1"
+                              variant="outlined"
                               color="light-green-darken-3"
                             ></v-text-field>
                           </v-col>
@@ -166,7 +176,8 @@
                               id="cep"
                               value="00.000-000"
                               reandoly
-                              class="text-pink-darken-1"
+                              class="text-grey-darken-1"
+                              variant="outlined"
                               color="light-green-darken-3"
                             ></v-text-field>
                           </v-col>
@@ -177,7 +188,8 @@
                               id="uf"
                               value="Estado"
                               reandoly
-                              class="text-pink-darken-1"
+                              class="text-grey-darken-1"
+                              variant="outlined"
                               color="light-green-darken-3"
                             ></v-text-field>
                           </v-col>
@@ -187,7 +199,8 @@
                               id="cidade"
                               value="Cidade"
                               reandoly
-                              class="text-pink-darken-1"
+                              class="text-grey-darken-1"
+                              variant="outlined"
                               color="light-green-darken-3"
                             ></v-text-field>
                           </v-col>
@@ -199,7 +212,8 @@
                               id="bairro"
                               value="Bairro"
                               reandoly
-                              class="text-pink-darken-1"
+                              class="text-grey-darken-1"
+                              variant="outlined"
                               color="light-green-darken-3"
                             ></v-text-field>
                           </v-col>
@@ -210,7 +224,8 @@
                               id="rua"
                               value="Logradouro"
                               reandoly
-                              class="text-pink-darken-1"
+                              class="text-grey-darken-1"
+                              variant="outlined"
                               color="light-green-darken-3"
                             ></v-text-field>
                           </v-col>
@@ -220,7 +235,8 @@
                               id="complemento"
                               value="Complemento"
                               reandoly
-                              class="text-pink-darken-1"
+                              class="text-grey-darken-1"
+                              variant="outlined"
                               color="light-green-darken-3"
                             ></v-text-field>
                           </v-col>

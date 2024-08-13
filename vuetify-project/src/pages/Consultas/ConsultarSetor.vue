@@ -16,7 +16,7 @@
             label="Pesquise"
             prepend-inner-icon="mdi-magnify"
             variant="outlined"
-            color="light-green-darken-3"
+            color="light-grey-darken-3"
             hide-details
             single-line
           ></v-text-field>
@@ -54,8 +54,9 @@
                                 id="supervisor"
                                 value="Fulano"
                                 reandoly
-                                class="text-pink-darken-1"
-                                color="light-green-darken-3"
+                                class="text-grey-darken-1"
+                                variant="outlined"
+                                color="light-grey-darken-3"
                               ></v-text-field>
                             </v-col>
                           </v-row>
@@ -67,8 +68,9 @@
                                 id="coordenador"
                                 value="Fulano"
                                 reandoly
-                                class="text-pink-darken-1"
-                                color="light-green-darken-3"
+                                class="text-grey-darken-1"
+                                variant="outlined"
+                                color="light-grey-darken-3"
                               ></v-text-field>
                             </v-col>
                           </v-row>
@@ -79,8 +81,9 @@
                                 id="setor"
                                 value="Setor A"
                                 reandoly
-                                class="text-pink-darken-1"
-                                color="light-green-darken-3"
+                                class="text-grey-darken-1"
+                                variant="outlined"
+                                color="light-grey-darken-3"
                               ></v-text-field>
                             </v-col>
                             <v-col cols="12" md="6">
@@ -89,8 +92,9 @@
                                 id="email"
                                 value="setor@hotmail.com"
                                 reandoly
-                                class="text-pink-darken-1"
-                                color="light-green-darken-3"
+                                class="text-grey-darken-1"
+                                variant="outlined"
+                                color="light-grey-darken-3"
                               ></v-text-field>
                             </v-col>
                           </v-row>
@@ -102,8 +106,9 @@
                                 id="telefone"
                                 value="(47) 3030-3030"
                                 reandoly
-                                class="text-pink-darken-1"
-                                color="light-green-darken-3"
+                                class="text-grey-darken-1"
+                                variant="outlined"
+                                color="light-grey-darken-3"
                               ></v-text-field>
                             </v-col>
                             <v-col cols="12" md="6">
@@ -112,8 +117,9 @@
                                 id="celular"
                                 value="(47) 99999-9999"
                                 reandoly
-                                class="text-pink-darken-1"
-                                color="light-green-darken-3"
+                                class="text-grey-darken-1"
+                                variant="outlined"
+                                color="light-grey-darken-3"
                               ></v-text-field>
                             </v-col>
                           </v-row>
@@ -124,8 +130,9 @@
                                 label="Atividade"
                                 id="atividade"
                                 reandoly
-                                class="text-pink-darken-1"
-                                color="light-green-darken-3"
+                                class="text-grey-darken-1"
+                                variant="outlined"
+                                color="light-grey-darken-3"
                               ></v-text-field>
                             </v-col>
                           </v-row>
