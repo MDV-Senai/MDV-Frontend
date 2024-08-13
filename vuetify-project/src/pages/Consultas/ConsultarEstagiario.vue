@@ -3,7 +3,7 @@
     <Header />
     <div class="d-flex justify-center align-center">
       <v-card class="d-flex justify-center align-center" id="card_titulo"
-        >Consultar Estagiário</v-card
+        ><h3>Consultar Estagiário</h3></v-card
       >
     </div>
     <div id="fundoCards">
