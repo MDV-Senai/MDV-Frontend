@@ -1,7 +1,7 @@
 <template>
   <v-toolbar extended color="#FFFFFF">
     <RouterLink to="/home" id="logo_url">
-      <img src="../assets/img/Logo.svg" id="logo" />
+      <img src="../../assets/img/Logo.svg" id="logo" />
     </RouterLink>
 
     <v-spacer></v-spacer>
