@@ -11,7 +11,8 @@
         label="Pesquise"
         prepend-inner-icon="mdi-magnify"
         variant="outlined"
-        color="light-green-darken-3"
+            class="text-grey-darken-4"
+          
         hide-details
         single-line
       ></v-text-field>

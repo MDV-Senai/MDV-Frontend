@@ -51,8 +51,8 @@
                               <v-text-field
                                 label="Instituição de Ensino"
                                 reandoly
-                                class="text-pink-darken-1"
-                                color="light-green-darken-3"
+                                class="text-grey-darken-3"
+                               variant="outlined"
                               ></v-text-field>
                             </v-col>
                           </v-row>

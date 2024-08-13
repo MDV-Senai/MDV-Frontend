@@ -53,7 +53,8 @@
                                 id="nome_prof"
                                 value="Fulano"
                                 reandoly
-                                class="text-pink-darken-1"
+                                class="text-grey-darken-1"
+                                variant="outlined"
                                 color="light-green-darken-3"
                               ></v-text-field>
                             </v-col>
@@ -65,7 +66,8 @@
                                 id="numero_mat"
                                 value="00000000"
                                 reandoly
-                                class="text-pink-darken-1"
+                                class="text-grey-darken-1"
+                                variant="outlined"
                                 color="light-green-darken-3"
                               ></v-text-field>
                             </v-col>
@@ -75,7 +77,8 @@
                                 id="inscricao"
                                 value="000.000.000-00"
                                 reandoly
-                                class="text-pink-darken-1"
+                                class="text-grey-darken-1"
+                                variant="outlined"
                                 color="light-green-darken-3"
                               ></v-text-field>
                             </v-col>
@@ -88,7 +91,8 @@
                                 id="instituicao_ensino"
                                 value="Instituição de Ensino"
                                 reandoly
-                                class="text-pink-darken-1"
+                                class="text-grey-darken-1"
+                                variant="outlined"
                                 color="light-green-darken-3"
                               ></v-text-field>
                             </v-col>
@@ -98,7 +102,8 @@
                                 id="curso"
                                 value="Curso"
                                 reandoly
-                                class="text-pink-darken-1"
+                                class="text-grey-darken-1"
+                                variant="outlined"
                                 color="light-green-darken-3"
                               ></v-text-field>
                             </v-col>
