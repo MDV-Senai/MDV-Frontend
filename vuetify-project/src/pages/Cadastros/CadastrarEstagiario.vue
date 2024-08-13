@@ -23,7 +23,7 @@
         </v-row>
 
         <v-row class="d-flex justify-center">
-          <v-col cols="8" md="11">
+          <v-col cols="8" md="12">
             <v-text-field
               label="Nome social"
               :rules="[rules.required, rules.hidden]"
