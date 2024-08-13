@@ -30,3 +30,11 @@
 .my-icon-spacing {
   margin: 0 12px;
 }
+
+h3 {
+  background: linear-gradient(to right, rgba(178, 34, 34, 1), rgba(0, 100, 0, 1));
+  -webkit-background-clip: text;
+  color: transparent;
+  background-clip: text;
+
+}
