@@ -16,7 +16,7 @@
             label="Pesquise"
             prepend-inner-icon="mdi-magnify"
             variant="outlined"
-            color="light-green-darken-3"
+            color="light-grey-darken-3"
             hide-details
             single-line
           ></v-text-field>
@@ -39,7 +39,7 @@
                         density="compact"
                         icon="mdi-eye-outline"
                         variant="outlined"
-                        color="light-green-darken-3"
+                        color="light-grey-darken-3"
                       ></v-btn>
                     </template>
 
@@ -55,7 +55,7 @@
                                 reandoly
                                 class="text-grey-darken-1"
                                 variant="outlined"
-                                color="light-green-darken-3"
+                                color="light-grey-darken-3"
                               ></v-text-field>
                             </v-col>
                           </v-row>
@@ -68,7 +68,7 @@
                                 reandoly
                                 class="text-grey-darken-1"
                                 variant="outlined"
-                                color="light-green-darken-3"
+                                color="light-grey-darken-3"
                               ></v-text-field>
                             </v-col>
                             <v-col cols="12" md="6">
@@ -79,7 +79,7 @@
                                 reandoly
                                 class="text-grey-darken-1"
                                 variant="outlined"
-                                color="light-green-darken-3"
+                                color="light-grey-darken-3"
                               ></v-text-field>
                             </v-col>
                           </v-row>
@@ -93,7 +93,7 @@
                                 reandoly
                                 class="text-grey-darken-1"
                                 variant="outlined"
-                                color="light-green-darken-3"
+                                color="light-grey-darken-3"
                               ></v-text-field>
                             </v-col>
                             <v-col cols="12" md="6">
@@ -104,7 +104,7 @@
                                 reandoly
                                 class="text-grey-darken-1"
                                 variant="outlined"
-                                color="light-green-darken-3"
+                                color="light-grey-darken-3"
                               ></v-text-field>
                             </v-col>
                           </v-row>
@@ -125,13 +125,13 @@
                     icon="mdi-pencil"
                     class="mx-5"
                     variant="outlined"
-                    color="light-green-darken-3"
+                    color="light-grey-darken-3"
                   ></v-btn>
                   <v-btn
                     density="compact"
                     icon="mdi-delete"
                     variant="outlined"
-                    color="light-green-darken-3"
+                    color="light-grey-darken-3"
                   ></v-btn>
                 </td>
               </tr>
