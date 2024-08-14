@@ -39,7 +39,7 @@
                         density="compact"
                         icon="mdi-eye-outline"
                         variant="outlined"
-                        color="light-green-darken-3"
+                        class="light-green-darken-3-var"
                       ></v-btn>
                     </template>
 
@@ -136,15 +136,14 @@
                   <v-btn
                     density="compact"
                     icon="mdi-pencil"
-                    class="mx-5"
+                    class="mx-5 light-green-darken-3-var"
                     variant="outlined"
-                    color="light-green-darken-3"
                   ></v-btn>
                   <v-btn
                     density="compact"
                     icon="mdi-delete"
                     variant="outlined"
-                    color="light-green-darken-3"
+                    class="light-green-darken-3-var"
                   ></v-btn>
                 </td>
               </tr>
@@ -200,5 +199,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/assets/styles/shared';
+@import '@/styles/shared';
 </style>

@@ -25,12 +25,12 @@
             <v-card-actions>
               <v-btn
                 density="compact"
-                color="pink-darken-4"
+                color="grey-darken-4"
                 icon="mdi-plus"
                 :to="routeEstagiario"
                 target="_blank"
               ></v-btn>
-              <v-btn color="pink-darken-4" text="Descrição"></v-btn>
+              <v-btn color="grey-darken-4" text="Descrição"></v-btn>
 
               <v-spacer></v-spacer>
 
@@ -53,8 +53,8 @@
                   :items="estagiarios"
                   :item-title="'titulo'"
                   :item-value="'id'"
-                  color="pink-darken-4"
-                  class="text-pink-darken-4"
+                  color="grey-darken-4"
+                  class="text-grey-darken-4"
                 ></v-autocomplete>
               </div>
             </v-expand-transition>

@@ -154,7 +154,7 @@
                 Cadastrar
 
                 <template v-slot:append>
-                  <v-icon color="pink-darken-4"></v-icon>
+                  <v-icon color="grey-darken-4"></v-icon>
                 </template>
               </v-btn>
             </v-col>
@@ -200,5 +200,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/assets/styles/shared';
+@import '@/styles/shared';
 </style>
