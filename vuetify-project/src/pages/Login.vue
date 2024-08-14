@@ -180,7 +180,7 @@
                     </v-card-subtitle>
 
                     <v-card-actions>
-                      <v-btn color="pink-darken-4" text="Descrição"></v-btn>
+                      <v-btn color="grey-darken-4" text="Descrição"></v-btn>
 
                       <v-spacer></v-spacer>
 

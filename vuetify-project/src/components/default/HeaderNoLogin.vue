@@ -13,7 +13,7 @@
     <v-navigation-drawer
       v-model="drawer"
       temporary
-      color="pink-darken-4"
+      color="grey-darken-4"
       location="right"
       :width="343"
     >

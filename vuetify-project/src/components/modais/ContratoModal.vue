@@ -6,7 +6,7 @@
         density="compact"
         icon="mdi-eye-outline"
         class="my-icon-spacing"
-        color="pink-darken-4"
+        color="grey-darken-4"
       ></v-icon>
     </template>
 
@@ -20,8 +20,8 @@
                 id="nome_prof"
                 value="Fulano"
                 reandoly
-                class="text-pink-darken-1"
-                color="pink-darken-4"
+                class="text-grey-darken-1"
+                color="grey-darken-4"
               ></v-text-field>
             </v-col>
           </v-row>
@@ -32,8 +32,8 @@
                 id="numero_mat"
                 value="00000000"
                 reandoly
-                class="text-pink-darken-1"
-                color="pink-darken-4"
+                class="text-grey-darken-1"
+                color="grey-darken-4"
               ></v-text-field>
             </v-col>
             <v-col cols="12" md="6">
@@ -42,8 +42,8 @@
                 id="inscricao"
                 value="000.000.000-00"
                 reandoly
-                class="text-pink-darken-1"
-                color="pink-darken-4"
+                class="text-grey-darken-1"
+                color="grey-darken-4"
               ></v-text-field>
             </v-col>
           </v-row>
@@ -54,8 +54,8 @@
                 id="instituicao_ensino"
                 value="Instituição de Ensino"
                 reandoly
-                class="text-pink-darken-1"
-                color="pink-darken-4"
+                class="text-grey-darken-1"
+                color="grey-darken-4"
               ></v-text-field>
             </v-col>
             <v-col cols="12" md="6">
@@ -64,8 +64,8 @@
                 id="curso"
                 value="Curso"
                 reandoly
-                class="text-pink-darken-1"
-                color="pink-darken-4"
+                class="text-grey-darken-1"
+                color="grey-darken-4"
               ></v-text-field>
             </v-col>
           </v-row>

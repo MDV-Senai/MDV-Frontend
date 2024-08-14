@@ -220,7 +220,7 @@
             <v-col cols="6" md="3">
               <v-btn
                 @click="reset"
-                color="pink-darken-4"
+                color="grey-darken-4"
                 append-icon="mdi-chevron-right"
                 variant="outlined"
                 class="my-10 text-grey-darken-4"
@@ -243,7 +243,7 @@
                 Cadastrar
 
                 <template v-slot:append>
-                  <v-icon color="pink-darken-4"></v-icon>
+                  <v-icon color="grey-darken-4"></v-icon>
                 </template>
               </v-btn>
             </v-col>
