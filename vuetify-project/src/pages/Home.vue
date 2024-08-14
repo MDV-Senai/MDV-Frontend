@@ -11,12 +11,11 @@
                 :class="{ 'on-hover': isHovering }"
                 :elevation="isHovering ? 16 : 2"
                 v-bind="props"
-                color="light-green-darken-3"
-                class="py-14 my-15 w-100"
+                class="py-14 my-15 w-100 light-green-darken-3-var"
                 variant="plain"
               >
                 <v-btn icon flat>
-                  <v-icon color="light-green-darken-3"
+                  <v-icon class="light-green-darken-3-var"
                     >mdi-store-plus-outline</v-icon
                   >
                 </v-btn>
@@ -35,12 +34,11 @@
                 :class="{ 'on-hover': isHovering }"
                 :elevation="isHovering ? 16 : 2"
                 v-bind="props"
-                color="light-green-darken-3"
-                class="py-14 my-15 w-100"
+                class="py-14 my-15 w-100 light-green-darken-3-var"
                 variant="plain"
               >
               <v-btn icon flat>
-                <v-icon color="light-green-darken-3"
+                <v-icon class="light-green-darken-3-var"
                   >mdi-account-plus-outline</v-icon
                 >
               </v-btn>
@@ -57,12 +55,11 @@
                 :class="{ 'on-hover': isHovering }"
                 :elevation="isHovering ? 16 : 2"
                 v-bind="props"
-                color="light-green-darken-3"
-                class="py-14 my-15 w-100"
+                class="py-14 my-15 w-100 light-green-darken-3-var"
                 variant="plain"
               >
               <v-btn icon flat>
-                <v-icon color="light-green-darken-3"
+                <v-icon class="light-green-darken-3-var"
                   >mdi-text-box-plus-outline</v-icon
                 >
               </v-btn>
@@ -79,12 +76,11 @@
                 :class="{ 'on-hover': isHovering }"
                 :elevation="isHovering ? 16 : 2"
                 v-bind="props"
-                color="light-green-darken-3"
-                class="py-14 my-15 w-100"
+                class="py-14 my-15 w-100 light-green-darken-3-var"
                 variant="plain"
               >
               <v-btn icon flat>
-                <v-icon color="light-green-darken-3"
+                <v-icon class="light-green-darken-3-var"
                   >mdi-handshake-outline</v-icon
                 >
               </v-btn>
@@ -101,12 +97,11 @@
                 :class="{ 'on-hover': isHovering }"
                 :elevation="isHovering ? 16 : 2"
                 v-bind="props"
-                color="light-green-darken-3"
-                class="py-14 my-15 w-100"
+                class="py-14 my-15 w-100 light-green-darken-3-var"
                 variant="plain"
               >
               <v-btn icon flat>
-                <v-icon color="light-green-darken-3"
+                <v-icon class="light-green-darken-3-var"
                   >mdi-file-account-outline</v-icon
                 >
               </v-btn>

@@ -5,8 +5,7 @@
         v-bind="activatorProps"
         density="compact"
         icon="mdi-eye-outline"
-        class="my-icon-spacing"
-        color="grey-darken-4"
+        class="my-icon-spacing light-green-darken-3-var"
       ></v-icon>
     </template>
 
@@ -84,3 +83,7 @@ export default {
   name: "ContratoModal",
 };
 </script>
+
+<style lang="scss">
+@import "@/styles/shared";
+</style>

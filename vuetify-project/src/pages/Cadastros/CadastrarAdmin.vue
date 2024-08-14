@@ -217,22 +217,21 @@
                   density="compact"
                   icon="mdi-eye-outline"
                   variant="outlined"
-                  color="red"
+                  class="light-green-darken-3-var"
                 ></v-btn>
                 <v-btn
                   v-bind="activatorProps"
                   density="compact"
                   icon="mdi-pencil"
-                  class="mx-5"
+                  class="mx-5 light-green-darken-3-var"
                   variant="outlined"
-                  color="red"
                 ></v-btn>
                 <v-btn
                   v-bind="activatorProps"
                   density="compact"
                   icon="mdi-delete"
                   variant="outlined"
-                  color="red"
+                  class="light-green-darken-3-var"
                 ></v-btn>
               </td>
             </tr>

@@ -36,14 +36,12 @@
               <v-icon
                 density="compact"
                 icon="mdi-pencil"
-                class="my-icon-spacing"
-                color="grey-darken-4"
+                class="my-icon-spacing light-green-darken-3-var"
               ></v-icon>
               <v-icon
                 density="compact"
                 icon="mdi-delete"
-                class="my-icon-spacing"
-                color="grey-darken-4"
+                class="my-icon-spacing light-green-darken-3-var"
               ></v-icon>
             </td>
           </tr>
