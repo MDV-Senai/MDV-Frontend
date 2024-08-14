@@ -90,49 +90,6 @@
   </v-main>
 </template>
 
-<style scoped>
-h3 {
-  background: linear-gradient(
-    to right,
-    rgba(178, 34, 34, 1),
-    rgba(0, 100, 0, 1)
-  );
-  -webkit-background-clip: text;
-  color: transparent;
-  background-clip: text;
-}
-#imagem {
-  background-image: url("../assets/img/fundoDesenhos.svg");
-  background-size: contain;
-  background-repeat: no-repeat;
-  height: 100%;
-  width: 100%;
-}
-
-#card_titulo {
-  font-size: 30px;
-  width: 90%;
-  height: 100px;
-  color: gray;
-}
-
-#form {
-  width: 90%;
-}
-
-#fundoCards {
-  background-color: white;
-  border-radius: 8px;
-  width: 90%;
-  margin: 2% auto;
-  display: flex;
-  text-align: center;
-  flex-direction: column;
-  /* justify-content: center;
-    align-items: center; */
-}
-</style>
-
 <script>
 export default {
   data() {
@@ -175,3 +132,7 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import "@/styles/shared";
+</style>
