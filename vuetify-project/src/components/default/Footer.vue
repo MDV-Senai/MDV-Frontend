@@ -2,16 +2,16 @@
   <v-main class="mt-15">
     <v-footer
       class="d-flex flex-column mt-5 position-absolute bottom-0 w-100"
-      color="pink-accent-1"
+      color="grey-lighten-3"
     >
       <div
         class="px-4 py-2 d-flex flex-column justify-space-between text-center w-100"
       >
-        <strong>Maternidade Darcy Vargas &copy;</strong>
+        <p>Maternidade Darcy Vargas &copy;</p>
         <div id="button-team">
           <v-menu open-on-hover>
             <template v-slot:activator="{ props }">
-              <v-btn density="compact" icon="mdi-account-group-outline" class="mb-1" color="pink-darken-4" v-bind="props"></v-btn>
+              <v-btn density="compact" icon="mdi-account-group-outline" class="mb-1" color="grey-darken-4" v-bind="props"></v-btn>
             </template>
 
             <v-list>

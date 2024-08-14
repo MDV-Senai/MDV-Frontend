@@ -3,7 +3,7 @@
     <Header />
     <div class="d-flex justify-center align-center">
       <v-card class="d-flex justify-center align-center" id="card_titulo"
-        >Consultar Responsável Pelo Estagiário</v-card
+        ><h3>Consultar Responsável Pelo Estagiário</h3></v-card
       >
     </div>
     <div id="fundoCards">
@@ -16,14 +16,13 @@
             label="Pesquise"
             prepend-inner-icon="mdi-magnify"
             variant="outlined"
-            color="pink-darken-4"
+            color="light-grey-darken-3"
             hide-details
             single-line
           ></v-text-field>
 
           <v-divider></v-divider>
           <v-data-table
-            :headers="headers"
             :items="filteredBoats"
             height="400"
             item-value="name"
@@ -40,7 +39,7 @@
                         density="compact"
                         icon="mdi-eye-outline"
                         variant="outlined"
-                        color="pink-darken-4"
+                        color="light-grey-darken-3"
                       ></v-btn>
                     </template>
 
@@ -54,8 +53,9 @@
                                 id="nome_prof"
                                 value="Fulano"
                                 reandoly
-                                class="text-pink-darken-1"
-                                color="pink-darken-4"
+                                class="text-grey-darken-1"
+                                variant="outlined"
+                                color="light-grey-darken-3"
                               ></v-text-field>
                             </v-col>
                           </v-row>
@@ -66,8 +66,9 @@
                                 id="numero_mat"
                                 value="00000000"
                                 reandoly
-                                class="text-pink-darken-1"
-                                color="pink-darken-4"
+                                class="text-grey-darken-1"
+                                variant="outlined"
+                                color="light-grey-darken-3"
                               ></v-text-field>
                             </v-col>
                             <v-col cols="12" md="6">
@@ -76,8 +77,9 @@
                                 id="inscricao"
                                 value="000.000.000-00"
                                 reandoly
-                                class="text-pink-darken-1"
-                                color="pink-darken-4"
+                                class="text-grey-darken-1"
+                                variant="outlined"
+                                color="light-grey-darken-3"
                               ></v-text-field>
                             </v-col>
                           </v-row>
@@ -89,8 +91,9 @@
                                 id="instituicao_ensino"
                                 value="Instituição de Ensino"
                                 reandoly
-                                class="text-pink-darken-1"
-                                color="pink-darken-4"
+                                class="text-grey-darken-1"
+                                variant="outlined"
+                                color="light-grey-darken-3"
                               ></v-text-field>
                             </v-col>
                             <v-col cols="12" md="6">
@@ -99,8 +102,9 @@
                                 id="curso"
                                 value="Curso"
                                 reandoly
-                                class="text-pink-darken-1"
-                                color="pink-darken-4"
+                                class="text-grey-darken-1"
+                                variant="outlined"
+                                color="light-grey-darken-3"
                               ></v-text-field>
                             </v-col>
                           </v-row>
@@ -117,19 +121,17 @@
                     </template>
                   </v-dialog>
                   <v-btn
-                    v-bind="activatorProps"
                     density="compact"
                     icon="mdi-pencil"
                     class="mx-5"
                     variant="outlined"
-                    color="pink-darken-4"
+                    color="light-grey-darken-3"
                   ></v-btn>
                   <v-btn
-                    v-bind="activatorProps"
                     density="compact"
                     icon="mdi-delete"
                     variant="outlined"
-                    color="pink-darken-4"
+                    color="light-grey-darken-3"
                   ></v-btn>
                 </td>
               </tr>
@@ -184,37 +186,6 @@ export default {
 };
 </script>
 
-
-<style scoped>
-#imagem {
-  background-image: url("../assets/img/fundoDesenhos.svg");
-  background-size: contain;
-  background-repeat: no-repeat;
-  height: 100%;
-  width: 100%;
-}
-
-#card_titulo {
-  font-size: 30px;
-  width: 90%;
-  height: 100px;
-  color: gray;
-}
-
-#form {
-  width: 90%;
-}
-
-#fundoCards {
-  background-color: white;
-  border-radius: 8px;
-  width: 90%;
-  margin: 2% auto;
-  display: flex;
-  text-align: center;
-  flex-direction: column;
-  /* justify-content: center;
-    align-items: center; */
-}
+<style lang="scss">
+@import '@/styles/shared';
 </style>
-

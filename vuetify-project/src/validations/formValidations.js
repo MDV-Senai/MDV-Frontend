@@ -27,3 +27,18 @@ export const confirmPasswordValidation = () => {
 
     return true;
 }
+
+export const hiddenSocialName = () => {
+    document.addEventListener('DOMContentLoaded', () => {
+        const toggleSwitch = document.getElementById('toggleSwitch');
+        const content = document.getElementById('hidden');
+    
+        toggleSwitch.addEventListener('change', () => {
+            if (toggleSwitch.checked) {
+                content.style.display = 'block';
+            } else {
+                content.style.display = 'none';
+            }
+        });
+    });    
+}

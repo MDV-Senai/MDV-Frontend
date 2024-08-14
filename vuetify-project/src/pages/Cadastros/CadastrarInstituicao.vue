@@ -4,7 +4,7 @@
     <Header />
     <div class="d-flex justify-center align-center">
       <v-card class="d-flex justify-center align-center" id="card_titulo"
-        >Cadastro da Instituição de Ensino</v-card
+        ><h3>Cadastro da Instituição de Ensino</h3></v-card
       >
     </div>
     <div id="fundoCards">
@@ -17,8 +17,8 @@
               maxlength="255"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-4"
+              variant="outlined"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -31,8 +31,8 @@
               maxlength="255"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-3"
+              variant="outlined"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -44,8 +44,8 @@
               maxlength="255"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-3"
+              variant="outlined"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -57,8 +57,8 @@
               maxlength="255"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-3"
+              variant="outlined"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -70,8 +70,8 @@
               maxlength="18"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-3"
+              variant="outlined"
               v-mask="'##.###.###/####-##'"
             ></v-text-field>
           </v-col>
@@ -83,8 +83,8 @@
               maxlength="12"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-3"
+              variant="outlined"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -96,8 +96,8 @@
               maxlength="14"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-3"
+              variant="outlined"
               v-mask="'(##) ####-####'"
             ></v-text-field>
           </v-col>
@@ -109,8 +109,8 @@
               maxlength="15"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-3"
+              variant="outlined"
               v-mask="'(##) #####-####'"
             ></v-text-field>
           </v-col>
@@ -121,8 +121,8 @@
               maxlength="255"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-3"
+              variant="outlined"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -135,8 +135,8 @@
               maxlength="9"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-3"
+              variant="outlined"
               v-mask="'#####-###'"
               @input.debounce="preencheCep($event.target.value)"
             ></v-text-field>
@@ -150,8 +150,8 @@
               :rules="[rules.required]"
               maxlength="255"
               counter
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-3"
+              variant="outlined"
               readonly
             ></v-text-field>
           </v-col>
@@ -164,8 +164,8 @@
               maxlength="10"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-3"
+              variant="outlined"
             ></v-text-field>
           </v-col>
           <v-col cols="6" md="8">
@@ -175,8 +175,8 @@
               maxlength="255"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-3"
+              variant="outlined"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -188,8 +188,8 @@
               :rules="[rules.required]"
               maxlength="255"
               counter
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-3"
+              variant="outlined"
               readonly
             ></v-text-field>
           </v-col>
@@ -202,8 +202,8 @@
               :rules="[rules.required]"
               maxlength="255"
               counter
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-3"
+              variant="outlined"
               readonly
             ></v-text-field>
           </v-col>
@@ -214,8 +214,8 @@
               :item-title="'uf'"
               :item-value="'id'"
               label="UF"
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-3"
+              variant="outlined"
               readonly
             ></v-select>
           </v-col>
@@ -228,8 +228,8 @@
               maxlength="255"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-3"
+              variant="outlined"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
@@ -242,8 +242,8 @@
               maxlength="255"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-3"
+              variant="outlined"
               @click:append="show1 = !show1"
             ></v-text-field>
           </v-col>
@@ -257,8 +257,8 @@
               maxlength="255"
               counter
               clearable
-              class="text-pink-darken-1"
-              color="pink-darken-4"
+              class="text-grey-darken-3"
+              variant="outlined"
               @click:append="show2 = !show2"
             ></v-text-field>
           </v-col>
@@ -270,9 +270,8 @@
               <v-btn
                 @click="reset"
                 class="my-10"
-                color="pink-darken-4"
-                append-icon="mdi-chevron-right"
                 variant="outlined"
+                append-icon="mdi-chevron-right"
                 width="183"
                 height="62"
               >
@@ -284,8 +283,7 @@
               <v-btn
                 append-icon="mdi-chevron-right"
                 variant="outlined"
-                color="pink-darken-4"
-                class="my-10"
+                class="text-grey-darken-4 my-10"
                 width="183"
                 height="62"
                 id="botaoEntrar"
@@ -293,7 +291,7 @@
                 Cadastrar
 
                 <template v-slot:append>
-                  <v-icon color="pink-darken-4"></v-icon>
+                  <v-icon color="grey-darken-4"></v-icon>
                 </template>
               </v-btn>
             </v-col>
@@ -304,45 +302,6 @@
     <Footer />
   </v-main>
 </template>
-
-<style scoped>
-#imagem {
-  background-image: url("../assets/img/fundoDesenhos.svg");
-  background-size: contain;
-  background-repeat: no-repeat;
-  height: 100%;
-  width: 100%;
-}
-
-#card_titulo {
-  font-size: 30px;
-  width: 90%;
-  height: 100px;
-  color: gray;
-}
-
-#form {
-  width: 90%;
-}
-
-@media (max-width: 768px) {
-  #inputResponsivo {
-    /* flex-direction: column; */
-  }
-}
-
-#fundoCards {
-  background-color: white;
-  border-radius: 8px;
-  width: 90%;
-  margin: 2% auto;
-  display: flex;
-  text-align: center;
-  flex-direction: column;
-  /* justify-content: center;
-    align-items: center; */
-}
-</style>
 
 <script>
 import axios from "axios";
@@ -401,3 +360,6 @@ export default {
 };
 </script>
 
+<style lang="scss">
+@import '@/styles/shared';
+</style>
