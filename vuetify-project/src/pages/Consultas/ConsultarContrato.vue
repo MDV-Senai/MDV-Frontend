@@ -33,16 +33,8 @@
             <td class="text-left">{{ item.data }}</td>
             <td class="text-center">
               <VisualizarContrato />
-              <v-icon
-                density="compact"
-                icon="mdi-pencil"
-                class="my-icon-spacing light-green-darken-3-var"
-              ></v-icon>
-              <v-icon
-                density="compact"
-                icon="mdi-delete"
-                class="my-icon-spacing light-green-darken-3-var"
-              ></v-icon>
+              <EditarContrato />
+              <DeletarItem />
             </td>
           </tr>
         </tbody>
