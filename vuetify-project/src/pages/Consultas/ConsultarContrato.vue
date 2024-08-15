@@ -32,7 +32,7 @@
             <td class="text-left">{{ item.aluno }}</td>
             <td class="text-left">{{ item.data }}</td>
             <td class="text-center">
-              <ContratoModal />
+              <VisualizarContrato />
               <v-icon
                 density="compact"
                 icon="mdi-pencil"
