@@ -14,6 +14,7 @@
             <v-text-field
               label="Instituição"
               :rules="[rules.required]"
+              v-model="instituacao"
               maxlength="255"
               counter
               clearable
@@ -28,6 +29,7 @@
             <v-text-field
               label="Razão Social"
               :rules="[rules.required]"
+              v-model="razaoSocial"
               maxlength="255"
               counter
               clearable
@@ -41,6 +43,7 @@
             <v-text-field
               label="Diretor"
               :rules="[rules.required]"
+              v-model="diretor"
               maxlength="255"
               counter
               clearable
@@ -54,6 +57,7 @@
             <v-text-field
               label="Professor Responsável"
               :rules="[rules.required, rules.fullname]"
+              v-model="professorResponsavel"
               maxlength="255"
               counter
               clearable
@@ -67,6 +71,7 @@
             <v-text-field
               label="CNPJ"
               :rules="[rules.required]"
+              v-model="cnpj"
               maxlength="18"
               counter
               clearable
@@ -80,6 +85,7 @@
             <v-text-field
               label="Inscrição Estadual"
               :rules="[rules.required]"
+              v-model="inscricaoEstadual"
               maxlength="12"
               counter
               clearable
@@ -93,6 +99,7 @@
           <v-col cols="6" md="4">
             <v-text-field
               label="Telefone"
+              v-model="telefone"
               maxlength="14"
               counter
               clearable
@@ -106,6 +113,7 @@
             <v-text-field
               label="Celular"
               :rules="[rules.required]"
+              v-model="celular"
               maxlength="15"
               counter
               clearable
@@ -118,6 +126,7 @@
             <v-text-field
               label="Email"
               :rules="[rules.required, rules.email]"
+              v-model="email"
               maxlength="255"
               counter
               clearable
@@ -132,6 +141,7 @@
             <v-text-field
               label="CEP"
               :rules="[rules.required]"
+              v-model="cep"
               maxlength="9"
               counter
               clearable
@@ -145,7 +155,7 @@
         <v-row>
           <v-col cols="12" md="12">
             <v-text-field
-              v-model="rua"
+              v-model="logradouro"
               label="Logradouro"
               :rules="[rules.required]"
               maxlength="255"
@@ -161,6 +171,7 @@
             <v-text-field
               label="Nº"
               :rules="[rules.required]"
+              v-model="numero"
               maxlength="10"
               counter
               clearable
@@ -172,6 +183,7 @@
             <v-text-field
               label="Complemento"
               :rules="[rules.required]"
+              v-model="complemento"
               maxlength="255"
               counter
               clearable
@@ -225,6 +237,7 @@
             <v-text-field
               label="Usuário"
               :rules="[rules.required]"
+              v-model="usuario"
               maxlength="255"
               counter
               clearable
@@ -239,6 +252,7 @@
               :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
               :rules="[rules.required, rules.min]"
               :type="show1 ? 'text' : 'password'"
+              v-model="senha"
               maxlength="255"
               counter
               clearable
@@ -315,9 +329,22 @@ import { buscaCep } from "@/util/buscaCep";
 export default {
   data() {
     return {
-      uf: null,
-      cidade: null,
+      instituacao: null,
+      razaoSocial: null,
+      diretor: null,
+      professorResponsavel: null,
+      cnpj: null,
+      inscricaoEstadual: null,
+      telefone: null,
+      celular: null,
+      email: null,
+      cep: null,
+      logradouro: null,
+      numero: null,
+      complemento: null,
       bairro: null,
+      cidade: null,
+      uf: null,
       rua: null,
       ufs: [],
       show1: false,
@@ -347,7 +374,7 @@ export default {
       this.cidade = address.localidade;
       this.uf = address.uf;
       this.bairro = address.bairro;
-      this.rua = address.logradouro;
+      this.logradouro = address.logradouro;
     },
 
     reset() {
