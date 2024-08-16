@@ -346,6 +346,8 @@ export default {
       cidade: null,
       uf: null,
       rua: null,
+      usuario: null,
+      senha: null,
       ufs: [],
       show1: false,
       show2: false,
