@@ -401,7 +401,8 @@ export default {
           responsavelLegalContato: this.contatoRespLegal,
         }
 
-        const url = '';
+        const url = import.meta.env.VITE_BACKEND_URL + "/instituicaoEnsino";
+        console.log(url);
 
         const req = await axios.post(url, data);
 
