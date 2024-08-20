@@ -13,6 +13,7 @@
             <v-text-field
               label="Nome"
               :rules="[rules.required]"
+              v-model="nome"
               maxlength="255"
               counter
               clearable
@@ -27,6 +28,7 @@
             <v-text-field
               label="Nome social"
               :rules="[rules.required, rules.hidden]"
+              v-model="nomeSocial"
               maxlength="255"
               counter
               clearable
@@ -55,6 +57,7 @@
             <v-text-field
               label="Nº Matrícula do Estudante"
               :rules="[rules.required]"
+              v-model="numeroMatriEstu"
               maxlength="25"
               counter
               clearable
@@ -66,6 +69,7 @@
             <v-text-field
               label="CPF"
               :rules="[rules.required]"
+              v-model="cpf"
               maxlength="14"
               counter
               clearable
@@ -79,6 +83,7 @@
               label="Data De Nasc."
               type="date"
               :rules="[rules.required]"
+              v-model="dataNasc"
               maxlength="10"
               counter
               clearable
@@ -92,6 +97,7 @@
             <v-text-field
               label="E-mail"
               :rules="[rules.required]"
+              v-model="email"
               maxlength="255"
               counter
               clearable
@@ -103,6 +109,7 @@
             <v-text-field
               label="Celular"
               :rules="[rules.required]"
+              v-model="celular"
               maxlength="15"
               counter
               clearable
@@ -114,6 +121,7 @@
           <v-col cols="6" md="3">
             <v-text-field
               label="Telefone"
+              v-model="telefone"
               maxlength="14"
               counter
               clearable
@@ -126,6 +134,7 @@
             <v-text-field
               label="Número do Contato Emergencial"
               :rules="[rules.required]"
+              v-model="numeroContatoEmerg"
               maxlength="15"
               counter
               clearable
@@ -141,6 +150,7 @@
             <v-text-field
               label="Nome do Contato Emergencial"
               :rules="[rules.required]"
+              v-model="nomeContatoEmerg"
               maxlength="255"
               counter
               clearable
@@ -155,6 +165,7 @@
             <v-text-field
               label="Instituição De Ensino"
               :rules="[rules.required]"
+              v-model="instituicaoEnsino"
               maxlength="255"
               counter
               clearable
@@ -166,6 +177,7 @@
             <v-text-field
               label="Curso"
               :rules="[rules.required]"
+              v-model="curso"
               maxlength="255"
               counter
               clearable
@@ -177,6 +189,7 @@
             <v-text-field
               label="Período"
               :rules="[rules.required]"
+              v-model="periodo"
               maxlength="2"
               counter
               clearable
@@ -191,6 +204,7 @@
             <v-text-field
               label="Nome do Professor Responsável"
               :rules="[rules.required]"
+              v-model="nomeProfessorResp"
               maxlength="255"
               counter
               clearable
@@ -205,6 +219,7 @@
             <v-text-field
               label="CEP"
               :rules="[rules.required]"
+              v-model="cep"
               maxlength="9"
               counter
               clearable
@@ -218,7 +233,7 @@
         <v-row>
           <v-col cols="12" md="12">
             <v-text-field
-              v-model="rua"
+              v-model="logradouro"
               label="Logradouro"
               :rules="[rules.required]"
               maxlength="255"
@@ -234,6 +249,7 @@
             <v-text-field
               label="Nº"
               :rules="[rules.required]"
+              v-model="numero"
               maxlength="10"
               counter
               clearable
@@ -245,6 +261,7 @@
             <v-text-field
               label="Complemento"
               :rules="[rules.required]"
+              v-model="complemento"
               maxlength="255"
               counter
               clearable
@@ -317,6 +334,7 @@
                 width="183"
                 height="62"
                 id="botaoEntrar"
+                @click="enviarDados"
               >
                 Cadastrar
 
@@ -338,14 +356,33 @@ import axios from "axios";
 import {
   hiddenSocialName,
 } from "@/validations/formValidations";
+import { buscaCep } from "@/util/buscaCep";
+
 export default {
   data() {
     return {
+      nome: null,
+      nomeSocial: null,
+      numeroMatriEstu: null,
+      cpf: null,
+      dataNasc: null,
+      email: null,
+      celular: null,
+      telefone: null,
+      numeroContatoEmerg: null,
+      nomeContatoEmerg: null,
+      instituicaoEnsino: null,
+      curso: null,
+      periodo: null,
+      nomeProfessorResp: null,
+      cep: null,
+      numero: null,
       uf: null,
+      complemento: null,
       isVisible: false,
       cidade: null,
       bairro: null,
-      rua: null,
+      logradouro: null,
       enableSocialName: false,
       rules: {
         required: (value) => !!value || "Obrigatório.",
@@ -354,23 +391,45 @@ export default {
     };
   },
   methods: {
-    async buscaCep(cep) {
-      const cepFormat = cep.replace("-", "");
+    async preencheCep(cep) {
+      let address = await buscaCep(cep);
+      this.cidade = address.localidade;
+      this.uf = address.uf;
+      this.bairro = address.bairro;
+      this.logradouro = address.logradouro;
+    },
 
-      if (cepFormat.length !== 8) return false;
-
+    async enviarDados () {
       try {
-        const response = await axios.get(
-          `https://viacep.com.br/ws/${cep}/json/`
-        );
-        const address = response.data;
+        
+        const data = {
+          nome: this.nome,
+          nomeSocial: this.nomeSocial,
+          documento: this.string,
+          dataNascimento: this.dataNasc,
+          fone: this.telefone,
+          celular: this.celular,
+          email: this.email,
+          matricula: this.numeroMatriEstu,
+          contatoEmergencia: this.numeroContatoEmerg,
+          nomeContatoEmergencia: this.nomeContatoEmerg,
+          cep: this.cep,
+          cidade: this.cidade,
+          uf: this.uf,
+          numeroResidencia: this.numero,
+          rua: this.logradouro,
+          bairro: this.bairro,
+          complemento: this.complemento,
+        }
 
-        this.uf = address.uf;
-        this.cidade = address.localidade;
-        this.bairro = address.bairro;
-        this.rua = address.logradouro;
+        const url = import.meta.env.VITE_BACKEND_URL + "/cadastrarAluno";
+        console.log(url);
+
+        const req = await axios.post(url, data);
+
+        console.log('Resposta: ', req);
       } catch (error) {
-        console.error("Erro ao consultar CEP:", error);
+        console.error('Erro ao enviar dados:', error);
       }
     },
 
