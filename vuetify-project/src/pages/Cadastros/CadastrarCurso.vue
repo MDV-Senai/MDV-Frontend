@@ -22,8 +22,75 @@
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="12">
             <v-text-field
-              label="Curso"
+              label="Nome do Curso"
               v-model="curso"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row class="d-flex justify-center">
+          <v-col cols="12" md="12">
+            <v-text-field
+              label="Nome do Coordenador do Curso"
+              v-model="nomeCoordenadorCurso"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row class="d-flex justify-center">
+          <v-col cols="12" md="12">
+            <v-text-field
+              label="Nome Social do Coordenador do Curso"
+              v-model="nomeSocialCoordenadorCurso"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+         <v-row class="d-flex justify-center">
+          <v-col cols="12" md="4">
+            <v-text-field
+              label="E-mail do Coordenador do Curso"
+              :rules="[rules.required]"
+              v-model="email"
+              type="email"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12" md="4">
+            <v-text-field
+              label="Telefone do Coordenador do Curso"
+              v-model="telefone"
+              :rules="[rules.required]"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12" md="4">
+            <v-text-field
+              label="Celular do Coordenador do Curso"
+              v-model="celular"
               :rules="[rules.required]"
               maxlength="255"
               counter
@@ -57,6 +124,7 @@
                 width="183"
                 height="62"
                 id="botaoEntrar"
+                @click="enviarDados"
               >
                 Cadastrar
 
@@ -81,6 +149,12 @@ import axios from "axios";
 export default {
   data() {
     return {
+      curso: null,
+      nomeCoordenadorCurso: null,
+      nomeSocialCoordenadorCurso: null,
+      email: null,
+      telefone: null,
+      celular: null,
       rules: {
         required: (value) => !!value || "Obrigatório.",
       },
@@ -89,6 +163,30 @@ export default {
     };
   },
   methods: {
+
+    async enviarDados() {
+      try {
+        
+        const data = {
+          nomeCurso: this.curso,
+          nomeCoordenadorCurso: this.nomeCoordenadorCurso,
+          nomeSocialCoordenadorCurso: this.nomeSocialCoordenadorCurso,
+          emailCoordenadorCurso: this.email,
+          foneCoordenadorCurso: this.telefone,
+          celularCoordenadorCurso: this.celular,
+        }
+
+        const url = import.meta.env.VITE_BACKEND_URL + "/cadastrarCurso";
+        console.log(url);
+
+        const req = await axios.post(url, data);
+
+        console.log('Resposta: ', req);
+      } catch (error) {
+        console.error('Erro ao enviar dados:', error);
+      }
+    },
+
     reset() {
       this.$refs.form.reset();
     },
