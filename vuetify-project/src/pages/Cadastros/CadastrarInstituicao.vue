@@ -52,20 +52,6 @@
             ></v-text-field>
           </v-col>
         </v-row>
-        <v-row class="d-flex justify-center">
-          <v-col cols="12" md="12">
-            <v-text-field
-              label="Professor Responsável"
-              :rules="[rules.required, rules.fullname]"
-              v-model="professorResponsavel"
-              maxlength="255"
-              counter
-              clearable
-              class="text-grey-darken-3"
-              variant="outlined"
-            ></v-text-field>
-          </v-col>
-        </v-row>
         <v-row id="inputResponsivo" class="d-flex justify-center">
           <v-col cols="12" md="6">
             <v-text-field
@@ -96,7 +82,7 @@
         </v-row>
 
         <v-row id="inputResponsivo" class="d-flex justify-center">
-          <v-col cols="6" md="4">
+          <v-col cols="6" md="3">
             <v-text-field
               label="Telefone"
               v-model="telefone"
@@ -109,7 +95,7 @@
             ></v-text-field>
           </v-col>
 
-          <v-col cols="6" md="4">
+          <v-col cols="6" md="3">
             <v-text-field
               label="Celular"
               :rules="[rules.required]"
@@ -122,7 +108,20 @@
               v-mask="'(##) #####-####'"
             ></v-text-field>
           </v-col>
-          <v-col cols="12" md="4">
+          <v-col cols="6" md="3">
+            <v-text-field
+              label="Contato Responsável Legal"
+              :rules="[rules.required]"
+              v-model="contatoRespLegal"
+              maxlength="15"
+              counter
+              clearable
+              class="text-grey-darken-3"
+              variant="outlined"
+              v-mask="'(##) #####-####'"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="6" md="3">
             <v-text-field
               label="Email"
               :rules="[rules.required, rules.email]"
@@ -295,6 +294,7 @@
 
             <v-col cols="6" md="3">
               <v-btn
+                @click="enviarDados"
                 append-icon="mdi-chevron-right"
                 variant="outlined"
                 class="text-grey-darken-4 my-10"
@@ -332,7 +332,6 @@ export default {
       instituacao: null,
       razaoSocial: null,
       diretor: null,
-      professorResponsavel: null,
       cnpj: null,
       inscricaoEstadual: null,
       telefone: null,
@@ -348,6 +347,7 @@ export default {
       rua: null,
       usuario: null,
       senha: null,
+      contatoRespLegal: null, 
       ufs: [],
       show1: false,
       show2: false,
@@ -377,6 +377,39 @@ export default {
       this.uf = address.uf;
       this.bairro = address.bairro;
       this.logradouro = address.logradouro;
+    },
+
+    async enviarDados () {
+      try {
+        
+        const data = {
+          nomeFantasia: this.instituacao,
+          razaoSocial: this.razaoSocial,
+          cnpj: this.cnpj,
+          inscricaoEstado: this.inscricaoEstadual,
+          fone: this.telefone,
+          celular: this.celular,
+          email: this.email,
+          cep: this.cep,
+          cidade: this.cidade,
+          uf: this.uf,
+          bairro: this.bairro,
+          numero: this.numero,
+          rua: this.logradouro,
+          complemento: this.complemento,
+          responsavelLegal: this.diretor,
+          responsavelLegalContato: this.contatoRespLegal,
+        }
+
+        const url = '';
+
+        const req = await axios.post(url, data);
+
+        console.log('Resposta: ', req);
+
+      } catch (error) {
+        console.error('Erro ao enviar dados:', error);
+      }
     },
 
     reset() {
