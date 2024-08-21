@@ -61,7 +61,7 @@
             ></v-text-field>
           </v-col>
         </v-row>
-         <v-row class="d-flex justify-center">
+        <v-row class="d-flex justify-center">
           <v-col cols="12" md="4">
             <v-text-field
               label="E-mail do Coordenador do Curso"
@@ -163,27 +163,27 @@ export default {
     };
   },
   methods: {
-
     async enviarDados() {
-      try {
-        
-        const data = {
-          nomeCurso: this.curso,
-          nomeCoordenadorCurso: this.nomeCoordenadorCurso,
-          nomeSocialCoordenadorCurso: this.nomeSocialCoordenadorCurso,
-          emailCoordenadorCurso: this.email,
-          foneCoordenadorCurso: this.telefone,
-          celularCoordenadorCurso: this.celular,
+      if (this.$refs.form.validate()) {
+        try {
+          const data = {
+            nomeCurso: this.curso,
+            nomeCoordenadorCurso: this.nomeCoordenadorCurso,
+            nomeSocialCoordenadorCurso: this.nomeSocialCoordenadorCurso,
+            emailCoordenadorCurso: this.email,
+            foneCoordenadorCurso: this.telefone,
+            celularCoordenadorCurso: this.celular,
+          };
+
+          const url = import.meta.env.VITE_BACKEND_URL + "/cadastrarCurso";
+          console.log(url);
+
+          const req = await axios.post(url, data);
+
+          console.log("Resposta: ", req);
+        } catch (error) {
+          console.error("Erro ao enviar dados:", error);
         }
-
-        const url = import.meta.env.VITE_BACKEND_URL + "/cadastrarCurso";
-        console.log(url);
-
-        const req = await axios.post(url, data);
-
-        console.log('Resposta: ', req);
-      } catch (error) {
-        console.error('Erro ao enviar dados:', error);
       }
     },
 

@@ -347,7 +347,7 @@ export default {
       rua: null,
       usuario: null,
       senha: null,
-      contatoRespLegal: null, 
+      contatoRespLegal: null,
       ufs: [],
       show1: false,
       show2: false,
@@ -379,37 +379,37 @@ export default {
       this.logradouro = address.logradouro;
     },
 
-    async enviarDados () {
-      try {
-        
-        const data = {
-          nomeFantasia: this.instituacao,
-          razaoSocial: this.razaoSocial,
-          cnpj: this.cnpj,
-          inscricaoEstado: this.inscricaoEstadual,
-          fone: this.telefone,
-          celular: this.celular,
-          email: this.email,
-          cep: this.cep,
-          cidade: this.cidade,
-          uf: this.uf,
-          bairro: this.bairro,
-          numero: this.numero,
-          rua: this.logradouro,
-          complemento: this.complemento,
-          responsavelLegal: this.diretor,
-          responsavelLegalContato: this.contatoRespLegal,
+    async enviarDados() {
+      if (this.$refs.form.validate()) {
+        try {
+          const data = {
+            nomeFantasia: this.instituacao,
+            razaoSocial: this.razaoSocial,
+            cnpj: this.cnpj,
+            inscricaoEstado: this.inscricaoEstadual,
+            fone: this.telefone,
+            celular: this.celular,
+            email: this.email,
+            cep: this.cep,
+            cidade: this.cidade,
+            uf: this.uf,
+            bairro: this.bairro,
+            numero: this.numero,
+            rua: this.logradouro,
+            complemento: this.complemento,
+            responsavelLegal: this.diretor,
+            responsavelLegalContato: this.contatoRespLegal,
+          };
+
+          const url = import.meta.env.VITE_BACKEND_URL + "/instituicaoEnsino";
+          console.log(url);
+
+          const req = await axios.post(url, data);
+
+          console.log("Resposta: ", req);
+        } catch (error) {
+          console.error("Erro ao enviar dados:", error);
         }
-
-        const url = import.meta.env.VITE_BACKEND_URL + "/instituicaoEnsino";
-        console.log(url);
-
-        const req = await axios.post(url, data);
-
-        console.log('Resposta: ', req);
-
-      } catch (error) {
-        console.error('Erro ao enviar dados:', error);
       }
     },
 
@@ -424,5 +424,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/styles/shared';
+@import "@/styles/shared";
 </style>

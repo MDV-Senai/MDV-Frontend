@@ -353,9 +353,7 @@
 
 <script>
 import axios from "axios";
-import {
-  hiddenSocialName,
-} from "@/validations/formValidations";
+import { hiddenSocialName } from "@/validations/formValidations";
 import { buscaCep } from "@/util/buscaCep";
 
 export default {
@@ -399,37 +397,38 @@ export default {
       this.logradouro = address.logradouro;
     },
 
-    async enviarDados () {
-      try {
-        
-        const data = {
-          nome: this.nome,
-          nomeSocial: this.nomeSocial,
-          documento: this.string,
-          dataNascimento: this.dataNasc,
-          fone: this.telefone,
-          celular: this.celular,
-          email: this.email,
-          matricula: this.numeroMatriEstu,
-          contatoEmergencia: this.numeroContatoEmerg,
-          nomeContatoEmergencia: this.nomeContatoEmerg,
-          cep: this.cep,
-          cidade: this.cidade,
-          uf: this.uf,
-          numeroResidencia: this.numero,
-          rua: this.logradouro,
-          bairro: this.bairro,
-          complemento: this.complemento,
+    async enviarDados() {
+      if (this.$refs.form.validate()) {
+        try {
+          const data = {
+            nome: this.nome,
+            nomeSocial: this.nomeSocial,
+            documento: this.string,
+            dataNascimento: this.dataNasc,
+            fone: this.telefone,
+            celular: this.celular,
+            email: this.email,
+            matricula: this.numeroMatriEstu,
+            contatoEmergencia: this.numeroContatoEmerg,
+            nomeContatoEmergencia: this.nomeContatoEmerg,
+            cep: this.cep,
+            cidade: this.cidade,
+            uf: this.uf,
+            numeroResidencia: this.numero,
+            rua: this.logradouro,
+            bairro: this.bairro,
+            complemento: this.complemento,
+          };
+
+          const url = import.meta.env.VITE_BACKEND_URL + "/cadastrarAluno";
+          console.log(url);
+
+          const req = await axios.post(url, data);
+
+          console.log("Resposta: ", req);
+        } catch (error) {
+          console.error("Erro ao enviar dados:", error);
         }
-
-        const url = import.meta.env.VITE_BACKEND_URL + "/cadastrarAluno";
-        console.log(url);
-
-        const req = await axios.post(url, data);
-
-        console.log('Resposta: ', req);
-      } catch (error) {
-        console.error('Erro ao enviar dados:', error);
       }
     },
 
