@@ -7,15 +7,17 @@
       </v-card>
     </div>
     <div id="fundoCards">
-      <v-text-field
-        label="Pesquise"
-        prepend-inner-icon="mdi-magnify"
-        variant="outlined"
-        class="text-grey-darken-4"
-        hide-details
-        single-line
-      ></v-text-field>
-
+      <div class="d-flex">
+        <v-text-field
+          v-model="numeroContrato"
+          label="Pesquise"
+          variant="outlined"
+          prepend-inner-icon="mdi-magnify"
+          class="text-grey-darken-4"
+          single-line
+          clearable 
+        ></v-text-field >
+      </div>
       <v-table>
         <thead>
           <tr>
@@ -38,8 +40,6 @@
           </tr>
         </tbody>
       </v-table>
-
-      <!-- Paginação -->
       <div class="d-flex justify-center mt-4">
         <v-pagination
           v-model="pagina"
@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import { ref, computed, onMounted } from "vue";
+import { ref, computed, onMounted, watch } from "vue";
 import { useResponsiveHeight } from "../../composables/useResponsiveHeight.js";
 import { fetchContratos } from "../../services/ContratosService.js";
 
@@ -61,22 +61,40 @@ export default {
   setup() {
     const { height } = useResponsiveHeight();
     const contratos = ref([]);
+    const numeroContrato = ref("");
     const pagina = ref(1);
     const itensPorPagina = ref(10);
+    const contratosFiltrados = ref([]);
 
     const loadContratos = async () => {
       const response = await fetchContratos();
       contratos.value = response;
+      contratosFiltrados.value = response;
+    };
+
+    const pesquisarContrato = () => {
+      if (numeroContrato.value) {
+        contratosFiltrados.value = contratos.value.filter((contrato) =>
+          contrato.numero.toString().includes(numeroContrato.value)
+        );
+      } else {
+        contratosFiltrados.value = contratos.value;
+      }
+      pagina.value = 1;
     };
 
     const totalPaginas = computed(() => {
-      return Math.ceil(contratos.value.length / itensPorPagina.value);
+      return Math.ceil(contratosFiltrados.value.length / itensPorPagina.value);
     });
 
     const contratoPaginado = computed(() => {
       const start = (pagina.value - 1) * itensPorPagina.value;
       const end = start + itensPorPagina.value;
-      return contratos.value.slice(start, end);
+      return contratosFiltrados.value.slice(start, end);
+    });
+
+    watch(numeroContrato, (newValue) => {
+      pesquisarContrato();
     });
 
     onMounted(() => {
@@ -85,11 +103,12 @@ export default {
 
     return {
       height,
-      contratos,
+      numeroContrato,
       pagina,
       itensPorPagina,
       totalPaginas,
       contratoPaginado,
+      pesquisarContrato,
     };
   },
 };
