@@ -23,8 +23,8 @@
           <tr>
             <th class="text-left">Instituição</th>
             <th class="text-left">Curso</th>
-            <th class="text-left">Data</th>
-            <th class="text-center">Situação</th>
+            <th class="text-left">Situação</th>
+            <th class="text-center">Ações</th>
           </tr>
         </thead>
         <tbody>
