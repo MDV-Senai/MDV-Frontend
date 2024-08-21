@@ -1,5 +1,5 @@
 <template>
-  <v-main id="imagem" :height="height">
+  <div id="imagem" :height="height" >
     <Header />
     <div class="d-flex justify-center align-center">
       <v-card class="d-flex justify-center align-center" id="card_titulo">
@@ -15,8 +15,8 @@
           prepend-inner-icon="mdi-magnify"
           class="text-grey-darken-4"
           single-line
-          clearable 
-        ></v-text-field >
+          clearable
+        ></v-text-field>
       </div>
       <v-table>
         <thead>
@@ -49,7 +49,7 @@
       </div>
     </div>
     <Footer />
-  </v-main>
+  </div>
 </template>
 
 <script>
