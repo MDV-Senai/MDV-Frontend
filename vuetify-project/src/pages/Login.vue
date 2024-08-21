@@ -56,10 +56,9 @@
                                   >
                                     <v-col cols="auto">
                                       <v-btn
-                                        icon="mdi-email-outline"
-                                        color="blue"
+                                        icon="mdi-email"
                                         size="x-large"
-                                        class="mb-3"
+                                        class="mb-3 light-green-darken-3-var"
                                       ></v-btn>
                                     </v-col>
 
@@ -88,10 +87,9 @@
                                   >
                                     <v-col cols="12" sm="10">
                                       <v-btn
-                                        icon="mdi-email-outline"
-                                        color="blue"
+                                        icon="mdi-email"
                                         size="x-large"
-                                        class="mt-4"
+                                        class="mt-4 light-green-darken-3-var"
                                       ></v-btn>
 
                                       <v-text-field
@@ -246,7 +244,9 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import '@/styles/shared';
+
 #textoSenha {
   color: #f178ac;
   text-decoration: none;
