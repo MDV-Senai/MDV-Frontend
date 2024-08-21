@@ -107,8 +107,7 @@ export default {
       pagina,
       itensPorPagina,
       totalPaginas,
-      contratoPaginado,
-      pesquisarContrato,
+      contratoPaginado
     };
   },
 };
