@@ -24,7 +24,8 @@
             <th class="text-left">Nome</th>
             <th class="text-left">Turma</th>
             <th class="text-left">Curso</th>
-            <th class="text-center">Instituição</th>
+            <th class="text-left">Instituição</th>
+            <th class="text-center">Ações</th>
           </tr>
         </thead>
         <tbody>
