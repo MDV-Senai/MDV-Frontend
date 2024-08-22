@@ -65,7 +65,7 @@
           <v-col cols="12" md="4">
             <v-text-field
               label="E-mail do Coordenador do Curso"
-              :rules="[rules.required]"
+              :rules="[rules.required, rules.email]"
               v-model="email"
               type="email"
               maxlength="255"
@@ -80,11 +80,12 @@
               label="Telefone do Coordenador do Curso"
               v-model="telefone"
               :rules="[rules.required]"
-              maxlength="255"
+              maxlength="14"
               counter
               clearable
               class="text-grey-darken-4"
               variant="outlined"
+              v-mask="'(##) ####-####'"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
@@ -92,11 +93,12 @@
               label="Celular do Coordenador do Curso"
               v-model="celular"
               :rules="[rules.required]"
-              maxlength="255"
+              maxlength="15"
               counter
               clearable
               class="text-grey-darken-4"
               variant="outlined"
+              v-mask="'(##) #####-####'"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -146,6 +148,9 @@
 
 <script>
 import axios from "axios";
+import {
+  emailValidation,
+} from "@/validations/formValidations";
 export default {
   data() {
     return {
@@ -157,6 +162,7 @@ export default {
       celular: null,
       rules: {
         required: (value) => !!value || "Obrigatório.",
+        email: (value) => emailValidation(value),
       },
       curso: "",
       listaInstituicao: [],
