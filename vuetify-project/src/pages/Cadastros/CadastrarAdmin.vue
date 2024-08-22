@@ -27,7 +27,7 @@
           <v-col cols="12" md="12">
             <v-text-field
               label="Nome social"
-              :rules="[rules.required, rules.hidden]"
+              :rules="[rules.hidden]"
               maxlength="255"
               counter
               clearable
@@ -104,7 +104,7 @@
           <v-col cols="12" md="4">
             <v-text-field
               label="E-mail"
-              :rules="[rules.required]"
+              :rules="[rules.required, rules.email]"
               maxlength="255"
               counter
               clearable
@@ -115,28 +115,35 @@
         </v-row>
 
         <v-row id="inputResponsivo" class="d-flex justify-center">
-          <v-col cols="6" md="6">
+          <v-col cols="12" md="6">
             <v-text-field
               label="Senha"
-              type="password"
-              :rules="[rules.required]"
+              id="senha"
+              :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+              :rules="[rules.required, rules.min]"
+              :type="show1 ? 'text' : 'password'"
+              v-model="senha"
               maxlength="255"
               counter
               clearable
-              class="text-grey-darken-4"
+              class="text-grey-darken-3"
               variant="outlined"
+              @click:append="show1 = !show1"
             ></v-text-field>
           </v-col>
-          <v-col cols="6" md="6">
+          <v-col cols="12" md="6">
             <v-text-field
-              label="Confirme sua senha"
-              type="password"
-              :rules="[rules.required]"
+              label="Confirmação de Senha"
+              id="confirmarSenha"
+              :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
+              :rules="[rules.required, rules.identic]"
+              :type="show2 ? 'text' : 'password'"
               maxlength="255"
               counter
               clearable
-              class="text-grey-darken-4"
+              class="text-grey-darken-3"
               variant="outlined"
+              @click:append="show2 = !show2"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -244,13 +251,23 @@
 </template>
 
 <script>
+import {
+  confirmPasswordValidation,
+  emailValidation,
+} from "@/validations/formValidations";
+
 export default {
   data() {
     return {
+      senha: null,
+      show1: false,
+      show2: false,
       enableSocialName: false,
       isVisible: false,
       rules: {
         required: (value) => !!value || "Campo obrigatório.",
+        identic: (value) => confirmPasswordValidation(value),
+        email: (value) => emailValidation(value),
       },
       search: "",
       headers: [

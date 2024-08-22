@@ -1,322 +1,120 @@
 <template>
-  <v-main id="imagem">
+  <div id="imagem" :height="height">
     <Header />
     <div class="d-flex justify-center align-center">
-      <v-card class="d-flex justify-center align-center" id="card_titulo"
-        ><h3>Consultar Estagiário</h3></v-card
-      >
+      <v-card class="d-flex justify-center align-center" id="card_titulo">
+        <h3>Consultar Estagiário</h3>
+      </v-card>
     </div>
     <div id="fundoCards">
-      <v-container>
-        <v-card flat>
-          <v-spacer></v-spacer>
-
-          <v-text-field
-            v-model="search"
-            label="Pesquise"
-            prepend-inner-icon="mdi-magnify"
-            variant="outlined"
-            color="light-grey-darken-3"
-            hide-details
-            single-line
-          ></v-text-field>
-
-          <v-divider></v-divider>
-          <v-data-table
-            :items="filteredBoats"
-            height="400"
-            item-value="name"
-          >
-            <template v-slot:item="{ item }">
-              <tr>
-                <td>{{ item.name }}</td>
-                <td>{{ item.speed }}</td>
-                <td>
-                  <v-dialog max-width="800">
-                    <template v-slot:activator="{ props: activatorProps }">
-                      <v-btn
-                        v-bind="activatorProps"
-                        density="compact"
-                        icon="mdi-eye-outline"
-                        variant="outlined"
-                        class="light-green-darken-3-var"
-                      ></v-btn>
-                    </template>
-
-                    <template v-slot:default="{ isActive }">
-                      <v-card class="d-flex justify-center text-center">
-                        <v-row class="mt-16 mx-5">
-                          <v-col cols="12" md="12">
-                            <v-text-field
-                              label="Nome / Nome Social"
-                              id="nome"
-                              value="Nome Completo"
-                              reandoly
-                              class="mt-16 text-grey-darken-1"
-                              variant="outlined"
-                              color="light-grey-darken-3"
-                            ></v-text-field>
-                          </v-col>
-                        </v-row>
-                        <v-row class="mx-5">
-                          <v-col cols="12" md="4">
-                            <v-text-field
-                              label="CPF"
-                              id="cpf"
-                              value="000.000.000-00"
-                              reandoly
-                              class="text-grey-darken-1"
-                              variant="outlined"
-                              color="light-grey-darken-3"
-                            ></v-text-field>
-                          </v-col>
-                          <v-col cols="12" md="4">
-                            <v-text-field
-                              label="Data de Nasc."
-                              id="data_nasc"
-                              value="00/00/0000"
-                              reandoly
-                              class="text-grey-darken-1"
-                              variant="outlined"
-                              color="light-grey-darken-3"
-                            ></v-text-field>
-                          </v-col>
-                          <v-col cols="12" md="4">
-                            <v-text-field
-                              label="Telefone"
-                              id="telefone"
-                              value="3030-3030"
-                              reandoly
-                              class="text-grey-darken-1"
-                              variant="outlined"
-                              color="light-grey-darken-3"
-                            ></v-text-field>
-                          </v-col>
-                        </v-row>
-
-                        <v-row class="mx-5">
-                          <v-col cols="12" md="4">
-                            <v-text-field
-                              label="Email:"
-                              id="email"
-                              value="instituicao@gmail.com"
-                              reandoly
-                              class="text-grey-darken-1"
-                              variant="outlined"
-                              color="light-grey-darken-3"
-                            ></v-text-field>
-                          </v-col>
-
-                          <v-col cols="12" md="4">
-                            <v-text-field
-                              label="Celular"
-                              id="celular"
-                              value="(47) 99999-9999"
-                              reandoly
-                              class="text-grey-darken-1"
-                              variant="outlined"
-                              color="light-grey-darken-3"
-                            ></v-text-field>
-                          </v-col>
-                          <v-col cols="12" md="4">
-                            <v-text-field
-                              label="Instituição"
-                              id="instituicao"
-                              value="Instituição de Ensino"
-                              reandoly
-                              class="text-grey-darken-1"
-                              variant="outlined"
-                              color="light-grey-darken-3"
-                            ></v-text-field>
-                          </v-col>
-                        </v-row>
-
-                        <v-row class="mx-5">
-                          <v-col cols="12" md="4">
-                            <v-text-field
-                              label="Matrícula"
-                              id="matricula"
-                              value="0000000"
-                              reandoly
-                              class="text-grey-darken-1"
-                              variant="outlined"
-                              color="light-grey-darken-3"
-                            ></v-text-field>
-                          </v-col>
-
-                          <v-col cols="12" md="4">
-                            <v-text-field
-                              label="Curso"
-                              id="curso"
-                              value="Curso"
-                              reandoly
-                              class="text-grey-darken-1"
-                              variant="outlined"
-                              color="light-grey-darken-3"
-                            ></v-text-field>
-                          </v-col>
-                          <v-col cols="12" md="4">
-                            <v-text-field
-                              label="Fase/Série"
-                              id="faseSerie"
-                              value="0"
-                              reandoly
-                              class="text-grey-darken-1"
-                              variant="outlined"
-                              color="light-grey-darken-3"
-                            ></v-text-field>
-                          </v-col>
-                        </v-row>
-
-                        <v-row class="mx-5">
-                          <v-col cols="12" md="4">
-                            <v-text-field
-                              label="CEP"
-                              id="cep"
-                              value="00.000-000"
-                              reandoly
-                              class="text-grey-darken-1"
-                              variant="outlined"
-                              color="light-grey-darken-3"
-                            ></v-text-field>
-                          </v-col>
-
-                          <v-col cols="12" md="4">
-                            <v-text-field
-                              label="UF"
-                              id="uf"
-                              value="Estado"
-                              reandoly
-                              class="text-grey-darken-1"
-                              variant="outlined"
-                              color="light-grey-darken-3"
-                            ></v-text-field>
-                          </v-col>
-                          <v-col cols="12" md="4">
-                            <v-text-field
-                              label="Cidade"
-                              id="cidade"
-                              value="Cidade"
-                              reandoly
-                              class="text-grey-darken-1"
-                              variant="outlined"
-                              color="light-grey-darken-3"
-                            ></v-text-field>
-                          </v-col>
-                        </v-row>
-                        <v-row class="mx-5">
-                          <v-col cols="12" md="4">
-                            <v-text-field
-                              label="Bairro"
-                              id="bairro"
-                              value="Bairro"
-                              reandoly
-                              class="text-grey-darken-1"
-                              variant="outlined"
-                              color="light-grey-darken-3"
-                            ></v-text-field>
-                          </v-col>
-
-                          <v-col cols="12" md="4">
-                            <v-text-field
-                              label="Logradouro"
-                              id="rua"
-                              value="Logradouro"
-                              reandoly
-                              class="text-grey-darken-1"
-                              variant="outlined"
-                              color="light-grey-darken-3"
-                            ></v-text-field>
-                          </v-col>
-                          <v-col cols="12" md="4">
-                            <v-text-field
-                              label="Complemento"
-                              id="complemento"
-                              value="Complemento"
-                              reandoly
-                              class="text-grey-darken-1"
-                              variant="outlined"
-                              color="light-grey-darken-3"
-                            ></v-text-field>
-                          </v-col>
-                        </v-row>
-
-                        <v-card-actions>
-                          <v-spacer></v-spacer>
-
-                          <v-btn
-                            text="Fechar"
-                            @click="isActive.value = false"
-                          ></v-btn>
-                        </v-card-actions>
-                      </v-card>
-                    </template>
-                  </v-dialog>
-                  <v-btn
-                    density="compact"
-                    icon="mdi-pencil"
-                    class="mx-5 light-green-darken-3-var"
-                    variant="outlined"
-                  ></v-btn>
-                  <v-btn
-                    density="compact"
-                    icon="mdi-delete"
-                    variant="outlined"
-                    class="light-green-darken-3-var"
-                  ></v-btn>
-                </td>
-              </tr>
-            </template>
-          </v-data-table>
-        </v-card>
-      </v-container>
+      <div class="d-flex">
+        <v-text-field
+          v-model="nomeEstagiario"
+          label="Pesquise"
+          variant="outlined"
+          prepend-inner-icon="mdi-magnify"
+          class="text-grey-darken-4"
+          single-line
+          clearable
+        ></v-text-field>
+      </div>
+      <v-table>
+        <thead>
+          <tr>
+            <th class="text-left">Nome</th>
+            <th class="text-left">Turma</th>
+            <th class="text-left">Curso</th>
+            <th class="text-left">Instituição</th>
+            <th class="text-center">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="item in estagiarioPaginado" :key="item.id">
+            <td class="text-left">{{ item.nome }}</td>
+            <td class="text-left">{{ item.turma }}</td>
+            <td class="text-left">{{ item.curso }}</td>
+            <td class="text-left">{{ item.instituicao }}</td>
+            <td class="text-center">
+              <VisualizarEstagiario />
+              <EditarEstagiario />
+              <DeletarItem />
+            </td>
+          </tr>
+        </tbody>
+      </v-table>
+      <div class="d-flex justify-center mt-4">
+        <v-pagination
+          v-model="pagina"
+          :length="totalPaginas"
+          total-visible="7"
+        ></v-pagination>
+      </div>
     </div>
     <Footer />
-  </v-main>
+  </div>
 </template>
 
 <script>
+import { ref, computed, onMounted, watch } from "vue";
+import { useResponsiveHeight } from "../../composables/useResponsiveHeight.js";
+import { fetchEstagiarios } from "../../services/EstagiariosService.js";
+
 export default {
-  data() {
-    return {
-      search: "",
+  setup() {
+    const { height } = useResponsiveHeight();
+    const estagiarios = ref([]);
+    const nomeEstagiario = ref("");
+    const pagina = ref(1);
+    const itensPorPagina = ref(10);
+    const estagiariosFiltrados = ref([]);
 
-      boats: [
-        {
-          name: "Fulano",
-        },
-        {
-          name: "Fulano",
-        },
-        {
-          name: "Fulano",
-        },
-        {
-          name: "Fulano",
-        },
-      ],
+    const loadEstagiarios = async () => {
+      const response = await fetchEstagiarios();
+      estagiarios.value = response;
+      estagiariosFiltrados.value = response;
     };
-  },
 
-  computed: {
-    filteredBoats() {
-      if (!this.boats) {
-        return this.virtualBoats;
+    const pesquisarEstagiarios = () => {
+      if (nomeEstagiario.value) {
+        estagiariosFiltrados.value = estagiarios.value.filter((item) =>
+          item.nome.toLowerCase().includes(nomeEstagiario.value.toLowerCase())
+        );
+      } else {
+        estagiariosFiltrados.value = estagiarios.value;
       }
-      const searchTerm = this.search.toLowerCase();
-      return this.boats.filter(
-        (boat) =>
-          boat.name.toLowerCase().includes(searchTerm) ||
-          String(boat.speed).includes(searchTerm)
-      );
-    },
-  },
-  methods: {
-    handleButtonClick(item) {},
+      pagina.value = 1;
+    };
+
+    const totalPaginas = computed(() => {
+      return Math.ceil(estagiariosFiltrados.value.length / itensPorPagina.value);
+    });
+
+    const estagiarioPaginado = computed(() => {
+      const start = (pagina.value - 1) * itensPorPagina.value;
+      const end = start + itensPorPagina.value;
+      return estagiariosFiltrados.value.slice(start, end);
+    });
+
+    watch(nomeEstagiario, (newValue) => {
+      pesquisarEstagiarios();
+    });
+
+    onMounted(() => {
+      loadEstagiarios();
+    });
+
+    return {
+      height,
+      nomeEstagiario,
+      pagina,
+      itensPorPagina,
+      totalPaginas,
+      estagiarioPaginado,
+    };
   },
 };
 </script>
 
 <style lang="scss">
-@import '@/styles/shared';
+@import "@/styles/shared";
 </style>

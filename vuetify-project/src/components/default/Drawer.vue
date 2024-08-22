@@ -75,44 +75,86 @@
 </template>
 
 <script>
+import { ref, watch } from "vue";
+
 export default {
-  data() {
-    return {
-      rotaInfoVagas: "/informacaoVagas",
-      rotasCrud: [
-        ["Cadastrar Instituição", "mdi-store-plus-outline", "/cadastrarInstituicao"],
-        ["Cadastrar Estagiário", "mdi-account-plus-outline", "/cadastrarEstagiario"],
-        ["Cadastrar Setor", "mdi-text-box-plus-outline", "/cadastrarSetor"],
-        ["Cadastrar Admin", "mdi-file-account-outline", "/cadastrarAdmin"],
-        ["Cadastro de Responsável Pelo Estagiário", "mdi-human-male-board", "/cadastrarResponsavel"],
-        ["Cadastro de Organização", "mdi-domain", "/cadastrarOrganizacao"],
-        ["Cadastro de Vagas", "mdi-handshake-outline", "/cadastrarVagas"],
-        ["Cadastro de Curso", "mdi-book-plus-outline", "/cadastrarCurso"],
-      ],
-      rotasConsulta: [
-        ["Consultar Instituição", "mdi-store-search-outline", "/consultarInstituicao"],
-        ["Consultar Estagiário", "mdi-account-search-outline", "/consultarEstagiario"],
-        ["Consultar Professor Responsável", "mdi-clipboard-text-search-outline", "/consultarResponsavel"],
-        ["Consultar Setor", "mdi-file-search-outline", "/consultarSetor"],
-        ["Consultar Vagas", "mdi-account-supervisor-outline", "/consultarVagas"],
-        ["Consultar Curso", "mdi-bookshelf", "/consultarCurso"],
-        ["Consultar Contrato", "mdi-text-box-search-outline", "/consultarContrato"],
-      ],
-      localValue: this.value
-    };
-  },
   props: {
     value: {
-      type: Boolean
+      type: Boolean,
+      default: false,
     },
   },
-  watch: {
-    value(val) {
-      this.localValue = val;
-    },
-    localValue(val) {
-      this.$emit('input', val);
-    }
-  }
+  setup(props, { emit }) {
+    const localValue = ref(props.value);
+
+    watch(
+      () => props.value,
+      (newValue) => {
+        localValue.value = newValue;
+      }
+    );
+
+    watch(localValue, (newValue) => {
+      emit("update:value", newValue);
+    });
+
+    const rotaInfoVagas = "/informacaoVagas";
+
+    const rotasCrud = [
+      [
+        "Cadastrar Instituição",
+        "mdi-store-plus-outline",
+        "/cadastrarInstituicao",
+      ],
+      [
+        "Cadastrar Estagiário",
+        "mdi-account-plus-outline",
+        "/cadastrarEstagiario",
+      ],
+      ["Cadastrar Setor", "mdi-text-box-plus-outline", "/cadastrarSetor"],
+      ["Cadastrar Admin", "mdi-file-account-outline", "/cadastrarAdmin"],
+      [
+        "Cadastro de Responsável Pelo Estagiário",
+        "mdi-human-male-board",
+        "/cadastrarResponsavel",
+      ],
+      ["Cadastro de Organização", "mdi-domain", "/cadastrarOrganizacao"],
+      ["Cadastro de Vagas", "mdi-handshake-outline", "/cadastrarVagas"],
+      ["Cadastro de Curso", "mdi-book-plus-outline", "/cadastrarCurso"],
+    ];
+
+    const rotasConsulta = [
+      [
+        "Consultar Instituição",
+        "mdi-store-search-outline",
+        "/consultarInstituicao",
+      ],
+      [
+        "Consultar Estagiário",
+        "mdi-account-search-outline",
+        "/consultarEstagiario",
+      ],
+      [
+        "Consultar Professor Responsável",
+        "mdi-clipboard-text-search-outline",
+        "/consultarResponsavel",
+      ],
+      ["Consultar Setor", "mdi-file-search-outline", "/consultarSetor"],
+      ["Consultar Vagas", "mdi-account-supervisor-outline", "/consultarVagas"],
+      ["Consultar Curso", "mdi-bookshelf", "/consultarCurso"],
+      [
+        "Consultar Contrato",
+        "mdi-text-box-search-outline",
+        "/consultarContrato",
+      ],
+    ];
+
+    return {
+      localValue,
+      rotaInfoVagas,
+      rotasCrud,
+      rotasConsulta
+    };
+  },
 };
 </script>

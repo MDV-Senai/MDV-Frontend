@@ -48,7 +48,7 @@
 
         <v-row id="inputResponsivo" class="d-flex justify-center">
           <v-col cols="6" md="6">
-            <v-text-field
+            <v-number-input
               label="Quantidade de Vagas"
               :rules="[rules.required]"
               maxlength="255"
@@ -56,7 +56,7 @@
               clearable
               class="text-grey-darken-4"
               variant="outlined"
-            ></v-text-field>
+            ></v-number-input>
           </v-col>
 
           <v-col cols="6" md="6">
