@@ -1,28 +1,16 @@
 <template>
   <v-navigation-drawer
-    id="drawer"
     v-model="localValue"
     temporary
     color="grey-lighten-5"
     location="right"
     :width="343"
   >
-    <v-container class="d-flex">
-      <v-list-item
-        prepend-icon="mdi-account-circle-outline"
-        title="Nome do Usuário"
-      ></v-list-item>
-      <v-btn
-        id="apagar"
-        class="text-grey-darken-4"
-        variant="outlined"
-        icon="mdi-alpha-x-circle"
-        :width="30"
-        :height="30"
-  
-         @click="closeDrawer()"
-      ></v-btn>
-    </v-container>
+    <v-list-item
+      prepend-icon="mdi-account-circle-outline"
+      title="Nome do Usuário"
+    ></v-list-item>
+
     <v-list density="compact" nav>
       <v-list-item
         prepend-icon="mdi-chart-bar"
@@ -90,72 +78,32 @@
 export default {
   data() {
     return {
-      localValue: false, 
-     methods: {
-    
-    closeDrawer() {
-      console.log('Esta é uma mensagem de depuração');
-      this.localValue = false; 
-    },
-  },
       rotaInfoVagas: "/informacaoVagas",
       rotasCrud: [
-        [
-          "Cadastrar Instituição",
-          "mdi-store-plus-outline",
-          "/cadastrarInstituicao",
-        ],
-        [
-          "Cadastrar Estagiário",
-          "mdi-account-plus-outline",
-          "/cadastrarEstagiario",
-        ],
+        ["Cadastrar Instituição", "mdi-store-plus-outline", "/cadastrarInstituicao"],
+        ["Cadastrar Estagiário", "mdi-account-plus-outline", "/cadastrarEstagiario"],
         ["Cadastrar Setor", "mdi-text-box-plus-outline", "/cadastrarSetor"],
         ["Cadastrar Admin", "mdi-file-account-outline", "/cadastrarAdmin"],
-        [
-          "Cadastro de Responsável Pelo Estagiário",
-          "mdi-human-male-board",
-          "/cadastrarResponsavel",
-        ],
+        ["Cadastro de Responsável Pelo Estagiário", "mdi-human-male-board", "/cadastrarResponsavel"],
         ["Cadastro de Organização", "mdi-domain", "/cadastrarOrganizacao"],
         ["Cadastro de Vagas", "mdi-handshake-outline", "/cadastrarVagas"],
         ["Cadastro de Curso", "mdi-book-plus-outline", "/cadastrarCurso"],
       ],
       rotasConsulta: [
-        [
-          "Consultar Instituição",
-          "mdi-store-search-outline",
-          "/consultarInstituicao",
-        ],
-        [
-          "Consultar Estagiário",
-          "mdi-account-search-outline",
-          "/consultarEstagiario",
-        ],
-        [
-          "Consultar Professor Responsável",
-          "mdi-clipboard-text-search-outline",
-          "/consultarResponsavel",
-        ],
+        ["Consultar Instituição", "mdi-store-search-outline", "/consultarInstituicao"],
+        ["Consultar Estagiário", "mdi-account-search-outline", "/consultarEstagiario"],
+        ["Consultar Professor Responsável", "mdi-clipboard-text-search-outline", "/consultarResponsavel"],
         ["Consultar Setor", "mdi-file-search-outline", "/consultarSetor"],
-        [
-          "Consultar Vagas",
-          "mdi-account-supervisor-outline",
-          "/consultarVagas",
-        ],
+        ["Consultar Vagas", "mdi-account-supervisor-outline", "/consultarVagas"],
         ["Consultar Curso", "mdi-bookshelf", "/consultarCurso"],
-        [
-          "Consultar Contrato",
-          "mdi-text-box-search-outline",
-          "/consultarContrato",
-        ],
+        ["Consultar Contrato", "mdi-text-box-search-outline", "/consultarContrato"],
       ],
-      localValue: this.value,
+      localValue: this.value
     };
   },
   props: {
     value: {
-      type: Boolean,
+      type: Boolean
     },
   },
   watch: {
@@ -163,22 +111,8 @@ export default {
       this.localValue = val;
     },
     localValue(val) {
-      this.$emit("input", val);
-    },
-  },
-};
-
-</script>
-
-<style scoped>
-@media (max-width: 500px) {
-  #drawer {
-    width: 150px;
+      this.$emit('input', val);
+    }
   }
-}
-
-#apagar {
-  margin-left: 25px;
-  margin-top: 5px;
-}
-</style>
+};
+</script>
