@@ -181,7 +181,6 @@
           <v-col cols="6" md="8">
             <v-text-field
               label="Complemento"
-              :rules="[rules.required]"
               v-model="complemento"
               maxlength="255"
               counter
@@ -224,6 +223,7 @@
               :items="ufs"
               :item-title="'uf'"
               :item-value="'id'"
+              :rules="[rules.required]"
               label="UF"
               class="text-grey-darken-3"
               variant="outlined"

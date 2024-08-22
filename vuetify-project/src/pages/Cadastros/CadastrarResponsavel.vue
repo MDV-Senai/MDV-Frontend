@@ -27,7 +27,7 @@
           <v-col cols="12" md="12">
             <v-text-field
               label="Nome social"
-              :rules="[rules.required, rules.hidden]"
+              :rules="[rules.hidden]"
               maxlength="255"
               counter
               clearable

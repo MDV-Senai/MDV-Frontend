@@ -94,6 +94,7 @@
 
                                       <v-text-field
                                         label="E-mail"
+                                        :rules="[rules.required, rules.email]"
                                         variant="outlined"
                                         color="grey-darken-4"
                                         class="mt-2"
@@ -210,6 +211,9 @@
 
 <script>
 import axios from "axios";
+import {
+  emailValidation,
+} from "@/validations/formValidations";
 
 export default {
   data() {
@@ -221,6 +225,10 @@ export default {
       descricao: null,
       id: null,
       show: false,
+      rules: {
+        required: (value) => !!value || "Campo obrigatório.",
+        email: (value) => emailValidation(value),
+      },
     };
   },
 
