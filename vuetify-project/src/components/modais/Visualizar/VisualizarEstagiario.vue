@@ -15,10 +15,8 @@
           <v-row class="mx-5 my-5">
             <v-col cols="12" md="12">
               <v-text-field
-                label="Nome/Nome Social"
                 id="nome_prof"
-                value="Fulano"
-                reandoly
+                placeholder="Digite o nome do professor"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
               ></v-text-field>
@@ -27,20 +25,16 @@
           <v-row class="mx-5 my-5">
             <v-col cols="12" md="6">
               <v-text-field
-                label="Número de Matrícula"
                 id="numero_mat"
-                value="00000000"
-                reandoly
+                placeholder="Digite o número da matrícula"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
               ></v-text-field>
             </v-col>
             <v-col cols="12" md="6">
               <v-text-field
-                label="CPF"
                 id="inscricao"
-                value="000.000.000-00"
-                reandoly
+                placeholder="Digite o número da inscrição"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
               ></v-text-field>
@@ -49,20 +43,16 @@
           <v-row class="mx-5">
             <v-col cols="12" md="6">
               <v-text-field
-                label="Instituição de Ensino"
                 id="instituicao_ensino"
-                value="Instituição de Ensino"
-                reandoly
+                placeholder="Digite o nome da instituição de ensino"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
               ></v-text-field>
             </v-col>
             <v-col cols="12" md="6">
               <v-text-field
-                label="Curso"
                 id="curso"
-                value="Curso"
-                reandoly
+                placeholder="Digite o nome do curso"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
               ></v-text-field>
@@ -80,7 +70,7 @@
 
 <script>
 export default {
-  name: "ContratoModal",
+  name: "VisualizarEstagiario",
 };
 </script>
 
