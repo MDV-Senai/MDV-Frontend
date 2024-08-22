@@ -27,7 +27,7 @@
           <v-col cols="8" md="12">
             <v-text-field
               label="Nome social"
-              :rules="[rules.required, rules.hidden]"
+              :rules="[rules.hidden]"
               v-model="nomeSocial"
               maxlength="255"
               counter
@@ -96,7 +96,7 @@
           <v-col cols="12" md="3">
             <v-text-field
               label="E-mail"
-              :rules="[rules.required]"
+              :rules="[rules.required, rules.email]"
               v-model="email"
               maxlength="255"
               counter
@@ -260,7 +260,6 @@
           <v-col cols="6" md="8">
             <v-text-field
               label="Complemento"
-              :rules="[rules.required]"
               v-model="complemento"
               maxlength="255"
               counter
@@ -303,6 +302,7 @@
               :items="ufs"
               :item-title="'uf'"
               :item-value="'id'"
+              :rules="[rules.required]"
               label="UF"
               class="text-grey-darken-4"
               variant="outlined"
@@ -353,7 +353,7 @@
 
 <script>
 import axios from "axios";
-import { hiddenSocialName } from "@/validations/formValidations";
+import { hiddenSocialName, emailValidation } from "@/validations/formValidations";
 import { buscaCep } from "@/util/buscaCep";
 
 export default {
@@ -385,6 +385,7 @@ export default {
       rules: {
         required: (value) => !!value || "Obrigatório.",
         hidden: (value) => hiddenSocialName(value),
+        email: (value) => emailValidation(value),
       },
     };
   },
