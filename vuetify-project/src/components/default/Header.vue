@@ -9,14 +9,24 @@
       <v-spacer></v-spacer>
       <RouterLink to="/home" id="logo_url">
         <v-btn icon>
-          <v-icon color="red-darken-4" class="custom-icon ">mdi-home-outline</v-icon>
+          <v-icon color="red-darken-4" class="custom-icon"
+            >mdi-home-outline</v-icon
+          >
         </v-btn>
       </RouterLink>
       <v-btn icon>
         <v-icon color="red-darken-4">mdi-bell-outline</v-icon>
       </v-btn>
-      <p color="red-darken-4">Nome do Usuário</p>
-      <v-app-bar-nav-icon @click.stop="toggleDrawer" color="red-darken-4"></v-app-bar-nav-icon>
+      <v-title
+        class="nome_usuario"
+        id="nome_usuario"
+        v-model="nome_usuario"
+      ></v-title>
+
+      <v-app-bar-nav-icon
+        @click.stop="toggleDrawer"
+        color="red-darken-4"
+      ></v-app-bar-nav-icon>
     </v-toolbar>
 
     <Drawer v-model="drawer" />
@@ -27,13 +37,29 @@
 export default {
   data() {
     return {
-      drawer: false
+      nome_usuario: "João da Silva",
+      drawer: false,
     };
   },
   methods: {
     toggleDrawer() {
       this.drawer = !this.drawer;
     },
+    ajustarNome() {
+      const elementoNome = document.getElementById("nome_usuario");
+
+      if (window.innerWidth <= 500) {
+        const primeiroNome = this.nome_usuario.split(" ")[0];
+        elementoNome.textContent = primeiroNome;
+      } else {
+        elementoNome.textContent = this.nome_usuario;
+      }
+    },
+  },
+  mounted() {
+    this.ajustarNome();
+
+    window.addEventListener("resize", this.ajustarNome);
   },
 };
 </script>
@@ -41,7 +67,7 @@ export default {
 <style scoped>
 p {
   font-size: 15px;
-  color:#B71C1C;
+  color: #b71c1c;
 }
 #logo {
   width: 50%;
@@ -53,5 +79,21 @@ p {
 
 .bold-font {
   font-weight: bold;
+}
+
+.nome_usuario {
+  color: #b71c1c;
+}
+
+@media (min-width: 501px) {
+  .nome_usuario::before {
+    display: inline;
+  }
+}
+
+@media (max-width: 500px) {
+  .nome_usuario::before {
+    display: inline;
+  }
 }
 </style>
