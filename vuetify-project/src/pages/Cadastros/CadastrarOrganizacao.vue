@@ -76,7 +76,7 @@
           <v-col cols="6" md="3">
             <v-text-field
               label="E-mail"
-              :rules="[rules.required]"
+              :rules="[rules.required, rules.email]"
               maxlength="255"
               counter
               clearable
@@ -139,7 +139,7 @@
         <v-row>
           <v-col cols="12" md="12">
             <v-text-field
-              v-model="rua"
+              v-model="logradouro"
               label="Logradouro"
               :rules="[rules.required]"
               maxlength="255"
@@ -165,7 +165,6 @@
           <v-col cols="6" md="8">
             <v-text-field
               label="Complemento"
-              :rules="[rules.required]"
               maxlength="255"
               counter
               clearable
@@ -257,6 +256,8 @@
 
 <script>
 import axios from "axios";
+import { emailValidation } from "@/validations/formValidations";
+import { buscaCep } from "@/util/buscaCep";
 
 export default {
   data() {
@@ -264,9 +265,10 @@ export default {
       uf: null,
       cidade: null,
       bairro: null,
-      rua: null,
+      logradouro: null,
       rules: {
         required: (value) => !!value || "Obrigatório.",
+        email: (value) => emailValidation(value),
       },
     };
   },
@@ -276,29 +278,17 @@ export default {
       this.$refs.form.reset();
     },
 
-    async buscaCep(cep) {
-      const cepFormat = cep.replace("-", "");
-
-      if (cepFormat.length !== 8) return false;
-
-      try {
-        const response = await axios.get(
-          `https://viacep.com.br/ws/${cep}/json/`
-        );
-        const address = response.data;
-
-        this.uf = address.uf;
-        this.cidade = address.localidade;
-        this.bairro = address.bairro;
-        this.rua = address.logradouro;
-      } catch (error) {
-        console.error("Erro ao consultar CEP:", error);
-      }
+    async preencheCep(cep) {
+      let address = await buscaCep(cep);
+      this.cidade = address.localidade;
+      this.uf = address.uf;
+      this.bairro = address.bairro;
+      this.logradouro = address.logradouro;
     },
   },
 };
 </script>
 
 <style lang="scss">
-@import '@/styles/shared';
+@import "@/styles/shared";
 </style>
