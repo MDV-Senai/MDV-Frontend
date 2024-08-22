@@ -134,7 +134,7 @@
                           <v-btn
                             append-icon="mdi-chevron-right"
                             variant="outlined"
-                           color="red-darken-4"
+                           color="green-darken-4"
                             class="my-10"
                             width="183"
                             height="62"
@@ -143,7 +143,7 @@
                             Entrar
 
                             <template v-slot:append>
-                              <v-icon color="red-darken-4"></v-icon>
+                              <v-icon color="green-darken-4"></v-icon>
                             </template>
                           </v-btn>
                         </RouterLink>
