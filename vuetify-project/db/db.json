@@ -1,6 +1,37 @@
 {
-    "items": {
+    "vagaItems": {
         "vagas": [
+            { "id": 1, "titulo": "medicina", "descricao": "lori ipsum", "quantidade": "1", "turno": "noturno", "show": false},
+            { "id": 2, "titulo": "enfermagem", "descricao": "lori ipsum", "quantidade": "1", "turno": "noturno", "show": false},
+            { "id": 3, "titulo": "AP", "descricao": "lori ipsum", "quantidade": "1", "turno": "noturno", "show": false},
+            { "id": 4, "titulo": "AM", "descricao": "lori ipsum", "quantidade": "1", "turno": "noturno", "show": false},
+            { "id": 5, "titulo": "BA", "descricao": "lori ipsum", "quantidade": "1", "turno": "noturno", "show": false},
+            { "id": 6, "titulo": "CE", "descricao": "lori ipsum", "quantidade": "1", "turno": "noturno", "show": false},
+            { "id": 7, "titulo": "DF", "descricao": "lori ipsum", "quantidade": "1", "turno": "noturno", "show": false},
+            { "id": 8, "titulo": "ES", "descricao": "lori ipsum", "quantidade": "1", "turno": "noturno", "show": false},
+            { "id": 9, "titulo": "GO", "descricao": "lori ipsum", "quantidade": "1", "turno": "noturno", "show": false},
+            { "id": 10, "titulo": "MA", "descricao": "lori ipsum", "quantidade": "1", "turno": "noturno", "show": false},
+            { "id": 11, "titulo": "MT", "descricao": "lori ipsum", "quantidade": "1", "turno": "noturno", "show": false},
+            { "id": 12, "titulo": "MS", "descricao": "lori ipsum", "quantidade": "1", "turno": "noturno", "show": false},
+            { "id": 13, "titulo": "MG", "descricao": "lori ipsum", "quantidade": "1", "turno": "noturno", "show": false},
+            { "id": 14, "titulo": "PA", "descricao": "lori ipsum", "quantidade": "1", "turno": "noturno", "show": false},
+            { "id": 15, "titulo": "PB", "descricao": "lori ipsum", "quantidade": "1", "turno": "noturno", "show": false},
+            { "id": 16, "titulo": "PR", "descricao": "lori ipsum", "quantidade": "1", "turno": "noturno", "show": false},
+            { "id": 17, "titulo": "PE", "descricao": "lori ipsum", "quantidade": "1", "turno": "noturno", "show": false},
+            { "id": 18, "titulo": "PI", "descricao": "lori ipsum", "quantidade": "1", "turno": "noturno", "show": false},
+            { "id": 19, "titulo": "RJ", "descricao": "lori ipsum", "quantidade": "1", "turno": "noturno", "show": false},
+            { "id": 20, "titulo": "RN", "descricao": "lori ipsum", "quantidade": "1", "turno": "noturno", "show": false},
+            { "id": 21, "titulo": "RS", "descricao": "lori ipsum", "quantidade": "1", "turno": "noturno", "show": false},
+            { "id": 22, "titulo": "RO", "descricao": "lori ipsum", "quantidade": "1", "turno": "noturno", "show": false},
+            { "id": 23, "titulo": "RR", "descricao": "lori ipsum", "quantidade": "1", "turno": "noturno", "show": false},
+            { "id": 24, "titulo": "SC", "descricao": "lori ipsum", "quantidade": "1", "turno": "noturno", "show": false},
+            { "id": 25, "titulo": "SP", "descricao": "lori ipsum", "quantidade": "1", "turno": "noturno", "show": false},
+            { "id": 26, "titulo": "SE", "descricao": "lori ipsum", "quantidade": "1", "turno": "noturno", "show": false},
+            { "id": 27, "titulo": "TO", "descricao": "lori ipsum", "quantidade": "1", "turno": "noturno", "show": false}
+          ]
+    },
+    "vagaItems2": {
+        "vagas2": [
             { "id": 1, "titulo": "medicina", "descricao": "lori ipsum", "quantidade": "1", "turno": "noturno", "show": false},
             { "id": 2, "titulo": "enfermagem", "descricao": "lori ipsum", "quantidade": "1", "turno": "noturno", "show": false},
             { "id": 3, "titulo": "AP", "descricao": "lori ipsum", "quantidade": "1", "turno": "noturno", "show": false},
