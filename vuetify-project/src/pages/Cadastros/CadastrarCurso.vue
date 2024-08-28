@@ -11,7 +11,7 @@
         <v-row class="d-flex justify-center mt-8">
           <v-col cols="12" md="12">
             <v-select
-              :items="listaInstituicao"
+              :items="listaInstituicao.map((item) => item.nomeFantasia)"
               item-title="nome"
               label="Instituição para cadastro de curso"
               class="text-grey-darken-4"
@@ -164,7 +164,6 @@ export default {
         required: (value) => !!value || "Obrigatório.",
         email: (value) => emailValidation(value),
       },
-      curso: "",
       listaInstituicao: [],
     };
   },
@@ -182,11 +181,9 @@ export default {
           };
 
           const url = import.meta.env.VITE_BACKEND_URL + "/cadastrarCurso";
-          console.log(url);
 
           const req = await axios.post(url, data);
-
-          console.log("Resposta: ", req);
+          console.log(req)
         } catch (error) {
           console.error("Erro ao enviar dados:", error);
         }
@@ -199,9 +196,10 @@ export default {
     async getInstituicao() {
       try {
         const response = await axios.get(
-          "https://run.mocky.io/v3/cdca6f61-b8c2-41f6-b255-4db2e83b5bec"
+          import.meta.env.VITE_BACKEND_URL + "/instituicaoEnsino"
         );
-        this.listaInstituicao = response.data.instituicoes;
+
+        this.listaInstituicao = response.data;
       } catch (error) {
         console.error("Error fetching data:", error);
       }
