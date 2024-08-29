@@ -3,9 +3,9 @@ import axios from "axios";
 export async function fetchInstituicoes() {
   try {
     const response = await axios.get(
-      "http://localhost:3000/Instituicao"
+      "http://localhost:3000/items"
     );
-    return response.data.items;
+    return response.data.instituicao;
   } catch (error) {
     console.error("Erro ao buscar instituicoes:", error);
     return null;
