@@ -51,6 +51,7 @@
             <v-number-input
               label="Quantidade de Vagas"
               :rules="[rules.required]"
+              :min="0"
               maxlength="255"
               counter
               clearable
