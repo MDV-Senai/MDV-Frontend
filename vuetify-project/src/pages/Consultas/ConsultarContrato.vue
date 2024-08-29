@@ -1,5 +1,5 @@
 <template>
-  <div id="imagem" :height="height" >
+  <div id="imagem" :height="height">
     <Header />
     <div class="d-flex justify-center align-center">
       <v-card class="d-flex justify-center align-center" id="card_titulo">
@@ -48,7 +48,6 @@
         ></v-pagination>
       </div>
     </div>
-    <Footer />
   </div>
 </template>
 
@@ -107,7 +106,7 @@ export default {
       pagina,
       itensPorPagina,
       totalPaginas,
-      contratoPaginado
+      contratoPaginado,
     };
   },
 };

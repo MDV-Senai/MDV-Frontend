@@ -12,7 +12,11 @@ FROM base AS development
 
 EXPOSE 5173
 
-CMD ["yarn", "dev"]
+EXPOSE 3000
+
+COPY start.sh ./
+
+CMD ["./start.sh"]
 
 FROM base AS build
 
