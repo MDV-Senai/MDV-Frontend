@@ -11,8 +11,10 @@
         <v-row class="d-flex justify-center mt-8">
           <v-col cols="12" md="12">
             <v-select
-              :items="listaInstituicao.map((item) => item.nomeFantasia)"
-              item-title="nome"
+              v-model="selectedInstituicao"
+              :items="listaInstituicao"
+              item-title="nomeFantasia" 
+              item-value="id"  
               label="Instituição para cadastro de curso"
               class="text-grey-darken-4"
               variant="outlined"
@@ -160,6 +162,7 @@ export default {
       email: null,
       telefone: null,
       celular: null,
+      selectedInstituicao: null,
       rules: {
         required: (value) => !!value || "Obrigatório.",
         email: (value) => emailValidation(value),
@@ -173,6 +176,7 @@ export default {
         try {
           const data = {
             nomeCurso: this.curso,
+            idInstituicaoEnsino: this.selectedInstituicao,
             nomeCoordenadorCurso: this.nomeCoordenadorCurso,
             nomeSocialCoordenadorCurso: this.nomeSocialCoordenadorCurso,
             emailCoordenadorCurso: this.email,
@@ -180,8 +184,9 @@ export default {
             celularCoordenadorCurso: this.celular,
           };
 
-          const url = import.meta.env.VITE_BACKEND_URL + "/cadastrarCurso";
+          const url = import.meta.env.VITE_BACKEND_URL + "/curso";
 
+          console.log(data);
           const req = await axios.post(url, data);
           console.log(req)
         } catch (error) {
