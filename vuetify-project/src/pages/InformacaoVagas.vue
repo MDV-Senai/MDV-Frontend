@@ -62,7 +62,7 @@
         </v-col>
       </div>
     </div>
-    <Footer />
+    
   </v-main>
 </template>
 
