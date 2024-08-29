@@ -6,7 +6,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint . --fix --ignore-path .gitignore",
-    "falseBackend": "json-server --watch db/db.json"
+    "backend": "json-server --watch db/db.json"
   },
   "dependencies": {
     "@mdi/font": "7.0.96",

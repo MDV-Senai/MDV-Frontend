@@ -347,7 +347,7 @@
         </div>
       </v-form>
     </div>
-    <Footer />
+    
   </v-main>
 </template>
 
@@ -421,7 +421,7 @@ export default {
             complemento: this.complemento,
           };
 
-          const url = import.meta.env.VITE_BACKEND_URL + "/cadastrarAluno";
+          const url = import.meta.env.VITE_BACKEND_URL + "/aluno";
           console.log(url);
 
           const req = await axios.post(url, data);

@@ -11,8 +11,10 @@
         <v-row class="d-flex justify-center mt-8">
           <v-col cols="12" md="12">
             <v-select
+              v-model="selectedInstituicao"
               :items="listaInstituicao"
-              item-title="nome"
+              item-title="nomeFantasia" 
+              item-value="id"  
               label="Instituição para cadastro de curso"
               class="text-grey-darken-4"
               variant="outlined"
@@ -142,7 +144,7 @@
         </div>
       </v-form>
     </div>
-    <Footer />
+    
   </v-main>
 </template>
 
@@ -160,11 +162,11 @@ export default {
       email: null,
       telefone: null,
       celular: null,
+      selectedInstituicao: null,
       rules: {
         required: (value) => !!value || "Obrigatório.",
         email: (value) => emailValidation(value),
       },
-      curso: "",
       listaInstituicao: [],
     };
   },
@@ -174,6 +176,7 @@ export default {
         try {
           const data = {
             nomeCurso: this.curso,
+            idInstituicaoEnsino: this.selectedInstituicao,
             nomeCoordenadorCurso: this.nomeCoordenadorCurso,
             nomeSocialCoordenadorCurso: this.nomeSocialCoordenadorCurso,
             emailCoordenadorCurso: this.email,
@@ -181,12 +184,11 @@ export default {
             celularCoordenadorCurso: this.celular,
           };
 
-          const url = import.meta.env.VITE_BACKEND_URL + "/cadastrarCurso";
-          console.log(url);
+          const url = import.meta.env.VITE_BACKEND_URL + "/curso";
 
+          console.log(data);
           const req = await axios.post(url, data);
-
-          console.log("Resposta: ", req);
+          console.log(req)
         } catch (error) {
           console.error("Erro ao enviar dados:", error);
         }
@@ -199,9 +201,10 @@ export default {
     async getInstituicao() {
       try {
         const response = await axios.get(
-          "https://run.mocky.io/v3/cdca6f61-b8c2-41f6-b255-4db2e83b5bec"
+          import.meta.env.VITE_BACKEND_URL + "/instituicaoEnsino"
         );
-        this.listaInstituicao = response.data.instituicoes;
+
+        this.listaInstituicao = response.data;
       } catch (error) {
         console.error("Error fetching data:", error);
       }

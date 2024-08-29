@@ -246,7 +246,7 @@
         </v-data-table>
       </v-card>
     </v-container>
-    <Footer />
+    
   </v-main>
 </template>
 

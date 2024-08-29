@@ -250,7 +250,7 @@
         </div>
       </v-form>
     </div>
-    <Footer />
+    
   </v-main>
 </template>
 

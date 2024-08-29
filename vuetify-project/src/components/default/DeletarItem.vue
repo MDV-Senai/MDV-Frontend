@@ -5,7 +5,7 @@
         v-bind="activatorProps"
         density="compact"
         icon="mdi-delete"
-        class="my-icon-spacing light-green-darken-3-var"
+        class="my-icon-spacing light-red-darken-3-var"
       ></v-icon>
     </template>
 
