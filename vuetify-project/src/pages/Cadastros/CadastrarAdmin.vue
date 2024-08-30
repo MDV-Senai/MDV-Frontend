@@ -13,6 +13,7 @@
             <v-text-field
               label="Nome"
               :rules="[rules.required]"
+              v-model="nome"
               maxlength="255"
               counter
               clearable
@@ -28,6 +29,7 @@
             <v-text-field
               label="Nome social"
               :rules="[rules.hidden]"
+              v-model="nomeSocial"
               maxlength="255"
               counter
               clearable
@@ -56,6 +58,7 @@
             <v-text-field
               label="CPF"
               :rules="[rules.required]"
+              v-model="cpf"
               maxlength="14"
               counter
               clearable
@@ -68,6 +71,7 @@
             <v-text-field
               label="Nº de Matrícula de Trabalho"
               :rules="[rules.required]"
+              v-model="numeroMatriculaTrabalho"
               maxlength="20"
               counter
               clearable
@@ -81,6 +85,7 @@
           <v-col cols="6" md="4">
             <v-text-field
               label="Telefone"
+              v-model="telefone"
               maxlength="14"
               counter
               clearable
@@ -93,6 +98,7 @@
             <v-text-field
               label="Celular"
               :rules="[rules.required]"
+              v-model="celular"
               maxlength="15"
               counter
               clearable
@@ -105,6 +111,7 @@
             <v-text-field
               label="E-mail"
               :rules="[rules.required, rules.email]"
+              v-model="email"
               maxlength="255"
               counter
               clearable
@@ -259,6 +266,14 @@ import {
 export default {
   data() {
     return {
+      senha: null,
+      nome: null,
+      nomeSocial: null,
+      cpf: null,
+      numeroMatriculaTrabalho: null,
+      telefone: null,
+      celular: null,
+      email: null,
       senha: null,
       show1: false,
       show2: false,

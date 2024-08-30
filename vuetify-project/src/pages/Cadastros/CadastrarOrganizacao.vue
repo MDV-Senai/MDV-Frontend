@@ -14,6 +14,7 @@
             <v-text-field
               label="Nome Fantasia"
               :rules="[rules.required]"
+              v-model="nomeFantasia"
               maxlength="255"
               counter
               clearable
@@ -28,6 +29,7 @@
             <v-text-field
               label="Razão Social"
               :rules="[rules.required]"
+              v-model="razaoSocial"
               maxlength="255"
               counter
               clearable
@@ -42,6 +44,7 @@
             <v-text-field
               label="CNPJ"
               :rules="[rules.required]"
+              v-model="cnpj"
               maxlength="18"
               counter
               clearable
@@ -54,6 +57,7 @@
             <v-text-field
               label="Inscrição Estadual"
               :rules="[rules.required]"
+              v-model="inscricaoEstadual"
               maxlength="12"
               counter
               clearable
@@ -65,6 +69,7 @@
             <v-file-input
               label="Logo da Empresa"
               :rules="[rules.required]"
+              v-model="logoEmpresa"
               clearable
               class="text-grey-darken-4"
               variant="outlined"
@@ -77,6 +82,7 @@
             <v-text-field
               label="E-mail"
               :rules="[rules.required, rules.email]"
+              v-model="email"
               maxlength="255"
               counter
               clearable
@@ -88,6 +94,7 @@
             <v-text-field
               label="Celular"
               :rules="[rules.required]"
+              v-model="celular"
               maxlength="14"
               counter
               clearable
@@ -100,6 +107,7 @@
             <v-text-field
               label="Telefone"
               :rules="[rules.required]"
+              v-model="telefone"
               maxlength="13"
               counter
               clearable
@@ -112,6 +120,7 @@
             <v-text-field
               label="Telefone do Responsável Legal"
               :rules="[rules.required]"
+              v-model="telefoneResponsavelLegal"
               maxlength="14"
               counter
               clearable
@@ -126,6 +135,7 @@
             <v-text-field
               label="CEP"
               :rules="[rules.required]"
+              v-model="cep"
               maxlength="9"
               counter
               clearable
@@ -155,6 +165,7 @@
             <v-text-field
               label="Nº"
               :rules="[rules.required]"
+              v-model="numero"
               maxlength="10"
               counter
               clearable
@@ -165,6 +176,7 @@
           <v-col cols="6" md="8">
             <v-text-field
               label="Complemento"
+              v-model="complemento"
               maxlength="255"
               counter
               clearable
@@ -262,6 +274,17 @@ import { buscaCep } from "@/util/buscaCep";
 export default {
   data() {
     return {
+      nomeFantasia: null,
+      razaoSocial: null,
+      cnpj: null,
+      inscricaoEstadual: null,
+      logoEmpresa: null,
+      email: null,
+      celular: null,
+      telefone: null,
+      telefoneResponsavelLegal: null,
+      cep: null,
+      complemento: null,
       uf: null,
       cidade: null,
       bairro: null,
