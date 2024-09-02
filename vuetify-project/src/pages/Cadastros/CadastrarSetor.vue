@@ -13,6 +13,7 @@
             <v-text-field
               label="Nome do Setor"
               :rules="[rules.required]"
+              v-model="nomeSetor"
               maxlength="255"
               counter
               clearable
@@ -24,6 +25,7 @@
             <v-text-field
               label="Celular do Respon. do Setor"
               :rules="[rules.required]"
+              v-model="celularRespSetor"
               maxlength="15"
               counter
               clearable
@@ -37,6 +39,7 @@
           <v-col cols="12" md="6">
             <v-text-field
               label="Nome do Supervisor "
+              v-model="nomeSupervisor"
               :rules="[rules.required]"
               maxlength="255"
               counter
@@ -48,6 +51,7 @@
           <v-col cols="12" md="6">
             <v-text-field
               label="Email do Supervisor"
+              v-model="emailSupervisor"
               :rules="[rules.required, rules.email]"
               maxlength="255"
               counter
@@ -62,6 +66,7 @@
           <v-col cols="12" md="6">
             <v-text-field
               label="Nome do Coordenador"
+              v-model="nomeCoordenador"
               :rules="[rules.required]"
               maxlength="255"
               counter
@@ -73,6 +78,7 @@
           <v-col cols="12" md="6">
             <v-text-field
               label="Email do Coordenador"
+              v-model="emailCoordenador"
               :rules="[rules.required, rules.email]"
               maxlength="255"
               counter
@@ -90,6 +96,7 @@
                 text="Adicionar Atividades"
                 @click="adicionarTeste()"
                 class="text-grey-darken-4"
+                v-model="atividade"
                 variant="outlined"
               ></v-btn>
             </v-container>
@@ -181,6 +188,13 @@ export default {
       },
       campos: [{ id: 1 }],
       nextId: 2,
+      nomeSetor: null,
+      celularRespSetor: null,
+      nomeSupervisor: null,
+      emailSupervisor: null,
+      nomeCoordenador: null,
+      emailCoordenador: null,
+      atividade: null,
     };
   },
   methods: {
