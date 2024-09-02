@@ -13,6 +13,7 @@
           <v-col cols="12" md="12">
             <v-text-field
               label="Nome"
+              v-model="nome"
               :rules="[rules.required]"
               maxlength="255"
               counter
@@ -27,6 +28,7 @@
           <v-col cols="12" md="12">
             <v-text-field
               label="Nome social"
+              v-model="nomeSocial"
               :rules="[rules.hidden]"
               maxlength="255"
               counter
@@ -55,6 +57,7 @@
           <v-col cols="6" md="6">
             <v-text-field
               label="Nº Matrícula do Estudante"
+              v-model="numeroMatriculaEstudante"
               :rules="[rules.required]"
               maxlength="25"
               counter
@@ -66,6 +69,7 @@
           <v-col cols="6" md="6">
             <v-text-field
               label="CPF"
+              v-model="cpf"
               :rules="[rules.required]"
               maxlength="14"
               counter
@@ -81,6 +85,7 @@
           <v-col cols="12" md="6">
             <v-text-field
               label="Instituição de Ensino"
+              v-model="instituicaoEnsino"
               :rules="[rules.required]"
               maxlength="255"
               counter
@@ -93,6 +98,7 @@
           <v-col cols="12" md="6">
             <v-text-field
               label="Curso"
+              v-model="curso"
               :rules="[rules.required]"
               maxlength="255"
               counter
@@ -148,6 +154,12 @@ export default {
     return {
       enableSocialName: false,
       isVisible: false,
+      nome: null,
+      nomeSocial: null,
+      numeroMatriculaEstudante: null,
+      cpf: null,
+      instituicaoEnsino: null,
+      curso: null,
       rules: {
         required: (value) => !!value || "Obrigatório.",
       },
