@@ -166,6 +166,29 @@ export default {
         console.error("Error fetching data:", error);
       }
     },
+    async enviarDados() {
+      if (this.$refs.form.validate()) {
+        try {
+          const data = {
+            estagiario: this.estagiario,
+            setor: this.setor,
+            turno: this.turno,
+            qtdVagas: this.qtdVagas,
+            situacao: this.situacao,
+            descricaoVaga: this.descricaoVaga,
+          };
+
+          const url = import.meta.env.VITE_BACKEND_URL + "/instituicaoEnsino";
+          console.log(url);
+
+          const req = await axios.post(url, data);
+
+          console.log("Resposta: ", req);
+        } catch (error) {
+          console.error("Erro ao enviar dados:", error);
+        }
+      }
+    },
   },
   mounted() {
     this.getUfs();

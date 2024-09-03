@@ -209,6 +209,30 @@ export default {
         this.campos.splice(index, 1);
       }
     },
+    async enviarDados() {
+      if (this.$refs.form.validate()) {
+        try {
+          const data = {
+            nomeSetor: this.nomeSetor,
+            celularRespSetor: this.celularRespSetor,
+            nomeSupervisor: this.nomeSupervisor,
+            emailSupervisor: this.emailSupervisor,
+            nomeCoordenador: this.nomeCoordenador,
+            emailCoordenador: this.emailCoordenador,
+            atividade: this.atividade,
+          };
+
+          const url = import.meta.env.VITE_BACKEND_URL + "/instituicaoEnsino";
+          console.log(url);
+
+          const req = await axios.post(url, data);
+
+          console.log("Resposta: ", req);
+        } catch (error) {
+          console.error("Erro ao enviar dados:", error);
+        }
+      }
+    },
   },
 };
 </script>
