@@ -274,7 +274,6 @@ export default {
       telefone: null,
       celular: null,
       email: null,
-      senha: null,
       show1: false,
       show2: false,
       enableSocialName: false,
@@ -358,6 +357,32 @@ export default {
   methods: {
     reset() {
       this.$refs.form.reset();
+    },
+
+    async enviarDados() {
+      if (this.$refs.form.validate()) {
+        try {
+          const data = {
+            nome: this.nome,
+            nomeSocial: this.nomeSocial,
+            senha:this.senha,
+            cpf: this.cpf,
+            numeroMatriculaTrabalho: this.numeroMatriculaTrabalho,
+            fone: this.telefone,
+            celular: this.celular,
+            email: this.email,
+          };
+
+          const url = import.meta.env.VITE_BACKEND_URL + "/instituicaoEnsino";
+          console.log(url);
+
+          const req = await axios.post(url, data);
+
+          console.log("Resposta: ", req);
+        } catch (error) {
+          console.error("Erro ao enviar dados:", error);
+        }
+      }
     },
 
     handleButtonClick(item) {
