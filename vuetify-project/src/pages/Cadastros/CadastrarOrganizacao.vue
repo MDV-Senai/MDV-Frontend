@@ -308,6 +308,55 @@ export default {
       this.bairro = address.bairro;
       this.logradouro = address.logradouro;
     },
+
+    async enviarDados() {
+      if (this.$refs.form.validate()) {
+        try {
+          const data = {
+            nomeFantasia: null,
+      razaoSocial: null,
+      cnpj: null,
+      inscricaoEstadual: null,
+      logoEmpresa: null,
+      email: null,
+      celular: null,
+      telefone: null,
+      telefoneResponsavelLegal: null,
+      cep: null,
+      complemento: null,
+      uf: null,
+      cidade: null,
+      bairro: null,
+      logradouro: null,
+            nomeFantasia: this.instituacao,
+            razaoSocial: this.razaoSocial,
+            cnpj: this.cnpj,
+            inscricaoEstado: this.inscricaoEstadual,
+            logo: this.logoEmpresa,
+            fone: this.telefone,
+            celular: this.celular,
+            email: this.email,
+            cep: this.cep,
+            cidade: this.cidade,
+            uf: this.uf,
+            bairro: this.bairro,
+            numero: this.numero,
+            rua: this.logradouro,
+            complemento: this.complemento,
+            responsavelLegalContato: this.contatoRespLegal,
+          };
+
+          const url = import.meta.env.VITE_BACKEND_URL + "/instituicaoEnsino";
+          console.log(url);
+
+          const req = await axios.post(url, data);
+
+          console.log("Resposta: ", req);
+        } catch (error) {
+          console.error("Erro ao enviar dados:", error);
+        }
+      }
+    },
   },
 };
 </script>
