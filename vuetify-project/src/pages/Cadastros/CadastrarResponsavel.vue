@@ -169,6 +169,30 @@ export default {
     reset() {
       this.$refs.form.reset();
     },
+
+    async enviarDados() {
+      if (this.$refs.form.validate()) {
+        try {
+          const data = {
+            nome: this.nome,
+            nomeSocial: this.nomeSocial,
+            numeroMatriculaEstudante: this.numeroMatriculaEstudante,
+            cpf: this.cpf,
+            instituicaoEnsino: this.instituicaoEnsino,
+            curso: this.curso,
+          };
+
+          const url = import.meta.env.VITE_BACKEND_URL + "/instituicaoEnsino";
+          console.log(url);
+
+          const req = await axios.post(url, data);
+
+          console.log("Resposta: ", req);
+        } catch (error) {
+          console.error("Erro ao enviar dados:", error);
+        }
+      }
+    },
   },
 };
 </script>
