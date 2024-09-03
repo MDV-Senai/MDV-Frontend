@@ -12,7 +12,7 @@
           <v-col cols="12" md="6">
             <v-text-field
               label="Nome do Setor"
-              :rules="[rules.required, rules.fullname]"
+              :rules="[rules.required]"
               v-model="nomeSetor"
               maxlength="255"
               counter
