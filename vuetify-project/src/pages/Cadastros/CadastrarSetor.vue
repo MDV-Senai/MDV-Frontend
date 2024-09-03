@@ -12,7 +12,7 @@
           <v-col cols="12" md="6">
             <v-text-field
               label="Nome do Setor"
-              :rules="[rules.required]"
+              :rules="[rules.required, rules.fullname]"
               v-model="nomeSetor"
               maxlength="255"
               counter
@@ -40,7 +40,7 @@
             <v-text-field
               label="Nome do Supervisor "
               v-model="nomeSupervisor"
-              :rules="[rules.required]"
+              :rules="[rules.required, rules.fullname]"
               maxlength="255"
               counter
               clearable
@@ -67,7 +67,7 @@
             <v-text-field
               label="Nome do Coordenador"
               v-model="nomeCoordenador"
-              :rules="[rules.required]"
+              :rules="[rules.required, rules.fullname]"
               maxlength="255"
               counter
               clearable
@@ -185,6 +185,7 @@ export default {
       rules: {
         required: (value) => !!value || "Obrigatório.",
         email: (value) => emailValidation(value),
+        fullname: (value) => fullNameValidation(value),
       },
       campos: [{ id: 1 }],
       nextId: 2,
