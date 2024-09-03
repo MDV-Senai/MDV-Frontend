@@ -54,7 +54,6 @@
             <v-text-field
               label="Nome Social do Coordenador do Curso"
               v-model="nomeSocialCoordenadorCurso"
-              :rules="[rules.required]"
               maxlength="255"
               counter
               clearable
