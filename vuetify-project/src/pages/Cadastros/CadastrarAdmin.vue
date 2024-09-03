@@ -12,7 +12,7 @@
           <v-col cols="12" md="12">
             <v-text-field
               label="Nome"
-              :rules="[rules.required]"
+              :rules="[rules.required, rules.fullname]"
               v-model="nome"
               maxlength="255"
               counter
@@ -28,7 +28,7 @@
           <v-col cols="12" md="12">
             <v-text-field
               label="Nome social"
-              :rules="[rules.hidden]"
+              :rules="[rules.hidden, rules.fullname]"
               v-model="nomeSocial"
               maxlength="255"
               counter
@@ -259,6 +259,7 @@
 
 <script>
 import {
+  fullNameValidation,
   confirmPasswordValidation,
   emailValidation,
 } from "@/validations/formValidations";
@@ -282,6 +283,7 @@ export default {
         required: (value) => !!value || "Campo obrigatório.",
         identic: (value) => confirmPasswordValidation(value),
         email: (value) => emailValidation(value),
+        fullname: (value) => fullNameValidation(value),
       },
       search: "",
       headers: [
