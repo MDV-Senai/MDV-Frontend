@@ -40,7 +40,7 @@
             <v-text-field
               label="Nome do Coordenador do Curso"
               v-model="nomeCoordenadorCurso"
-              :rules="[rules.required]"
+              :rules="[rules.required, rules.fullname]"
               maxlength="255"
               counter
               clearable
@@ -54,6 +54,7 @@
             <v-text-field
               label="Nome Social do Coordenador do Curso"
               v-model="nomeSocialCoordenadorCurso"
+              :rules="[rules.fullname]"
               maxlength="255"
               counter
               clearable
@@ -151,6 +152,7 @@
 import axios from "axios";
 import {
   emailValidation,
+  fullNameValidation
 } from "@/validations/formValidations";
 export default {
   data() {
@@ -165,6 +167,7 @@ export default {
       rules: {
         required: (value) => !!value || "Obrigatório.",
         email: (value) => emailValidation(value),
+        fullname: (value) => fullNameValidation(value),
       },
       listaInstituicao: [],
     };
