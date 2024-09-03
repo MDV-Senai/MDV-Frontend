@@ -313,21 +313,6 @@ export default {
       if (this.$refs.form.validate()) {
         try {
           const data = {
-            nomeFantasia: null,
-      razaoSocial: null,
-      cnpj: null,
-      inscricaoEstadual: null,
-      logoEmpresa: null,
-      email: null,
-      celular: null,
-      telefone: null,
-      telefoneResponsavelLegal: null,
-      cep: null,
-      complemento: null,
-      uf: null,
-      cidade: null,
-      bairro: null,
-      logradouro: null,
             nomeFantasia: this.instituacao,
             razaoSocial: this.razaoSocial,
             cnpj: this.cnpj,
