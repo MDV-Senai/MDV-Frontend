@@ -14,7 +14,7 @@
             <v-text-field
               label="Nome"
               v-model="nome"
-              :rules="[rules.required]"
+              :rules="[rules.required, rules.fullname]"
               maxlength="255"
               counter
               clearable
@@ -29,7 +29,7 @@
             <v-text-field
               label="Nome social"
               v-model="nomeSocial"
-              :rules="[rules.hidden]"
+              :rules="[rules.fullname]"
               maxlength="255"
               counter
               clearable
@@ -149,6 +149,9 @@
 </template>
 
 <script>
+import {
+  fullNameValidation,
+} from "@/validations/formValidations";
 export default {
   data() {
     return {
@@ -162,6 +165,7 @@ export default {
       curso: null,
       rules: {
         required: (value) => !!value || "Obrigatório.",
+        fullname: (value) => fullNameValidation(value),
       },
     };
   },
