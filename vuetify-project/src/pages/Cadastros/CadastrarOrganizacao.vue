@@ -27,6 +27,21 @@
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="12">
             <v-text-field
+              label="Responsável Legal"
+              :rules="[rules.required]"
+              v-model="responsavelLegal"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+
+        <v-row class="d-flex justify-center">
+          <v-col cols="12" md="12">
+            <v-text-field
               label="Razão Social"
               :rules="[rules.required]"
               v-model="razaoSocial"
@@ -95,7 +110,7 @@
               label="Celular"
               :rules="[rules.required]"
               v-model="celular"
-              maxlength="14"
+              maxlength="15"
               counter
               clearable
               class="text-grey-darken-4"
@@ -108,7 +123,7 @@
               label="Telefone"
               :rules="[rules.required]"
               v-model="telefone"
-              maxlength="13"
+              maxlength="14"
               counter
               clearable
               class="text-grey-darken-4"
@@ -120,7 +135,7 @@
             <v-text-field
               label="Telefone do Responsável Legal"
               :rules="[rules.required]"
-              v-model="telefoneResponsavelLegal"
+              v-model="contatoRespLegal"
               maxlength="14"
               counter
               clearable
@@ -245,6 +260,7 @@
             <v-col cols="6" md="3">
               <v-btn
                 append-icon="mdi-chevron-right"
+                @click="enviarDados"
                 variant="outlined"
                 class="my-10 text-grey-darken-4"
                 width="183"
@@ -282,13 +298,15 @@ export default {
       email: null,
       celular: null,
       telefone: null,
-      telefoneResponsavelLegal: null,
       cep: null,
       complemento: null,
       uf: null,
       cidade: null,
       bairro: null,
       logradouro: null,
+      numero: null,
+      responsavelLegal: null,
+      contatoRespLegal: null,
       rules: {
         required: (value) => !!value || "Obrigatório.",
         email: (value) => emailValidation(value),
@@ -313,11 +331,10 @@ export default {
       if (this.$refs.form.validate()) {
         try {
           const data = {
-            nomeFantasia: this.instituacao,
+            nomeFantasia: this.nomeFantasia,
             razaoSocial: this.razaoSocial,
             cnpj: this.cnpj,
             inscricaoEstado: this.inscricaoEstadual,
-            logo: this.logoEmpresa,
             fone: this.telefone,
             celular: this.celular,
             email: this.email,
@@ -328,10 +345,13 @@ export default {
             numero: this.numero,
             rua: this.logradouro,
             complemento: this.complemento,
+            responsavelLegal: this.responsavelLegal,
             responsavelLegalContato: this.contatoRespLegal,
           };
 
-          const url = import.meta.env.VITE_BACKEND_URL + "/instituicaoEnsino";
+          console.log(data);
+          
+          const url =  "http://localhost:3000/instituicaoContratante";
           console.log(url);
 
           const req = await axios.post(url, data);
