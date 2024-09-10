@@ -28,7 +28,7 @@
           <v-col cols="12" md="12">
             <v-text-field
               label="Responsável Legal"
-              :rules="[rules.required]"
+              :rules="[rules.required, rules.fullname]"
               v-model="responsavelLegal"
               maxlength="255"
               counter
@@ -133,15 +133,15 @@
           </v-col>
           <v-col cols="6" md="3">
             <v-text-field
-              label="Telefone do Responsável Legal"
+              label="Contato do Responsável Legal"
               :rules="[rules.required]"
               v-model="contatoRespLegal"
-              maxlength="14"
+              maxlength="15"
               counter
               clearable
               class="text-grey-darken-4"
               variant="outlined"
-              v-mask="'(##) ####-####'"
+              v-mask="'(##) #####-####'"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -284,7 +284,7 @@
 
 <script>
 import axios from "axios";
-import { emailValidation } from "@/validations/formValidations";
+import { emailValidation, fullNameValidation } from "@/validations/formValidations";
 import { buscaCep } from "@/util/buscaCep";
 
 export default {
@@ -310,6 +310,7 @@ export default {
       rules: {
         required: (value) => !!value || "Obrigatório.",
         email: (value) => emailValidation(value),
+        fullname: (value) => fullNameValidation(value),
       },
     };
   },
