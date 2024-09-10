@@ -54,7 +54,6 @@
             <v-text-field
               label="Nome Social do Coordenador do Curso"
               v-model="nomeSocialCoordenadorCurso"
-              :rules="[rules.fullname]"
               maxlength="255"
               counter
               clearable
@@ -207,6 +206,7 @@ export default {
         );
 
         this.listaInstituicao = response.data;
+        
       } catch (error) {
         console.error("Error fetching data:", error);
       }

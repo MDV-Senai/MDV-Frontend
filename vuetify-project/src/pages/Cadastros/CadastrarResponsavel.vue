@@ -29,7 +29,6 @@
             <v-text-field
               label="Nome social"
               v-model="nomeSocial"
-              :rules="[rules.fullname]"
               maxlength="255"
               counter
               clearable

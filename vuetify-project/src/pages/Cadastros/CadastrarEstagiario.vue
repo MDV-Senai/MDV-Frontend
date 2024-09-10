@@ -27,7 +27,6 @@
           <v-col cols="8" md="12">
             <v-text-field
               label="Nome social"
-              :rules="[rules.fullname]"
               v-model="nomeSocial"
               maxlength="255"
               counter
