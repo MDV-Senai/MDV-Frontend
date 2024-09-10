@@ -195,7 +195,7 @@ export default {
       emailSupervisor: null,
       nomeCoordenador: null,
       emailCoordenador: null,
-      atividade: null,
+      atividade: [],
     };
   },
   methods: {
@@ -215,14 +215,15 @@ export default {
         try {
           const data = {
             nomeSetor: this.nomeSetor,
-            celularRespSetor: this.celularRespSetor,
-            nomeSupervisor: this.nomeSupervisor,
             emailSupervisor: this.emailSupervisor,
-            nomeCoordenador: this.nomeCoordenador,
             emailCoordenador: this.emailCoordenador,
+            celularRespSetor: this.celularRespSetor,
+            nomeCoordenador: this.nomeCoordenador,
+            nomeSupervisor: this.nomeSupervisor,
             atividade: this.atividade,
           };
 
+          console.log(data);
           const url = import.meta.env.VITE_BACKEND_URL + "/instituicaoEnsino";
           console.log(url);
 
