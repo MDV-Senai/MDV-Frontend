@@ -18,7 +18,8 @@
                       <v-form class="my-12">
                         <v-col cols="12" sm="10">
                           <v-text-field
-                            label="Usuário"
+                            label="Email"
+                            v-model="email"
                             variant="outlined"
                             color="grey-darken-4"
                           ></v-text-field>
@@ -27,6 +28,7 @@
                         <v-col cols="12" sm="10">
                           <v-text-field
                             label="Senha"
+                            v-model="senha"
                             type="password"
                             variant="outlined"
                             color="grey-darken-4"
@@ -218,6 +220,8 @@ import {
 export default {
   data() {
     return {
+      email: null,
+      senha: null,
       vagas: null,
       titulo: null,
       quantidade: null,
