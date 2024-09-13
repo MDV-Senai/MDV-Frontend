@@ -132,11 +132,11 @@
                             </template>
                           </v-dialog>
                         </div>
-                        <RouterLink to="/home">
                           <v-btn
+                            @click="enviarDados"
                             append-icon="mdi-chevron-right"
                             variant="outlined"
-                           color="green-darken-4"
+                            color="green-darken-4"
                             class="my-10"
                             width="183"
                             height="62"
@@ -148,7 +148,6 @@
                               <v-icon color="green-darken-4"></v-icon>
                             </template>
                           </v-btn>
-                        </RouterLink>
                       </v-form>
                     </v-card>
                   </v-container>
@@ -222,6 +221,8 @@ export default {
     return {
       email: null,
       senha: null,
+      validacaoCredencial: false,
+      routeHome: "/home",
       vagas: null,
       titulo: null,
       quantidade: null,
@@ -249,6 +250,33 @@ export default {
         console.error("Erro :", error);
       }
     },
+
+    async enviarDados() {
+        try {
+          const data = {
+            email: this.email,
+            password: this.senha
+          };
+
+          console.log(data);
+          const url = import.meta.env.VITE_BACKEND_URL + "/auth/login";
+          console.log(url);
+
+          if (url.status == 200 || url.status == 201) {
+            router.push('home')
+          } 
+
+          const req = await axios.post(url, data);
+
+          console.log("Resposta: ", req);
+        } catch (error) {
+          console.error("Erro ao enviar dados:", error);
+        }
+    },
+
+    async isStatusError () {
+      this.url
+    }
   },
   mounted() {
     this.listarVagas();
