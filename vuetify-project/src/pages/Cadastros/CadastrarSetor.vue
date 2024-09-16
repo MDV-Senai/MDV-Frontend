@@ -217,10 +217,11 @@ export default {
             nomeSetor: this.nomeSetor,
             emailSupervisor: this.emailSupervisor,
             emailCoordenador: this.emailCoordenador,
-            celularRespSetor: this.celularRespSetor,
+            celularResponsavel: this.celularRespSetor,
             nomeCoordenador: this.nomeCoordenador,
             nomeSupervisor: this.nomeSupervisor,
-            atividade: this.atividade,
+            atividades: this.atividade,
+            instituicaoContratanteId: "100",
           };
 
           console.log(data);

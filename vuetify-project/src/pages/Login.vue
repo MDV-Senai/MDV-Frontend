@@ -230,6 +230,7 @@ export default {
       descricao: null,
       id: null,
       show: false,
+      variavelTeste: true,
       rules: {
         required: (value) => !!value || "Campo obrigatório.",
         email: (value) => emailValidation(value),
@@ -265,6 +266,11 @@ export default {
           if (url.status == 200 || url.status == 201) {
             router.push('home')
           } 
+
+          if (this.variavelTeste == true) {
+            console.log('TESTE!!!!!!!!!!!!');
+            
+          }
 
           const req = await axios.post(url, data);
 
