@@ -262,12 +262,15 @@ export default {
           console.log(data);
           const url = import.meta.env.VITE_BACKEND_URL + "/auth/login";
           console.log(url);
+            
+          const req = await axios.post(url, data);
 
-          if (url.status == 200 || url.status == 201) {
+          if (req.status >= 200 || req.status < 400) {
+            const token = req.data.token;
+            sessionStorage.setItem('authToken', token);
             this.$router.push('/home'); 
           } 
-          
-          const req = await axios.post(url, data);
+
 
           console.log("Resposta: ", req);
         } catch (error) {
