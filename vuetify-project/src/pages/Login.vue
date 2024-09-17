@@ -18,7 +18,8 @@
                       <v-form class="my-12">
                         <v-col cols="12" sm="10">
                           <v-text-field
-                            label="Usuário"
+                            label="Email"
+                            v-model="email"
                             variant="outlined"
                             color="grey-darken-4"
                           ></v-text-field>
@@ -27,6 +28,7 @@
                         <v-col cols="12" sm="10">
                           <v-text-field
                             label="Senha"
+                            v-model="senha"
                             type="password"
                             variant="outlined"
                             color="grey-darken-4"
@@ -130,11 +132,11 @@
                             </template>
                           </v-dialog>
                         </div>
-                        <RouterLink to="/home">
                           <v-btn
+                            @click="enviarDados"
                             append-icon="mdi-chevron-right"
                             variant="outlined"
-                           color="green-darken-4"
+                            color="green-darken-4"
                             class="my-10"
                             width="183"
                             height="62"
@@ -146,7 +148,6 @@
                               <v-icon color="green-darken-4"></v-icon>
                             </template>
                           </v-btn>
-                        </RouterLink>
                       </v-form>
                     </v-card>
                   </v-container>
@@ -218,6 +219,10 @@ import {
 export default {
   data() {
     return {
+      email: null,
+      senha: null,
+      validacaoCredencial: false,
+      routeHome: "/home",
       vagas: null,
       titulo: null,
       quantidade: null,
@@ -225,6 +230,7 @@ export default {
       descricao: null,
       id: null,
       show: false,
+      variavelTeste: true,
       rules: {
         required: (value) => !!value || "Campo obrigatório.",
         email: (value) => emailValidation(value),
@@ -245,6 +251,36 @@ export default {
         console.error("Erro :", error);
       }
     },
+
+    async enviarDados() {
+        try {
+          const data = {
+            email: this.email,
+            password: this.senha
+          };
+
+          console.log(data);
+          const url = import.meta.env.VITE_BACKEND_URL + "/auth/login";
+          console.log(url);
+            
+          const req = await axios.post(url, data);
+
+          if (req.status >= 200 || req.status < 400) {
+            const token = req.data.token;
+            sessionStorage.setItem('authToken', token);
+            this.$router.push('/home'); 
+          } 
+
+
+          console.log("Resposta: ", req);
+        } catch (error) {
+          console.error("Erro ao enviar dados:", error);
+        }
+    },
+
+    async isStatusError () {
+      this.url
+    }
   },
   mounted() {
     this.listarVagas();

@@ -27,6 +27,7 @@
             <v-text-field
               label="Setor"
               :rules="[rules.required]"
+              v-model="setor"
               maxlength="255"
               counter
               clearable
@@ -37,6 +38,7 @@
           <v-col cols="6" md="6">
             <v-select
               label="Turno"
+              v-model="turno"
               :rules="[rules.required]"
               clearable
               :items="['Matutino', 'Vespertino', 'Noturno', 'Integral']"
@@ -50,7 +52,9 @@
           <v-col cols="6" md="6">
             <v-number-input
               label="Quantidade de Vagas"
+              v-model="qtdVagas"
               :rules="[rules.required]"
+              :min="0"
               maxlength="255"
               counter
               clearable
@@ -62,6 +66,7 @@
           <v-col cols="6" md="6">
             <v-select
               label="Situação"
+              v-model="situacao"
               :rules="[rules.required]"
               clearable
               :items="['Programada', 'Aberta', 'Encerrada']"
@@ -74,6 +79,7 @@
           <v-col cols="12" md="12">
             <v-textarea
               label="Descrição Da Vaga"
+              v-model="descricaoVaga"
               :rules="[rules.required]"
               maxlength="255"
               counter
@@ -136,6 +142,11 @@ export default {
       },
       estagiario: null,
       estagiarios: [],
+      setor: null,
+      turno: null,
+      qtdVagas: null,
+      situacao: null,
+      descricaoVaga: null,
     };
   },
   methods: {
@@ -153,6 +164,29 @@ export default {
         console.log(this.estagiarios);
       } catch (error) {
         console.error("Error fetching data:", error);
+      }
+    },
+    async enviarDados() {
+      if (this.$refs.form.validate()) {
+        try {
+          const data = {
+            estagiario: this.estagiario,
+            setor: this.setor,
+            turno: this.turno,
+            qtdVagas: this.qtdVagas,
+            situacao: this.situacao,
+            descricaoVaga: this.descricaoVaga,
+          };
+
+          const url = import.meta.env.VITE_BACKEND_URL + "/instituicaoEnsino";
+          console.log(url);
+
+          const req = await axios.post(url, data);
+
+          console.log("Resposta: ", req);
+        } catch (error) {
+          console.error("Erro ao enviar dados:", error);
+        }
       }
     },
   },
