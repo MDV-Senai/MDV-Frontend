@@ -153,6 +153,7 @@
               <v-btn
                 append-icon="mdi-chevron-right"
                 variant="outlined"
+                @click="enviarDados"
                 class="my-10"
                 width="183"
                 height="62"
@@ -174,6 +175,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 import {
   fullNameValidation,
   emailValidation,
@@ -221,11 +224,11 @@ export default {
             nomeCoordenador: this.nomeCoordenador,
             nomeSupervisor: this.nomeSupervisor,
             atividades: this.atividade,
-            instituicaoContratanteId: "100",
+            instituicaoContratanteId: "c7c8cf10-e407-47e7-80c4-ab8075380c38",
           };
 
           console.log(data);
-          const url = import.meta.env.VITE_BACKEND_URL + "/instituicaoEnsino";
+          const url = import.meta.env.VITE_BACKEND_URL + "/setores";
           console.log(url);
 
           const req = await axios.post(url, data);
