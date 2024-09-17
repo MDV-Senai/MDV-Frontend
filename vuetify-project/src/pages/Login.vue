@@ -264,14 +264,9 @@ export default {
           console.log(url);
 
           if (url.status == 200 || url.status == 201) {
-            router.push('home')
+            this.$router.push('/home'); 
           } 
-
-          if (this.variavelTeste == true) {
-            console.log('TESTE!!!!!!!!!!!!');
-            
-          }
-
+          
           const req = await axios.post(url, data);
 
           console.log("Resposta: ", req);
