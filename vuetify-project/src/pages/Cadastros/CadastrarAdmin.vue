@@ -12,7 +12,8 @@
           <v-col cols="12" md="12">
             <v-text-field
               label="Nome"
-              :rules="[rules.required]"
+              :rules="[rules.required, rules.fullname]"
+              v-model="nome"
               maxlength="255"
               counter
               clearable
@@ -27,7 +28,7 @@
           <v-col cols="12" md="12">
             <v-text-field
               label="Nome social"
-              :rules="[rules.hidden]"
+              v-model="nomeSocial"
               maxlength="255"
               counter
               clearable
@@ -56,6 +57,7 @@
             <v-text-field
               label="CPF"
               :rules="[rules.required]"
+              v-model="cpf"
               maxlength="14"
               counter
               clearable
@@ -68,6 +70,7 @@
             <v-text-field
               label="Nº de Matrícula de Trabalho"
               :rules="[rules.required]"
+              v-model="numeroMatriculaTrabalho"
               maxlength="20"
               counter
               clearable
@@ -81,6 +84,7 @@
           <v-col cols="6" md="4">
             <v-text-field
               label="Telefone"
+              v-model="telefone"
               maxlength="14"
               counter
               clearable
@@ -93,6 +97,7 @@
             <v-text-field
               label="Celular"
               :rules="[rules.required]"
+              v-model="celular"
               maxlength="15"
               counter
               clearable
@@ -105,6 +110,7 @@
             <v-text-field
               label="E-mail"
               :rules="[rules.required, rules.email]"
+              v-model="email"
               maxlength="255"
               counter
               clearable
@@ -252,6 +258,7 @@
 
 <script>
 import {
+  fullNameValidation,
   confirmPasswordValidation,
   emailValidation,
 } from "@/validations/formValidations";
@@ -260,6 +267,13 @@ export default {
   data() {
     return {
       senha: null,
+      nome: null,
+      nomeSocial: null,
+      cpf: null,
+      numeroMatriculaTrabalho: null,
+      telefone: null,
+      celular: null,
+      email: null,
       show1: false,
       show2: false,
       enableSocialName: false,
@@ -268,6 +282,7 @@ export default {
         required: (value) => !!value || "Campo obrigatório.",
         identic: (value) => confirmPasswordValidation(value),
         email: (value) => emailValidation(value),
+        fullname: (value) => fullNameValidation(value),
       },
       search: "",
       headers: [
@@ -343,6 +358,32 @@ export default {
   methods: {
     reset() {
       this.$refs.form.reset();
+    },
+
+    async enviarDados() {
+      if (this.$refs.form.validate()) {
+        try {
+          const data = {
+            nome: this.nome,
+            nomeSocial: this.nomeSocial,
+            senha:this.senha,
+            cpf: this.cpf,
+            numeroMatriculaTrabalho: this.numeroMatriculaTrabalho,
+            fone: this.telefone,
+            celular: this.celular,
+            email: this.email,
+          };
+
+          const url = import.meta.env.VITE_BACKEND_URL + "/instituicaoEnsino";
+          console.log(url);
+
+          const req = await axios.post(url, data);
+
+          console.log("Resposta: ", req);
+        } catch (error) {
+          console.error("Erro ao enviar dados:", error);
+        }
+      }
     },
 
     handleButtonClick(item) {

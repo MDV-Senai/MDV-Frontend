@@ -42,7 +42,7 @@
           <v-col cols="12" md="12">
             <v-text-field
               label="Diretor"
-              :rules="[rules.required]"
+              :rules="[rules.required, rules.fullname]"
               v-model="diretor"
               maxlength="255"
               counter

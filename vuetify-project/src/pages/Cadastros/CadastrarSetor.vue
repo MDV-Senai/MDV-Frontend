@@ -13,6 +13,7 @@
             <v-text-field
               label="Nome do Setor"
               :rules="[rules.required]"
+              v-model="nomeSetor"
               maxlength="255"
               counter
               clearable
@@ -24,6 +25,7 @@
             <v-text-field
               label="Celular do Respon. do Setor"
               :rules="[rules.required]"
+              v-model="celularRespSetor"
               maxlength="15"
               counter
               clearable
@@ -37,7 +39,8 @@
           <v-col cols="12" md="6">
             <v-text-field
               label="Nome do Supervisor "
-              :rules="[rules.required]"
+              v-model="nomeSupervisor"
+              :rules="[rules.required, rules.fullname]"
               maxlength="255"
               counter
               clearable
@@ -48,6 +51,7 @@
           <v-col cols="12" md="6">
             <v-text-field
               label="Email do Supervisor"
+              v-model="emailSupervisor"
               :rules="[rules.required, rules.email]"
               maxlength="255"
               counter
@@ -62,7 +66,8 @@
           <v-col cols="12" md="6">
             <v-text-field
               label="Nome do Coordenador"
-              :rules="[rules.required]"
+              v-model="nomeCoordenador"
+              :rules="[rules.required, rules.fullname]"
               maxlength="255"
               counter
               clearable
@@ -73,6 +78,7 @@
           <v-col cols="12" md="6">
             <v-text-field
               label="Email do Coordenador"
+              v-model="emailCoordenador"
               :rules="[rules.required, rules.email]"
               maxlength="255"
               counter
@@ -90,6 +96,7 @@
                 text="Adicionar Atividades"
                 @click="adicionarTeste()"
                 class="text-grey-darken-4"
+                v-model="atividade"
                 variant="outlined"
               ></v-btn>
             </v-container>
@@ -146,6 +153,7 @@
               <v-btn
                 append-icon="mdi-chevron-right"
                 variant="outlined"
+                @click="enviarDados"
                 class="my-10"
                 width="183"
                 height="62"
@@ -167,6 +175,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 import {
   fullNameValidation,
   emailValidation,
@@ -178,9 +188,17 @@ export default {
       rules: {
         required: (value) => !!value || "Obrigatório.",
         email: (value) => emailValidation(value),
+        fullname: (value) => fullNameValidation(value),
       },
       campos: [{ id: 1 }],
       nextId: 2,
+      nomeSetor: null,
+      celularRespSetor: null,
+      nomeSupervisor: null,
+      emailSupervisor: null,
+      nomeCoordenador: null,
+      emailCoordenador: null,
+      atividade: [],
     };
   },
   methods: {
@@ -193,6 +211,32 @@ export default {
     removerAtividade(index) {
       if (index >= 0 && index < this.campos.length) {
         this.campos.splice(index, 1);
+      }
+    },
+    async enviarDados() {
+      if (this.$refs.form.validate()) {
+        try {
+          const data = {
+            nomeSetor: this.nomeSetor,
+            emailSupervisor: this.emailSupervisor,
+            emailCoordenador: this.emailCoordenador,
+            celularResponsavel: this.celularRespSetor,
+            nomeCoordenador: this.nomeCoordenador,
+            nomeSupervisor: this.nomeSupervisor,
+            atividades: this.atividade,
+            instituicaoContratanteId: "c7c8cf10-e407-47e7-80c4-ab8075380c38",
+          };
+
+          console.log(data);
+          const url = import.meta.env.VITE_BACKEND_URL + "/setores";
+          console.log(url);
+
+          const req = await axios.post(url, data);
+
+          console.log("Resposta: ", req);
+        } catch (error) {
+          console.error("Erro ao enviar dados:", error);
+        }
       }
     },
   },

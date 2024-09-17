@@ -13,7 +13,8 @@
           <v-col cols="12" md="12">
             <v-text-field
               label="Nome"
-              :rules="[rules.required]"
+              v-model="nome"
+              :rules="[rules.required, rules.fullname]"
               maxlength="255"
               counter
               clearable
@@ -27,7 +28,7 @@
           <v-col cols="12" md="12">
             <v-text-field
               label="Nome social"
-              :rules="[rules.hidden]"
+              v-model="nomeSocial"
               maxlength="255"
               counter
               clearable
@@ -55,6 +56,7 @@
           <v-col cols="6" md="6">
             <v-text-field
               label="Nº Matrícula do Estudante"
+              v-model="numeroMatriculaEstudante"
               :rules="[rules.required]"
               maxlength="25"
               counter
@@ -66,6 +68,7 @@
           <v-col cols="6" md="6">
             <v-text-field
               label="CPF"
+              v-model="cpf"
               :rules="[rules.required]"
               maxlength="14"
               counter
@@ -81,6 +84,7 @@
           <v-col cols="12" md="6">
             <v-text-field
               label="Instituição de Ensino"
+              v-model="instituicaoEnsino"
               :rules="[rules.required]"
               maxlength="255"
               counter
@@ -93,6 +97,7 @@
           <v-col cols="12" md="6">
             <v-text-field
               label="Curso"
+              v-model="curso"
               :rules="[rules.required]"
               maxlength="255"
               counter
@@ -143,19 +148,53 @@
 </template>
 
 <script>
+import {
+  fullNameValidation,
+} from "@/validations/formValidations";
 export default {
   data() {
     return {
       enableSocialName: false,
       isVisible: false,
+      nome: null,
+      nomeSocial: null,
+      numeroMatriculaEstudante: null,
+      cpf: null,
+      instituicaoEnsino: null,
+      curso: null,
       rules: {
         required: (value) => !!value || "Obrigatório.",
+        fullname: (value) => fullNameValidation(value),
       },
     };
   },
   methods: {
     reset() {
       this.$refs.form.reset();
+    },
+
+    async enviarDados() {
+      if (this.$refs.form.validate()) {
+        try {
+          const data = {
+            nome: this.nome,
+            nomeSocial: this.nomeSocial,
+            numeroMatriculaEstudante: this.numeroMatriculaEstudante,
+            cpf: this.cpf,
+            instituicaoEnsino: this.instituicaoEnsino,
+            curso: this.curso,
+          };
+
+          const url = import.meta.env.VITE_BACKEND_URL + "/instituicaoEnsino";
+          console.log(url);
+
+          const req = await axios.post(url, data);
+
+          console.log("Resposta: ", req);
+        } catch (error) {
+          console.error("Erro ao enviar dados:", error);
+        }
+      }
     },
   },
 };

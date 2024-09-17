@@ -14,6 +14,22 @@
             <v-text-field
               label="Nome Fantasia"
               :rules="[rules.required]"
+              v-model="nomeFantasia"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+
+        <v-row class="d-flex justify-center">
+          <v-col cols="12" md="12">
+            <v-text-field
+              label="Responsável Legal"
+              :rules="[rules.required, rules.fullname]"
+              v-model="responsavelLegal"
               maxlength="255"
               counter
               clearable
@@ -28,6 +44,7 @@
             <v-text-field
               label="Razão Social"
               :rules="[rules.required]"
+              v-model="razaoSocial"
               maxlength="255"
               counter
               clearable
@@ -42,6 +59,7 @@
             <v-text-field
               label="CNPJ"
               :rules="[rules.required]"
+              v-model="cnpj"
               maxlength="18"
               counter
               clearable
@@ -54,6 +72,7 @@
             <v-text-field
               label="Inscrição Estadual"
               :rules="[rules.required]"
+              v-model="inscricaoEstadual"
               maxlength="12"
               counter
               clearable
@@ -65,6 +84,7 @@
             <v-file-input
               label="Logo da Empresa"
               :rules="[rules.required]"
+              v-model="logoEmpresa"
               clearable
               class="text-grey-darken-4"
               variant="outlined"
@@ -77,6 +97,7 @@
             <v-text-field
               label="E-mail"
               :rules="[rules.required, rules.email]"
+              v-model="email"
               maxlength="255"
               counter
               clearable
@@ -88,7 +109,8 @@
             <v-text-field
               label="Celular"
               :rules="[rules.required]"
-              maxlength="14"
+              v-model="celular"
+              maxlength="15"
               counter
               clearable
               class="text-grey-darken-4"
@@ -100,7 +122,8 @@
             <v-text-field
               label="Telefone"
               :rules="[rules.required]"
-              maxlength="13"
+              v-model="telefone"
+              maxlength="14"
               counter
               clearable
               class="text-grey-darken-4"
@@ -110,14 +133,15 @@
           </v-col>
           <v-col cols="6" md="3">
             <v-text-field
-              label="Telefone do Responsável Legal"
+              label="Contato do Responsável Legal"
               :rules="[rules.required]"
-              maxlength="14"
+              v-model="contatoRespLegal"
+              maxlength="15"
               counter
               clearable
               class="text-grey-darken-4"
               variant="outlined"
-              v-mask="'(##) ####-####'"
+              v-mask="'(##) #####-####'"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -126,6 +150,7 @@
             <v-text-field
               label="CEP"
               :rules="[rules.required]"
+              v-model="cep"
               maxlength="9"
               counter
               clearable
@@ -155,6 +180,7 @@
             <v-text-field
               label="Nº"
               :rules="[rules.required]"
+              v-model="numero"
               maxlength="10"
               counter
               clearable
@@ -165,6 +191,7 @@
           <v-col cols="6" md="8">
             <v-text-field
               label="Complemento"
+              v-model="complemento"
               maxlength="255"
               counter
               clearable
@@ -233,6 +260,7 @@
             <v-col cols="6" md="3">
               <v-btn
                 append-icon="mdi-chevron-right"
+                @click="enviarDados"
                 variant="outlined"
                 class="my-10 text-grey-darken-4"
                 width="183"
@@ -256,19 +284,33 @@
 
 <script>
 import axios from "axios";
-import { emailValidation } from "@/validations/formValidations";
+import { emailValidation, fullNameValidation } from "@/validations/formValidations";
 import { buscaCep } from "@/util/buscaCep";
 
 export default {
   data() {
     return {
+      nomeFantasia: null,
+      razaoSocial: null,
+      cnpj: null,
+      inscricaoEstadual: null,
+      logoEmpresa: null,
+      email: null,
+      celular: null,
+      telefone: null,
+      cep: null,
+      complemento: null,
       uf: null,
       cidade: null,
       bairro: null,
       logradouro: null,
+      numero: null,
+      responsavelLegal: null,
+      contatoRespLegal: null,
       rules: {
         required: (value) => !!value || "Obrigatório.",
         email: (value) => emailValidation(value),
+        fullname: (value) => fullNameValidation(value),
       },
     };
   },
@@ -284,6 +326,42 @@ export default {
       this.uf = address.uf;
       this.bairro = address.bairro;
       this.logradouro = address.logradouro;
+    },
+
+    async enviarDados() {
+      if (this.$refs.form.validate()) {
+        try {
+          const data = {
+            nomeFantasia: this.nomeFantasia,
+            razaoSocial: this.razaoSocial,
+            cnpj: this.cnpj,
+            inscricaoEstado: this.inscricaoEstadual,
+            fone: this.telefone,
+            celular: this.celular,
+            email: this.email,
+            cep: this.cep,
+            cidade: this.cidade,
+            uf: this.uf,
+            bairro: this.bairro,
+            numero: this.numero,
+            rua: this.logradouro,
+            complemento: this.complemento,
+            responsavelLegal: this.responsavelLegal,
+            responsavelLegalContato: this.contatoRespLegal,
+          };
+
+          console.log(data);
+          
+          const url =  "http://localhost:3000/instituicaoContratante";
+          console.log(url);
+
+          const req = await axios.post(url, data);
+
+          console.log("Resposta: ", req);
+        } catch (error) {
+          console.error("Erro ao enviar dados:", error);
+        }
+      }
     },
   },
 };
