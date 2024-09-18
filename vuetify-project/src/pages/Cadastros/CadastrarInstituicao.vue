@@ -384,6 +384,8 @@ export default {
         try {
           const data = {
             nomeFantasia: this.instituacao,
+            userEmail: this.usuario,
+            userPassword: this.senha,
             razaoSocial: this.razaoSocial,
             cnpj: this.cnpj,
             inscricaoEstado: this.inscricaoEstadual,
@@ -401,10 +403,19 @@ export default {
             responsavelLegalContato: this.contatoRespLegal,
           };
 
+          console.log(data);
           const url = import.meta.env.VITE_BACKEND_URL + "/instituicaoEnsino";
           console.log(url);
 
-          const req = await axios.post(url, data);
+          const token = sessionStorage.getItem('authToken');
+          console.log(token);
+          
+
+          const req = await axios.post(url, data, {
+            headers: {
+              'Authorization': `Bearer ${token}` 
+            }
+          });
 
           console.log("Resposta: ", req);
         } catch (error) {
