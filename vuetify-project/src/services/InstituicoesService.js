@@ -2,12 +2,20 @@ import axios from "axios";
 
 export async function fetchInstituicoes() {
   try {
+    let token = localStorage.getItem("authToken");
+
     const response = await axios.get(
-      "http://localhost:3000/items"
+      import.meta.env.VITE_BACKEND_URL + "/instituicaoEnsino",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
     );
-    return response.data.instituicao;
+
+    return response.data;
   } catch (error) {
-    console.error("Erro ao buscar instituicoes:", error);
+    console.error("Erro ao buscar instituições:", error);
     return null;
   }
 }
