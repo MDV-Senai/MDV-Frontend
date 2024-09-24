@@ -1,2 +1,1 @@
-yarn dev &
-yarn backend
+yarn dev

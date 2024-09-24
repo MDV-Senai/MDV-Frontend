@@ -44,7 +44,7 @@
                             >
                               <v-btn
                                 v-bind="activatorProps"
-                               color="grey-darken-4"
+                                color="grey-darken-4"
                                 text="Esqueci a senha"
                                 variant="text"
                               ></v-btn>
@@ -73,9 +73,7 @@
                                       text
                                       @click="isActive.value = false"
                                       variant="outlined"
-                                         class="mb-6 text-grey-darken-3"
-         
-                                     
+                                      class="mb-6 text-grey-darken-3"
                                     >
                                       Ok
                                     </v-btn>
@@ -132,22 +130,22 @@
                             </template>
                           </v-dialog>
                         </div>
-                          <v-btn
-                            @click="enviarDados"
-                            append-icon="mdi-chevron-right"
-                            variant="outlined"
-                            color="green-darken-4"
-                            class="my-10"
-                            width="183"
-                            height="62"
-                            id="botaoEntrar"
-                          >
-                            Entrar
+                        <v-btn
+                          @click="enviarDados"
+                          append-icon="mdi-chevron-right"
+                          variant="outlined"
+                          color="green-darken-4"
+                          class="my-10"
+                          width="183"
+                          height="62"
+                          id="botaoEntrar"
+                        >
+                          Entrar
 
-                            <template v-slot:append>
-                              <v-icon color="green-darken-4"></v-icon>
-                            </template>
-                          </v-btn>
+                          <template v-slot:append>
+                            <v-icon color="green-darken-4"></v-icon>
+                          </template>
+                        </v-btn>
                       </v-form>
                     </v-card>
                   </v-container>
@@ -185,7 +183,9 @@
                       <v-spacer></v-spacer>
 
                       <v-btn
-                        :icon="vaga.show ? 'mdi-chevron-up' : 'mdi-chevron-down'"
+                        :icon="
+                          vaga.show ? 'mdi-chevron-up' : 'mdi-chevron-down'
+                        "
                         @click="vaga.show = !vaga.show"
                       ></v-btn>
                     </v-card-actions>
@@ -212,9 +212,8 @@
 
 <script>
 import axios from "axios";
-import {
-  emailValidation,
-} from "@/validations/formValidations";
+import { emailValidation } from "@/validations/formValidations";
+import {login} from "../auth/auth.js"
 
 export default {
   data() {
@@ -253,31 +252,23 @@ export default {
     },
 
     async enviarDados() {
-        try {
-          const data = {
-            email: this.email,
-            password: this.senha
-          };
+      try {
+        const token = await login(this.email, this.senha);
 
-          console.log(data);
-          const url = import.meta.env.VITE_BACKEND_URL + "/auth/login";
-          console.log(url);
-
-          if (url.status == 200 || url.status == 201) {
-            this.$router.push('/home'); 
-          } 
-          
-          const req = await axios.post(url, data);
-
-          console.log("Resposta: ", req);
-        } catch (error) {
-          console.error("Erro ao enviar dados:", error);
+        if (token) {
+          console.log("Login realizado com sucesso, token:", token);
+          this.$router.push('/home');
+        } else {
+          console.error("Falha no login");
         }
+      } catch (error) {
+        console.error("Erro ao enviar os dados:", error);
+      }
     },
 
-    async isStatusError () {
-      this.url
-    }
+    async isStatusError() {
+      this.url;
+    },
   },
   mounted() {
     this.listarVagas();
@@ -286,7 +277,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '@/styles/shared';
+@import "@/styles/shared";
 
 #textoSenha {
   color: #f178ac;
