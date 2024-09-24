@@ -33,7 +33,7 @@
             <td class="text-left">{{ item.responsavelLegal }}</td>
             <td class="text-left">{{ item.responsavelContato }}</td>
             <td class="text-center">
-              <VisualizarInstituicao />
+              <VisualizarInstituicao :itemId="item.id" />
               <EditarInstituicao />
               <DeletarItem />
             </td>
