@@ -27,3 +27,13 @@ export const confirmPasswordValidation = () => {
 
     return true;
 }
+
+export function fileSizeValidation(file) {
+  if (!file) return "Obrigatório.";
+
+  if (file.size > 1024 * 1024 * 2) {
+    return "O arquivo selecionado deve ter no máximo 2MB.";
+  }
+
+  return true;
+}

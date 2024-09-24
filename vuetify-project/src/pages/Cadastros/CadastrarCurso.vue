@@ -10,19 +10,6 @@
       <v-form ref="form" id="form" class="mx-auto">
         <v-row class="d-flex justify-center mt-8">
           <v-col cols="12" md="12">
-            <v-select
-              v-model="selectedInstituicao"
-              :items="listaInstituicao"
-              item-title="nomeFantasia" 
-              item-value="id"  
-              label="Instituição para cadastro de curso"
-              class="text-grey-darken-4"
-              variant="outlined"
-            ></v-select>
-          </v-col>
-        </v-row>
-        <v-row class="d-flex justify-center">
-          <v-col cols="12" md="12">
             <v-text-field
               label="Nome do Curso"
               v-model="curso"
