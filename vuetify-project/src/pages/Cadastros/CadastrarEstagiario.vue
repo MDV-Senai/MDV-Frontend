@@ -197,7 +197,44 @@
             ></v-text-field>
           </v-col>
         </v-row>
-
+        <v-row id="inputResponsivo" class="d-flex justify-center">
+          <v-col cols="12" md="4">
+            <v-text-field
+              label="Número da apólice"
+              :rules="[rules.required]"
+              v-model="numeroApolice"
+              maxlength="15"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="6" md="4">
+            <v-text-field
+              label="Data de vencimento da apólice"
+              :rules="[rules.required]"
+              type="date"
+              v-model="dataVencimentoApolice"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="6" md="4">
+            <v-file-input
+              label="Apólice"
+              :rules="[rules.fileSize]"
+              v-model="apoliceFile"
+              ref="apolice"
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-file-input>
+          </v-col>
+        </v-row>
         <v-row id="inputResponsivo" class="d-flex justify-center">
           <v-col cols="12" md="12">
             <v-text-field
@@ -346,13 +383,13 @@
         </div>
       </v-form>
     </div>
-    
+
   </v-main>
 </template>
 
 <script>
 import axios from "axios";
-import { emailValidation, fullNameValidation} from "@/validations/formValidations";
+import { emailValidation, fullNameValidation, fileSizeValidation} from "@/validations/formValidations";
 import { buscaCep } from "@/util/buscaCep";
 
 export default {
@@ -368,6 +405,9 @@ export default {
       telefone: null,
       numeroContatoEmerg: null,
       nomeContatoEmerg: null,
+      numeroApolice: null,
+      dataVencimentoApolice: null,
+      apoliceFile: null,
       instituicaoEnsino: null,
       curso: null,
       periodo: null,
@@ -386,6 +426,7 @@ export default {
         hidden: (value) => hiddenSocialName(value),
         email: (value) => emailValidation(value),
         fullname: (value) => fullNameValidation(value),
+        fileSize: () => fileSizeValidation(this.$refs.apolice.files[0]),
       },
     };
   },
@@ -419,6 +460,9 @@ export default {
             rua: this.logradouro,
             bairro: this.bairro,
             complemento: this.complemento,
+            numeroApolice: this.numeroApolice,
+            dataVencimentoApolice: this.dataVencimentoApolice,
+            apoliceFile: this.$refs.apolice.files[0]
           };
 
           const url = import.meta.env.VITE_BACKEND_URL + "/aluno";
