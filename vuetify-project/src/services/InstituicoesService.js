@@ -2,7 +2,7 @@ import axios from "axios";
 
 export async function fetchInstituicoes() {
   try {
-    let token = localStorage.getItem("authToken");
+    let token = sessionStorage.getItem("authToken");
 
     const response = await axios.get(
       import.meta.env.VITE_BACKEND_URL + "/instituicaoEnsino",

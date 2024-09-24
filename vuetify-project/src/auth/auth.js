@@ -13,7 +13,7 @@ export async function login(email, password) {
     );
 
     const token = response.data.token;
-    localStorage.setItem("authToken", token);
+    sessionStorage.setItem('authToken', token);
 
     return token;
   } catch (error) {
