@@ -257,6 +257,7 @@ export default {
 
         if (token) {
           console.log("Login realizado com sucesso, token:", token);
+          this.$router.push('/home');
         } else {
           console.error("Falha no login");
         }
