@@ -69,42 +69,10 @@
 </template>
 
 <script>
-import { fetchInstituicaoById } from '../../../services/InstituicoesService.js';
-
 export default {
   name: "VisualizarInstituicao",
-  props: {
-    itemId: {
-      type: String,
-      required: true
-    }
-  },
-  data() {
-    return {
-      instituicao: null,
-    };
-  },
-  watch: {
-    itemId: {
-      immediate: true,
-      handler(newId) {
-        if (newId) {
-          this.loadInstituicao(newId);
-        }
-      }
-    }
-  },
-  methods: {
-    async loadInstituicao(id) {
-      this.instituicao = await fetchInstituicaoById(id);
-      if (this.instituicao) {
-        console.log(this.instituicao);
-      }
-    }
-  }
 };
 </script>
-
 
 <style lang="scss">
 @import "@/styles/shared";

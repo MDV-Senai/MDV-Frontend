@@ -19,23 +19,3 @@ export async function fetchInstituicoes() {
     return null;
   }
 }
-
-export async function fetchInstituicaoById(id) {
-  try {
-    let token = localStorage.getItem("authToken");
-
-    const response = await axios.get(
-      import.meta.env.VITE_BACKEND_URL + "/instituicaoEnsino/" + id,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    console.log(response.data)
-    return response.data;
-  } catch (error) {
-    console.error("Erro ao buscar instituição:", error);
-    return null;
-  }
-}
