@@ -198,7 +198,7 @@
           </v-col>
         </v-row>
         <v-row id="inputResponsivo" class="d-flex justify-center">
-          <v-col cols="12" md="4">
+          <v-col cols="12" md="3">
             <v-text-field
               label="Número da apólice"
               :rules="[rules.required]"
@@ -210,12 +210,12 @@
               variant="outlined"
             ></v-text-field>
           </v-col>
-          <v-col cols="6" md="4">
+          <v-col cols="6" md="3">
             <v-text-field
-              label="Data de vencimento da apólice"
+              label="Data inicio da vigência"
               :rules="[rules.required]"
               type="date"
-              v-model="dataVencimentoApolice"
+              v-model="dataInicioVigencia"
               maxlength="255"
               counter
               clearable
@@ -223,12 +223,26 @@
               variant="outlined"
             ></v-text-field>
           </v-col>
-          <v-col cols="6" md="4">
+          <v-col cols="6" md="3">
+            <v-text-field
+              label="Data final da vigência"
+              :rules="[rules.required]"
+              type="date"
+              v-model="dataFinalVigencia"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="6" md="3">
             <v-file-input
               label="Apólice"
               :rules="[rules.fileSize]"
               v-model="apoliceFile"
               ref="apolice"
+              accept=".pdf, .jpg, .jpeg, .png"
               clearable
               class="text-grey-darken-4"
               variant="outlined"
@@ -406,7 +420,8 @@ export default {
       numeroContatoEmerg: null,
       nomeContatoEmerg: null,
       numeroApolice: null,
-      dataVencimentoApolice: null,
+      dataInicioVigencia: null,
+      dataFinalVigencia: null,
       apoliceFile: null,
       instituicaoEnsino: null,
       curso: null,
@@ -461,7 +476,8 @@ export default {
             bairro: this.bairro,
             complemento: this.complemento,
             numeroApolice: this.numeroApolice,
-            dataVencimentoApolice: this.dataVencimentoApolice,
+            dataInicioVigencia: this.dataInicioVigencia,
+            dataFinalVigencia: this.dataFinalVigencia,
             apoliceFile: this.$refs.apolice.files[0]
           };
 
