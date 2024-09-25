@@ -198,44 +198,6 @@
           </v-col>
         </v-row>
         <v-row id="inputResponsivo" class="d-flex justify-center">
-          <v-col cols="12" md="4">
-            <v-text-field
-              label="Número da apólice"
-              :rules="[rules.required]"
-              v-model="numeroApolice"
-              maxlength="15"
-              counter
-              clearable
-              class="text-grey-darken-4"
-              variant="outlined"
-            ></v-text-field>
-          </v-col>
-          <v-col cols="6" md="4">
-            <v-text-field
-              label="Data de vencimento da apólice"
-              :rules="[rules.required]"
-              type="date"
-              v-model="dataVencimentoApolice"
-              maxlength="255"
-              counter
-              clearable
-              class="text-grey-darken-4"
-              variant="outlined"
-            ></v-text-field>
-          </v-col>
-          <v-col cols="6" md="4">
-            <v-file-input
-              label="Apólice"
-              :rules="[rules.fileSize]"
-              v-model="apoliceFile"
-              ref="apolice"
-              clearable
-              class="text-grey-darken-4"
-              variant="outlined"
-            ></v-file-input>
-          </v-col>
-        </v-row>
-        <v-row id="inputResponsivo" class="d-flex justify-center">
           <v-col cols="12" md="12">
             <v-text-field
               label="Nome do Professor Responsável"
