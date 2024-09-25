@@ -15,19 +15,20 @@ export async function fetchCursos() {
 export async function cadastrarCurso(data) {
   try {
     const url = import.meta.env.VITE_BACKEND_URL + "/curso";
-  
+
     const token = sessionStorage.getItem('authToken');
     console.log(url);
-    
+
 
     console.log(data);
     const req = await axios.post(url, data, {
       headers: {
-        'Authorization': `Bearer ${token}` 
+        'Authorization': `Bearer ${token}`
       }
     });
-    console.log(req)
+
+    return req;
   } catch (error) {
-    
+    console.log('Erro ao cadastrar curso: ' + error);
   }
 }
