@@ -22,6 +22,7 @@
                             v-model="email"
                             variant="outlined"
                             color="grey-darken-4"
+                            @keyup.enter="enviarDados"
                           ></v-text-field>
                         </v-col>
 
@@ -32,6 +33,7 @@
                             type="password"
                             variant="outlined"
                             color="grey-darken-4"
+                            @keyup.enter="enviarDados"
                           ></v-text-field>
                         </v-col>
 
