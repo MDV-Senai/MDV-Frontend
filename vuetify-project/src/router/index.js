@@ -118,6 +118,20 @@ const router = createRouter({
       component: ConsultarContrato
     },
   ]
-})
+});
+
+router.beforeEach((to, from, next) => {
+  const isAuthenticated = sessionStorage.getItem('authToken');
+
+  //Precisa verificar a validade do token no backend
+
+  if (to.name === 'Login') {
+    next();
+  } else if (!isAuthenticated) {
+    next({ name: 'Login' });
+  } else {
+    next();
+  }
+});
 
 export default router
