@@ -21,17 +21,19 @@
       <v-table>
         <thead>
           <tr>
-            <th class="text-left">Instituição</th>
             <th class="text-left">Curso</th>
             <th class="text-left">Situação</th>
+            <th class="text-left">Carga Horária Curso</th>
+            <th class="text-left">Carga Horária Estágio</th>
             <th class="text-center">Ações</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="item in cursoPaginado" :key="item.id">
-            <td class="text-left">{{ item.instituicao }}</td>
-            <td class="text-left">{{ item.nome }}</td>
-            <td class="text-left">{{ item.situacao }}</td>
+          <tr v-for="item in cursoPaginado" :key="item.idCurso">
+            <td class="text-left">{{ item.nomeCurso }}</td>
+            <td class="text-left">{{ item.status }}</td>
+            <td class="text-left">{{ item.cargaHorariaCurso }}</td>
+            <td class="text-left">{{ item.cargaHorariaEstagio }}</td>
             <td class="text-center">
               <VisualizarCurso />
               <EditarCurso />
