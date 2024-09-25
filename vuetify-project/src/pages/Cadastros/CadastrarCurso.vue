@@ -140,6 +140,7 @@ import {
   emailValidation,
   fullNameValidation
 } from "@/validations/formValidations";
+import { cadastrarCurso } from "../../services/CursosService.js";
 export default {
   data() {
     return {
@@ -161,24 +162,21 @@ export default {
   methods: {
     async enviarDados() {
       if (this.$refs.form.validate()) {
-        try {
-          const data = {
-            nomeCurso: this.curso,
-            idInstituicaoEnsino: this.selectedInstituicao,
-            nomeCoordenadorCurso: this.nomeCoordenadorCurso,
-            nomeSocialCoordenadorCurso: this.nomeSocialCoordenadorCurso,
-            emailCoordenadorCurso: this.email,
-            foneCoordenadorCurso: this.telefone,
-            celularCoordenadorCurso: this.celular,
-          };
+        const data = {
+          nomeCurso: this.curso,
+          idInstituicaoEnsino: '43b00fcc-8576-4180-bc9b-09f000d3b85c',
+          nomeCoordenadorCurso: this.nomeCoordenadorCurso,
+          nomeSocialCoordenadorCurso: this.nomeSocialCoordenadorCurso,
+          emailCoordenadorCurso: this.email,
+          foneCoordenadorCurso: this.telefone,
+          celularCoordenadorCurso: this.celular,
+        };
 
-          const url = import.meta.env.VITE_BACKEND_URL + "/curso";
+        const response = await cadastrarCurso(data);
+        console.log(response);
 
-          console.log(data);
-          const req = await axios.post(url, data);
-          console.log(req)
-        } catch (error) {
-          console.error("Erro ao enviar dados:", error);
+        if (response) {
+          console.log('Teste');
         }
       }
     },
@@ -186,21 +184,6 @@ export default {
     reset() {
       this.$refs.form.reset();
     },
-    async getInstituicao() {
-      try {
-        const response = await axios.get(
-          import.meta.env.VITE_BACKEND_URL + "/instituicaoEnsino"
-        );
-
-        this.listaInstituicao = response.data;
-        
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    },
-  },
-  mounted() {
-    this.getInstituicao();
   },
 };
 </script>
