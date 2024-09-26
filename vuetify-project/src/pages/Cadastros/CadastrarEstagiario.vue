@@ -432,7 +432,11 @@ export default {
           const url = import.meta.env.VITE_BACKEND_URL + "/aluno";
           console.log(url);
 
-          const req = await axios.post(url, data);
+          const req = await axios.post(url, data, {
+            headers: {
+              'Authorization': `Bearer ${token}` 
+            }
+          });
 
           console.log("Resposta: ", req);
         } catch (error) {
