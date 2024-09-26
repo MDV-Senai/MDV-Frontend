@@ -313,7 +313,6 @@
         </div>
       </v-form>
     </div>
-    
   </v-main>
 </template>
 
@@ -325,6 +324,7 @@ import {
   confirmPasswordValidation,
 } from "@/validations/formValidations";
 import { buscaCep } from "@/util/buscaCep";
+import Swal from "sweetalert2";
 
 export default {
   data() {
@@ -407,15 +407,20 @@ export default {
           const url = import.meta.env.VITE_BACKEND_URL + "/instituicaoEnsino";
           console.log(url);
 
-          const token = sessionStorage.getItem('authToken');
+          const token = sessionStorage.getItem("authToken");
           console.log(token);
-          
 
           const req = await axios.post(url, data, {
             headers: {
-              'Authorization': `Bearer ${token}` 
-            }
+              Authorization: `Bearer ${token}`,
+            },
           });
+
+          Swal.fire({
+            title: "Cadastro Realizado com Sucesso!",
+            icon: "success",
+          });
+          this.$refs.form.reset();
 
           console.log("Resposta: ", req);
         } catch (error) {

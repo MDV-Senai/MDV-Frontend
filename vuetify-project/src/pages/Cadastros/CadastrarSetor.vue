@@ -170,7 +170,6 @@
         </div>
       </v-form>
     </div>
-    
   </v-main>
 </template>
 
@@ -181,6 +180,7 @@ import {
   fullNameValidation,
   emailValidation,
 } from "@/validations/formValidations";
+import Swal from "sweetalert2";
 
 export default {
   data() {
@@ -231,7 +231,19 @@ export default {
           const url = import.meta.env.VITE_BACKEND_URL + "/setores";
           console.log(url);
 
-          const req = await axios.post(url, data);
+          const token = sessionStorage.getItem("authToken");
+
+          const req = await axios.post(url, data, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+
+          Swal.fire({
+            title: "Cadastro Realizado com Sucesso!",
+            icon: "success",
+          });
+          this.$refs.form.reset();
 
           console.log("Resposta: ", req);
         } catch (error) {
@@ -244,5 +256,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/styles/shared';
+@import "@/styles/shared";
 </style>
