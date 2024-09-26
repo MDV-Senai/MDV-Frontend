@@ -174,6 +174,7 @@
           </v-col>
           <v-col cols="6" md="4">
             <v-autocomplete
+              v-model="idCurso"
               label="Pesquise"
               class="text-grey-darken-4"
               variant="outlined"
@@ -351,7 +352,6 @@ import axios from "axios";
 import {
   emailValidation,
   fullNameValidation,
-  fileSizeValidation,
 } from "@/validations/formValidations";
 import { buscaCep } from "@/util/buscaCep";
 import { fetchCursos } from "../../services/CursosService.js";
@@ -359,6 +359,7 @@ import { fetchCursos } from "../../services/CursosService.js";
 export default {
   data() {
     return {
+      idCurso: null,
       nome: null,
       nomeSocial: null,
       numeroMatriEstu: null,
@@ -369,9 +370,6 @@ export default {
       telefone: null,
       numeroContatoEmerg: null,
       nomeContatoEmerg: null,
-      numeroApolice: null,
-      dataVencimentoApolice: null,
-      apoliceFile: null,
       instituicaoEnsino: null,
       cursos: [],
       periodo: null,
@@ -390,7 +388,6 @@ export default {
         hidden: (value) => hiddenSocialName(value),
         email: (value) => emailValidation(value),
         fullname: (value) => fullNameValidation(value),
-        fileSize: () => fileSizeValidation(this.$refs.apolice.files[0]),
       },
     };
   },
@@ -410,7 +407,7 @@ export default {
             nome: this.nome,
             nomeSocial: this.nomeSocial,
             documento: this.string,
-            dataNascimento: this.dataNasc,
+            dataNascimento: new Date(this.dataNasc).toISOString(),
             fone: this.telefone,
             celular: this.celular,
             email: this.email,
@@ -424,13 +421,14 @@ export default {
             rua: this.logradouro,
             bairro: this.bairro,
             complemento: this.complemento,
-            numeroApolice: this.numeroApolice,
-            dataVencimentoApolice: this.dataVencimentoApolice,
-            apoliceFile: this.$refs.apolice.files[0],
+            cursoId: this.idCurso,
+            documento: this.cpf
           };
 
           const url = import.meta.env.VITE_BACKEND_URL + "/aluno";
           console.log(url);
+
+          let token = sessionStorage.getItem("authToken");
 
           const req = await axios.post(url, data, {
             headers: {
