@@ -313,7 +313,7 @@
         </div>
       </v-form>
     </div>
-    
+
   </v-main>
 </template>
 
@@ -384,7 +384,7 @@ export default {
         try {
           const data = {
             nomeFantasia: this.instituacao,
-            userEmail: this.usuario,
+            userEmail: this.email, // TODO: Ajustar para enviar o nome e email corretamente
             userPassword: this.senha,
             razaoSocial: this.razaoSocial,
             cnpj: this.cnpj,
@@ -409,11 +409,11 @@ export default {
 
           const token = sessionStorage.getItem('authToken');
           console.log(token);
-          
+
 
           const req = await axios.post(url, data, {
             headers: {
-              'Authorization': `Bearer ${token}` 
+              'Authorization': `Bearer ${token}`
             }
           });
 
