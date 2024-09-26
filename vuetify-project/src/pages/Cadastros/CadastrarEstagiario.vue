@@ -173,16 +173,14 @@
             ></v-text-field>
           </v-col>
           <v-col cols="6" md="4">
-            <v-text-field
-              label="Curso"
-              :rules="[rules.required]"
-              v-model="curso"
-              maxlength="255"
-              counter
-              clearable
+            <v-autocomplete
+              label="Pesquise"
               class="text-grey-darken-4"
               variant="outlined"
-            ></v-text-field>
+              :items="cursos"
+              :item-title="'nomeCurso'"
+              :item-value="'idCurso'"
+            ></v-autocomplete>
           </v-col>
           <v-col cols="6" md="4">
             <v-text-field
@@ -345,14 +343,18 @@
         </div>
       </v-form>
     </div>
-
   </v-main>
 </template>
 
 <script>
 import axios from "axios";
-import { emailValidation, fullNameValidation, fileSizeValidation} from "@/validations/formValidations";
+import {
+  emailValidation,
+  fullNameValidation,
+  fileSizeValidation,
+} from "@/validations/formValidations";
 import { buscaCep } from "@/util/buscaCep";
+import { fetchCursos } from "../../services/CursosService.js";
 
 export default {
   data() {
@@ -371,7 +373,7 @@ export default {
       dataVencimentoApolice: null,
       apoliceFile: null,
       instituicaoEnsino: null,
-      curso: null,
+      cursos: [],
       periodo: null,
       nomeProfessorResp: null,
       cep: null,
@@ -424,7 +426,7 @@ export default {
             complemento: this.complemento,
             numeroApolice: this.numeroApolice,
             dataVencimentoApolice: this.dataVencimentoApolice,
-            apoliceFile: this.$refs.apolice.files[0]
+            apoliceFile: this.$refs.apolice.files[0],
           };
 
           const url = import.meta.env.VITE_BACKEND_URL + "/aluno";
@@ -439,9 +441,18 @@ export default {
       }
     },
 
+    async loadCursos() {
+      const response = await fetchCursos();
+      console.log(response);
+      this.cursos = response;
+    },
+
     reset() {
       this.$refs.form.reset();
     },
+  },
+  mounted() {
+    this.loadCursos();
   },
 };
 </script>
