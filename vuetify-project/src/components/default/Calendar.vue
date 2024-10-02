@@ -57,4 +57,5 @@ export default {
     return { attributes, anoAtual, mesAtual };
   },
 };
+// Link para configuração do componente: https://vcalendar.io/calendar/layouts.html
 </script>
