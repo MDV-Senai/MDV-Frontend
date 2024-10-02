@@ -175,7 +175,7 @@
           <v-col cols="6" md="4">
             <v-autocomplete
               v-model="idCurso"
-              label="Pesquise"
+              label="Curso"
               class="text-grey-darken-4"
               variant="outlined"
               :items="cursos"
