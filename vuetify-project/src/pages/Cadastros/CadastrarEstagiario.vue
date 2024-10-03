@@ -455,42 +455,48 @@ export default {
     },
 
     async enviarDados() {
-      if (this.$refs.form.validate()) {
-        try {
-          const data = {
-            nome: this.nome,
-            nomeSocial: this.nomeSocial,
-            documento: this.string,
-            dataNascimento: this.dataNasc,
-            fone: this.telefone,
-            celular: this.celular,
-            email: this.email,
-            matricula: this.numeroMatriEstu,
-            contatoEmergencia: this.numeroContatoEmerg,
-            nomeContatoEmergencia: this.nomeContatoEmerg,
-            cep: this.cep,
-            cidade: this.cidade,
-            uf: this.uf,
-            numeroResidencia: this.numero,
-            rua: this.logradouro,
-            bairro: this.bairro,
-            complemento: this.complemento,
-            numeroApolice: this.numeroApolice,
-            dataInicioVigencia: this.dataInicioVigencia,
-            dataFinalVigencia: this.dataFinalVigencia,
-            apoliceFile: this.$refs.apolice.files[0]
-          };
+        if (this.$refs.form.validate()) {
+            try {
+                const data = new FormData();
 
-          const url = import.meta.env.VITE_BACKEND_URL + "/aluno";
-          console.log(url);
+                data.append('nome', this.nome);
+                data.append('nomeSocial', this.nomeSocial);
+                data.append('documento', this.string);
+                data.append('dataNascimento', this.dataNasc);
+                data.append('fone', this.telefone);
+                data.append('celular', this.celular);
+                data.append('email', this.email);
+                data.append('matricula', this.numeroMatriEstu);
+                data.append('contatoEmergencia', this.numeroContatoEmerg);
+                data.append('nomeContatoEmergencia', this.nomeContatoEmerg);
+                data.append('cursoId', this.curso);
+                data.append('cep', this.cep);
+                data.append('cidade', this.cidade);
+                data.append('uf', this.uf);
+                data.append('numeroResidencia', this.numero);
+                data.append('rua', this.logradouro);
+                data.append('bairro', this.bairro);
+                data.append('complemento', this.complemento);
+                data.append('numeroApolice', this.numeroApolice);
+                data.append('dataInicioVigencia', this.dataInicioVigencia);
+                data.append('dataFinalVigencia', this.dataFinalVigencia);
+                data.append('file', this.$refs.apolice.files[0]);
 
-          const req = await axios.post(url, data);
+                const url = import.meta.env.VITE_BACKEND_URL + "/aluno";
+                const token = sessionStorage.getItem('authToken');
 
-          console.log("Resposta: ", req);
-        } catch (error) {
-          console.error("Erro ao enviar dados:", error);
+                const req = await axios.post(url, data, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'multipart/form-data'
+                    }
+                });
+
+                console.log("Resposta: ", req);
+            } catch (error) {
+                console.error("Erro ao enviar dados:", error);
+            }
         }
-      }
     },
 
     reset() {
