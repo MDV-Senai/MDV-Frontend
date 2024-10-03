@@ -356,6 +356,7 @@ import {
 import { buscaCep } from "@/util/buscaCep";
 import { fetchCursos } from "../../services/CursosService.js";
 import Swal from "sweetalert2";
+import { cadastrarEstagiario } from "../../services/EstagiariosService.js";
 
 export default {
   data() {
@@ -403,49 +404,36 @@ export default {
 
     async enviarDados() {
       if (this.$refs.form.validate()) {
-        try {
-          const data = {
-            nome: this.nome,
-            nomeSocial: this.nomeSocial,
-            documento: this.string,
-            dataNascimento: new Date(this.dataNasc).toISOString(),
-            fone: this.telefone,
-            celular: this.celular,
-            email: this.email,
-            matricula: this.numeroMatriEstu,
-            contatoEmergencia: this.numeroContatoEmerg,
-            nomeContatoEmergencia: this.nomeContatoEmerg,
-            cep: this.cep,
-            cidade: this.cidade,
-            uf: this.uf,
-            numeroResidencia: this.numero,
-            rua: this.logradouro,
-            bairro: this.bairro,
-            complemento: this.complemento,
-            cursoId: this.idCurso,
-            documento: this.cpf,
-          };
+        const data = {
+          nome: this.nome,
+          nomeSocial: this.nomeSocial,
+          documento: this.string,
+          dataNascimento: new Date(this.dataNasc).toISOString(),
+          fone: this.telefone,
+          celular: this.celular,
+          email: this.email,
+          matricula: this.numeroMatriEstu,
+          contatoEmergencia: this.numeroContatoEmerg,
+          nomeContatoEmergencia: this.nomeContatoEmerg,
+          cep: this.cep,
+          cidade: this.cidade,
+          uf: this.uf,
+          numeroResidencia: this.numero,
+          rua: this.logradouro,
+          bairro: this.bairro,
+          complemento: this.complemento,
+          cursoId: this.idCurso,
+          documento: this.cpf,
+        };
 
-          const url = import.meta.env.VITE_BACKEND_URL + "/aluno";
-          console.log(url);
+        const response = await cadastrarEstagiario(data);
 
-          let token = sessionStorage.getItem("authToken");
-
-          const req = await axios.post(url, data, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-
+        if (response) {
           Swal.fire({
             title: "Cadastro Realizado com Sucesso!",
             icon: "success",
           });
           this.$refs.form.reset();
-
-          console.log("Resposta: ", req);
-        } catch (error) {
-          console.error("Erro ao enviar dados:", error);
         }
       }
     },
