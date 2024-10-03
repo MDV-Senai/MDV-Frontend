@@ -1,7 +1,7 @@
 /**
  * main.js
  *
- * Bootstraps Vuetify and other plugins then mounts the App`
+ * Bootstraps Vuetify and other plugins then mounts the App
  */
 
 // Plugins
@@ -14,10 +14,15 @@ import App from './App.vue'
 import { createApp } from 'vue'
 
 import VueTheMask from 'vue-the-mask'
+import VCalendar from 'v-calendar';
+import 'v-calendar/style.css';
+
+const app = createApp(App);
+
+registerPlugins(app);
+
+app.use(VCalendar, {});
+app.use(VueTheMask);
 
 
-const app = createApp(App)
-
-registerPlugins(app)
-
-app.use(VueTheMask).mount('#app')
+app.mount('#app');
