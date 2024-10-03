@@ -325,6 +325,7 @@ import {
 } from "@/validations/formValidations";
 import { buscaCep } from "@/util/buscaCep";
 import Swal from "sweetalert2";
+import { cadastrarInstituicaoEnsino } from "../../services/InstituicoesService";
 
 export default {
   data() {
@@ -381,50 +382,35 @@ export default {
 
     async enviarDados() {
       if (this.$refs.form.validate()) {
-        try {
-          const data = {
-            nomeFantasia: this.instituacao,
-            userEmail: this.usuario,
-            userPassword: this.senha,
-            razaoSocial: this.razaoSocial,
-            cnpj: this.cnpj,
-            inscricaoEstado: this.inscricaoEstadual,
-            fone: this.telefone,
-            celular: this.celular,
-            email: this.email,
-            cep: this.cep,
-            cidade: this.cidade,
-            uf: this.uf,
-            bairro: this.bairro,
-            numero: this.numero,
-            rua: this.logradouro,
-            complemento: this.complemento,
-            responsavelLegal: this.diretor,
-            responsavelLegalContato: this.contatoRespLegal,
-          };
+        const data = {
+          nomeFantasia: this.instituacao,
+          userEmail: this.usuario,
+          userPassword: this.senha,
+          razaoSocial: this.razaoSocial,
+          cnpj: this.cnpj,
+          inscricaoEstado: this.inscricaoEstadual,
+          fone: this.telefone,
+          celular: this.celular,
+          email: this.email,
+          cep: this.cep,
+          cidade: this.cidade,
+          uf: this.uf,
+          bairro: this.bairro,
+          numero: this.numero,
+          rua: this.logradouro,
+          complemento: this.complemento,
+          responsavelLegal: this.diretor,
+          responsavelLegalContato: this.contatoRespLegal,
+        };
 
-          console.log(data);
-          const url = import.meta.env.VITE_BACKEND_URL + "/instituicaoEnsino";
-          console.log(url);
+        const response = await cadastrarInstituicaoEnsino(data);
 
-          const token = sessionStorage.getItem("authToken");
-          console.log(token);
-
-          const req = await axios.post(url, data, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-
+        if (response) {
           Swal.fire({
             title: "Cadastro Realizado com Sucesso!",
             icon: "success",
           });
           this.$refs.form.reset();
-
-          console.log("Resposta: ", req);
-        } catch (error) {
-          console.error("Erro ao enviar dados:", error);
         }
       }
     },
