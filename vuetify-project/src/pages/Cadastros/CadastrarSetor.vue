@@ -181,6 +181,7 @@ import {
   emailValidation,
 } from "@/validations/formValidations";
 import Swal from "sweetalert2";
+import { cadastrarSetor } from "../../services/SetoresService";
 
 export default {
   data() {
@@ -227,25 +228,15 @@ export default {
             instituicaoContratanteId: "c7c8cf10-e407-47e7-80c4-ab8075380c38",
           };
 
-          console.log(data);
-          const url = import.meta.env.VITE_BACKEND_URL + "/setores";
-          console.log(url);
+          const response = await cadastrarSetor(data);
 
-          const token = sessionStorage.getItem("authToken");
-
-          const req = await axios.post(url, data, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-
-          Swal.fire({
-            title: "Cadastro Realizado com Sucesso!",
-            icon: "success",
-          });
-          this.$refs.form.reset();
-
-          console.log("Resposta: ", req);
+          if (response) {
+            Swal.fire({
+              title: "Cadastro Realizado com Sucesso!",
+              icon: "success",
+            });
+            this.$refs.form.reset();
+          }
         } catch (error) {
           console.error("Erro ao enviar dados:", error);
         }
