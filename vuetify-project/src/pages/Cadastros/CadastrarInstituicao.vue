@@ -313,7 +313,6 @@
         </div>
       </v-form>
     </div>
-
   </v-main>
 </template>
 
@@ -325,6 +324,8 @@ import {
   confirmPasswordValidation,
 } from "@/validations/formValidations";
 import { buscaCep } from "@/util/buscaCep";
+import Swal from "sweetalert2";
+import { cadastrarInstituicaoEnsino } from "../../services/InstituicoesService";
 
 export default {
   data() {
@@ -381,27 +382,26 @@ export default {
 
     async enviarDados() {
       if (this.$refs.form.validate()) {
-        try {
-          const data = {
-            nomeFantasia: this.instituacao,
-            userEmail: this.email, // TODO: Ajustar para enviar o nome e email corretamente
-            userPassword: this.senha,
-            razaoSocial: this.razaoSocial,
-            cnpj: this.cnpj,
-            inscricaoEstado: this.inscricaoEstadual,
-            fone: this.telefone,
-            celular: this.celular,
-            email: this.email,
-            cep: this.cep,
-            cidade: this.cidade,
-            uf: this.uf,
-            bairro: this.bairro,
-            numero: this.numero,
-            rua: this.logradouro,
-            complemento: this.complemento,
-            responsavelLegal: this.diretor,
-            responsavelLegalContato: this.contatoRespLegal,
-          };
+        const data = {
+          nomeFantasia: this.instituacao,
+          userEmail: this.usuario,
+          userPassword: this.senha,
+          razaoSocial: this.razaoSocial,
+          cnpj: this.cnpj,
+          inscricaoEstado: this.inscricaoEstadual,
+          fone: this.telefone,
+          celular: this.celular,
+          email: this.email,
+          cep: this.cep,
+          cidade: this.cidade,
+          uf: this.uf,
+          bairro: this.bairro,
+          numero: this.numero,
+          rua: this.logradouro,
+          complemento: this.complemento,
+          responsavelLegal: this.diretor,
+          responsavelLegalContato: this.contatoRespLegal,
+        };
 
           console.log(data);
           const url = import.meta.env.VITE_BACKEND_URL + "/instituicaoEnsino";
@@ -409,11 +409,11 @@ export default {
 
           const token = sessionStorage.getItem('authToken');
           console.log(token);
-
+          
 
           const req = await axios.post(url, data, {
             headers: {
-              'Authorization': `Bearer ${token}`
+              'Authorization': `Bearer ${token}` 
             }
           });
 

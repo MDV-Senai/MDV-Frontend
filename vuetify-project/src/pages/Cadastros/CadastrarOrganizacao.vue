@@ -278,13 +278,15 @@
         </div>
       </v-form>
     </div>
-    
   </v-main>
 </template>
 
 <script>
 import axios from "axios";
-import { emailValidation, fullNameValidation } from "@/validations/formValidations";
+import {
+  emailValidation,
+  fullNameValidation,
+} from "@/validations/formValidations";
 import { buscaCep } from "@/util/buscaCep";
 
 export default {
@@ -350,14 +352,15 @@ export default {
             responsavelLegalContato: this.contatoRespLegal,
           };
 
-          console.log(data);
-          
-          const url =  "http://localhost:3000/instituicaoContratante";
-          console.log(url);
+          const response = await cadastrarOrganizacao(data);
 
-          const req = await axios.post(url, data);
-
-          console.log("Resposta: ", req);
+          if (response) {
+            Swal.fire({
+              title: "Cadastro Realizado com Sucesso!",
+              icon: "success",
+            });
+            this.$refs.form.reset();
+          }
         } catch (error) {
           console.error("Erro ao enviar dados:", error);
         }
