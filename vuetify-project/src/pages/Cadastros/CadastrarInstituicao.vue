@@ -418,9 +418,6 @@ export default {
           });
 
           console.log("Resposta: ", req);
-        } catch (error) {
-          console.error("Erro ao enviar dados:", error);
-        }
       }
     },
 
