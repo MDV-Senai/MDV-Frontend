@@ -173,16 +173,15 @@
             ></v-text-field>
           </v-col>
           <v-col cols="6" md="4">
-            <v-text-field
+            <v-autocomplete
+              v-model="idCurso"
               label="Curso"
-              :rules="[rules.required]"
-              v-model="curso"
-              maxlength="255"
-              counter
-              clearable
               class="text-grey-darken-4"
               variant="outlined"
-            ></v-text-field>
+              :items="cursos"
+              :item-title="'nomeCurso'"
+              :item-value="'idCurso'"
+            ></v-autocomplete>
           </v-col>
           <v-col cols="6" md="4">
             <v-text-field
@@ -198,7 +197,7 @@
           </v-col>
         </v-row>
         <v-row id="inputResponsivo" class="d-flex justify-center">
-          <v-col cols="12" md="4">
+          <v-col cols="12" md="3">
             <v-text-field
               label="Número da apólice"
               :rules="[rules.required]"
@@ -210,12 +209,12 @@
               variant="outlined"
             ></v-text-field>
           </v-col>
-          <v-col cols="6" md="4">
+          <v-col cols="6" md="3">
             <v-text-field
-              label="Data de vencimento da apólice"
+              label="Data inicio da vigência"
               :rules="[rules.required]"
               type="date"
-              v-model="dataVencimentoApolice"
+              v-model="dataInicioVigencia"
               maxlength="255"
               counter
               clearable
@@ -223,12 +222,26 @@
               variant="outlined"
             ></v-text-field>
           </v-col>
-          <v-col cols="6" md="4">
+          <v-col cols="6" md="3">
+            <v-text-field
+              label="Data final da vigência"
+              :rules="[rules.required]"
+              type="date"
+              v-model="dataFinalVigencia"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="6" md="3">
             <v-file-input
               label="Apólice"
               :rules="[rules.fileSize]"
               v-model="apoliceFile"
               ref="apolice"
+              accept=".pdf, .jpg, .jpeg, .png"
               clearable
               class="text-grey-darken-4"
               variant="outlined"
@@ -391,10 +404,14 @@
 import axios from "axios";
 import { emailValidation, fullNameValidation, fileSizeValidation} from "@/validations/formValidations";
 import { buscaCep } from "@/util/buscaCep";
+import { fetchCursos } from "../../services/CursosService.js";
+import Swal from "sweetalert2";
+import { cadastrarEstagiario } from "../../services/EstagiariosService.js";
 
 export default {
   data() {
     return {
+      idCurso: null,
       nome: null,
       nomeSocial: null,
       numeroMatriEstu: null,
@@ -406,10 +423,11 @@ export default {
       numeroContatoEmerg: null,
       nomeContatoEmerg: null,
       numeroApolice: null,
-      dataVencimentoApolice: null,
+      dataInicioVigencia: null,
+      dataFinalVigencia: null,
       apoliceFile: null,
       instituicaoEnsino: null,
-      curso: null,
+      cursos: [],
       periodo: null,
       nomeProfessorResp: null,
       cep: null,
@@ -441,45 +459,56 @@ export default {
 
     async enviarDados() {
       if (this.$refs.form.validate()) {
-        try {
-          const data = {
-            nome: this.nome,
-            nomeSocial: this.nomeSocial,
-            documento: this.string,
-            dataNascimento: this.dataNasc,
-            fone: this.telefone,
-            celular: this.celular,
-            email: this.email,
-            matricula: this.numeroMatriEstu,
-            contatoEmergencia: this.numeroContatoEmerg,
-            nomeContatoEmergencia: this.nomeContatoEmerg,
-            cep: this.cep,
-            cidade: this.cidade,
-            uf: this.uf,
-            numeroResidencia: this.numero,
-            rua: this.logradouro,
-            bairro: this.bairro,
-            complemento: this.complemento,
-            numeroApolice: this.numeroApolice,
-            dataVencimentoApolice: this.dataVencimentoApolice,
-            apoliceFile: this.$refs.apolice.files[0]
-          };
+        const data = {
+          nome: this.nome,
+          nomeSocial: this.nomeSocial,
+          documento: this.cpf,
+          dataNascimento: new Date(this.dataNasc).toISOString(),
+          fone: this.telefone,
+          celular: this.celular,
+          email: this.email,
+          matricula: this.numeroMatriEstu,
+          contatoEmergencia: this.numeroContatoEmerg,
+          nomeContatoEmergencia: this.nomeContatoEmerg,
+	  cursoId: this.idCurso,
+          cep: this.cep,
+          cidade: this.cidade,
+          uf: this.uf,
+          numeroResidencia: this.numero,
+          rua: this.logradouro,
+          bairro: this.bairro,
+          complemento: this.complemento,
+          cursoId: this.idCurso,
+	  numeroApolice: this.numeroApolice,
+	  dataInicioVigencia: this.dataInicioVigencia,
+	  dataFinalVigencia: this.dataFinalVigencia,
+	  file: this.$refs.apolice.files[0]
+        };
 
-          const url = import.meta.env.VITE_BACKEND_URL + "/aluno";
-          console.log(url);
+        const response = await cadastrarEstagiario(data);
 
-          const req = await axios.post(url, data);
-
-          console.log("Resposta: ", req);
-        } catch (error) {
-          console.error("Erro ao enviar dados:", error);
+        if (response) {
+          Swal.fire({
+            title: "Cadastro Realizado com Sucesso!",
+            icon: "success",
+          });
+          this.$refs.form.reset();
         }
       }
+    },
+
+    async loadCursos() {
+      const response = await fetchCursos();
+      console.log(response);
+      this.cursos = response;
     },
 
     reset() {
       this.$refs.form.reset();
     },
+  },
+  mounted() {
+    this.loadCursos();
   },
 };
 </script>
