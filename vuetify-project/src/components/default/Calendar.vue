@@ -2,7 +2,14 @@
   <VCalendar
     :initial-page="{ month: mesAtual, year: anoAtual }"
     :attributes="attributes"
-  />
+  >
+  <template #footer>
+      <div class="w-full px-4 pb-3">
+        <span>Turno: {{periodo}}</span>
+      </div>
+    </template>
+  </VCalendar>
+  
 </template>
 
 <script>
@@ -18,12 +25,20 @@ export default {
       type: String,
       required: true,
     },
+    setColor: {
+      type: String,
+    },
+    periodo: {
+      type: String,
+    }
   },
   setup(props) {
     const anoAtual = new Date().getFullYear();
     const mesAtual = new Date().getMonth() + 1;
 
     const criarDataLocal = (ano, mes, dia) => new Date(ano, mes - 1, dia, 0, 0, 0);
+
+    const periodo = props.periodo
 
     const formatarData = (dataStr) => {
       const [ano, mes, dia] = dataStr.split('-').map(Number);
@@ -37,12 +52,23 @@ export default {
         {
           highlight: {
             start: { fillMode: 'outline' },
-            base: { fillMode: 'light' },
+            base: { color: props.setColor },
             end: { fillMode: 'outline' },
           },
           dates: {
             start: formatarData(props.startDate),
             end: formatarData(props.endDate),
+          },
+        },
+        {
+          highlight: {
+            start: { fillMode: 'outline' },
+            base: { color: 'green' },
+            end: { fillMode: 'outline' },
+          },
+          dates: {
+            start: formatarData('2024-10-20'),
+            end: formatarData('2024-10-30'),
           },
         },
       ];
@@ -54,7 +80,7 @@ export default {
       { immediate: true }
     );
 
-    return { attributes, anoAtual, mesAtual };
+    return { attributes, anoAtual, mesAtual, periodo };
   },
 };
 // Link para configuração do componente: https://vcalendar.io/calendar/layouts.html
