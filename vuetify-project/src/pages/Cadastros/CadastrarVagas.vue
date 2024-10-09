@@ -15,7 +15,21 @@
               :items="estagiarios"
               :item-title="'titulo'"
               :item-value="'id'"
-              label="Curso"
+              label="Solicitação de Vaga"
+              class="text-grey-darken-4"
+              variant="outlined"
+              readonly
+            ></v-select>
+          </v-col>
+        </v-row>
+        <v-row class="d-flex justify-center">
+          <v-col cols="12" md="12">
+            <v-select
+              v-model="estagiario"
+              :items="estagiarios"
+              :item-title="'titulo'"
+              :item-value="'id'"
+              label="Curso do Posto de Trabalho (Vaga)"
               class="text-grey-darken-4"
               variant="outlined"
               readonly
