@@ -14,14 +14,14 @@ import App from './App.vue'
 import { createApp } from 'vue'
 
 import VueTheMask from 'vue-the-mask'
-import VCalendar from 'v-calendar';
-import 'v-calendar/style.css';
+// import VCalendar from 'v-calendar';
+// import 'v-calendar/style.css';
 
 const app = createApp(App);
 
 registerPlugins(app);
 
-app.use(VCalendar, {});
+// app.use(VCalendar, {});
 app.use(VueTheMask);
 
 
