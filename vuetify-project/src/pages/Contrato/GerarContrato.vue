@@ -66,6 +66,9 @@
 
     <!-- Conteúdo invisível que será convertido para PDF -->
     <div id="pdf-content" style="display: none">
+      <div class="pdf-header">
+        <img src="../../assets/img/logocontrato.png" alt="Cabeçalho" style="width: 50%" />
+      </div>
       <h2>ANEXO III</h2>
       <h2>TERMO DE COMPROMISSO DE ESTÁGIO OBRIGATÓRIO</h2>
 
@@ -436,11 +439,12 @@ export default {
 
       // Configuração para gerar o PDF
       const options = {
-        margin: 1,
-        filename: "contrato_preenchido.pdf",
+        margin: [0.5, 0.5, 0.5, 0.5], // Margens ajustadas
+        filename: "termo_de_compromisso.pdf",
         image: { type: "jpeg", quality: 0.98 },
         html2canvas: { scale: 2 },
         jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+        pagebreak: { mode: ["avoid-all", "css", "legacy"] }, // Configuração para quebra de página
       };
 
       // Gera o PDF
@@ -456,3 +460,30 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+/* Estilo para o cabeçalho que aparecerá em cada página */
+.pdf-header {
+  width: 100%;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.pdf-body {
+  /* Estilos gerais para o corpo do PDF */
+  padding: 10px;
+}
+
+/* Garantir que o cabeçalho apareça em cada página ao imprimir */
+@media print {
+  .pdf-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+
+  .pdf-body {
+    margin-top: 100px; /* Ajuste a margem para evitar sobreposição do cabeçalho */
+  }
+}
+</style>
