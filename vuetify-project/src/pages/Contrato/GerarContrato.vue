@@ -67,10 +67,6 @@
     <!-- Conteúdo invisível que será convertido para PDF -->
     <div id="pdf-content" style="display: none">
       <h1>Contrato de Prestação de Serviços</h1>
-      <p><strong>Nome:</strong> {{ formData.name }}</p>
-      <p><strong>Endereço:</strong> {{ formData.address }}</p>
-      <p><strong>Telefone:</strong> {{ formData.phone }}</p>
-      <p><strong>Data:</strong> {{ formData.date }}</p>
 
       <p>
         Pelo presente contrato de prestação de serviços, firmado entre
