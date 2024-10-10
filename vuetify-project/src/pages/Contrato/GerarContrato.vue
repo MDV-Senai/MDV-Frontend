@@ -66,7 +66,23 @@
 
     <!-- Conteúdo invisível que será convertido para PDF -->
     <div id="pdf-content" style="display: none">
-      <h1>Contrato de Prestação de Serviços</h1>
+      <h2>TERMO DE COMPROMISSO DE ESTÁGIO OBRIGATÓRIO</h2>
+
+      <p>
+        Aos ____ dias do mês de _____ de ____ , na cidade de ______ neste ato,
+        as partes seguintes nomeadas:
+      </p>
+
+      <h2>
+        UNIDADE DA SECRETARIA DE ESTADO DA SAÚDE DE SANTA CATARINA (SES/SC):
+      </h2>
+
+      <p>Unidade da SES/SC Concedente de Estágio Obrigatório:______</p>
+
+      <p>Representante Legal:_______</p>
+      <p>Cargo:_______</p>
+      <p>Responsável do Setor de Estágio:_______</p>
+      <p>Cargo:_______</p>
 
       <p>
         Pelo presente contrato de prestação de serviços, firmado entre
