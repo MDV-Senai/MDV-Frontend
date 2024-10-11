@@ -2,7 +2,13 @@
   <VCalendar
     :initial-page="{ month: mesAtual, year: anoAtual }"
     :attributes="attributes"
-  />
+  >
+    <template #footer>
+      <div class="w-full px-4 pb-3">
+        <span>Turno: {{ props.periodo }}</span>
+      </div>
+    </template>
+  </VCalendar>
 </template>
 
 <script>
@@ -18,6 +24,12 @@ export default {
       type: String,
       required: true,
     },
+    setColor: {
+      type: String,
+    },
+    periodo: {
+      type: String,
+    }
   },
   setup(props) {
     const anoAtual = new Date().getFullYear();
@@ -31,13 +43,16 @@ export default {
     };
 
     const attributes = ref([]);
+      console.log(props.startdate)
+      console.log(props.endDate)
+      console.log(props.setColor)
 
     const atualizarAttributes = () => {
       attributes.value = [
         {
           highlight: {
             start: { fillMode: 'outline' },
-            base: { fillMode: 'light' },
+            base: { color: props.setColor },
             end: { fillMode: 'outline' },
           },
           dates: {
@@ -49,13 +64,12 @@ export default {
     };
 
     watch(
-      () => [props.startDate, props.endDate],
+      () => [props.startDate, props.endDate, props.setColor],
       atualizarAttributes,
       { immediate: true }
     );
 
-    return { attributes, anoAtual, mesAtual };
+    return { attributes, anoAtual, mesAtual, props };
   },
 };
-// Link para configuração do componente: https://vcalendar.io/calendar/layouts.html
 </script>
