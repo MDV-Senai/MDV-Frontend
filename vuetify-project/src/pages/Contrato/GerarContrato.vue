@@ -89,10 +89,17 @@
 
       <p>Unidade da SES/SC Concedente de Estágio Obrigatório:______</p>
 
-      <p>Representante Legal:_______</p>
-      <p>Cargo:_______</p>
-      <p>Responsável do Setor de Estágio:_______</p>
-      <p>Cargo:_______</p>
+      <div style="display: flex; justify-content: flex-start">
+        <p style="margin-right: 337px">Representante Legal:_______</p>
+        <p style="margin: 0">Cargo:_______</p>
+      </div>
+
+      <div style="display: flex; justify-content: flex-start">
+        <p style="margin-right: 250px">
+          Responsável do Setor de Estágio:_______
+        </p>
+        <p style="margin: 0">Cargo:_______</p>
+      </div>
 
       <h5 class="highlight">INSTITUIÇÃO DE ENSINO:</h5>
 
