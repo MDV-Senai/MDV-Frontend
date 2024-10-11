@@ -67,10 +67,18 @@
     <!-- Conteúdo invisível que será convertido para PDF -->
     <div id="pdf-content" style="display: none">
       <div class="pdf-header">
-        <img src="../../assets/img/logocontrato.png" alt="Cabeçalho" style="width: 50%" />
+        <img
+          src="../../assets/img/logocontrato.png"
+          alt="Cabeçalho"
+          style="width: 50%"
+        />
       </div>
-      <h2>ANEXO III</h2>
-      <h2>TERMO DE COMPROMISSO DE ESTÁGIO OBRIGATÓRIO</h2>
+      <div class="container">
+        <h1>ANEXO III</h1>
+        <div class="highlight">
+          <h5>TERMO DE COMPROMISSO DE ESTÁGIO OBRIGATÓRIO</h5>
+        </div>
+      </div>
 
       <p>
         Aos ____ dias do mês de _____ de ____ , na cidade de ______ neste ato,
@@ -485,5 +493,28 @@ export default {
   .pdf-body {
     margin-top: 100px; /* Ajuste a margem para evitar sobreposição do cabeçalho */
   }
+}
+
+.container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.highlight {
+  background-color: #e5f3d6;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 1em;
+  margin: 0;
+}
+
+h2 {
+  margin: 0;
+  font-size: 1.5em;
 }
 </style>
