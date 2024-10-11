@@ -75,9 +75,7 @@
       </div>
       <div class="container">
         <h1>ANEXO III</h1>
-        <div class="highlight">
-          <h5>TERMO DE COMPROMISSO DE ESTÁGIO OBRIGATÓRIO</h5>
-        </div>
+        <h5 class="highlight">TERMO DE COMPROMISSO DE ESTÁGIO OBRIGATÓRIO</h5>
       </div>
 
       <p>
@@ -85,9 +83,9 @@
         as partes seguintes nomeadas:
       </p>
 
-      <h2>
+      <h5 class="highlight">
         UNIDADE DA SECRETARIA DE ESTADO DA SAÚDE DE SANTA CATARINA (SES/SC):
-      </h2>
+      </h5>
 
       <p>Unidade da SES/SC Concedente de Estágio Obrigatório:______</p>
 
@@ -96,7 +94,7 @@
       <p>Responsável do Setor de Estágio:_______</p>
       <p>Cargo:_______</p>
 
-      <h2>INSTITUIÇÃO DE ENSINO:</h2>
+      <h5 class="highlight">INSTITUIÇÃO DE ENSINO:</h5>
 
       <p>Razão Social: ______</p>
       <p>Cooperação Técnica Nº: _______</p>
@@ -104,7 +102,7 @@
       <p>Cargo:______</p>
       <p>Coordenador Geral de Estágio:______</p>
 
-      <h2>ESTAGIÁRIO:</h2>
+      <h5 class="highlight">ESTAGIÁRIO:</h5>
 
       <p>Nome Completo: _______</p>
       <p>CPF:_______</p>
@@ -113,7 +111,7 @@
       <p>Fase/Série: ________</p>
       <p>Matrícula: ________</p>
 
-      <h2>PROFESSOR ORIENTADOR:</h2>
+      <h5 class="highlight">PROFESSOR ORIENTADOR:</h5>
 
       <table border="1" style="border-collapse: collapse; width: 100%">
         <thead>
@@ -497,15 +495,15 @@ export default {
 
 .container {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .highlight {
   background-color: #e5f3d6;
-  padding: 10px;
-  font-weight: bold;
-  font-size: 1.2em;
-  margin-bottom: 20px;
+  padding: 5px;
+  font-size: 1em;
+  margin-bottom: 20x;
+  margin-top: 10px;
 }
 
 h1 {
