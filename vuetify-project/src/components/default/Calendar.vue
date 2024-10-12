@@ -1,14 +1,25 @@
 <template>
-  <VCalendar
-    :initial-page="{ month: mesAtual, year: anoAtual }"
-    :attributes="attributes"
-  >
-    <template #footer>
-      <div class="w-full px-4 pb-3">
-        <span>Turno: {{ props.periodo }}</span>
-      </div>
-    </template>
-  </VCalendar>
+  <div>
+    <VCalendar expanded
+      :initial-page="{ month: mesAtual, year: anoAtual }"
+      :attributes="attributes"
+    >
+      <template #footer>
+        <div class="w-full px-4 pb-3">
+          <span>Turno: {{ periodo }}</span>
+          <div class="instituicao-cor">
+            <h4>Instituições:</h4>
+            <ul>
+              <li v-for="(instituicao, index) in instituicoes" :key="index" :style="{ color: instituicao.cor }">
+                {{ instituicao.nome }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </template>
+    </VCalendar>
+
+  </div>
 </template>
 
 <script>
@@ -16,60 +27,72 @@ import { ref, watch } from 'vue';
 
 export default {
   props: {
-    startDate: {
-      type: String,
+    dates: {
+      type: Array,
       required: true,
-    },
-    endDate: {
-      type: String,
-      required: true,
-    },
-    setColor: {
-      type: String,
     },
     periodo: {
       type: String,
-    }
+    },
   },
-  setup(props) {
+  setup({ dates, periodo }) {
     const anoAtual = new Date().getFullYear();
     const mesAtual = new Date().getMonth() + 1;
 
-    const criarDataLocal = (ano, mes, dia) => new Date(ano, mes - 1, dia, 0, 0, 0);
+    const attributes = ref([]);
+    const instituicoes = ref([]);
 
-    const formatarData = (dataStr) => {
-      const [ano, mes, dia] = dataStr.split('-').map(Number);
-      return criarDataLocal(ano, mes, dia);
+    const parseDate = (dateString) => {
+      const [ano, mes, dia] = dateString.split('-').map(Number);
+      return new Date(ano, mes - 1, dia);
     };
 
-    const attributes = ref([]);
-      console.log(props.startdate)
-      console.log(props.endDate)
-      console.log(props.setColor)
+    // Lista de cores disponíveis
+    const cores = [
+      'red', 'green', 'blue', 'orange', 'purple',
+      'pink', 'cyan', 'yellow', 'brown', 'gray'
+    ];
+
+    // Função para escolher uma cor aleatória da lista
+    const escolherCorAleatoria = () => {
+      const index = Math.floor(Math.random() * cores.length);
+      return cores[index];
+    };
 
     const atualizarAttributes = () => {
-      attributes.value = [
-        {
+      // Limpar a lista de instituições antes de atualizar
+      instituicoes.value = [];
+
+      attributes.value = dates.map(({ startDate, endDate, nomeInstituicaoEnsino }) => {
+        const cor = escolherCorAleatoria(); // Escolhe uma cor aleatória da lista
+        instituicoes.value.push({ nome: nomeInstituicaoEnsino, cor }); // Adiciona a instituição com a cor
+        return {
           highlight: {
             start: { fillMode: 'outline' },
-            base: { color: props.setColor },
+            base: { color: cor }, // Usa a cor escolhida
             end: { fillMode: 'outline' },
           },
           dates: {
-            start: formatarData(props.startDate),
-            end: formatarData(props.endDate),
+            start: parseDate(startDate),
+            end: parseDate(endDate),
           },
-        },
-      ];
+        };
+      });
     };
 
     watch(
-      () => [props.startDate, props.endDate, props.setColor],
+      () => dates,
       atualizarAttributes,
       { immediate: true }
     );
 
-    return { attributes, anoAtual, mesAtual, props };
+    return { attributes, anoAtual, mesAtual, instituicoes };
   },
 };
 </script>
+
+<style scoped>
+.instituicao-cor {
+  margin-top: 20px;
+}
+</style>
