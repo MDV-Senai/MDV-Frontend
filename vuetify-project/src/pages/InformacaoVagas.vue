@@ -2,11 +2,10 @@
   <v-main id="imagem">
     <div v-for="(setor, key) in setores" :key="key">
       <h2 class="text-center my-10">{{ key.replace(/(^\w{1})|(\s+\w{1})/g, letra => letra.toUpperCase()) }}</h2>
-      <div class="calendario-container">
+      <div class="calendario-container d-flex flex-wrap ma-3 ga-5">
         <div v-for="(periodo, periodoKey) in setor" :key="periodoKey" class="calendario-item">
           <Calendar
             :dates="getDates(periodo)"
-            :setColor="getColor(periodoKey)"
             :periodo="periodoKey"
           />
         </div>
@@ -43,27 +42,13 @@ export default {
         nomeInstituicaoEnsino: item.nomeInstituicaoEnsino
       }));
     },
-    getColor(periodoKey) {
-      const colors = {
-        matutino: 'red',
-        vespertino: 'green',
-        noturno: 'purple',
-      };
-      return colors[periodoKey] || 'black';
-    },
   },
 };
 </script>
 
 <style scoped>
-.calendario-container {
-  display: flex;
-  flex-wrap: wrap; /* Permite que os calendários desçam para a linha seguinte */
-  gap: 16px; /* Espaçamento entre os calendários */
-}
-
 .calendario-item {
-  flex: 1 1 calc(33.333% - 16px); /* Cada calendário ocupa um terço da largura disponível */
-  min-width: 250px; /* Largura mínima para cada calendário */
+  flex: 1 1 calc(33.33% - 16px);
+  min-width: 250px;
 }
 </style>
