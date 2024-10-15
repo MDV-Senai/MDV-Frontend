@@ -1,8 +1,25 @@
 <template>
-  <VCalendar
-    :initial-page="{ month: mesAtual, year: anoAtual }"
-    :attributes="attributes"
-  />
+  <div>
+    <VCalendar expanded
+      :initial-page="{ month: mesAtual, year: anoAtual }"
+      :attributes="attributes"
+    >
+      <template #footer>
+        <div class="w-full px-4 pb-2">
+          <span class="font-weight-bold text-h6">Turno: {{ periodo }}</span>
+          <div class="mt-3">
+            <h4>Instituições:</h4>
+            <ul>
+              <li v-for="(instituicao, index) in instituicoes" :key="index" class="d-flex align-center my-2">
+                <span class="border-md rounded-circle	me-2" :style="{ backgroundColor: instituicao.cor, width: '15px', height: '15px' }"></span>
+                <span>{{ instituicao.nome }}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </template>
+    </VCalendar>
+  </div>
 </template>
 
 <script>
@@ -10,52 +27,77 @@ import { ref, watch } from 'vue';
 
 export default {
   props: {
-    startDate: {
-      type: String,
+    dates: {
+      type: Array,
       required: true,
     },
-    endDate: {
+    periodo: {
       type: String,
-      required: true,
     },
   },
-  setup(props) {
+  setup({ dates }) {
     const anoAtual = new Date().getFullYear();
     const mesAtual = new Date().getMonth() + 1;
 
-    const criarDataLocal = (ano, mes, dia) => new Date(ano, mes - 1, dia, 0, 0, 0);
+    const attributes = ref([]);
+    const instituicoes = ref([]);
 
-    const formatarData = (dataStr) => {
-      const [ano, mes, dia] = dataStr.split('-').map(Number);
-      return criarDataLocal(ano, mes, dia);
+    const parseDate = (dateString) => {
+      const [ano, mes, dia] = dateString.split('-').map(Number);
+      return new Date(ano, mes - 1, dia);
     };
 
-    const attributes = ref([]);
+    const cores = [
+      'red', 'green', 'blue', 'orange', 'purple',
+      'pink', 'indigo', 'yellow', 'teal', 'gray'
+    ];
+
+    const escolherCorUnica = (coresUsadas) => {
+      const coresDisponiveis = cores.filter(cor => !coresUsadas.includes(cor));
+
+      if (coresDisponiveis.length > 0) {
+        const index = Math.floor(Math.random() * coresDisponiveis.length);
+        return coresDisponiveis[index];
+      }
+
+      return null;
+    };
 
     const atualizarAttributes = () => {
-      attributes.value = [
-        {
-          highlight: {
-            start: { fillMode: 'outline' },
-            base: { fillMode: 'light' },
-            end: { fillMode: 'outline' },
-          },
-          dates: {
-            start: formatarData(props.startDate),
-            end: formatarData(props.endDate),
-          },
-        },
-      ];
+      instituicoes.value = [];
+      const coresUsadas = [];
+
+      attributes.value = dates.map(({ startDate, endDate, nomeInstituicaoEnsino }) => {
+        const cor = escolherCorUnica(coresUsadas);
+
+        if (cor) {
+          coresUsadas.push(cor);
+          instituicoes.value.push({ nome: nomeInstituicaoEnsino, cor });
+
+          return {
+            highlight: {
+              start: { fillMode: 'outline' },
+              base: { color: cor },
+              end: { fillMode: 'outline' },
+            },
+            dates: {
+              start: parseDate(startDate),
+              end: parseDate(endDate),
+            },
+          };
+        }
+
+        return null;
+      }).filter(Boolean);
     };
 
     watch(
-      () => [props.startDate, props.endDate],
+      () => dates,
       atualizarAttributes,
       { immediate: true }
     );
 
-    return { attributes, anoAtual, mesAtual };
+    return { attributes, anoAtual, mesAtual, instituicoes };
   },
 };
-// Link para configuração do componente: https://vcalendar.io/calendar/layouts.html
 </script>

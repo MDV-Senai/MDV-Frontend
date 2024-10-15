@@ -18,6 +18,7 @@ import ConsultarSetor from '../pages/Consultas/ConsultarSetor.vue';
 import ConsultarVagas from '../pages/Consultas/ConsultarVagas.vue';
 import ConsultarCurso from '../pages/Consultas/ConsultarCurso.vue';
 import ConsultarContrato from '../pages/Consultas/ConsultarContrato.vue';
+import GerarContrato from '../pages/Contrato/GerarContrato.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -116,6 +117,11 @@ const router = createRouter({
       path: '/consultarContrato',
       name: 'ConsultarContrato',
       component: ConsultarContrato
+    },
+    {
+      path: '/gerarContrato',
+      name: 'GerarContrato',
+      component: GerarContrato
     },
   ]
 })

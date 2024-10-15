@@ -19,8 +19,9 @@
       ></v-list-item>
       <v-list-item
         prepend-icon="mdi-information"
-        title="Informações da Organização"
-        value="informacao"
+        title="Gerar Contrato"
+        value="contrato"
+        :to="rotaGerarContrato"
       ></v-list-item>
       <v-list-item
         prepend-icon="mdi-dots-horizontal-circle-outline"
@@ -100,6 +101,8 @@ export default {
 
     const rotaInfoVagas = "/informacaoVagas";
 
+    const rotaGerarContrato = "/gerarContrato"
+
     const rotasCrud = [
       [
         "Cadastrar Instituição",
@@ -153,7 +156,8 @@ export default {
       localValue,
       rotaInfoVagas,
       rotasCrud,
-      rotasConsulta
+      rotasConsulta,
+      rotaGerarContrato
     };
   },
 };
