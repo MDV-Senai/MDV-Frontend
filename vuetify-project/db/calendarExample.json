@@ -1,0 +1,110 @@
+{
+    "setores": {
+      "enfermagem": {
+        "matutino": [
+          {
+            "startDate": "2024-10-01",
+            "endDate": "2024-10-05",
+            "nomeInstituicaoEnsino": "Faculdade de Enfermagem A"
+          },
+          {
+            "startDate": "2024-10-06",
+            "endDate": "2024-10-10",
+            "nomeInstituicaoEnsino": "Faculdade de Enfermagem B"
+          },
+          {
+            "startDate": "2024-10-11",
+            "endDate": "2024-10-15",
+            "nomeInstituicaoEnsino": "Faculdade de Enfermagem C"
+          }
+        ],
+        "vespertino": [
+          {
+            "startDate": "2024-10-01",
+            "endDate": "2024-10-05",
+            "nomeInstituicaoEnsino": "Faculdade de Enfermagem D"
+          },
+          {
+            "startDate": "2024-10-06",
+            "endDate": "2024-10-10",
+            "nomeInstituicaoEnsino": "Faculdade de Enfermagem E"
+          },
+          {
+            "startDate": "2024-10-11",
+            "endDate": "2024-10-15",
+            "nomeInstituicaoEnsino": "Faculdade de Enfermagem F"
+          }
+        ],
+        "noturno": [
+          {
+            "startDate": "2024-10-01",
+            "endDate": "2024-10-05",
+            "nomeInstituicaoEnsino": "Faculdade de Enfermagem G"
+          },
+          {
+            "startDate": "2024-10-06",
+            "endDate": "2024-10-10",
+            "nomeInstituicaoEnsino": "Faculdade de Enfermagem H"
+          },
+          {
+            "startDate": "2024-10-11",
+            "endDate": "2024-10-15",
+            "nomeInstituicaoEnsino": "Faculdade de Enfermagem I"
+          }
+        ]
+      },
+      "medicina": {
+        "matutino": [
+          {
+            "startDate": "2024-10-01",
+            "endDate": "2024-10-05",
+            "nomeInstituicaoEnsino": "Faculdade de Medicina A"
+          },
+          {
+            "startDate": "2024-10-06",
+            "endDate": "2024-10-10",
+            "nomeInstituicaoEnsino": "Faculdade de Medicina B"
+          },
+          {
+            "startDate": "2024-10-11",
+            "endDate": "2024-10-15",
+            "nomeInstituicaoEnsino": "Faculdade de Medicina C"
+          }
+        ],
+        "vespertino": [
+          {
+            "startDate": "2024-10-01",
+            "endDate": "2024-10-05",
+            "nomeInstituicaoEnsino": "Faculdade de Medicina D"
+          },
+          {
+            "startDate": "2024-10-06",
+            "endDate": "2024-10-10",
+            "nomeInstituicaoEnsino": "Faculdade de Medicina E"
+          },
+          {
+            "startDate": "2024-10-11",
+            "endDate": "2024-10-15",
+            "nomeInstituicaoEnsino": "Faculdade de Medicina F"
+          }
+        ],
+        "noturno": [
+          {
+            "startDate": "2024-10-01",
+            "endDate": "2024-10-05",
+            "nomeInstituicaoEnsino": "Faculdade de Medicina G"
+          },
+          {
+            "startDate": "2024-10-06",
+            "endDate": "2024-10-10",
+            "nomeInstituicaoEnsino": "Faculdade de Medicina H"
+          },
+          {
+            "startDate": "2024-10-11",
+            "endDate": "2024-10-15",
+            "nomeInstituicaoEnsino": "Faculdade de Medicina I"
+          }
+        ]
+      }
+    }
+  }
