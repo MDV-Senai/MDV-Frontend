@@ -11,6 +11,7 @@ import CadastrarAdmin from '../pages/Cadastros/CadastrarAdmin.vue';
 import CadastrarOrganizacao from '../pages/Cadastros/CadastrarOrganizacao.vue';
 import CadastrarVagas from '../pages/Cadastros/CadastrarVagas.vue';
 import CadastrarCurso from '../pages/Cadastros/CadastrarCurso';
+import CadastrarSolicitacaoVagas from '../pages/Cadastros/CadastrarSolicitacaoVagas';
 import ConsultarInstituicao from '../pages/Consultas/ConsultarInstituicao.vue';
 import ConsultarEstagiario from '../pages/Consultas/ConsultarEstagiario.vue';
 import ConsultarResponsavel from '../pages/Consultas/ConsultarResponsavel.vue';
@@ -122,6 +123,11 @@ const router = createRouter({
       path: '/gerarContrato',
       name: 'GerarContrato',
       component: GerarContrato
+    },
+    {
+      path: '/cadastrarSolicitacaoVagas',
+      name: 'CadastrarSolicitacaoVagas',
+      component: CadastrarSolicitacaoVagas
     },
   ]
 })
