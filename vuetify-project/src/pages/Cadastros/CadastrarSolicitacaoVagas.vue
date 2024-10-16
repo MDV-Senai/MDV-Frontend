@@ -11,7 +11,7 @@
         <v-row class="d-flex justify-center mt-8">
           <v-col cols="12" md="12">
             <v-select
-              v-model="solicitacao"
+              v-model="estagiario"
               :items="estagiarios"
               :item-title="'titulo'"
               :item-value="'id'"
@@ -25,7 +25,7 @@
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="12">
             <v-select
-              v-model="cursoVaga"
+              v-model="estagiario"
               :items="estagiarios"
               :item-title="'titulo'"
               :item-value="'id'"
@@ -191,8 +191,6 @@ export default {
       rules: {
         required: (value) => !!value || "Obrigatório.",
       },
-      solicitacao: null,
-      cursoVaga: null,
       estagiario: null,
       estagiarios: [],
       setor: null,
