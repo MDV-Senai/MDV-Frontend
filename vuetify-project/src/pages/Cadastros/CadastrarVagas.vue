@@ -7,21 +7,7 @@
       >
     </div>
     <div id="fundoCards">
-      <v-form ref="form" id="form" class="mx-auto">
-        <v-row class="d-flex justify-center mt-8">
-          <v-col cols="12" md="12">
-            <v-select
-              v-model="solicitacao"
-              :items="estagiarios"
-              :item-title="'titulo'"
-              :item-value="'id'"
-              label="Solicitação de Vaga"
-              class="text-grey-darken-4"
-              variant="outlined"
-              readonly
-            ></v-select>
-          </v-col>
-        </v-row>
+      <v-form ref="form" id="form" class="mx-auto mt-8">
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="12">
             <v-select
@@ -62,7 +48,7 @@
           </v-col>
           <v-col cols="12" md="4">
             <v-number-input
-              label="Quantidade de Vagas"
+              label="Quantidade de Vagas no Setor"
               v-model="qtdVagas"
               :rules="[rules.required]"
               :min="0"
@@ -78,7 +64,7 @@
         <v-row id="inputResponsivo" class="d-flex justify-center">
           <v-col cols="12" md="6">
             <v-text-field
-              label="Início do Estágio"
+              label="Início do Período"
               type="date"
               :rules="[rules.required]"
               v-model="inicioEstagio"
@@ -91,7 +77,7 @@
           </v-col>
           <v-col cols="12" md="6">
             <v-text-field
-              label="Fim do Estágio"
+              label="Fim do Período"
               type="date"
               :rules="[rules.required]"
               v-model="fimEstagio"
@@ -191,7 +177,6 @@ export default {
       rules: {
         required: (value) => !!value || "Obrigatório.",
       },
-      solicitacao: null,
       cursoVaga: null,
       estagiario: null,
       estagiarios: [],
