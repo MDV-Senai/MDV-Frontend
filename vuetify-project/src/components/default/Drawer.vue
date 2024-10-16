@@ -129,7 +129,7 @@ export default {
         "mdi-human-male-board",
         "/cadastrarResponsavel",
       ],
-      ["Cadastro de Organização", "mdi-domain", "/cadastrarOrganizacao"],
+      ["Cadastro de Instituição Concedente", "mdi-domain", "/cadastrarOrganizacao"],
       ["Cadastro de Vagas", "mdi-handshake-outline", "/cadastrarVagas"],
       ["Cadastro de Curso", "mdi-book-plus-outline", "/cadastrarCurso"],
     ];

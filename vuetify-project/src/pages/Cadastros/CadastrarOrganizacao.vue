@@ -4,7 +4,7 @@
     <Header />
     <div class="d-flex justify-center align-center">
       <v-card class="d-flex justify-center align-center" id="card_titulo"
-        ><h3>Cadastro de Organização</h3></v-card
+        ><h3>Cadastro de Instituição Concedente</h3></v-card
       >
     </div>
     <div id="fundoCards">
@@ -25,7 +25,7 @@
         </v-row>
 
         <v-row class="d-flex justify-center">
-          <v-col cols="12" md="12">
+          <v-col cols="12" md="6">
             <v-text-field
               label="Responsável Legal"
               :rules="[rules.required, rules.fullname]"
@@ -35,6 +35,19 @@
               clearable
               class="text-grey-darken-4"
               variant="outlined"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12" md="6">
+            <v-text-field
+              label="CPF"
+              :rules="[rules.required]"
+              v-model="cpfRespLegal"
+              maxlength="14"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+              v-mask="'###.###.###-##'"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -309,6 +322,7 @@ export default {
       numero: null,
       responsavelLegal: null,
       contatoRespLegal: null,
+      cpfRespLegal: null,
       rules: {
         required: (value) => !!value || "Obrigatório.",
         email: (value) => emailValidation(value),
