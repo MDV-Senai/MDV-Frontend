@@ -161,16 +161,15 @@
 
         <v-row id="inputResponsivo" class="d-flex justify-center">
           <v-col cols="12" md="4">
-            <v-text-field
-              label="Instituição De Ensino"
-              :rules="[rules.required]"
-              v-model="instituicaoEnsino"
-              maxlength="255"
-              counter
-              clearable
+            <v-autocomplete
+              v-model="idInstituicaoEnsino"
+              label="Instituição de Ensino"
               class="text-grey-darken-4"
               variant="outlined"
-            ></v-text-field>
+              :items="cursos"
+              :item-title="'nomeCurso'"
+              :item-value="'idCurso'"
+            ></v-autocomplete>
           </v-col>
           <v-col cols="6" md="4">
             <v-autocomplete
@@ -470,7 +469,6 @@ export default {
           matricula: this.numeroMatriEstu,
           contatoEmergencia: this.numeroContatoEmerg,
           nomeContatoEmergencia: this.nomeContatoEmerg,
-	  cursoId: this.idCurso,
           cep: this.cep,
           cidade: this.cidade,
           uf: this.uf,
@@ -479,10 +477,11 @@ export default {
           bairro: this.bairro,
           complemento: this.complemento,
           cursoId: this.idCurso,
-	  numeroApolice: this.numeroApolice,
-	  dataInicioVigencia: this.dataInicioVigencia,
-	  dataFinalVigencia: this.dataFinalVigencia,
-	  file: this.$refs.apolice.files[0]
+          instEnsinoId: this.idInstituicaoEnsino,
+	        // numeroApolice: this.numeroApolice,
+          // dataInicioVigencia: this.dataInicioVigencia,
+          // dataFinalVigencia: this.dataFinalVigencia,
+          // file: this.$refs.apolice.files[0]
         };
 
         const response = await cadastrarEstagiario(data);
