@@ -274,6 +274,7 @@ import {
 } from "@/validations/formValidations";
 import { buscaCep } from "@/util/buscaCep";
 import {cadastrarOrganizacao} from "../../services/OrganizacaoService"
+import Swal from 'sweetalert2'
 
 export default {
   data() {
