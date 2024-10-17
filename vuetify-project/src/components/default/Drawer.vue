@@ -101,7 +101,7 @@ export default {
 
     const rotaInfoVagas = "/informacaoVagas";
 
-    const rotaGerarContrato = "/gerarContrato"
+    const rotaGerarContrato = "/gerarContrato";
 
     const rotasCrud = [
       [
@@ -150,6 +150,11 @@ export default {
         "mdi-text-box-search-outline",
         "/consultarContrato",
       ],
+      [
+        "Consultar Concedente",
+        "mdi-text-box-search-outline",
+        "/consultarConcedente",
+      ],
     ];
 
     return {
@@ -157,7 +162,7 @@ export default {
       rotaInfoVagas,
       rotasCrud,
       rotasConsulta,
-      rotaGerarContrato
+      rotaGerarContrato,
     };
   },
 };

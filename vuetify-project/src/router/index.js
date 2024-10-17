@@ -17,6 +17,7 @@ import ConsultarResponsavel from '../pages/Consultas/ConsultarResponsavel.vue';
 import ConsultarSetor from '../pages/Consultas/ConsultarSetor.vue';
 import ConsultarVagas from '../pages/Consultas/ConsultarVagas.vue';
 import ConsultarCurso from '../pages/Consultas/ConsultarCurso.vue';
+import ConsultarConcedente from '../pages/Consultas/ConsultarConcedente.vue';
 import ConsultarContrato from '../pages/Consultas/ConsultarContrato.vue';
 import GerarContrato from '../pages/Contrato/GerarContrato.vue'
 
@@ -122,6 +123,11 @@ const router = createRouter({
       path: '/gerarContrato',
       name: 'GerarContrato',
       component: GerarContrato
+    },
+    {
+      path: '/consultarConcedente',
+      name: 'ConsultarConcedente',
+      component: ConsultarConcedente
     },
   ]
 })

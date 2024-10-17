@@ -12,3 +12,19 @@ export async function cadastrarOrganizacao(data) {
         return null;
     }
 }
+
+export async function fetchOrganizacaoConcedente() {
+    try {
+
+        const response = await axios.get(
+            import.meta.env.VITE_BACKEND_URL + "/organizacao-concedente",
+            {
+            }
+        );
+
+        return response.data;
+    } catch (error) {
+        console.error("Erro ao buscar organizações:", error);
+        return null;
+    }
+}
