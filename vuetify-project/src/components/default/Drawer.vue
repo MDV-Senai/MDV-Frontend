@@ -24,6 +24,12 @@
         :to="rotaGerarContrato"
       ></v-list-item>
       <v-list-item
+        prepend-icon="mdi-book-arrow-right"
+        title="Solicitar Vaga"
+        value="solicitarVaga"
+        :to="rotaSolicitarVaga"
+      ></v-list-item>
+      <v-list-item
         prepend-icon="mdi-dots-horizontal-circle-outline"
         title="Menu de Vagas"
         value="vagas"
@@ -103,6 +109,8 @@ export default {
 
     const rotaGerarContrato = "/gerarContrato";
 
+    const rotaSolicitarVaga ="/cadastrarSolicitacaoVagas"
+
     const rotasCrud = [
       [
         "Cadastrar Instituição",
@@ -121,7 +129,7 @@ export default {
         "mdi-human-male-board",
         "/cadastrarResponsavel",
       ],
-      ["Cadastro de Organização", "mdi-domain", "/cadastrarOrganizacao"],
+      ["Cadastro de Instituição Concedente", "mdi-domain", "/cadastrarOrganizacao"],
       ["Cadastro de Vagas", "mdi-handshake-outline", "/cadastrarVagas"],
       ["Cadastro de Curso", "mdi-book-plus-outline", "/cadastrarCurso"],
     ];
@@ -163,6 +171,7 @@ export default {
       rotasCrud,
       rotasConsulta,
       rotaGerarContrato,
+      rotaSolicitarVaga,
     };
   },
 };

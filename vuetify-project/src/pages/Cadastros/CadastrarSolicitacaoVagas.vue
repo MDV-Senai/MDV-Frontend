@@ -3,19 +3,19 @@
     <Header />
     <div class="d-flex justify-center align-center">
       <v-card class="d-flex justify-center align-center" id="card_titulo"
-        ><h3>Cadastro de Vagas</h3></v-card
+        ><h3>Solicitação de Vagas</h3></v-card
       >
     </div>
     <div id="fundoCards">
-      <v-form ref="form" id="form" class="mx-auto mt-8">
-        <v-row class="d-flex justify-center">
+      <v-form ref="form" id="form" class="mx-auto">
+        <v-row class="d-flex justify-center mt-8">
           <v-col cols="12" md="12">
             <v-select
-              v-model="cursoVaga"
+              v-model="cursoSolicitado"
               :items="estagiarios"
               :item-title="'titulo'"
               :item-value="'id'"
-              label="Curso do Posto de Trabalho (Vaga)"
+              label="Escolher Curso"
               class="text-grey-darken-4"
               variant="outlined"
               readonly
@@ -23,21 +23,21 @@
           </v-col>
         </v-row>
         <v-row class="d-flex justify-center">
-          <v-col cols="12" md="4">
-            <v-text-field
-              label="Setor Disponível"
-              :rules="[rules.required]"
+          <v-col cols="12" md="6">
+            <v-select
               v-model="setor"
-              maxlength="255"
-              counter
-              clearable
+              :items="estagiarios"
+              :item-title="'titulo'"
+              :item-value="'id'"
+              label="Setor"
               class="text-grey-darken-4"
               variant="outlined"
-            ></v-text-field>
+              readonly
+            ></v-select>
           </v-col>
-          <v-col cols="12" md="4">
+          <v-col cols="12" md="6">
             <v-select
-              label="Turno Disponível"
+              label="Turno"
               v-model="turno"
               :rules="[rules.required]"
               clearable
@@ -46,28 +46,15 @@
               variant="outlined"
             ></v-select>
           </v-col>
-          <v-col cols="12" md="4">
-            <v-number-input
-              label="Quantidade de Vagas no Setor"
-              v-model="qtdVagas"
-              :rules="[rules.required]"
-              :min="0"
-              maxlength="255"
-              counter
-              clearable
-              class="text-grey-darken-4"
-              variant="outlined"
-            ></v-number-input>
-          </v-col>
         </v-row>
 
         <v-row id="inputResponsivo" class="d-flex justify-center">
           <v-col cols="12" md="6">
             <v-text-field
-              label="Início do Período"
+              label="Data de Início do Período"
               type="date"
               :rules="[rules.required]"
-              v-model="inicioEstagio"
+              v-model="inicioEstagioPrimeiro"
               maxlength="10"
               counter
               clearable
@@ -77,10 +64,10 @@
           </v-col>
           <v-col cols="12" md="6">
             <v-text-field
-              label="Fim do Período"
+              label="Data Final do Período"
               type="date"
               :rules="[rules.required]"
-              v-model="fimEstagio"
+              v-model="fimEstagioPrimeiro"
               maxlength="10"
               counter
               clearable
@@ -92,39 +79,39 @@
 
         <v-card class="pt-8">
           <v-container fluid>
-          <v-row id="inputResponsivo" class="d-flex justify-center ml-12">
-            <v-col class="d-flex align-center">Domingo</v-col>
-            <v-col class="d-flex align-center">Segunda</v-col>
-            <v-col class="d-flex align-center">Terça</v-col>
-            <v-col class="d-flex align-center">Quarta</v-col>
-            <v-col class="d-flex align-center">Quinta</v-col>
-            <v-col class="d-flex align-center">Sexta</v-col>
-            <v-col class="d-flex align-center">Sábado</v-col>
-          </v-row>
+            <v-row id="inputResponsivo" class="d-flex justify-center ml-12">
+              <v-col class="d-flex align-center">Domingo</v-col>
+              <v-col class="d-flex align-center">Segunda</v-col>
+              <v-col class="d-flex align-center">Terça</v-col>
+              <v-col class="d-flex align-center">Quarta</v-col>
+              <v-col class="d-flex align-center">Quinta</v-col>
+              <v-col class="d-flex align-center">Sexta</v-col>
+              <v-col class="d-flex align-center">Sábado</v-col>
+            </v-row>
 
-          <v-row id="inputResponsivo" class="d-flex justify-center ml-12">
-            <v-col class="d-flex align-center">
-              <v-checkbox v-model="domingo"></v-checkbox>
-            </v-col>
-            <v-col class="d-flex align-center">
-              <v-checkbox v-model="segunda"></v-checkbox>
-            </v-col>
-            <v-col class="d-flex align-center">
-              <v-checkbox v-model="terca"></v-checkbox>
-            </v-col>
-            <v-col class="d-flex align-center">
-              <v-checkbox v-model="quarta"></v-checkbox>
-            </v-col>
-            <v-col class="d-flex align-center">
-              <v-checkbox v-model="quinta"></v-checkbox>
-            </v-col>
-            <v-col class="d-flex align-center">
-              <v-checkbox v-model="sexta"></v-checkbox>
-            </v-col>
-            <v-col class="d-flex align-center">
-              <v-checkbox v-model="sabado"></v-checkbox>
-            </v-col>
-          </v-row>
+            <v-row id="inputResponsivo" class="d-flex justify-center ml-12">
+              <v-col class="d-flex align-center">
+                <v-checkbox v-model="domingo"></v-checkbox>
+              </v-col>
+              <v-col class="d-flex align-center">
+                <v-checkbox v-model="segunda"></v-checkbox>
+              </v-col>
+              <v-col class="d-flex align-center">
+                <v-checkbox v-model="terca"></v-checkbox>
+              </v-col>
+              <v-col class="d-flex align-center">
+                <v-checkbox v-model="quarta"></v-checkbox>
+              </v-col>
+              <v-col class="d-flex align-center">
+                <v-checkbox v-model="quinta"></v-checkbox>
+              </v-col>
+              <v-col class="d-flex align-center">
+                <v-checkbox v-model="sexta"></v-checkbox>
+              </v-col>
+              <v-col class="d-flex align-center">
+                <v-checkbox v-model="sabado"></v-checkbox>
+              </v-col>
+            </v-row>
           </v-container>
         </v-card>
 
@@ -177,7 +164,6 @@ export default {
       rules: {
         required: (value) => !!value || "Obrigatório.",
       },
-      cursoVaga: null,
       estagiario: null,
       estagiarios: [],
       setor: null,
