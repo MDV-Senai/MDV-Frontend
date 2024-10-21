@@ -35,6 +35,32 @@
             ></v-text-field>
           </v-col>
         </v-row>
+        <v-row class="d-flex justify-center">
+          <v-col cols="12" md="6">
+            <v-text-field
+              label="Nome do Supervisor "
+              v-model="nomeSupervisor"
+              :rules="[rules.required, rules.fullname]"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12" md="6">
+            <v-text-field
+              label="Email do Supervisor"
+              v-model="emailSupervisor"
+              :rules="[rules.required, rules.email]"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+        </v-row>
 
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="6">
