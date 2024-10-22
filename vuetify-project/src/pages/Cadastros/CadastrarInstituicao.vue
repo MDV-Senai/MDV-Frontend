@@ -384,17 +384,14 @@ export default {
       if (this.$refs.form.validate()) {
         const data = {
           nomeFantasia: this.instituacao,
-          userEmail: this.usuario,
-          userPassword: this.senha,
           razaoSocial: this.razaoSocial,
           cnpj: this.cnpj,
-          inscricaoEstado: this.inscricaoEstadual,
-          fone: this.telefone,
-          celular: this.celular,
+          inscricaoEstadual: this.inscricaoEstadual,
+          telefone: this.telefone,
           email: this.email,
           cep: this.cep,
           cidade: this.cidade,
-          uf: this.uf,
+          estado: this.uf,
           bairro: this.bairro,
           numero: this.numero,
           rua: this.logradouro,
@@ -404,7 +401,7 @@ export default {
         };
 
           console.log(data);
-          const url = import.meta.env.VITE_BACKEND_URL + "/instituicaoEnsino";
+          const url = import.meta.env.VITE_BACKEND_URL + "/instituicao-ensino";
           console.log(url);
 
           const token = sessionStorage.getItem('authToken');
