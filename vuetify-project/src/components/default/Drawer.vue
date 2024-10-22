@@ -24,12 +24,6 @@
         :to="rotaGerarContrato"
       ></v-list-item>
       <v-list-item
-        prepend-icon="mdi-book-arrow-right"
-        title="Solicitar Vaga"
-        value="solicitarVaga"
-        :to="rotaSolicitarVaga"
-      ></v-list-item>
-      <v-list-item
         prepend-icon="mdi-dots-horizontal-circle-outline"
         title="Menu de Vagas"
         value="vagas"
@@ -107,9 +101,7 @@ export default {
 
     const rotaInfoVagas = "/informacaoVagas";
 
-    const rotaGerarContrato = "/gerarContrato"
-
-    const rotaSolicitarVaga ="/cadastrarSolicitacaoVagas"
+    const rotaGerarContrato = "/gerarContrato";
 
     const rotasCrud = [
       [
@@ -158,6 +150,11 @@ export default {
         "mdi-text-box-search-outline",
         "/consultarContrato",
       ],
+      [
+        "Consultar Concedente",
+        "mdi-text-box-search-outline",
+        "/consultarConcedente",
+      ],
     ];
 
     return {
@@ -166,7 +163,6 @@ export default {
       rotasCrud,
       rotasConsulta,
       rotaGerarContrato,
-      rotaSolicitarVaga
     };
   },
 };

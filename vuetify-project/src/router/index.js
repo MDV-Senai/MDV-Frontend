@@ -11,13 +11,13 @@ import CadastrarAdmin from '../pages/Cadastros/CadastrarAdmin.vue';
 import CadastrarOrganizacao from '../pages/Cadastros/CadastrarOrganizacao.vue';
 import CadastrarVagas from '../pages/Cadastros/CadastrarVagas.vue';
 import CadastrarCurso from '../pages/Cadastros/CadastrarCurso';
-import CadastrarSolicitacaoVagas from '../pages/Cadastros/CadastrarSolicitacaoVagas';
 import ConsultarInstituicao from '../pages/Consultas/ConsultarInstituicao.vue';
 import ConsultarEstagiario from '../pages/Consultas/ConsultarEstagiario.vue';
 import ConsultarResponsavel from '../pages/Consultas/ConsultarResponsavel.vue';
 import ConsultarSetor from '../pages/Consultas/ConsultarSetor.vue';
 import ConsultarVagas from '../pages/Consultas/ConsultarVagas.vue';
 import ConsultarCurso from '../pages/Consultas/ConsultarCurso.vue';
+import ConsultarConcedente from '../pages/Consultas/ConsultarConcedente.vue';
 import ConsultarContrato from '../pages/Consultas/ConsultarContrato.vue';
 import GerarContrato from '../pages/Contrato/GerarContrato.vue'
 
@@ -125,9 +125,9 @@ const router = createRouter({
       component: GerarContrato
     },
     {
-      path: '/cadastrarSolicitacaoVagas',
-      name: 'CadastrarSolicitacaoVagas',
-      component: CadastrarSolicitacaoVagas
+      path: '/consultarConcedente',
+      name: 'ConsultarConcedente',
+      component: ConsultarConcedente
     },
   ]
 })
