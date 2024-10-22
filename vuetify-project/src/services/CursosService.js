@@ -22,7 +22,7 @@ export async function fetchCursos() {
 
 export async function cadastrarCurso(data) {
   try {
-    const url = import.meta.env.VITE_BACKEND_URL + "/curso";
+    const url = import.meta.env.VITE_BACKEND_URL + "/curso-homologado";
 
     const token = sessionStorage.getItem('authToken');
     console.log(url);
