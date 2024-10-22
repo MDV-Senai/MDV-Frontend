@@ -23,15 +23,14 @@
           </v-col>
           <v-col cols="12" md="6">
             <v-text-field
-              label="Celular do Respon. do Setor"
+              label="Nome do Coordenador"
               :rules="[rules.required]"
-              v-model="celularRespSetor"
-              maxlength="15"
+              v-model="nomeCoordenador"
+              maxlength="255"
               counter
               clearable
               class="text-grey-darken-4"
               variant="outlined"
-              v-mask="'(##) #####-####'"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -65,8 +64,8 @@
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="6">
             <v-text-field
-              label="Nome do Coordenador"
-              v-model="nomeCoordenador"
+              label="Nome Social do Coordenador"
+              v-model="nomeSocialCoordenador"
               :rules="[rules.required, rules.fullname]"
               maxlength="255"
               counter
@@ -88,7 +87,48 @@
             ></v-text-field>
           </v-col>
         </v-row>
-
+        <v-row class="d-flex justify-center">
+          <v-col cols="12" md="6">
+            <v-text-field
+              label="Telefone do Coordenador"
+              v-model="telefoneCoordenador"
+              :rules="[rules.required, rules.fullname]"
+              maxlength="255"
+              counter
+              clearable
+              v-mask="'(##) #####-####'"
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12" md="6">
+            <v-text-field
+              label="Nº de Vagas"
+              v-model="numeroVagas"
+              :rules="[rules.required]"
+              type="number"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row class="d-flex justify-center align-center">
+          <v-col cols="12" md="12">
+            <v-container>
+              <v-btn
+                text="Cadastrar setor"
+                @click="enviarDados()"
+                class="text-grey-darken-4"
+                v-model="atividade"
+                variant="outlined"
+              ></v-btn>
+            </v-container>
+          </v-col>
+        </v-row>
+      </v-form>
+      <v-form ref="formAtividade" id="formAtividade">
         <v-row class="d-flex justify-center align-center">
           <v-col cols="12" md="12">
             <v-container>
@@ -111,6 +151,7 @@
             :key="campo.id"
           >
             <v-text-field
+              v-model="atividade[index]"
               :label="'Atividade ' + (index + 1)"
               :rules="[rules.required]"
               maxlength="255"
@@ -153,7 +194,7 @@
               <v-btn
                 append-icon="mdi-chevron-right"
                 variant="outlined"
-                @click="enviarDados"
+                @click="enviarAtividades()"
                 class="my-10"
                 width="183"
                 height="62"
@@ -181,7 +222,7 @@ import {
   emailValidation,
 } from "@/validations/formValidations";
 import Swal from "sweetalert2";
-import { cadastrarSetor } from "../../services/SetoresService";
+import { cadastrarAtividade, cadastrarSetor } from "../../services/SetoresService";
 
 export default {
   data() {
@@ -193,12 +234,13 @@ export default {
       },
       campos: [{ id: 1 }],
       nextId: 2,
+      setorId: null,
       nomeSetor: null,
-      celularRespSetor: null,
-      nomeSupervisor: null,
-      emailSupervisor: null,
       nomeCoordenador: null,
+      nomeSocialCoordenador: null,
+      telefoneCoordenador: null,
       emailCoordenador: null,
+      numeroVagas: null,
       atividade: [],
     };
   },
@@ -219,16 +261,17 @@ export default {
         try {
           const data = {
             nomeSetor: this.nomeSetor,
-            emailSupervisor: this.emailSupervisor,
-            emailCoordenador: this.emailCoordenador,
-            celularResponsavel: this.celularRespSetor,
             nomeCoordenador: this.nomeCoordenador,
-            nomeSupervisor: this.nomeSupervisor,
-            atividades: this.atividade,
-            instituicaoContratanteId: "c7c8cf10-e407-47e7-80c4-ab8075380c38",
+            nomeSocialCoordenador: this.nomeSocialCoordenador,
+            telefoneCoordenador: this.telefoneCoordenador,
+            emailCoordenador: this.emailCoordenador,
+            vagasTotais: this.numeroVagas,
           };
 
           const response = await cadastrarSetor(data);
+
+          this.setorId = response.data.id;
+          console.log(this.setorId);
 
           if (response) {
             Swal.fire({
@@ -236,6 +279,30 @@ export default {
               icon: "success",
             });
             this.$refs.form.reset();
+          }
+        } catch (error) {
+          console.error("Erro ao enviar dados:", error);
+        }
+      }
+    },
+
+    async enviarAtividades() {
+      if (this.$refs.formAtividade.validate()) {
+        try {
+          console.log(this.atividade);
+          const data = {
+            nomeAtividade: this.atividade,
+            setorId: this.setorId
+          };
+
+          const response = await cadastrarAtividade(data);
+
+          if (response) {
+            Swal.fire({
+              title: "Cadastro Realizado com Sucesso!",
+              icon: "success",
+            });
+            this.$refs.formAtividade.reset();
           }
         } catch (error) {
           console.error("Erro ao enviar dados:", error);

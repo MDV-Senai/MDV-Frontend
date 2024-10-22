@@ -1,5 +1,6 @@
 <template>
   <v-main id="imagem">
+    <Header />
     <div v-for="(setor, key) in setores" :key="key">
       <h2 class="text-center my-10">{{ key.replace(/(^\w{1})|(\s+\w{1})/g, letra => letra.toUpperCase()) }}</h2>
       <div class="calendario-container d-flex flex-wrap ma-3 ga-5">

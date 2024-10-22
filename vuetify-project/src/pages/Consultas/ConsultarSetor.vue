@@ -30,12 +30,12 @@
         <tbody>
           <tr v-for="item in setorPaginado" :key="item.id">
             <td class="text-left">{{ item.nomeSetor }}</td>
-            <td class="text-left">{{ item.nomeSupervisor }}</td>
-            <td class="text-left">{{ item.celularResponsavel }}</td>
+            <td class="text-left">{{ item.nomeCoordenador }}</td>
+            <td class="text-left">{{ item.nomeSocialCoordenador }}</td>
             <td class="text-center">
-              <VisualizarSetor />
-              <EditarSetor />
-              <DeletarItem />
+              <VisualizarSetor :setorId="item.id" />
+              <EditarSetor :setorId="item.id"  />
+              <DeletarItem :itemKey="'setor'" :id="item.id" />
             </td>
           </tr>
         </tbody>
@@ -48,7 +48,6 @@
         ></v-pagination>
       </div>
     </div>
-    
   </div>
 </template>
 
