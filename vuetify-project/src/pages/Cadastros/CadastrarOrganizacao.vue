@@ -1,4 +1,3 @@
-<!-- eslint-disable vue/valid-v-on -->
 <template>
   <v-main id="imagem">
     <Header />
@@ -27,21 +26,6 @@
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="12">
             <v-text-field
-              label="Responsável Legal"
-              :rules="[rules.required, rules.fullname]"
-              v-model="responsavelLegal"
-              maxlength="255"
-              counter
-              clearable
-              class="text-grey-darken-4"
-              variant="outlined"
-            ></v-text-field>
-          </v-col>
-        </v-row>
-
-        <v-row class="d-flex justify-center">
-          <v-col cols="12" md="12">
-            <v-text-field
               label="Razão Social"
               :rules="[rules.required]"
               v-model="razaoSocial"
@@ -55,7 +39,22 @@
         </v-row>
 
         <v-row class="d-flex justify-center">
-          <v-col cols="6" md="4">
+          <v-col cols="12" md="12">
+            <v-text-field
+              label="Responsável Legal"
+              :rules="[rules.required, rules.fullname]"
+              v-model="responsavelLegal"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+
+        <v-row class="d-flex justify-center">
+          <v-col cols="6" md="6">
             <v-text-field
               label="CNPJ"
               :rules="[rules.required]"
@@ -68,7 +67,7 @@
               v-mask="'##.###.###/####-##'"
             ></v-text-field>
           </v-col>
-          <v-col cols="6" md="4">
+          <v-col cols="6" md="6">
             <v-text-field
               label="Inscrição Estadual"
               :rules="[rules.required]"
@@ -79,16 +78,6 @@
               class="text-grey-darken-4"
               variant="outlined"
             ></v-text-field>
-          </v-col>
-          <v-col cols="12" md="4">
-            <v-file-input
-              label="Logo da Empresa"
-              :rules="[rules.required]"
-              v-model="logoEmpresa"
-              clearable
-              class="text-grey-darken-4"
-              variant="outlined"
-            ></v-file-input>
           </v-col>
         </v-row>
 
@@ -162,20 +151,6 @@
           </v-col>
         </v-row>
         <v-row>
-          <v-col cols="12" md="12">
-            <v-text-field
-              v-model="logradouro"
-              label="Logradouro"
-              :rules="[rules.required]"
-              maxlength="255"
-              counter
-              class="text-grey-darken-4"
-              variant="outlined"
-              readonly
-            ></v-text-field>
-          </v-col>
-        </v-row>
-        <v-row>
           <v-col cols="6" md="4">
             <v-text-field
               label="Nº"
@@ -188,7 +163,18 @@
               variant="outlined"
             ></v-text-field>
           </v-col>
-          <v-col cols="6" md="8">
+          <v-col cols="6" md="4">
+            <v-text-field
+              label="Rua"
+              v-model="rua"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="6" md="4">
             <v-text-field
               label="Complemento"
               v-model="complemento"
@@ -282,12 +268,13 @@
 </template>
 
 <script>
-import axios from "axios";
 import {
   emailValidation,
   fullNameValidation,
 } from "@/validations/formValidations";
 import { buscaCep } from "@/util/buscaCep";
+import {cadastrarOrganizacao} from "../../services/OrganizacaoService"
+import Swal from 'sweetalert2'
 
 export default {
   data() {
@@ -301,6 +288,7 @@ export default {
       celular: null,
       telefone: null,
       cep: null,
+      rua: null,
       complemento: null,
       uf: null,
       cidade: null,
@@ -346,7 +334,7 @@ export default {
             uf: this.uf,
             bairro: this.bairro,
             numero: this.numero,
-            rua: this.logradouro,
+            rua: this.rua,
             complemento: this.complemento,
             responsavelLegal: this.responsavelLegal,
             responsavelLegalContato: this.contatoRespLegal,
