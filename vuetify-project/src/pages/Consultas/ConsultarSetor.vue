@@ -35,7 +35,7 @@
             <td class="text-center">
               <VisualizarSetor :setorId="item.id" />
               <EditarSetor :setorId="item.id"  />
-              <DeletarItem />
+              <DeletarItem :itemKey="'setor'" :id="item.id" />
             </td>
           </tr>
         </tbody>
