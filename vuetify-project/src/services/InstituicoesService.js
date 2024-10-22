@@ -5,7 +5,7 @@ export async function fetchInstituicoes() {
     let token = sessionStorage.getItem("authToken");
 
     const response = await axios.get(
-      import.meta.env.VITE_BACKEND_URL + "/instituicaoEnsino",
+      import.meta.env.VITE_BACKEND_URL + "/instituicao-ensino",
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -13,7 +13,7 @@ export async function fetchInstituicoes() {
       }
     );
 
-    return response.data;
+    return response.data.data;
   } catch (error) {
     console.error("Erro ao buscar instituições:", error);
     return null;
