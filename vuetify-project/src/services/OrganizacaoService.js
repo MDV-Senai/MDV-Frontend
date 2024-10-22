@@ -4,7 +4,12 @@ export async function cadastrarOrganizacao(data) {
     try {
         const url = import.meta.env.VITE_BACKEND_URL + "/organizacao-concedente";
 
+        let token = sessionStorage.getItem("authToken");
+
         const req = await axios.post(url, data, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
         });
         return req;
     } catch (error) {
