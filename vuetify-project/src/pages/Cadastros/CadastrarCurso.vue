@@ -22,101 +22,6 @@
             ></v-text-field>
           </v-col>
         </v-row>
-        <v-row class="d-flex justify-center">
-          <v-col cols="12" md="12">
-            <v-text-field
-              label="Nome do Coordenador do Curso"
-              v-model="nomeCoordenadorCurso"
-              :rules="[rules.required, rules.fullname]"
-              maxlength="255"
-              counter
-              clearable
-              class="text-grey-darken-4"
-              variant="outlined"
-            ></v-text-field>
-          </v-col>
-        </v-row>
-        <v-row class="d-flex justify-center">
-          <v-col cols="12" md="12">
-            <v-text-field
-              label="Nome Social do Coordenador do Curso"
-              v-model="nomeSocialCoordenadorCurso"
-              maxlength="255"
-              counter
-              clearable
-              class="text-grey-darken-4"
-              variant="outlined"
-            ></v-text-field>
-          </v-col>
-        </v-row>
-        <v-row class="d-flex justify-center">
-          <v-col cols="12" md="4">
-            <v-text-field
-              label="E-mail do Coordenador do Curso"
-              :rules="[rules.required, rules.email]"
-              v-model="email"
-              type="email"
-              maxlength="255"
-              counter
-              clearable
-              class="text-grey-darken-4"
-              variant="outlined"
-            ></v-text-field>
-          </v-col>
-          <v-col cols="12" md="4">
-            <v-text-field
-              label="Telefone do Coordenador do Curso"
-              v-model="telefone"
-              :rules="[rules.required]"
-              maxlength="14"
-              counter
-              clearable
-              class="text-grey-darken-4"
-              variant="outlined"
-              v-mask="'(##) ####-####'"
-            ></v-text-field>
-          </v-col>
-          <v-col cols="12" md="4">
-            <v-text-field
-              label="Celular do Coordenador do Curso"
-              v-model="celular"
-              :rules="[rules.required]"
-              maxlength="15"
-              counter
-              clearable
-              class="text-grey-darken-4"
-              variant="outlined"
-              v-mask="'(##) #####-####'"
-            ></v-text-field>
-          </v-col>
-        </v-row>
-
-        <v-row>
-          <v-col cols="12" md="6">
-            <v-text-field
-              label="Carga Horária do Estagiário"
-              v-model="cargaHorariaEstagio"
-              :rules="[rules.required]"
-              maxlength="15"
-              counter
-              clearable
-              class="text-grey-darken-4"
-              variant="outlined"
-            ></v-text-field>
-          </v-col>
-          <v-col cols="12" md="6">
-            <v-text-field
-              label="Carga Horária do Curso"
-              v-model="cargaHorariaCurso"
-              :rules="[rules.required]"
-              maxlength="15"
-              counter
-              clearable
-              class="text-grey-darken-4"
-              variant="outlined"
-            ></v-text-field>
-          </v-col>
-        </v-row>
 
         <div class="d-flex justify-center">
           <v-row class="d-flex justify-center">
@@ -204,13 +109,6 @@ export default {
       if (this.$refs.form.validate()) {
         const data = {
           nomeCurso: this.curso,
-          nomeCoordenadorCurso: this.nomeCoordenadorCurso,
-          nomeSocialCoordenadorCurso: this.nomeSocialCoordenadorCurso,
-          emailCoordenadorCurso: this.email,
-          foneCoordenadorCurso: this.telefone,
-          celularCoordenadorCurso: this.celular,
-          cargaHorariaEstagio: this.cargaHorariaEstagio,
-          cargaHorariaCurso: this.cargaHorariaCurso,
         };
 
         const response = await cadastrarCurso(data);
