@@ -27,7 +27,7 @@ export async function fetchOrganizacaoConcedente() {
             }
         );
 
-        return response.data;
+        return response.data.data;
     } catch (error) {
         console.error("Erro ao buscar organizações:", error);
         return null;
