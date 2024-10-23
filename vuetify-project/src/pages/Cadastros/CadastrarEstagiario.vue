@@ -470,7 +470,6 @@ export default {
           matricula: this.numeroMatriEstu,
           contatoEmergencia: this.numeroContatoEmerg,
           nomeContatoEmergencia: this.nomeContatoEmerg,
-	  cursoId: this.idCurso,
           cep: this.cep,
           cidade: this.cidade,
           uf: this.uf,
@@ -479,10 +478,11 @@ export default {
           bairro: this.bairro,
           complemento: this.complemento,
           cursoId: this.idCurso,
-	  numeroApolice: this.numeroApolice,
-	  dataInicioVigencia: this.dataInicioVigencia,
-	  dataFinalVigencia: this.dataFinalVigencia,
-	  file: this.$refs.apolice.files[0]
+          instEnsinoId: this.instituicaoEnsino,
+	        numeroApolice: this.numeroApolice,
+	        // dataInicioVigencia: this.dataInicioVigencia,
+	        dataFimApolice: this.dataFinalVigencia,
+	        // file: this.$refs.apolice.files[0]
         };
 
         const response = await cadastrarEstagiario(data);

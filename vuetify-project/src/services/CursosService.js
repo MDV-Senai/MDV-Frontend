@@ -5,7 +5,7 @@ export async function fetchCursos() {
     let token = sessionStorage.getItem("authToken");
 
     const response = await axios.get(
-      import.meta.env.VITE_BACKEND_URL + "/curso/instituicaoEnsino",
+      import.meta.env.VITE_BACKEND_URL + "/curso-homologado",
       {
         headers: {
           Authorization: `Bearer ${token}`,
