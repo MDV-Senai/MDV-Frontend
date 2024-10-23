@@ -5,7 +5,7 @@ export async function fetchCursos() {
     let token = sessionStorage.getItem("authToken");
 
     const response = await axios.get(
-      import.meta.env.VITE_BACKEND_URL + "/curso/instituicaoEnsino",
+      import.meta.env.VITE_BACKEND_URL + "/curso-homologado?page=1&limit=600",
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -13,7 +13,7 @@ export async function fetchCursos() {
       }
     );
 
-    return response.data;
+    return response.data.data;
   } catch (error) {
     console.error("Erro ao buscar cursos:", error);
     return null;

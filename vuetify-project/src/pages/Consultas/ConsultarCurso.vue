@@ -21,7 +21,7 @@
       <v-table>
         <thead>
           <tr>
-            <th class="text-left">Instituição</th>
+            <th class="text-left">Id</th>
             <th class="text-left">Curso</th>
             <th class="text-left">Situação</th>
             <th class="text-center">Ações</th>
@@ -29,9 +29,9 @@
         </thead>
         <tbody>
           <tr v-for="item in cursoPaginado" :key="item.id">
-            <td class="text-left">{{ item.instituicao }}</td>
-            <td class="text-left">{{ item.nome }}</td>
-            <td class="text-left">{{ item.situacao }}</td>
+            <td class="text-left">{{ item.id }}</td>
+            <td class="text-left">{{ item.nomeCurso }}</td>
+            <td class="text-left">Homologado</td>
             <td class="text-center">
               <VisualizarCurso />
               <EditarCurso />
