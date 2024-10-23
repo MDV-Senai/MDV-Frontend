@@ -22,18 +22,18 @@
         <thead>
           <tr>
             <th class="text-left">Nome</th>
-            <th class="text-left">Turma</th>
-            <th class="text-left">Curso</th>
-            <th class="text-left">Instituição</th>
+            <th class="text-left">Matricula</th>
+            <th class="text-left">Celular</th>
+            <th class="text-left">Email</th>
             <th class="text-center">Ações</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="item in estagiarioPaginado" :key="item.id">
             <td class="text-left">{{ item.nome }}</td>
-            <td class="text-left">{{ item.turma }}</td>
-            <td class="text-left">{{ item.curso }}</td>
-            <td class="text-left">{{ item.instituicao }}</td>
+            <td class="text-left">{{ item.matricula }}</td>
+            <td class="text-left">{{ item.celular }}</td>
+            <td class="text-left">{{ item.email }}</td>
             <td class="text-center">
               <VisualizarEstagiario />
               <EditarEstagiario />
