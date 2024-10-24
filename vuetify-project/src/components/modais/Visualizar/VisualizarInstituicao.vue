@@ -172,7 +172,27 @@
                   :key="index"
                 >
                   <v-list-item-content>
-                    <v-list-item-title>{{ curso.nomeCurso }}</v-list-item-title>
+                    <v-list-item-title>
+                      {{ curso.nomeCurso }}
+                      <v-icon
+                        v-bind="activatorProps"
+                        density="compact"
+                        icon="mdi-check"
+                        class="my-icon-spacing light-green-darken-3-var"
+                      ></v-icon>
+                      <v-icon
+                        v-bind="activatorProps"
+                        density="compact"
+                        icon="mdi-pencil"
+                        class="my-icon-spacing light-green-darken-3-var"
+                      ></v-icon>
+                      <v-icon
+                        v-bind="activatorProps"
+                        density="compact"
+                        icon="mdi-delete"
+                        class="my-icon-spacing light-red-darken-3-var"
+                      ></v-icon>
+                    </v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
               </v-list>
