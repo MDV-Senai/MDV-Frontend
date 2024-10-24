@@ -20,6 +20,17 @@ export async function fetchInstituicoes() {
   }
 }
 
+export async function fetchInstituicoesPorId(instId) {
+  try {
+    const response = await axios.get(import.meta.env.VITE_BACKEND_URL + "/instituicao-ensino/" + instId);
+
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar instituicao:", error);
+    return null;
+  }
+}
+
 export async function cadastrarInstituicaoEnsino(data) {
   try {
     const url = import.meta.env.VITE_BACKEND_URL + "/instituicaoEnsino";
