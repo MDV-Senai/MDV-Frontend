@@ -10,8 +10,8 @@
     </template>
 
     <template v-slot:default="{ isActive }">
-      <v-card class="d-flex justify-center text-center">
-        <div>
+      <v-card>
+        <v-card-text style="max-height: 500px; overflow-y: auto; padding: 16px">
           <v-row class="mx-5 my-5">
             <v-col cols="12">
               <v-text-field
@@ -163,7 +163,7 @@
               ></v-text-field>
             </v-col>
           </v-row>
-        </div>
+        </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn text="Fechar" @click="isActive.value = false"></v-btn>
