@@ -163,6 +163,21 @@
               ></v-text-field>
             </v-col>
           </v-row>
+          <v-row class="mx-5 my-5">
+            <v-col cols="12">
+              <h3 class="text-grey-darken-4">Cursos Homologados</h3>
+              <v-list>
+                <v-list-item
+                  v-for="(curso, index) in instituicao.cursosHomologados"
+                  :key="index"
+                >
+                  <v-list-item-content>
+                    <v-list-item-title>{{ curso.nomeCurso }}</v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-list>
+            </v-col>
+          </v-row>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
