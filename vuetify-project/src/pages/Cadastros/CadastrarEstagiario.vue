@@ -24,7 +24,7 @@
         </v-row>
 
         <v-row class="d-flex justify-center">
-          <v-col cols="8" md="12">
+          <v-col cols="12" md="12">
             <v-text-field
               label="Nome social"
               v-model="nomeSocial"
@@ -477,14 +477,16 @@ export default {
           rua: this.logradouro,
           bairro: this.bairro,
           complemento: this.complemento,
-          cursoId: this.idCurso,
-          instEnsinoId: this.instituicaoEnsino,
+          cursoId: '537f3468-4eb8-49ad-b3a1-26bec5537781',
+          instEnsinoId: 'b031d21a-cfc5-45f4-a005-3a61f337ee95',
 	        numeroApolice: this.numeroApolice,
 	        // dataInicioVigencia: this.dataInicioVigencia,
 	        dataFimApolice: this.dataFinalVigencia,
 	        // file: this.$refs.apolice.files[0]
         };
 
+        console.log(data);
+        
         const response = await cadastrarEstagiario(data);
 
         if (response) {
