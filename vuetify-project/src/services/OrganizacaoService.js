@@ -33,3 +33,14 @@ export async function fetchOrganizacaoConcedente() {
         return null;
     }
 }
+
+export async function fetchConcedentePorId(instId) {
+    try {
+      const response = await axios.get(import.meta.env.VITE_BACKEND_URL + "/organizacao-concedente/" + instId);
+  
+      return response.data;
+    } catch (error) {
+      console.error("Erro ao buscar organização:", error);
+      return null;
+    }
+  }
