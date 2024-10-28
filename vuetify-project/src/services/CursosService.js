@@ -40,3 +40,14 @@ export async function cadastrarCurso(data) {
     console.log('Erro ao cadastrar curso: ' + error);
   }
 }
+
+export async function fetchCursoPorId(cursoId) {
+  try {
+    const response = await axios.get(import.meta.env.VITE_BACKEND_URL + "/curso-homologado/" + cursoId);
+
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar curso:", error);
+    return null;
+  }
+}

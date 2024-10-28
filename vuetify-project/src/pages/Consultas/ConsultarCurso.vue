@@ -30,10 +30,10 @@
         <tbody>
           <tr v-for="item in cursoPaginado" :key="item.id">
             <td class="text-left">{{ item.id }}</td>
-            <td class="text-left">{{ item.nomeCurso }}</td> <!-- Verifique se isso corresponde ao que você tem -->
+            <td class="text-left">{{ item.nomeCurso }}</td>
             <td class="text-left">Homologado</td>
             <td class="text-center">
-              <VisualizarCurso />
+              <VisualizarCurso :cursoId="item.id"/>
               <EditarCurso />
               <DeletarItem />
             </td>
