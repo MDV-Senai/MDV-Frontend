@@ -35,7 +35,7 @@
             <td class="text-left">{{ item.celular }}</td>
             <td class="text-left">{{ item.email }}</td>
             <td class="text-center">
-              <VisualizarEstagiario />
+              <VisualizarEstagiario :estgId="item.id"/>
               <EditarEstagiario />
               <DeletarItem />
             </td>

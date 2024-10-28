@@ -37,3 +37,14 @@ export async function cadastrarEstagiario(data) {
     return null;
   }
 }
+
+export async function fetchEstagiarioPorId(estgId) {
+  try {
+    const response = await axios.get(import.meta.env.VITE_BACKEND_URL + "/aluno/" + estgId);
+
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar estagiario:", error);
+    return null;
+  }
+}
