@@ -15,10 +15,11 @@
           <v-row class="mx-5 my-5">
             <v-col cols="12" md="12">
               <v-text-field
-                id="nome_prof"
-                placeholder="Digite o nome da instituição"
+                v-model="curso.nomeCurso"
+                placeholder="nome curso"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
+                readonly
               ></v-text-field>
             </v-col>
           </v-row>
@@ -26,17 +27,21 @@
             <v-col cols="12" md="6">
               <v-text-field
                 id="numero_mat"
-                placeholder="Digite o nome do curso"
+                v-model="curso.id"
+                placeholder="id"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
+                readonly
               ></v-text-field>
             </v-col>
             <v-col cols="12" md="6">
               <v-text-field
                 id="inscricao"
-                placeholder="Digite a situação do curso"
+                value="Homologado"
+                placeholder="situação curso"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
+                readonly
               ></v-text-field>
             </v-col>
           </v-row>
@@ -51,8 +56,36 @@
 </template>
 
 <script>
+import { ref, onMounted } from "vue";
+import { fetchCursoPorId } from "../../../services/CursosService";
+
 export default {
-  name: "VisualizarCurso",
+  props: {
+    cursoId: {
+      type: String,
+      required: true,
+    },
+  },
+  setup(props) {
+    const curso = ref({});
+
+    const loadCurso = async () => {
+      const response = await fetchCursoPorId(props.cursoId);
+      if (response) {
+        curso.value = response;
+      } else {
+        console.error("Erro ao buscar curso.");
+      }
+    };
+
+    onMounted(() => {
+      loadCurso();
+    });
+
+    return {
+      curso,
+    };
+  },
 };
 </script>
 

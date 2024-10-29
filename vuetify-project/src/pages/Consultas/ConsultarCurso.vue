@@ -21,7 +21,7 @@
       <v-table>
         <thead>
           <tr>
-            <th class="text-left">Instituição</th>
+            <th class="text-left">Id</th>
             <th class="text-left">Curso</th>
             <th class="text-left">Situação</th>
             <th class="text-center">Ações</th>
@@ -29,11 +29,11 @@
         </thead>
         <tbody>
           <tr v-for="item in cursoPaginado" :key="item.id">
-            <td class="text-left">{{ item.instituicao }}</td>
-            <td class="text-left">{{ item.nome }}</td>
-            <td class="text-left">{{ item.situacao }}</td>
+            <td class="text-left">{{ item.id }}</td>
+            <td class="text-left">{{ item.nomeCurso }}</td>
+            <td class="text-left">Homologado</td>
             <td class="text-center">
-              <VisualizarCurso />
+              <VisualizarCurso :cursoId="item.id"/>
               <EditarCurso />
               <DeletarItem />
             </td>
@@ -48,7 +48,6 @@
         ></v-pagination>
       </div>
     </div>
-    
   </div>
 </template>
 
@@ -64,37 +63,33 @@ export default {
     const nome = ref("");
     const pagina = ref(1);
     const itensPorPagina = ref(10);
-    const cursosFiltrados = ref([]);
 
     const loadCursos = async () => {
       const response = await fetchCursos();
       cursos.value = response;
-      cursosFiltrados.value = response;
     };
 
     const pesquisarCurso = () => {
       if (nome.value) {
-        cursosFiltrados.value = cursos.value.filter((curso) =>
-          curso.nome.toLowerCase().includes(nome.value.toLowerCase())
+        return cursos.value.filter((curso) =>
+          curso.nomeCurso.toLowerCase().includes(nome.value.toLowerCase())
         );
-      } else {
-        cursosFiltrados.value = cursos.value;
       }
-      pagina.value = 1;
+      return cursos.value;
     };
 
     const totalPaginas = computed(() => {
-      return Math.ceil(cursosFiltrados.value.length / itensPorPagina.value);
+      return Math.ceil(pesquisarCurso().length / itensPorPagina.value);
     });
 
     const cursoPaginado = computed(() => {
       const start = (pagina.value - 1) * itensPorPagina.value;
       const end = start + itensPorPagina.value;
-      return cursosFiltrados.value.slice(start, end);
+      return pesquisarCurso().slice(start, end); 
     });
 
-    watch(nome, (newValue) => {
-      pesquisarCurso();
+    watch(nome, () => {
+      pagina.value = 1;
     });
 
     onMounted(() => {

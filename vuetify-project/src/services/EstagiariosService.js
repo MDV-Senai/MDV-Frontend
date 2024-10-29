@@ -2,12 +2,20 @@ import axios from "axios";
 
 export async function fetchEstagiarios() {
   try {
+    let token = sessionStorage.getItem("authToken");
+
     const response = await axios.get(
-      "http://localhost:3000/items"
+      import.meta.env.VITE_BACKEND_URL + "/aluno",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
     );
-    return response.data.estagiario;
+
+    return response.data.data;
   } catch (error) {
-    console.error("Erro ao buscar estagiarios:", error);
+    console.error("Erro ao buscar alunos:", error);
     return null;
   }
 }
@@ -26,6 +34,17 @@ export async function cadastrarEstagiario(data) {
     return req;
   } catch (error) {
     console.log('Erro ao cadastrar estagiário: ' + error);
+    return null;
+  }
+}
+
+export async function fetchEstagiarioPorId(estgId) {
+  try {
+    const response = await axios.get(import.meta.env.VITE_BACKEND_URL + "/aluno/" + estgId);
+
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar estagiario:", error);
     return null;
   }
 }

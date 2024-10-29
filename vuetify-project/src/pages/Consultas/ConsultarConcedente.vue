@@ -3,7 +3,7 @@
     <Header />
     <div class="d-flex justify-center align-center">
       <v-card class="d-flex justify-center align-center" id="card_titulo">
-        <h3>Consultar Instituição</h3>
+        <h3>Consultar Concedente</h3>
       </v-card>
     </div>
     <div id="fundoCards">
@@ -33,7 +33,7 @@
             <td class="text-left">{{ item.responsavelLegal }}</td>
             <td class="text-left">{{ item.email }}</td>
             <td class="text-center">
-              <VisualizarInstituicao />
+              <VisualizarConcedente :concId="item.id"/>
               <EditarInstituicao />
               <DeletarItem />
             </td>

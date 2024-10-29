@@ -5,7 +5,7 @@ export async function fetchCursos() {
     let token = sessionStorage.getItem("authToken");
 
     const response = await axios.get(
-      import.meta.env.VITE_BACKEND_URL + "/curso-homologado",
+      import.meta.env.VITE_BACKEND_URL + "/curso-homologado?page=1&limit=600",
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -13,7 +13,7 @@ export async function fetchCursos() {
       }
     );
 
-    return response.data;
+    return response.data.data;
   } catch (error) {
     console.error("Erro ao buscar cursos:", error);
     return null;
@@ -38,5 +38,16 @@ export async function cadastrarCurso(data) {
     return req;
   } catch (error) {
     console.log('Erro ao cadastrar curso: ' + error);
+  }
+}
+
+export async function fetchCursoPorId(cursoId) {
+  try {
+    const response = await axios.get(import.meta.env.VITE_BACKEND_URL + "/curso-homologado/" + cursoId);
+
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar curso:", error);
+    return null;
   }
 }

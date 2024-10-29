@@ -15,8 +15,8 @@
           <v-row class="mx-5 my-5">
             <v-col cols="12">
               <v-text-field
-                v-model="instituicao.nomeFantasia"
-                placeholder="Nome da instituição"
+                v-model="organizacao.nomeFantasia"
+                placeholder="Nome da organização"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
                 readonly
@@ -26,7 +26,7 @@
           <v-row class="mx-5 my-5">
             <v-col cols="12">
               <v-text-field
-                v-model="instituicao.razaoSocial"
+                v-model="organizacao.razaoSocial"
                 placeholder="Razão social"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -37,7 +37,7 @@
           <v-row class="mx-5 my-5">
             <v-col cols="12" md="6">
               <v-text-field
-                v-model="instituicao.cnpj"
+                v-model="organizacao.cnpj"
                 placeholder="cnpj"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -46,8 +46,8 @@
             </v-col>
             <v-col cols="12" md="6">
               <v-text-field
-                v-model="instituicao.inscricaoEstadual"
-                placeholder="inscirção estadual"
+                v-model="organizacao.inscricaoEstado"
+                placeholder="inscrição estadual"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
                 readonly
@@ -57,7 +57,7 @@
           <v-row class="mx-5 my-5">
             <v-col cols="12" md="6">
               <v-text-field
-                v-model="instituicao.telefone"
+                v-model="organizacao.fone"
                 placeholder="Telefone"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -66,7 +66,7 @@
             </v-col>
             <v-col cols="12" md="6">
               <v-text-field
-                v-model="instituicao.email"
+                v-model="organizacao.email"
                 placeholder="Email"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -77,7 +77,7 @@
           <v-row class="mx-5 my-5">
             <v-col cols="12" md="6">
               <v-text-field
-                v-model="instituicao.cep"
+                v-model="organizacao.cep"
                 placeholder="cep"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -86,7 +86,7 @@
             </v-col>
             <v-col cols="12" md="6">
               <v-text-field
-                v-model="instituicao.cidade"
+                v-model="organizacao.cidade"
                 placeholder="cidade"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -97,7 +97,7 @@
           <v-row class="mx-5 my-5">
             <v-col cols="12" md="6">
               <v-text-field
-                v-model="instituicao.estado"
+                v-model="organizacao.uf"
                 placeholder="estado"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -106,7 +106,7 @@
             </v-col>
             <v-col cols="12" md="6">
               <v-text-field
-                v-model="instituicao.bairro"
+                v-model="organizacao.bairro"
                 placeholder="bairro"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -117,7 +117,7 @@
           <v-row class="mx-5 my-5">
             <v-col cols="12" md="6">
               <v-text-field
-                v-model="instituicao.rua"
+                v-model="organizacao.rua"
                 placeholder="rua"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -126,7 +126,7 @@
             </v-col>
             <v-col cols="12" md="6">
               <v-text-field
-                v-model="instituicao.numero"
+                v-model="organizacao.numero"
                 placeholder="numero"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -137,7 +137,7 @@
           <v-row class="mx-5 my-5">
             <v-col cols="12" md="4">
               <v-text-field
-                v-model="instituicao.complemento"
+                v-model="organizacao.complemento"
                 placeholder="complemento"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -146,7 +146,7 @@
             </v-col>
             <v-col cols="12" md="4">
               <v-text-field
-                v-model="instituicao.responsavelLegal"
+                v-model="organizacao.responsavelLegal"
                 placeholder="responsavelLegal"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -155,47 +155,12 @@
             </v-col>
             <v-col cols="12" md="4">
               <v-text-field
-                v-model="instituicao.responsavelLegalContato"
+                v-model="organizacao.responsavelLegalContato"
                 placeholder="responsavelLegalContato"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
                 readonly
               ></v-text-field>
-            </v-col>
-          </v-row>
-          <v-row class="mx-5 my-5">
-            <v-col cols="12">
-              <h3 class="text-grey-darken-4">Cursos Homologados</h3>
-              <v-list>
-                <v-list-item
-                  v-for="(curso, index) in instituicao.cursosHomologados"
-                  :key="index"
-                >
-                  <v-list-item-content>
-                    <v-list-item-title>
-                      {{ curso.nomeCurso }}
-                      <v-icon
-                        v-bind="activatorProps"
-                        density="compact"
-                        icon="mdi-check"
-                        class="my-icon-spacing light-green-darken-3-var"
-                      ></v-icon>
-                      <v-icon
-                        v-bind="activatorProps"
-                        density="compact"
-                        icon="mdi-pencil"
-                        class="my-icon-spacing light-green-darken-3-var"
-                      ></v-icon>
-                      <v-icon
-                        v-bind="activatorProps"
-                        density="compact"
-                        icon="mdi-delete"
-                        class="my-icon-spacing light-red-darken-3-var"
-                      ></v-icon>
-                    </v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list>
             </v-col>
           </v-row>
         </v-card-text>
@@ -210,33 +175,33 @@
 
 <script>
 import { ref, onMounted } from "vue";
-import { fetchInstituicoesPorId } from "../../../services/InstituicoesService";
+import { fetchConcedentePorId } from "../../../services/OrganizacaoService";
 
 export default {
   props: {
-    instId: {
+    concId: {
       type: String,
       required: true,
     },
   },
   setup(props) {
-    const instituicao = ref({});
+    const organizacao = ref({});
 
-    const loadInstituicao = async () => {
-      const response = await fetchInstituicoesPorId(props.instId);
+    const loadConcedente = async () => {
+      const response = await fetchConcedentePorId(props.concId);
       if (response) {
-        instituicao.value = response;
+        organizacao.value = response;
       } else {
-        console.error("Erro ao buscar instituicao.");
+        console.error("Erro ao buscar organização.");
       }
     };
 
     onMounted(() => {
-      loadInstituicao();
+      loadConcedente();
     });
 
     return {
-      instituicao,
+      organizacao,
     };
   },
 };
