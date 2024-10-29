@@ -35,7 +35,7 @@
             <td class="text-center">
               <VisualizarConcedente :concId="item.id"/>
               <EditarInstituicao />
-              <DeletarItem />
+              <DeletarItem :itemKey="'organizacao-concedente'" :id="item.id" />
             </td>
           </tr>
         </tbody>
