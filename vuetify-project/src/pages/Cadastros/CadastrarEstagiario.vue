@@ -235,7 +235,7 @@
               variant="outlined"
             ></v-text-field>
           </v-col>
-          <v-col cols="6" md="3">
+          <v-col cols="12" md="3">
             <v-file-input
               label="Apólice"
               :rules="[rules.fileSize]"
@@ -482,7 +482,7 @@ export default {
 	        numeroApolice: this.numeroApolice,
 	        // dataInicioVigencia: this.dataInicioVigencia,
 	        dataFimApolice: this.dataFinalVigencia,
-	        // file: this.$refs.apolice.files[0]
+	        file: this.$refs.apolice.files[0]
         };
 
         console.log(data);
