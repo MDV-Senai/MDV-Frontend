@@ -47,7 +47,7 @@ export async function fetchConcedentePorId(instId) {
 
 export async function updateConcedente(instId, organizacaoData) {
     try {
-        const response = await axios.post(
+        const response = await axios.patch(
             `${import.meta.env.VITE_BACKEND_URL}/organizacao-concedente/${instId}`,
             organizacaoData
         );

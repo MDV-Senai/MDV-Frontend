@@ -1,5 +1,5 @@
 <template>
-  <v-dialog max-width="800">
+  <v-dialog v-model="isDialogActive" max-width="800">
     <template v-slot:activator="{ props: activatorProps }">
       <v-icon
         v-bind="activatorProps"
@@ -9,7 +9,7 @@
       ></v-icon>
     </template>
 
-    <template v-slot:default="{ isActive }">
+    <template v-slot:default>
       <v-card>
         <v-card-text style="max-height: 500px; overflow-y: auto; padding: 16px">
           <v-row class="mx-5 my-5">
@@ -19,7 +19,6 @@
                 placeholder="Nome da organização"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
-                readonly
               ></v-text-field>
             </v-col>
           </v-row>
@@ -30,7 +29,6 @@
                 placeholder="Razão social"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
-                readonly
               ></v-text-field>
             </v-col>
           </v-row>
@@ -41,7 +39,6 @@
                 placeholder="cnpj"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
-                readonly
               ></v-text-field>
             </v-col>
             <v-col cols="12" md="6">
@@ -50,7 +47,6 @@
                 placeholder="inscrição estadual"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
-                readonly
               ></v-text-field>
             </v-col>
           </v-row>
@@ -61,7 +57,6 @@
                 placeholder="Telefone"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
-                readonly
               ></v-text-field>
             </v-col>
             <v-col cols="12" md="6">
@@ -70,7 +65,6 @@
                 placeholder="Email"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
-                readonly
               ></v-text-field>
             </v-col>
           </v-row>
@@ -81,7 +75,6 @@
                 placeholder="cep"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
-                readonly
               ></v-text-field>
             </v-col>
             <v-col cols="12" md="6">
@@ -90,7 +83,6 @@
                 placeholder="cidade"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
-                readonly
               ></v-text-field>
             </v-col>
           </v-row>
@@ -101,7 +93,6 @@
                 placeholder="estado"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
-                readonly
               ></v-text-field>
             </v-col>
             <v-col cols="12" md="6">
@@ -110,7 +101,6 @@
                 placeholder="bairro"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
-                readonly
               ></v-text-field>
             </v-col>
           </v-row>
@@ -121,7 +111,6 @@
                 placeholder="rua"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
-                readonly
               ></v-text-field>
             </v-col>
             <v-col cols="12" md="6">
@@ -130,7 +119,6 @@
                 placeholder="numero"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
-                readonly
               ></v-text-field>
             </v-col>
           </v-row>
@@ -141,7 +129,6 @@
                 placeholder="complemento"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
-                readonly
               ></v-text-field>
             </v-col>
             <v-col cols="12" md="4">
@@ -150,7 +137,6 @@
                 placeholder="responsavelLegal"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
-                readonly
               ></v-text-field>
             </v-col>
             <v-col cols="12" md="4">
@@ -159,15 +145,14 @@
                 placeholder="responsavelLegalContato"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
-                readonly
               ></v-text-field>
             </v-col>
           </v-row>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn text="Salvar" @click="isActive.value = false"></v-btn>
-          <v-btn text="Fechar" @click="isActive.value = false"></v-btn>
+          <v-btn text="Salvar" @click="editConcedente">Salvar</v-btn>
+          <v-btn text="Fechar" @click="isDialogActive = false">Fechar</v-btn>
         </v-card-actions>
       </v-card>
     </template>
@@ -176,7 +161,10 @@
 
 <script>
 import { ref, onMounted } from "vue";
-import { fetchConcedentePorId, updateConcedente } from "../../../services/OrganizacaoService";
+import {
+  fetchConcedentePorId,
+  updateConcedente,
+} from "../../../services/OrganizacaoService";
 
 export default {
   props: {
@@ -184,13 +172,14 @@ export default {
       type: String,
       required: true,
     },
-    organizacaoData:{
-        type: Object,
-        required: false
-    }
+    organizacaoData: {
+      type: Object,
+      required: false,
+    },
   },
   setup(props) {
     const organizacao = ref({});
+    const isDialogActive = ref(false);
 
     const loadConcedente = async () => {
       const response = await fetchConcedentePorId(props.concId);
@@ -202,9 +191,10 @@ export default {
     };
 
     const editConcedente = async () => {
-      const response = await updateConcedente(props.concId, props.organizacaoData);
+      const response = await updateConcedente(props.concId, organizacao.value);
       if (response) {
         organizacao.value = response;
+        isDialogActive.value = false;
       } else {
         console.error("Erro ao atualizar organização.");
       }
@@ -216,6 +206,8 @@ export default {
 
     return {
       organizacao,
+      isDialogActive,
+      editConcedente,
     };
   },
 };
