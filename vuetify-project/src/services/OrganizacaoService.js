@@ -36,11 +36,25 @@ export async function fetchOrganizacaoConcedente() {
 
 export async function fetchConcedentePorId(instId) {
     try {
-      const response = await axios.get(import.meta.env.VITE_BACKEND_URL + "/organizacao-concedente/" + instId);
-  
-      return response.data;
+        const response = await axios.get(import.meta.env.VITE_BACKEND_URL + "/organizacao-concedente/" + instId);
+
+        return response.data;
     } catch (error) {
-      console.error("Erro ao buscar organização:", error);
-      return null;
+        console.error("Erro ao buscar organização:", error);
+        return null;
     }
-  }
+}
+
+export async function updateConcedente(instId, organizacaoData) {
+    try {
+        const response = await axios.post(
+            `${import.meta.env.VITE_BACKEND_URL}/organizacao-concedente/${instId}`,
+            organizacaoData
+        );
+
+        return response.data;
+    } catch (error) {
+        console.error("Erro ao atualizar organização:", error);
+        return null;
+    }
+}

@@ -176,7 +176,7 @@
 
 <script>
 import { ref, onMounted } from "vue";
-import { fetchConcedentePorId } from "../../../services/OrganizacaoService";
+import { fetchConcedentePorId, updateConcedente } from "../../../services/OrganizacaoService";
 
 export default {
   props: {
@@ -184,6 +184,10 @@ export default {
       type: String,
       required: true,
     },
+    organizacaoData:{
+        type: Object,
+        required: false
+    }
   },
   setup(props) {
     const organizacao = ref({});
@@ -194,6 +198,15 @@ export default {
         organizacao.value = response;
       } else {
         console.error("Erro ao buscar organização.");
+      }
+    };
+
+    const editConcedente = async () => {
+      const response = await updateConcedente(props.concId, props.organizacaoData);
+      if (response) {
+        organizacao.value = response;
+      } else {
+        console.error("Erro ao atualizar organização.");
       }
     };
 
