@@ -132,6 +132,7 @@ export default {
       ["Cadastro de Organização", "mdi-domain", "/cadastrarOrganizacao"],
       ["Cadastro de Vagas", "mdi-handshake-outline", "/cadastrarVagas"],
       ["Cadastro de Curso", "mdi-book-plus-outline", "/cadastrarCurso"],
+      ["Cadastro de Coordenador de Curso", "mdi-account-tie", "/cadastrarCoordenadorCurso"],
     ];
 
     const rotasConsulta = [

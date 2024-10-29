@@ -3,7 +3,7 @@
     <Header />
     <div class="d-flex justify-center align-center">
       <v-card class="d-flex justify-center align-center" id="card_titulo"
-        ><h3>Cadastro de Cursos</h3></v-card
+        ><h3>Cadastro de Coordenador de Cursos</h3></v-card
       >
     </div>
     <div id="fundoCards">
@@ -11,14 +11,55 @@
         <v-row class="d-flex justify-center mt-8">
           <v-col cols="12" md="12">
             <v-text-field
-              label="Nome do Curso"
-              v-model="curso"
-              :rules="[rules.required]"
+              label="Nome do Coordenador do Curso"
+              v-model="nomeCoordenadorCurso"
+              :rules="[rules.required, rules.fullname]"
               maxlength="255"
               counter
               clearable
               class="text-grey-darken-4"
               variant="outlined"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row class="d-flex justify-center">
+          <v-col cols="12" md="12">
+            <v-text-field
+              label="Nome Social do Coordenador do Curso"
+              v-model="nomeSocialCoordenadorCurso"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row class="d-flex justify-center">
+          <v-col cols="12" md="6">
+            <v-text-field
+              label="E-mail do Coordenador do Curso"
+              :rules="[rules.required, rules.email]"
+              v-model="email"
+              type="email"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12" md="6">
+            <v-text-field
+              label="Telefone do Coordenador do Curso"
+              v-model="telefone"
+              :rules="[rules.required]"
+              maxlength="15"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+              v-mask="'(##) ####-####'"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -72,20 +113,16 @@ import {
   emailValidation,
   fullNameValidation
 } from "@/validations/formValidations";
-import { cadastrarCurso } from "../../services/CursosService.js";
+import { cadastrarCoordenadorCurso } from "../../services/CoordenadorCursoService";
 import Swal from 'sweetalert2'
 export default {
   data() {
     return {
-      curso: null,
       nomeCoordenadorCurso: null,
       nomeSocialCoordenadorCurso: null,
       email: null,
       telefone: null,
-      celular: null,
-      selectedInstituicao: null,
-      cargaHorariaEstagio: null,
-      cargaHorariaCurso: null,
+      idInstituicaoEnsino: null,
       rules: {
         required: (value) => !!value || "Obrigatório.",
         email: (value) => emailValidation(value),
@@ -108,10 +145,14 @@ export default {
     async enviarDados() {
       if (this.$refs.form.validate()) {
         const data = {
-          nomeCurso: this.curso,
+          nome: this.nomeCoordenadorCurso,
+          nomeSocial: this.nomeSocialCoordenadorCurso,
+          email: this.email,
+          fone: this.telefone,
+          idInstituicaoEnsino: 'b031d21a-cfc5-45f4-a005-3a61f337ee95',
         };
 
-        const response = await cadastrarCurso(data);
+        const response = await cadastrarCoordenadorCurso(data);
         console.log(response);
 
         if (response) {
