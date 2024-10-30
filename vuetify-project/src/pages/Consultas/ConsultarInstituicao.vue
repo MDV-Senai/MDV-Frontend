@@ -34,7 +34,7 @@
             <td class="text-left">{{ item.responsavelContato }}</td>
             <td class="text-center">
               <VisualizarInstituicao :instId="item.id"/>
-              <EditarInstituicao />
+              <EditarInstituicao :instId="item.id" />
               <DeletarItem :itemKey="'instituicao-ensino'" :id="item.id" />
             </td>
           </tr>
