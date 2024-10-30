@@ -61,73 +61,6 @@
           </v-col>
         </v-row>
 
-        <v-row id="inputResponsivo" class="d-flex justify-center">
-          <v-col cols="12" md="6">
-            <v-text-field
-              label="Início do Período"
-              type="date"
-              :rules="[rules.required]"
-              v-model="inicioEstagio"
-              maxlength="10"
-              counter
-              clearable
-              class="text-grey-darken-4"
-              variant="outlined"
-            ></v-text-field>
-          </v-col>
-          <v-col cols="12" md="6">
-            <v-text-field
-              label="Fim do Período"
-              type="date"
-              :rules="[rules.required]"
-              v-model="fimEstagio"
-              maxlength="10"
-              counter
-              clearable
-              class="text-grey-darken-4"
-              variant="outlined"
-            ></v-text-field>
-          </v-col>
-        </v-row>
-
-        <v-card class="pt-8">
-          <v-container fluid>
-          <v-row id="inputResponsivo" class="d-flex justify-center ml-12">
-            <v-col class="d-flex align-center">Domingo</v-col>
-            <v-col class="d-flex align-center">Segunda</v-col>
-            <v-col class="d-flex align-center">Terça</v-col>
-            <v-col class="d-flex align-center">Quarta</v-col>
-            <v-col class="d-flex align-center">Quinta</v-col>
-            <v-col class="d-flex align-center">Sexta</v-col>
-            <v-col class="d-flex align-center">Sábado</v-col>
-          </v-row>
-
-          <v-row id="inputResponsivo" class="d-flex justify-center ml-12">
-            <v-col class="d-flex align-center">
-              <v-checkbox v-model="domingo"></v-checkbox>
-            </v-col>
-            <v-col class="d-flex align-center">
-              <v-checkbox v-model="segunda"></v-checkbox>
-            </v-col>
-            <v-col class="d-flex align-center">
-              <v-checkbox v-model="terca"></v-checkbox>
-            </v-col>
-            <v-col class="d-flex align-center">
-              <v-checkbox v-model="quarta"></v-checkbox>
-            </v-col>
-            <v-col class="d-flex align-center">
-              <v-checkbox v-model="quinta"></v-checkbox>
-            </v-col>
-            <v-col class="d-flex align-center">
-              <v-checkbox v-model="sexta"></v-checkbox>
-            </v-col>
-            <v-col class="d-flex align-center">
-              <v-checkbox v-model="sabado"></v-checkbox>
-            </v-col>
-          </v-row>
-          </v-container>
-        </v-card>
-
         <div class="d-flex justify-center">
           <v-row class="d-flex justify-center">
             <v-col cols="6" md="3">
@@ -184,17 +117,6 @@ export default {
       turno: null,
       qtdVagas: null,
       situacao: null,
-      descricaoVaga: null,
-      inicioEstagio: null,
-      fimEstagio: null,
-
-      domingo: false,
-      segunda: false,
-      terca: false,
-      quarta: false,
-      quinta: false,
-      sexta: false,
-      sabado: false,
     };
   },
   methods: {
@@ -218,12 +140,10 @@ export default {
       if (this.$refs.form.validate()) {
         try {
           const data = {
-            estagiario: this.estagiario,
             setor: this.setor,
             turno: this.turno,
             qtdVagas: this.qtdVagas,
             situacao: this.situacao,
-            descricaoVaga: this.descricaoVaga,
           };
 
           const url = import.meta.env.VITE_BACKEND_URL + "/instituicaoEnsino";
