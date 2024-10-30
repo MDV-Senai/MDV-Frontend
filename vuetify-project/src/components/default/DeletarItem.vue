@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import axios from "axios"; // Adicionando a importação do Axios
+import axios from "axios";
 import Swal from "sweetalert2";
 
 export default {
@@ -57,7 +57,6 @@ export default {
           window.location.reload();
         });
         }
-        location.reload();
       } catch (error) {
         Swal.fire({
           title: "Erro ao deletar item!",
