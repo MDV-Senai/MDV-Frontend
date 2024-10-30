@@ -49,3 +49,17 @@ export async function cadastrarInstituicaoEnsino(data) {
     return null;
   }
 }
+
+export async function updateInstituicaoEnsino(instId, instituicaoData) {
+  try {
+      const response = await axios.patch(
+          `${import.meta.env.VITE_BACKEND_URL}/instituicao-ensino/${instId}`,
+          instituicaoData
+      );
+
+      return response.data;
+  } catch (error) {
+      console.error("Erro ao atualizar instituicao:", error);
+      return null;
+  }
+}

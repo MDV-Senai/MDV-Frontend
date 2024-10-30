@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import axios from "axios"; // Adicionando a importação do Axios
+import axios from "axios";
 import Swal from "sweetalert2";
 
 export default {
@@ -52,9 +52,11 @@ export default {
           Swal.fire({
             title: "Item deletado com sucesso!",
             icon: "success",
-          });
+            confirmButtonText: "Ok",
+          }).then(() => {
+          window.location.reload();
+        });
         }
-        location.reload();
       } catch (error) {
         Swal.fire({
           title: "Erro ao deletar item!",

@@ -34,8 +34,8 @@
             <td class="text-left">{{ item.email }}</td>
             <td class="text-center">
               <VisualizarConcedente :concId="item.id"/>
-              <EditarInstituicao />
-              <DeletarItem />
+              <EditarConcedente :concId="item.id"/>
+              <DeletarItem :itemKey="'organizacao-concedente'" :id="item.id" />
             </td>
           </tr>
         </tbody>
