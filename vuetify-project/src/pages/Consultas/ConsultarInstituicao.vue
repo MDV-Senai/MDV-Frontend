@@ -31,7 +31,7 @@
           <tr v-for="item in instituicaoPaginada" :key="item.id">
             <td class="text-left">{{ item.nomeFantasia }}</td>
             <td class="text-left">{{ item.responsavelLegal }}</td>
-            <td class="text-left">{{ item.responsavelContato }}</td>
+            <td class="text-left">{{ item.email }}</td>
             <td class="text-center">
               <VisualizarInstituicao :instId="item.id"/>
               <EditarInstituicao :instId="item.id" />
