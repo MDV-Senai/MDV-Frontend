@@ -165,6 +165,7 @@ import {
   fetchConcedentePorId,
   updateConcedente,
 } from "../../../services/OrganizacaoService";
+import Swal from "sweetalert2";
 
 export default {
   props: {
@@ -195,6 +196,14 @@ export default {
       if (response) {
         organizacao.value = response;
         isDialogActive.value = false;
+        Swal.fire({
+          title: "Atualização bem-sucedida!",
+          text: "A organização foi atualizada com sucesso.",
+          icon: "success",
+          confirmButtonText: "Ok",
+        }).then(() => {
+          window.location.reload();
+        });
       } else {
         console.error("Erro ao atualizar organização.");
       }

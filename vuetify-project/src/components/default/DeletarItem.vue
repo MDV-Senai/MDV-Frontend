@@ -52,7 +52,10 @@ export default {
           Swal.fire({
             title: "Item deletado com sucesso!",
             icon: "success",
-          });
+            confirmButtonText: "Ok",
+          }).then(() => {
+          window.location.reload();
+        });
         }
         location.reload();
       } catch (error) {
