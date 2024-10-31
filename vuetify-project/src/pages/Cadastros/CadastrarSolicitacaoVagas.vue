@@ -23,7 +23,7 @@
           </v-col>
         </v-row>
         <v-row class="d-flex justify-center">
-          <v-col cols="12" md="6">
+          <v-col cols="12" md="4">
             <v-select
               v-model="setor"
               :items="estagiarios"
@@ -35,16 +35,29 @@
               readonly
             ></v-select>
           </v-col>
-          <v-col cols="12" md="6">
+          <v-col cols="12" md="4">
             <v-select
               label="Turno"
               v-model="turno"
               :rules="[rules.required]"
               clearable
-              :items="['Matutino', 'Vespertino', 'Noturno', 'Integral']"
+              :items="['Matutino', 'Vespertino', 'Noturno']"
               class="text-grey-darken-4"
               variant="outlined"
             ></v-select>
+          </v-col>
+          <v-col cols="12" md="4">
+            <v-number-input
+              label="Quantidade de Vagas"
+              v-model="qtdVagas"
+              :rules="[rules.required]"
+              :min="0"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-number-input>
           </v-col>
         </v-row>
 
@@ -54,7 +67,7 @@
               label="Data de Início do Período"
               type="date"
               :rules="[rules.required]"
-              v-model="inicioEstagioPrimeiro"
+              v-model="inicioEstagio"
               maxlength="10"
               counter
               clearable
@@ -67,7 +80,7 @@
               label="Data Final do Período"
               type="date"
               :rules="[rules.required]"
-              v-model="fimEstagioPrimeiro"
+              v-model="fimEstagio"
               maxlength="10"
               counter
               clearable
@@ -138,6 +151,7 @@
                 width="183"
                 height="62"
                 id="botaoEntrar"
+                @click="enviarDados"
               >
                 Cadastrar
 
@@ -158,6 +172,8 @@
 
 <script>
 import axios from "axios";
+import Swal from "sweetalert2";
+import { cadastrarSolcitacaoVagas } from '../../services/VagasService';
 export default {
   data() {
     return {
@@ -204,18 +220,26 @@ export default {
       if (this.$refs.form.validate()) {
         try {
           const data = {
-            estagiario: this.estagiario,
-            setor: this.setor,
-            turno: this.turno,
-            qtdVagas: this.qtdVagas,
-            situacao: this.situacao,
-            descricaoVaga: this.descricaoVaga,
+            cursoHomologadoId: '537f3468-4eb8-49ad-b3a1-26bec5537781',//this.cursoSolicitado,
+            setorId: 'fcb32d77-cf4c-4712-a8f2-542d19652e98',//this.setor,
+            instEnsinoId: 'b031d21a-cfc5-45f4-a005-3a61f337ee95',
+            quantidadeVagas: this.qtdVagas,
+            periodo: this.turno,
+            dataInicio: this.inicioEstagio,
+            dataFim: this.fimEstagio,
           };
 
-          const url = import.meta.env.VITE_BACKEND_URL + "/instituicaoEnsino";
-          console.log(url);
+          console.log(data);
 
-          const req = await axios.post(url, data);
+          const response = await cadastrarSolcitacaoVagas(data);
+
+          if (response) {
+            Swal.fire({
+              title: "Cadastro Realizado com Sucesso!",
+              icon: "success",
+            });
+            this.$refs.form.reset();
+          }
 
           console.log("Resposta: ", req);
         } catch (error) {
