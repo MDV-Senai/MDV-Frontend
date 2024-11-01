@@ -24,16 +24,16 @@
             <th class="text-left">Setor</th>
             <th class="text-left">Turno</th>
             <th class="text-left">Situação</th>
-            <th class="text-left">Quantidade</th>
+            <!-- <th class="text-left">Quantidade</th> -->
             <th class="text-center">Ações</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="item in vagaPaginada" :key="item.id">
-            <td class="text-left">{{ item.setor }}</td>
-            <td class="text-left">{{ item.turno }}</td>
-            <td class="text-left">{{ item.situacao }}</td>
-            <td class="text-left">{{ item.quantidade }}</td>
+          <tr v-for="item in vagas" :key="item.id">
+            <td class="text-left">{{ item.setor.nomeSetor }}</td>
+            <td class="text-left">{{ item.periodo }}</td>
+            <td class="text-left">{{ item.status }}</td>
+            <!-- <td class="text-left">{{ item.quantidade }}</td> -->
             <td class="text-center">
               <VisualizarVaga />
               <EditarVaga />
@@ -66,37 +66,33 @@ export default {
     const setor = ref("");
     const pagina = ref(1);
     const itensPorPagina = ref(10);
-    const vagasFiltradas = ref([]);
 
     const loadVagas = async () => {
       const response = await fetchVagas();
       vagas.value = response;
-      vagasFiltradas.value = response;
     };
 
     const pesquisarVagas = () => {
       if (setor.value) {
-        vagasFiltradas.value = vagas.value.filter((vaga) =>
-          vaga.setor.toLowerCase().includes(setor.value.toLowerCase())
+        return vagas.value.filter((vaga) =>
+          vaga.setor.nomeSetor.toLowerCase().includes(setor.value.toLowerCase())
         );
-      } else {
-        vagasFiltradas.value = vagas.value;
-      }
-      pagina.value = 1;
+      } 
+      return vagas.value;
     };
 
     const totalPaginas = computed(() => {
-      return Math.ceil(vagasFiltradas.value.length / itensPorPagina.value);
+      return Math.ceil(pesquisarVagas().length / itensPorPagina.value);
     });
 
     const vagaPaginada = computed(() => {
       const start = (pagina.value - 1) * itensPorPagina.value;
       const end = start + itensPorPagina.value;
-      return vagasFiltradas.value.slice(start, end);
+      return pesquisarVagas().slice(start, end);
     });
 
-    watch(setor, (newValue) => {
-      pesquisarVagas();
+    watch(setor, () => {
+      pagina.value = 1;
     });
 
     onMounted(() => {
@@ -110,6 +106,7 @@ export default {
       itensPorPagina,
       totalPaginas,
       vagaPaginada,
+      vagas
     };
   },
 };
