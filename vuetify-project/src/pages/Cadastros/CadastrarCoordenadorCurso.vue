@@ -143,12 +143,15 @@ export default {
   },
   methods: {
     async enviarDados() {
+
+      const removeMascara = (valor) => valor ? valor.replace(/\D/g, '') : '';
+
       if (this.$refs.form.validate()) {
         const data = {
           nome: this.nomeCoordenadorCurso,
           nomeSocial: this.nomeSocialCoordenadorCurso,
           email: this.email,
-          fone: this.telefone,
+          fone: removeMascara(this.telefone),
           idInstituicaoEnsino: 'b031d21a-cfc5-45f4-a005-3a61f337ee95',
         };
 
