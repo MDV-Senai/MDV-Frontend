@@ -33,7 +33,7 @@ export async function fetchInstituicoesPorId(instId) {
 
 export async function cadastrarInstituicaoEnsino(data) {
   try {
-    const url = import.meta.env.VITE_BACKEND_URL + "/instituicaoEnsino";
+    const url = import.meta.env.VITE_BACKEND_URL + "/instituicao-ensino";
 
     const token = sessionStorage.getItem("authToken");
 

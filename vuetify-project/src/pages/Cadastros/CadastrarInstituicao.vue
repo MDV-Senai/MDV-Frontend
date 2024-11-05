@@ -381,8 +381,7 @@ export default {
     },
 
     async enviarDados() {
-
-      const removeMascara = (valor) => valor ? valor.replace(/\D/g, '') : '';
+      const removeMascara = (valor) => (valor ? valor.replace(/\D/g, "") : "");
 
       if (this.$refs.form.validate()) {
         const data = {
@@ -403,20 +402,15 @@ export default {
           responsavelLegalContato: removeMascara(this.contatoRespLegal),
         };
 
-        console.log(data);
-        const url = import.meta.env.VITE_BACKEND_URL + "/instituicao-ensino";
-        console.log(url);
+        const response = await cadastrarInstituicaoEnsino(data);
 
-        const token = sessionStorage.getItem("authToken");
-        console.log(token);
-
-        const req = await axios.post(url, data, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        console.log("Resposta: ", req);
+        if (response) {
+          Swal.fire({
+            title: "Cadastro Realizado com Sucesso!",
+            icon: "success",
+          });
+          this.$refs.form.reset();
+        }
       }
     },
 
