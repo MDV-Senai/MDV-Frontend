@@ -241,7 +241,7 @@ export default {
             nomeSocialCoordenador: this.nomeSocialCoordenador,
             telefoneCoordenador: removeMascara(this.telefoneCoordenador),
             emailCoordenador: this.emailCoordenador,
-            vagasTotais: this.numeroVagas,
+            vagasTotais: parseInt(this.numeroVagas),
           };
 
           const response = await cadastrarSetor(data);
