@@ -1,20 +1,20 @@
 import axios from "axios";
 
-export async function fetchVagas() {
+export async function fetchVagas(pagina, itensPorPagina) {
   try {
-    const url = import.meta.env.VITE_BACKEND_URL + "/solicitacao-vaga";
-
-    const token = sessionStorage.getItem("authToken");
-
-    const req = await axios.get(url, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return req.data.data;
+      const response = await axios.get(
+          `${import.meta.env.VITE_BACKEND_URL}/vaga`,
+          {
+              params: {
+                  page: pagina,
+                  limit: itensPorPagina
+              }
+          }
+      );
+      return response.data;
   } catch (error) {
-    console.error("Erro ao buscar vagas:", error);
-    return null;
+      console.error("Erro ao buscar vagas:", error);
+      return null;
   }
 }
 
