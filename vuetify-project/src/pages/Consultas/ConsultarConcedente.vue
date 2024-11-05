@@ -68,7 +68,6 @@ export default {
     const loadOrg = async () => {
       const response = await fetchOrganizacaoConcedente(pagina.value, itensPorPagina);
       organizacoes.value = response.data;
-      console.log(organizacoes.value)
       totalPaginas.value = Math.ceil(response.total / itensPorPagina);
     };
 
