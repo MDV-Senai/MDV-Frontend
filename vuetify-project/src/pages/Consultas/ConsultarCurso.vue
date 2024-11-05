@@ -34,8 +34,8 @@
             <td class="text-left">Homologado</td>
             <td class="text-center">
               <VisualizarCurso :cursoId="item.id"/>
-              <EditarCurso />
-              <DeletarItem />
+              <EditarCurso :cursoId="item.id" />
+              <DeletarItem :itemKey="'curso-homologado'" :id="item.id" />
             </td>
           </tr>
         </tbody>
@@ -85,7 +85,7 @@ export default {
     const cursoPaginado = computed(() => {
       const start = (pagina.value - 1) * itensPorPagina.value;
       const end = start + itensPorPagina.value;
-      return pesquisarCurso().slice(start, end); 
+      return pesquisarCurso().slice(start, end);
     });
 
     watch(nome, () => {

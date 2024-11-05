@@ -2,12 +2,13 @@
   <v-main id="imagem">
     <Header />
     <div class="d-flex justify-center align-center">
-      <v-card class="d-flex justify-center align-center" id="card_titulo"
-        ><h3>Cadastro de Estagiário</h3></v-card
-      >
+      <v-card class="d-flex justify-center align-center" id="card_titulo">
+        <h3>Cadastro de Estagiário</h3>
+      </v-card>
     </div>
     <div id="fundoCards">
       <v-form ref="form" id="form" class="mx-auto">
+        <!-- Campos do formulário -->
         <v-row class="d-flex justify-center mt-8">
           <v-col cols="12" md="12">
             <v-text-field
@@ -34,8 +35,7 @@
               class="text-grey-darken-4"
               variant="outlined"
               v-show="isVisible"
-            >
-            </v-text-field>
+            ></v-text-field>
           </v-col>
         </v-row>
 
@@ -91,6 +91,7 @@
             ></v-text-field>
           </v-col>
         </v-row>
+
         <v-row id="inputResponsivo" class="d-flex justify-center">
           <v-col cols="12" md="3">
             <v-text-field
@@ -158,29 +159,30 @@
             ></v-text-field>
           </v-col>
         </v-row>
-
         <v-row id="inputResponsivo" class="d-flex justify-center">
           <v-col cols="12" md="4">
-            <v-text-field
+            <v-autocomplete
               label="Instituição De Ensino"
               :rules="[rules.required]"
               v-model="instituicaoEnsino"
-              maxlength="255"
-              counter
-              clearable
               class="text-grey-darken-4"
               variant="outlined"
-            ></v-text-field>
+              :items="instituicoes"
+              item-title="nomeFantasia"
+              item-value="id"
+              @input="onInstituicaoChange"
+            ></v-autocomplete>
           </v-col>
           <v-col cols="6" md="4">
             <v-autocomplete
               v-model="idCurso"
               label="Curso"
+              :rules="[rules.required]"
               class="text-grey-darken-4"
               variant="outlined"
               :items="cursos"
-              :item-title="'nomeCurso'"
-              :item-value="'idCurso'"
+              :item-title="'cursoHomologado.nomeCurso'"
+              :item-value="'id'"
             ></v-autocomplete>
           </v-col>
           <v-col cols="6" md="4">
@@ -196,58 +198,43 @@
             ></v-text-field>
           </v-col>
         </v-row>
+
         <v-row id="inputResponsivo" class="d-flex justify-center">
-          <v-col cols="12" md="3">
-            <v-text-field
-              label="Número da apólice"
-              :rules="[rules.required]"
-              v-model="numeroApolice"
-              maxlength="15"
-              counter
-              clearable
-              class="text-grey-darken-4"
-              variant="outlined"
-            ></v-text-field>
-          </v-col>
-          <v-col cols="6" md="3">
-            <v-text-field
-              label="Data inicio da vigência"
-              :rules="[rules.required]"
-              type="date"
-              v-model="dataInicioVigencia"
-              maxlength="255"
-              counter
-              clearable
-              class="text-grey-darken-4"
-              variant="outlined"
-            ></v-text-field>
-          </v-col>
-          <v-col cols="6" md="3">
-            <v-text-field
-              label="Data final da vigência"
-              :rules="[rules.required]"
-              type="date"
-              v-model="dataFinalVigencia"
-              maxlength="255"
-              counter
-              clearable
-              class="text-grey-darken-4"
-              variant="outlined"
-            ></v-text-field>
-          </v-col>
-          <v-col cols="12" md="3">
+          <v-col cols="12" md="4">
             <v-file-input
               label="Apólice"
               :rules="[rules.fileSize]"
               v-model="apoliceFile"
               ref="apolice"
-              accept=".pdf, .jpg, .jpeg, .png"
+              accept=".pdf"
               clearable
               class="text-grey-darken-4"
               variant="outlined"
             ></v-file-input>
           </v-col>
+          <v-col cols="12" md="4">
+            <v-text-field
+              label="Número da apólice"
+              :rules="[rules.fileSize]"
+              v-model="numeroApolice"
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12" md="4">
+            <v-text-field
+              label="Data Fim da Apólice"
+              type="date"
+              :rules="[rules.required]"
+              v-model="dataFimApolice"
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
         </v-row>
+
         <v-row id="inputResponsivo" class="d-flex justify-center">
           <v-col cols="12" md="12">
             <v-text-field
@@ -279,6 +266,7 @@
             ></v-text-field>
           </v-col>
         </v-row>
+
         <v-row>
           <v-col cols="12" md="12">
             <v-text-field
@@ -293,6 +281,7 @@
             ></v-text-field>
           </v-col>
         </v-row>
+
         <v-row>
           <v-col cols="6" md="4">
             <v-text-field
@@ -318,6 +307,7 @@
             ></v-text-field>
           </v-col>
         </v-row>
+
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="12">
             <v-text-field
@@ -332,6 +322,7 @@
             ></v-text-field>
           </v-col>
         </v-row>
+
         <v-row>
           <v-col cols="6" md="8">
             <v-text-field
@@ -348,7 +339,6 @@
           <v-col cols="6" md="4">
             <v-select
               v-model="uf"
-              :items="ufs"
               :item-title="'uf'"
               :item-value="'id'"
               :rules="[rules.required]"
@@ -386,27 +376,22 @@
                 @click="enviarDados"
               >
                 Cadastrar
-
-                <template v-slot:append>
-                  <v-icon class="text-grey-darken-4"></v-icon>
-                </template>
               </v-btn>
             </v-col>
           </v-row>
         </div>
       </v-form>
     </div>
-
   </v-main>
 </template>
 
 <script>
-import axios from "axios";
-import { emailValidation, fullNameValidation, fileSizeValidation} from "@/validations/formValidations";
+import { emailValidation, fullNameValidation, fileSizeValidation } from "@/validations/formValidations";
 import { buscaCep } from "@/util/buscaCep";
 import { fetchCursos } from "../../services/CursosService.js";
 import Swal from "sweetalert2";
 import { cadastrarEstagiario } from "../../services/EstagiariosService.js";
+import { fetchInstituicoes } from "@/services/InstituicoesService.js";
 
 export default {
   data() {
@@ -423,11 +408,11 @@ export default {
       numeroContatoEmerg: null,
       nomeContatoEmerg: null,
       numeroApolice: null,
-      dataInicioVigencia: null,
-      dataFinalVigencia: null,
       apoliceFile: null,
+      dataFimApolice: null,
       instituicaoEnsino: null,
       cursos: [],
+      instituicoes: [],
       periodo: null,
       nomeProfessorResp: null,
       cep: null,
@@ -438,10 +423,9 @@ export default {
       cidade: null,
       bairro: null,
       logradouro: null,
-      enableSocialName: false,
+      instEnsinoId: null,
       rules: {
         required: (value) => !!value || "Obrigatório.",
-        hidden: (value) => hiddenSocialName(value),
         email: (value) => emailValidation(value),
         fullname: (value) => fullNameValidation(value),
         fileSize: () => fileSizeValidation(this.$refs.apolice.files[0]),
@@ -477,16 +461,15 @@ export default {
           rua: this.logradouro,
           bairro: this.bairro,
           complemento: this.complemento,
-          cursoId: '537f3468-4eb8-49ad-b3a1-26bec5537781',
-          instEnsinoId: 'b031d21a-cfc5-45f4-a005-3a61f337ee95',
-	        numeroApolice: this.numeroApolice,
-	        // dataInicioVigencia: this.dataInicioVigencia,
-	        dataFimApolice: this.dataFinalVigencia,
-	        file: this.$refs.apolice.files[0]
+          cursoId: this.idCurso,
+          instEnsinoId: this.instituicaoEnsino,
+          numeroApolice: this.numeroApolice,
+          dataFimApolice: new Date(this.dataFimApolice).toISOString(),
+          file: this.$refs.apolice.files[0]
         };
 
         console.log(data);
-        
+
         const response = await cadastrarEstagiario(data);
 
         if (response) {
@@ -499,19 +482,41 @@ export default {
       }
     },
 
-    async loadCursos() {
-      const response = await fetchCursos();
-      console.log(response);
-      this.cursos = response;
+    async listarCursosInstituicaoId(instId) {
+      if (instId) {
+        const response = await fetchCursos(instId);
+        this.cursos = response.cursos;
+        console.log(this.cursos);
+      }
+    },
+
+    async loadInstituicaoEnsino() {
+      const response = await fetchInstituicoes();
+      this.instituicoes = response;
+      console.log(this.instituicoes);
+    },
+
+    onInstituicaoChange(selectedItem) {
+
+      console.log('Instituição selecionada (via método):', selectedItem);
     },
 
     reset() {
       this.$refs.form.reset();
     },
   },
+
   mounted() {
-    this.loadCursos();
+    this.loadInstituicaoEnsino();
   },
+
+  watch: {
+    instituicaoEnsino(newValue, oldValue) {
+      if (newValue !== oldValue) {
+        this.listarCursosInstituicaoId(newValue)
+      }
+    }
+  }
 };
 </script>
 

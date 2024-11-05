@@ -24,12 +24,13 @@ export async function cadastrarEstagiario(data) {
   try {
     const url = import.meta.env.VITE_BACKEND_URL + "/aluno";
 
-    let token = sessionStorage.getItem("authToken");
+    console.log('Dados enviados:', data.file);
+    console.log('URL:', url);
 
     const req = await axios.post(url, data, {
       headers: {
-        Authorization: `Bearer ${token}`,
-      },
+        'Content-Type': 'multipart/form-data'
+      }
     });
     return req;
   } catch (error) {
@@ -48,3 +49,16 @@ export async function fetchEstagiarioPorId(estgId) {
     return null;
   }
 }
+
+export async function atualizarEstagiarioPorId(estgId, data) {
+  try {
+    const url = import.meta.env.VITE_BACKEND_URL + "/aluno/" + estgId;
+    const response = await axios.patch(url, data);
+
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar estagiario:", error);
+    return null;
+  }
+}
+

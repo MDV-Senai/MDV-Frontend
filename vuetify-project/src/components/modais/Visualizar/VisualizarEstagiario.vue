@@ -27,7 +27,7 @@
             <v-col cols="12">
               <v-text-field
                 v-model="estagiario.nomeSocial"
-                placeholder="Nome social"
+                placeholder="Nome Social"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
                 readonly
@@ -38,7 +38,7 @@
             <v-col cols="12" md="6">
               <v-text-field
                 v-model="estagiario.documento"
-                placeholder="documento"
+                placeholder="Documento"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
                 readonly
@@ -47,7 +47,7 @@
             <v-col cols="12" md="6">
               <v-text-field
                 v-model="estagiario.dataNascimento"
-                placeholder="Data Nascimento"
+                placeholder="Data de Nascimento"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
                 readonly
@@ -87,7 +87,7 @@
             <v-col cols="12" md="6">
               <v-text-field
                 v-model="estagiario.matricula"
-                placeholder="matricula"
+                placeholder="Matrícula"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
                 readonly
@@ -98,7 +98,7 @@
             <v-col cols="12" md="6">
               <v-text-field
                 v-model="estagiario.nomeContatoEmergencia"
-                placeholder="Nome Contato Emergencia"
+                placeholder="Nome Contato Emergência"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
                 readonly
@@ -107,7 +107,7 @@
             <v-col cols="12" md="6">
               <v-text-field
                 v-model="estagiario.contatoEmergencia"
-                placeholder="contato Emergencia"
+                placeholder="Contato Emergência"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
                 readonly
@@ -118,7 +118,7 @@
             <v-col cols="12" md="4">
               <v-text-field
                 v-model="estagiario.cep"
-                placeholder="rua"
+                placeholder="CEP"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
                 readonly
@@ -127,7 +127,7 @@
             <v-col cols="12" md="4">
               <v-text-field
                 v-model="estagiario.rua"
-                placeholder="rua"
+                placeholder="Rua"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
                 readonly
@@ -136,7 +136,7 @@
             <v-col cols="12" md="4">
               <v-text-field
                 v-model="estagiario.numeroResidencia"
-                placeholder="Numero Residencia"
+                placeholder="Número Residência"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
                 readonly
@@ -147,7 +147,7 @@
             <v-col cols="12" md="4">
               <v-text-field
                 v-model="estagiario.complemento"
-                placeholder="complemento"
+                placeholder="Complemento"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
                 readonly
@@ -156,7 +156,7 @@
             <v-col cols="12" md="4">
               <v-text-field
                 v-model="estagiario.bairro"
-                placeholder="bairro"
+                placeholder="Bairro"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
                 readonly
@@ -165,11 +165,30 @@
             <v-col cols="12" md="4">
               <v-text-field
                 v-model="estagiario.cidade"
-                placeholder="cidade"
+                placeholder="Cidade"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
                 readonly
               ></v-text-field>
+            </v-col>
+          </v-row>
+          <v-row class="mx-5 my-5">
+            <v-col cols="12" md="8">
+              <v-text-field
+                v-model="estagiario.uf"
+                placeholder="UF"
+                class="text-grey-darken-1"
+                color="grey-darken-4"
+                readonly
+              ></v-text-field>
+            </v-col>
+            <v-col cols="12" md="4">
+
+                <a :href="urlApoliceLink" target="_blank" class="text-grey-darken-1"
+                  color="grey-darken-4">
+                    Visualizar apólice
+                </a>
+              
             </v-col>
           </v-row>
         </v-card-text>
@@ -181,6 +200,7 @@
     </template>
   </v-dialog>
 </template>
+
 
 <script>
 import { ref, onMounted } from "vue";
@@ -195,6 +215,7 @@ export default {
   },
   setup(props) {
     const estagiario = ref({});
+    const urlApoliceLink = import.meta.env.VITE_BACKEND_URL + "/aluno/" + props.estgId + "/apolice"
 
     const loadEstagiario = async () => {
       const response = await fetchEstagiarioPorId(props.estgId);
@@ -211,6 +232,7 @@ export default {
 
     return {
       estagiario,
+      urlApoliceLink
     };
   },
 };
