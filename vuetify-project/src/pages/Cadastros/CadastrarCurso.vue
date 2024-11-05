@@ -12,7 +12,7 @@
           <v-col cols="12" md="12">
             <v-text-field
               label="Nome do Curso"
-              v-model="curso"
+              v-model="nomeCurso"
               :rules="[rules.required]"
               maxlength="255"
               counter
@@ -22,7 +22,6 @@
             ></v-text-field>
           </v-col>
         </v-row>
-
         <div class="d-flex justify-center">
           <v-row class="d-flex justify-center">
             <v-col cols="6" md="3">
@@ -37,7 +36,6 @@
                 Limpar
               </v-btn>
             </v-col>
-
             <v-col cols="6" md="3">
               <v-btn
                 append-icon="mdi-chevron-right"
@@ -62,53 +60,28 @@
         </div>
       </v-form>
     </div>
-    
+
   </v-main>
 </template>
 
 <script>
-import axios from "axios";
-import {
-  emailValidation,
-  fullNameValidation
-} from "@/validations/formValidations";
 import { cadastrarCurso } from "../../services/CursosService.js";
 import Swal from 'sweetalert2'
 export default {
   data() {
     return {
-      curso: null,
-      nomeCoordenadorCurso: null,
-      nomeSocialCoordenadorCurso: null,
-      email: null,
-      telefone: null,
-      celular: null,
-      selectedInstituicao: null,
-      cargaHorariaEstagio: null,
-      cargaHorariaCurso: null,
+      nomeCurso: null,
       rules: {
         required: (value) => !!value || "Obrigatório.",
-        email: (value) => emailValidation(value),
-        fullname: (value) => fullNameValidation(value),
       },
-      listaInstituicao: [],
     };
   },
-  watch: {
-    cargaHorariaEstagio(newVal) {
-      // Converte a string para inteiro
-      this.cargaHorariaEstagio = parseInt(newVal, 10);
-    },
-    cargaHorariaCurso(newVal) {
-      // Converte a string para inteiro
-      this.cargaHorariaCurso = parseInt(newVal, 10);
-    },
-  },
+
   methods: {
     async enviarDados() {
       if (this.$refs.form.validate()) {
         const data = {
-          nomeCurso: this.curso,
+          nomeCurso: this.nomeCurso,
         };
 
         const response = await cadastrarCurso(data);

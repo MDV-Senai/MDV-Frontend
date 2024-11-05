@@ -46,8 +46,8 @@ export default {
     async deletarItem(isActive) {
       try {
         const url = `${import.meta.env.VITE_BACKEND_URL}/${this.itemKey}/${this.id}`;
+        console.log(url)
         const response = await axios.delete(url);
-
         if (response.status === 200) {
           Swal.fire({
             title: "Item deletado com sucesso!",

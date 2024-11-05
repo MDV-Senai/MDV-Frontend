@@ -103,7 +103,7 @@
         </div>
       </v-form>
     </div>
-    
+
   </v-main>
 </template>
 
@@ -149,7 +149,7 @@ export default {
           nomeSocial: this.nomeSocialCoordenadorCurso,
           email: this.email,
           fone: this.telefone,
-          idInstituicaoEnsino: 'b031d21a-cfc5-45f4-a005-3a61f337ee95',
+          idInstituicaoEnsino: '63e616ec-85c9-4cca-bd72-5b975b7a75f7',
         };
 
         const response = await cadastrarCoordenadorCurso(data);
