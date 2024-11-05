@@ -1,22 +1,20 @@
 import axios from "axios";
 
-export async function fetchInstituicoes() {
+export async function fetchInstituicoes(pagina, itensPorPagina) {
   try {
-    let token = sessionStorage.getItem("authToken");
-
-    const response = await axios.get(
-      import.meta.env.VITE_BACKEND_URL + "/instituicao-ensino",
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-
-    return response.data.data;
+      const response = await axios.get(
+          `${import.meta.env.VITE_BACKEND_URL}/instituicao-ensino`,
+          {
+              params: {
+                  page: pagina,
+                  limit: itensPorPagina
+              }
+          }
+      );
+      return response.data;
   } catch (error) {
-    console.error("Erro ao buscar instituições:", error);
-    return null;
+      console.error("Erro ao buscar instituições:", error);
+      return null;
   }
 }
 
