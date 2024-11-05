@@ -35,7 +35,7 @@
             <td class="text-center">
               <VisualizarVaga />
               <EditarVaga />
-              <DeletarItem />
+              <DeletarItem :itemKey="'vaga'" :id="item.id" />
             </td>
           </tr>
         </tbody>
