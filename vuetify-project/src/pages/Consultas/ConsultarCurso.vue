@@ -28,7 +28,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="item in cursoPaginado" :key="item.id">
+          <tr v-for="item in cursos" :key="item.id">
             <td class="text-left">{{ item.id }}</td>
             <td class="text-left">{{ item.nomeCurso }}</td>
             <td class="text-left">Homologado</td>
@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import { ref, computed, onMounted, watch } from "vue";
+import { ref, onMounted, watch } from "vue";
 import { useResponsiveHeight } from "../../composables/useResponsiveHeight.js";
 import { fetchCursos } from "../../services/CursosService.js";
 
@@ -60,49 +60,29 @@ export default {
   setup() {
     const { height } = useResponsiveHeight();
     const cursos = ref([]);
-    const nome = ref("");
     const pagina = ref(1);
-    const itensPorPagina = ref(10);
+    const itensPorPagina = 10;
+    const totalPaginas = ref(1);
 
     const loadCursos = async () => {
-      const response = await fetchCursos();
-      cursos.value = response;
+      const response = await fetchCursos(pagina.value, itensPorPagina);
+      cursos.value = response.data;
+      totalPaginas.value = Math.ceil(response.total / itensPorPagina);
     };
-
-    const pesquisarCurso = () => {
-      if (nome.value) {
-        return cursos.value.filter((curso) =>
-          curso.nomeCurso.toLowerCase().includes(nome.value.toLowerCase())
-        );
-      }
-      return cursos.value;
-    };
-
-    const totalPaginas = computed(() => {
-      return Math.ceil(pesquisarCurso().length / itensPorPagina.value);
-    });
-
-    const cursoPaginado = computed(() => {
-      const start = (pagina.value - 1) * itensPorPagina.value;
-      const end = start + itensPorPagina.value;
-      return pesquisarCurso().slice(start, end); 
-    });
-
-    watch(nome, () => {
-      pagina.value = 1;
-    });
 
     onMounted(() => {
       loadCursos();
     });
 
+    watch(pagina, () => {
+      loadCursos();
+    });
+
     return {
       height,
-      nome,
+      cursos,
       pagina,
-      itensPorPagina,
-      totalPaginas,
-      cursoPaginado,
+      totalPaginas
     };
   },
 };
