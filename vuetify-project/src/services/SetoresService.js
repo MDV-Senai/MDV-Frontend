@@ -1,13 +1,20 @@
 import axios from "axios";
 
-export async function fetchSetores() {
+export async function fetchSetores(pagina, itensPorPagina) {
   try {
-    const response = await axios.get(import.meta.env.VITE_BACKEND_URL + "/setor",);
-
-    return response.data.data;
+      const response = await axios.get(
+          `${import.meta.env.VITE_BACKEND_URL}/setor`,
+          {
+              params: {
+                  page: pagina,
+                  limit: itensPorPagina
+              }
+          }
+      );
+      return response.data;
   } catch (error) {
-    console.error("Erro ao buscar setores:", error);
-    return null;
+      console.error("Erro ao buscar setores:", error);
+      return null;
   }
 }
 

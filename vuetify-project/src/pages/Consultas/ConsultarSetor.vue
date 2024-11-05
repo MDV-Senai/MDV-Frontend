@@ -28,7 +28,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="item in setorPaginado" :key="item.id">
+          <tr v-for="item in setores" :key="item.id">
             <td class="text-left">{{ item.nomeSetor }}</td>
             <td class="text-left">{{ item.nomeCoordenador }}</td>
             <td class="text-left">{{ item.nomeSocialCoordenador }}</td>
@@ -52,61 +52,37 @@
 </template>
 
 <script>
-import { ref, computed, onMounted, watch } from "vue";
+import { ref, onMounted, watch } from "vue";
 import { useResponsiveHeight } from "../../composables/useResponsiveHeight.js";
-import { fetchSetores } from "../../services/SetoresService";
+import { fetchSetores } from "../../services/SetoresService.js";
 
 export default {
   setup() {
     const { height } = useResponsiveHeight();
     const setores = ref([]);
-    const nomeSetor = ref("");
     const pagina = ref(1);
-    const itensPorPagina = ref(10);
-    const setoresFiltrados = ref([]);
+    const itensPorPagina = 10;
+    const totalPaginas = ref(1);
 
-    const loadSetores = async () => {
-      const response = await fetchSetores();
-      setores.value = response;
-      setoresFiltrados.value = response;
+    const loadSetor = async () => {
+      const response = await fetchSetores(pagina.value, itensPorPagina);
+      setores.value = response.data;
+      totalPaginas.value = Math.ceil(response.total / itensPorPagina);
     };
-
-    const pesquisarSetores = () => {
-      if (nomeSetor.value) {
-        setoresFiltrados.value = setores.value.filter((item) =>
-          item.setor.toLowerCase().includes(nomeSetor.value.toLowerCase())
-        );
-      } else {
-        setoresFiltrados.value = setores.value;
-      }
-      pagina.value = 1;
-    };
-
-    const totalPaginas = computed(() => {
-      return Math.ceil(setoresFiltrados.value.length / itensPorPagina.value);
-    });
-
-    const setorPaginado = computed(() => {
-      const start = (pagina.value - 1) * itensPorPagina.value;
-      const end = start + itensPorPagina.value;
-      return setoresFiltrados.value.slice(start, end);
-    });
-
-    watch(nomeSetor, (newValue) => {
-      pesquisarSetores();
-    });
 
     onMounted(() => {
-      loadSetores();
+      loadSetor();
+    });
+
+    watch(pagina, () => {
+      loadSetor();
     });
 
     return {
       height,
-      nomeSetor,
+      setores,
       pagina,
-      itensPorPagina,
-      totalPaginas,
-      setorPaginado,
+      totalPaginas
     };
   },
 };
