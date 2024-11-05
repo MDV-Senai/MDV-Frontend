@@ -174,13 +174,16 @@ export default {
     },
 
     async enviarDados() {
+
+      const removeMascara = (valor) => valor ? valor.replace(/\D/g, '') : '';
+
       if (this.$refs.form.validate()) {
         try {
           const data = {
             nome: this.nome,
             nomeSocial: this.nomeSocial,
             numeroMatriculaEstudante: this.numeroMatriculaEstudante,
-            cpf: this.cpf,
+            cpf: removeMascara(this.cpf),
             instituicaoEnsino: this.instituicaoEnsino,
             curso: this.curso,
           };
