@@ -1,11 +1,11 @@
 import axios from "axios";
 
-export async function fetchCursos() {
+export async function fetchCursos(instId) {
   try {
     let token = sessionStorage.getItem("authToken");
-
+    console.log(instId);
     const response = await axios.get(
-      import.meta.env.VITE_BACKEND_URL + "/curso-homologado?page=1&limit=600",
+      import.meta.env.VITE_BACKEND_URL + "/instituicao-ensino/" + instId,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -13,7 +13,7 @@ export async function fetchCursos() {
       }
     );
 
-    return response.data.data;
+    return response.data;
   } catch (error) {
     console.error("Erro ao buscar cursos:", error);
     return null;
@@ -24,20 +24,24 @@ export async function cadastrarCurso(data) {
   try {
     const url = import.meta.env.VITE_BACKEND_URL + "/curso-homologado";
 
-    const token = sessionStorage.getItem('authToken');
-    console.log(url);
-
-
     console.log(data);
-    const req = await axios.post(url, data, {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    });
+    const req = await axios.post(url, data);
 
     return req;
   } catch (error) {
     console.log('Erro ao cadastrar curso: ' + error);
+  }
+}
+
+export async function atualizarCursoPorId(cursoId, data) {
+  try {
+    const url = `${import.meta.env.VITE_BACKEND_URL}/curso-homologado/${cursoId}`;
+    const req = await axios.patch(url, data);
+
+    return req.data;
+  } catch (error) {
+    console.log('Erro ao atualizar curso: ' + error);
+    throw error;
   }
 }
 

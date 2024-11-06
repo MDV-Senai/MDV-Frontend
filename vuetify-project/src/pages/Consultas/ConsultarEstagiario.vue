@@ -36,8 +36,8 @@
             <td class="text-left">{{ item.email }}</td>
             <td class="text-center">
               <VisualizarEstagiario :estgId="item.id"/>
-              <EditarEstagiario />
-              <DeletarItem />
+              <EditarEstagiario :estgId="item.id"/>
+              <DeletarItem :itemKey="'aluno'" :id="item.id" />
             </td>
           </tr>
         </tbody>
@@ -50,7 +50,7 @@
         ></v-pagination>
       </div>
     </div>
-    
+
   </div>
 </template>
 

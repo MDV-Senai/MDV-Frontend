@@ -12,7 +12,7 @@ export async function cadastrarCoordenadorCurso(data) {
           'Authorization': `Bearer ${token}`
         }
       });
-  
+
       return req;
     } catch (error) {
       console.log('Erro ao cadastrar curso: ' + error);
