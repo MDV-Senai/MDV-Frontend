@@ -23,8 +23,8 @@
           </v-col>
         </v-row>
         <v-row class="d-flex justify-center">
-          <v-col cols="12" md="4">
-            <v-text-field
+           <v-col cols="12" md="12">
+            <v-select
               label="Setor Disponível"
               :rules="[rules.required]"
               v-model="setor"
@@ -33,15 +33,30 @@
               clearable
               class="text-grey-darken-4"
               variant="outlined"
-            ></v-text-field>
+            ></v-select>
+          </v-col>
+        </v-row>
+        <v-row class="d-flex justify-center">
+          <v-col cols="12" md="4">
+            <v-number-input
+              label="Ano"
+              v-model="ano"
+              :rules="[rules.required]"
+              :min="0"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-number-input>
           </v-col>
           <v-col cols="12" md="4">
             <v-select
-              label="Turno Disponível"
-              v-model="turno"
+              label="Semestre"
+              v-model="semestre"
               :rules="[rules.required]"
               clearable
-              :items="['Matutino', 'Vespertino', 'Noturno', 'Integral']"
+              :items="[1, 2]"
               class="text-grey-darken-4"
               variant="outlined"
             ></v-select>
@@ -84,6 +99,7 @@
                 width="183"
                 height="62"
                 id="botaoEntrar"
+                @click="enviarDados"
               >
                 Cadastrar
 
@@ -104,6 +120,8 @@
 
 <script>
 import axios from "axios";
+import Swal from "sweetalert2";
+import { cadastrarVagas } from '../../services/VagasService';
 export default {
   data() {
     return {
@@ -111,12 +129,10 @@ export default {
         required: (value) => !!value || "Obrigatório.",
       },
       cursoVaga: null,
-      estagiario: null,
-      estagiarios: [],
       setor: null,
-      turno: null,
+      ano: null,
       qtdVagas: null,
-      situacao: null,
+      semestre: null,
     };
   },
   methods: {
@@ -140,18 +156,23 @@ export default {
       if (this.$refs.form.validate()) {
         try {
           const data = {
-            setor: this.setor,
-            turno: this.turno,
-            qtdVagas: this.qtdVagas,
-            situacao: this.situacao,
+            cursosId: ['35b06d37-dd9a-4e4f-9c6e-8d0027460310'],
+            setorId: '92e7a384-9ff3-4621-97ca-e5bd83a5da94',
+            ano: this.ano,
+            semestre: this.semestre,
+            vagasDisponiveis: this.qtdVagas,
           };
 
-          const url = import.meta.env.VITE_BACKEND_URL + "/instituicaoEnsino";
-          console.log(url);
+          console.log(data);
+          const response = await cadastrarVagas(data);
 
-          const req = await axios.post(url, data);
-
-          console.log("Resposta: ", req);
+          if (response) {
+            Swal.fire({
+              title: "Cadastro Realizado com Sucesso!",
+              icon: "success",
+            });
+            this.$refs.form.reset();
+          }
         } catch (error) {
           console.error("Erro ao enviar dados:", error);
         }

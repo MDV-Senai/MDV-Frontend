@@ -3,7 +3,7 @@
     <Header />
     <div class="d-flex justify-center align-center">
       <v-card class="d-flex justify-center align-center" id="card_titulo"
-        ><h3>Cadastro de Coordenador de Cursos</h3></v-card
+        ><h3>Cadastro de Coordenador de Instituição de Ensino</h3></v-card
       >
     </div>
     <div id="fundoCards">
@@ -59,7 +59,7 @@
               clearable
               class="text-grey-darken-4"
               variant="outlined"
-              v-mask="'(##) ####-####'"
+              v-mask="'(##) #####-####'"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -108,7 +108,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import {
   emailValidation,
   fullNameValidation
@@ -152,7 +151,7 @@ export default {
           nomeSocial: this.nomeSocialCoordenadorCurso,
           email: this.email,
           fone: removeMascara(this.telefone),
-          idInstituicaoEnsino: 'b031d21a-cfc5-45f4-a005-3a61f337ee95',
+          idInstituicaoEnsino: '62b266ca-714e-4ccc-928d-1fa995fa9b4e',
         };
 
         const response = await cadastrarCoordenadorCurso(data);

@@ -41,7 +41,7 @@
               v-model="turno"
               :rules="[rules.required]"
               clearable
-              :items="['Matutino', 'Vespertino', 'Noturno']"
+              :items="['MATUTINO', 'VESPERTINO', 'NOTURNO']"
               class="text-grey-darken-4"
               variant="outlined"
             ></v-select>
@@ -220,9 +220,9 @@ export default {
       if (this.$refs.form.validate()) {
         try {
           const data = {
-            cursoHomologadoId: '537f3468-4eb8-49ad-b3a1-26bec5537781',//this.cursoSolicitado,
-            setorId: 'fcb32d77-cf4c-4712-a8f2-542d19652e98',//this.setor,
-            instEnsinoId: 'b031d21a-cfc5-45f4-a005-3a61f337ee95',
+            cursoHomologadoId: '0afccf21-637c-47b1-bbf2-25c7ef995930',//this.cursoSolicitado,
+            setorId: '92e7a384-9ff3-4621-97ca-e5bd83a5da94',//this.setor,
+            instEnsinoId: '62b266ca-714e-4ccc-928d-1fa995fa9b4e',
             quantidadeVagas: this.qtdVagas,
             periodo: this.turno,
             dataInicio: this.inicioEstagio,
