@@ -15,8 +15,8 @@
           <v-row class="mx-5 my-5">
             <v-col cols="12">
               <v-text-field
-                v-model="organizacao.nomeFantasia"
-                placeholder="Nome da organização"
+                v-model="vaga.setor.nomeSetor"
+                placeholder="nomeSetor"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
                 readonly
@@ -26,8 +26,8 @@
           <v-row class="mx-5 my-5">
             <v-col cols="12">
               <v-text-field
-                v-model="organizacao.razaoSocial"
-                placeholder="Razão social"
+                v-model="vaga.setor.nomeCoordenador"
+                placeholder="nomeCoordenador"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
                 readonly
@@ -37,8 +37,8 @@
           <v-row class="mx-5 my-5">
             <v-col cols="12" md="6">
               <v-text-field
-                v-model="organizacao.cnpj"
-                placeholder="cnpj"
+                v-model="vaga.ano"
+                placeholder="ano"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
                 readonly
@@ -46,8 +46,8 @@
             </v-col>
             <v-col cols="12" md="6">
               <v-text-field
-                v-model="organizacao.inscricaoEstado"
-                placeholder="inscrição estadual"
+                v-model="vaga.semestre"
+                placeholder="semestre"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
                 readonly
@@ -57,8 +57,8 @@
           <v-row class="mx-5 my-5">
             <v-col cols="12" md="6">
               <v-text-field
-                v-model="organizacao.fone"
-                placeholder="Telefone"
+                v-model="vaga.vagasDisponiveis"
+                placeholder="vagasDisponiveis"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
                 readonly
@@ -66,97 +66,8 @@
             </v-col>
             <v-col cols="12" md="6">
               <v-text-field
-                v-model="organizacao.email"
-                placeholder="Email"
-                class="text-grey-darken-1"
-                color="grey-darken-4"
-                readonly
-              ></v-text-field>
-            </v-col>
-          </v-row>
-          <v-row class="mx-5 my-5">
-            <v-col cols="12" md="6">
-              <v-text-field
-                v-model="organizacao.cep"
-                placeholder="cep"
-                class="text-grey-darken-1"
-                color="grey-darken-4"
-                readonly
-              ></v-text-field>
-            </v-col>
-            <v-col cols="12" md="6">
-              <v-text-field
-                v-model="organizacao.cidade"
-                placeholder="cidade"
-                class="text-grey-darken-1"
-                color="grey-darken-4"
-                readonly
-              ></v-text-field>
-            </v-col>
-          </v-row>
-          <v-row class="mx-5 my-5">
-            <v-col cols="12" md="6">
-              <v-text-field
-                v-model="organizacao.uf"
-                placeholder="estado"
-                class="text-grey-darken-1"
-                color="grey-darken-4"
-                readonly
-              ></v-text-field>
-            </v-col>
-            <v-col cols="12" md="6">
-              <v-text-field
-                v-model="organizacao.bairro"
-                placeholder="bairro"
-                class="text-grey-darken-1"
-                color="grey-darken-4"
-                readonly
-              ></v-text-field>
-            </v-col>
-          </v-row>
-          <v-row class="mx-5 my-5">
-            <v-col cols="12" md="6">
-              <v-text-field
-                v-model="organizacao.rua"
-                placeholder="rua"
-                class="text-grey-darken-1"
-                color="grey-darken-4"
-                readonly
-              ></v-text-field>
-            </v-col>
-            <v-col cols="12" md="6">
-              <v-text-field
-                v-model="organizacao.numero"
-                placeholder="numero"
-                class="text-grey-darken-1"
-                color="grey-darken-4"
-                readonly
-              ></v-text-field>
-            </v-col>
-          </v-row>
-          <v-row class="mx-5 my-5">
-            <v-col cols="12" md="4">
-              <v-text-field
-                v-model="organizacao.complemento"
-                placeholder="complemento"
-                class="text-grey-darken-1"
-                color="grey-darken-4"
-                readonly
-              ></v-text-field>
-            </v-col>
-            <v-col cols="12" md="4">
-              <v-text-field
-                v-model="organizacao.responsavelLegal"
-                placeholder="responsavelLegal"
-                class="text-grey-darken-1"
-                color="grey-darken-4"
-                readonly
-              ></v-text-field>
-            </v-col>
-            <v-col cols="12" md="4">
-              <v-text-field
-                v-model="organizacao.responsavelLegalContato"
-                placeholder="responsavelLegalContato"
+                v-model="vaga.statusVaga"
+                placeholder="statusVaga"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
                 readonly
@@ -185,12 +96,12 @@ export default {
     },
   },
   setup(props) {
-    const organizacao = ref({});
+    const vaga = ref({});
 
     const loadVaga = async () => {
       const response = await fetchVagaPorId(props.vagaId);
       if (response) {
-        organizacao.value = response;
+        vaga.value = response;
       } else {
         console.error("Erro ao buscar vaga.");
       }
@@ -201,7 +112,7 @@ export default {
     });
 
     return {
-      organizacao,
+      vaga,
     };
   },
 };
