@@ -361,16 +361,19 @@ export default {
     },
 
     async enviarDados() {
+
+      const removeMascara = (valor) => valor ? valor.replace(/\D/g, '') : '';
+
       if (this.$refs.form.validate()) {
         try {
           const data = {
             nome: this.nome,
             nomeSocial: this.nomeSocial,
             senha:this.senha,
-            cpf: this.cpf,
+            cpf: removeMascara(this.cpf),
             numeroMatriculaTrabalho: this.numeroMatriculaTrabalho,
-            fone: this.telefone,
-            celular: this.celular,
+            fone: removeMascara(this.telefone),
+            celular: removeMascara(this.celular),
             email: this.email,
           };
 

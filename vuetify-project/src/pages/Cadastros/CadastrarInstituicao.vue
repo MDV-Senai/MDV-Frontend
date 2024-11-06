@@ -381,15 +381,17 @@ export default {
     },
 
     async enviarDados() {
+      const removeMascara = (valor) => (valor ? valor.replace(/\D/g, "") : "");
+
       if (this.$refs.form.validate()) {
         const data = {
           nomeFantasia: this.instituacao,
           razaoSocial: this.razaoSocial,
-          cnpj: this.cnpj,
+          cnpj: removeMascara(this.cnpj),
           inscricaoEstadual: this.inscricaoEstadual,
-          telefone: this.telefone,
+          telefone: removeMascara(this.telefone),
           email: this.email,
-          cep: this.cep,
+          cep: removeMascara(this.cep),
           cidade: this.cidade,
           estado: this.uf,
           bairro: this.bairro,
@@ -397,24 +399,18 @@ export default {
           rua: this.logradouro,
           complemento: this.complemento,
           responsavelLegal: this.diretor,
-          responsavelLegalContato: this.contatoRespLegal,
+          responsavelLegalContato: removeMascara(this.contatoRespLegal),
         };
 
-          console.log(data);
-          const url = import.meta.env.VITE_BACKEND_URL + "/instituicao-ensino";
-          console.log(url);
+        const response = await cadastrarInstituicaoEnsino(data);
 
-          const token = sessionStorage.getItem('authToken');
-          console.log(token);
-          
-
-          const req = await axios.post(url, data, {
-            headers: {
-              'Authorization': `Bearer ${token}` 
-            }
+        if (response) {
+          Swal.fire({
+            title: "Cadastro Realizado com Sucesso!",
+            icon: "success",
           });
-
-          console.log("Resposta: ", req);
+          this.$refs.form.reset();
+        }
       }
     },
 

@@ -6,7 +6,6 @@ import InformacaoVagas from '../pages/InformacaoVagas.vue';
 import CadastrarInstituicao from '../pages/Cadastros/CadastrarInstituicao.vue';
 import CadastrarEstagiario from '../pages/Cadastros/CadastrarEstagiario.vue';
 import CadastrarSetor from '../pages/Cadastros/CadastrarSetor.vue';
-import CadastrarResponsavel from '../pages/Cadastros/CadastrarResponsavel.vue';
 import CadastrarAdmin from '../pages/Cadastros/CadastrarAdmin.vue';
 import CadastrarOrganizacao from '../pages/Cadastros/CadastrarOrganizacao.vue';
 import CadastrarVagas from '../pages/Cadastros/CadastrarVagas.vue';
@@ -50,11 +49,6 @@ const router = createRouter({
       path: '/cadastrarSetor',
       name: 'CadastrarSetor',
       component: CadastrarSetor
-    },
-    {
-      path: '/cadastrarResponsavel',
-      name: 'CadastrarResponsavel',
-      component: CadastrarResponsavel
     },
     {
       path: '/cadastrarAdmin',

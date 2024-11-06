@@ -230,15 +230,18 @@ export default {
       }
     },
     async enviarDados() {
+
+      const removeMascara = (valor) => valor ? valor.replace(/\D/g, '') : '';
+
       if (this.$refs.form.validate()) {
         try {
           const data = {
             nomeSetor: this.nomeSetor,
             nomeCoordenador: this.nomeCoordenador,
             nomeSocialCoordenador: this.nomeSocialCoordenador,
-            telefoneCoordenador: this.telefoneCoordenador,
+            telefoneCoordenador: removeMascara(this.telefoneCoordenador),
             emailCoordenador: this.emailCoordenador,
-            vagasTotais: this.numeroVagas,
+            vagasTotais: parseInt(this.numeroVagas),
           };
 
           const response = await cadastrarSetor(data);

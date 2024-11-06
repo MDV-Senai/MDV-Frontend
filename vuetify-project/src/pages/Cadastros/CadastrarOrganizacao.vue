@@ -319,17 +319,20 @@ export default {
     },
 
     async enviarDados() {
+
+      const removeMascara = (valor) => valor ? valor.replace(/\D/g, '') : '';
+
       if (this.$refs.form.validate()) {
         try {
           const data = {
             nomeFantasia: this.nomeFantasia,
             razaoSocial: this.razaoSocial,
-            cnpj: this.cnpj,
+            cnpj: removeMascara(this.cnpj),
             inscricaoEstado: this.inscricaoEstadual,
-            fone: this.telefone,
-            celular: this.celular,
+            fone: removeMascara(this.telefone),
+            celular: removeMascara(this.celular),
             email: this.email,
-            cep: this.cep,
+            cep: removeMascara(this.cep),
             cidade: this.cidade,
             uf: this.uf,
             bairro: this.bairro,
@@ -337,9 +340,10 @@ export default {
             rua: this.rua,
             complemento: this.complemento,
             responsavelLegal: this.responsavelLegal,
-            responsavelLegalContato: this.contatoRespLegal,
+            responsavelLegalContato: removeMascara(this.contatoRespLegal),
           };
-
+          console.log(data);
+          
           const response = await cadastrarOrganizacao(data);
 
           if (response) {

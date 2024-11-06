@@ -124,15 +124,10 @@ export default {
       ],
       ["Cadastrar Setor", "mdi-text-box-plus-outline", "/cadastrarSetor"],
       ["Cadastrar Admin", "mdi-file-account-outline", "/cadastrarAdmin"],
-      [
-        "Cadastro de Responsável Pelo Estagiário",
-        "mdi-human-male-board",
-        "/cadastrarResponsavel",
-      ],
       ["Cadastro de Organização", "mdi-domain", "/cadastrarOrganizacao"],
       ["Cadastro de Vagas", "mdi-handshake-outline", "/cadastrarVagas"],
       ["Cadastro de Curso", "mdi-book-plus-outline", "/cadastrarCurso"],
-      ["Cadastro de Coordenador de Curso", "mdi-account-tie", "/cadastrarCoordenadorCurso"],
+      ["Cadastro de Coordenador de Instituição de Ensino", "mdi-account-tie", "/cadastrarCoordenadorCurso"],
     ];
 
     const rotasConsulta = [
