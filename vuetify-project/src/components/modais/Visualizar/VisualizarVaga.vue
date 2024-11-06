@@ -10,45 +10,160 @@
     </template>
 
     <template v-slot:default="{ isActive }">
-      <v-card class="d-flex justify-center text-center">
-        <div>
+      <v-card>
+        <v-card-text style="max-height: 500px; overflow-y: auto; padding: 16px">
           <v-row class="mx-5 my-5">
-            <v-col cols="12" md="6">
+            <v-col cols="12">
               <v-text-field
-                id="nome_prof"
-                placeholder="Digite o nome do setor"
+                v-model="organizacao.nomeFantasia"
+                placeholder="Nome da organização"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
+                readonly
               ></v-text-field>
             </v-col>
-            <v-col cols="12" md="6">
+          </v-row>
+          <v-row class="mx-5 my-5">
+            <v-col cols="12">
               <v-text-field
-                id="numero_mat"
-                placeholder="Digite o turno"
+                v-model="organizacao.razaoSocial"
+                placeholder="Razão social"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
+                readonly
               ></v-text-field>
             </v-col>
           </v-row>
           <v-row class="mx-5 my-5">
             <v-col cols="12" md="6">
               <v-text-field
-                id="numero_mat"
-                placeholder="Digite a situação"
+                v-model="organizacao.cnpj"
+                placeholder="cnpj"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
+                readonly
               ></v-text-field>
             </v-col>
             <v-col cols="12" md="6">
               <v-text-field
-                id="inscricao"
-                placeholder="Digite a quantidade"
+                v-model="organizacao.inscricaoEstado"
+                placeholder="inscrição estadual"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
+                readonly
               ></v-text-field>
             </v-col>
           </v-row>
-        </div>
+          <v-row class="mx-5 my-5">
+            <v-col cols="12" md="6">
+              <v-text-field
+                v-model="organizacao.fone"
+                placeholder="Telefone"
+                class="text-grey-darken-1"
+                color="grey-darken-4"
+                readonly
+              ></v-text-field>
+            </v-col>
+            <v-col cols="12" md="6">
+              <v-text-field
+                v-model="organizacao.email"
+                placeholder="Email"
+                class="text-grey-darken-1"
+                color="grey-darken-4"
+                readonly
+              ></v-text-field>
+            </v-col>
+          </v-row>
+          <v-row class="mx-5 my-5">
+            <v-col cols="12" md="6">
+              <v-text-field
+                v-model="organizacao.cep"
+                placeholder="cep"
+                class="text-grey-darken-1"
+                color="grey-darken-4"
+                readonly
+              ></v-text-field>
+            </v-col>
+            <v-col cols="12" md="6">
+              <v-text-field
+                v-model="organizacao.cidade"
+                placeholder="cidade"
+                class="text-grey-darken-1"
+                color="grey-darken-4"
+                readonly
+              ></v-text-field>
+            </v-col>
+          </v-row>
+          <v-row class="mx-5 my-5">
+            <v-col cols="12" md="6">
+              <v-text-field
+                v-model="organizacao.uf"
+                placeholder="estado"
+                class="text-grey-darken-1"
+                color="grey-darken-4"
+                readonly
+              ></v-text-field>
+            </v-col>
+            <v-col cols="12" md="6">
+              <v-text-field
+                v-model="organizacao.bairro"
+                placeholder="bairro"
+                class="text-grey-darken-1"
+                color="grey-darken-4"
+                readonly
+              ></v-text-field>
+            </v-col>
+          </v-row>
+          <v-row class="mx-5 my-5">
+            <v-col cols="12" md="6">
+              <v-text-field
+                v-model="organizacao.rua"
+                placeholder="rua"
+                class="text-grey-darken-1"
+                color="grey-darken-4"
+                readonly
+              ></v-text-field>
+            </v-col>
+            <v-col cols="12" md="6">
+              <v-text-field
+                v-model="organizacao.numero"
+                placeholder="numero"
+                class="text-grey-darken-1"
+                color="grey-darken-4"
+                readonly
+              ></v-text-field>
+            </v-col>
+          </v-row>
+          <v-row class="mx-5 my-5">
+            <v-col cols="12" md="4">
+              <v-text-field
+                v-model="organizacao.complemento"
+                placeholder="complemento"
+                class="text-grey-darken-1"
+                color="grey-darken-4"
+                readonly
+              ></v-text-field>
+            </v-col>
+            <v-col cols="12" md="4">
+              <v-text-field
+                v-model="organizacao.responsavelLegal"
+                placeholder="responsavelLegal"
+                class="text-grey-darken-1"
+                color="grey-darken-4"
+                readonly
+              ></v-text-field>
+            </v-col>
+            <v-col cols="12" md="4">
+              <v-text-field
+                v-model="organizacao.responsavelLegalContato"
+                placeholder="responsavelLegalContato"
+                class="text-grey-darken-1"
+                color="grey-darken-4"
+                readonly
+              ></v-text-field>
+            </v-col>
+          </v-row>
+        </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn text="Fechar" @click="isActive.value = false"></v-btn>
@@ -59,8 +174,36 @@
 </template>
 
 <script>
+import { ref, onMounted } from "vue";
+import { fetchVagaPorId } from "../../../services/VagasService";
+
 export default {
-  name: "VisualizarVaga",
+  props: {
+    vagaId: {
+      type: String,
+      required: true,
+    },
+  },
+  setup(props) {
+    const organizacao = ref({});
+
+    const loadVaga = async () => {
+      const response = await fetchVagaPorId(props.vagaId);
+      if (response) {
+        organizacao.value = response;
+      } else {
+        console.error("Erro ao buscar vaga.");
+      }
+    };
+
+    onMounted(() => {
+      loadVaga();
+    });
+
+    return {
+      organizacao,
+    };
+  },
 };
 </script>
 
