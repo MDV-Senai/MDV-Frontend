@@ -48,6 +48,20 @@ export async function fetchVagaPorId(vagaId) {
   }
 }
 
+export async function updateVaga(vagaId, vagaData) {
+  try {
+      const response = await axios.patch(
+          `${import.meta.env.VITE_BACKEND_URL}/vaga/${vagaId}`,
+          vagaData
+      );
+
+      return response.data;
+  } catch (error) {
+      console.error("Erro ao atualizar vaga:", error);
+      return null;
+  }
+}
+
 export async function cadastrarVagas(data) {
   try {
     const url = import.meta.env.VITE_BACKEND_URL + "/vaga";
