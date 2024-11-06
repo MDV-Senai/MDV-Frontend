@@ -33,7 +33,7 @@
             <td class="text-left">{{ item.vagasDisponiveis }}</td>
             <td class="text-left">{{ item.statusVaga }}</td>
             <td class="text-center">
-              <VisualizarVaga />
+              <VisualizarConcedente :vagaId="item.id"/>
               <EditarVaga />
               <DeletarItem :itemKey="'vaga'" :id="item.id" />
             </td>
