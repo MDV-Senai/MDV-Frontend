@@ -34,7 +34,6 @@
             <td class="text-left">{{ item.statusVaga }}</td>
             <td class="text-center">
               <VisualizarVaga :vagaId="item.id"/>
-              <EditarVaga :vagaId="item.id"/>
               <DeletarItem :itemKey="'vaga'" :id="item.id" />
             </td>
           </tr>
