@@ -36,3 +36,14 @@ export async function cadastrarSolcitacaoVagas(data) {
     return null;
   }
 }
+
+export async function fetchVagaPorId(vagaId) {
+  try {
+      const response = await axios.get(import.meta.env.VITE_BACKEND_URL + "/vaga/" + vagaId);
+
+      return response.data;
+  } catch (error) {
+      console.error("Erro ao buscar vaga:", error);
+      return null;
+  }
+}
