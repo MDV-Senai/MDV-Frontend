@@ -1,5 +1,5 @@
 <template>
-  <v-dialog max-width="800">
+  <v-dialog v-model="isDialogActive" max-width="800">
     <template v-slot:activator="{ props: activatorProps }">
       <v-icon
         v-bind="activatorProps"
@@ -9,7 +9,7 @@
       ></v-icon>
     </template>
 
-    <template v-slot:default="{ isActive }">
+    <template v-slot:default>
       <v-card>
         <v-card-text style="max-height: 500px; overflow-y: auto; padding: 16px">
           <v-row class="mx-5 my-5">
