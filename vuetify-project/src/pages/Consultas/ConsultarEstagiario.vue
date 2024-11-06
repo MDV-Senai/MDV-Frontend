@@ -29,7 +29,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="item in estagiarioPaginado" :key="item.id">
+          <tr v-for="item in estagiarios" :key="item.id">
             <td class="text-left">{{ item.nome }}</td>
             <td class="text-left">{{ item.matricula }}</td>
             <td class="text-left">{{ item.celular }}</td>
@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import { ref, computed, onMounted, watch } from "vue";
+import { ref, onMounted, watch } from "vue";
 import { useResponsiveHeight } from "../../composables/useResponsiveHeight.js";
 import { fetchEstagiarios } from "../../services/EstagiariosService.js";
 
@@ -63,53 +63,29 @@ export default {
   setup() {
     const { height } = useResponsiveHeight();
     const estagiarios = ref([]);
-    const nomeEstagiario = ref("");
     const pagina = ref(1);
-    const itensPorPagina = ref(10);
-    const estagiariosFiltrados = ref([]);
+    const itensPorPagina = 10;
+    const totalPaginas = ref(1);
 
-    const loadEstagiarios = async () => {
-      const response = await fetchEstagiarios();
-      estagiarios.value = response;
-      estagiariosFiltrados.value = response;
+    const loadEstg = async () => {
+      const response = await fetchEstagiarios(pagina.value, itensPorPagina);
+      estagiarios.value = response.data;
+      totalPaginas.value = Math.ceil(response.total / itensPorPagina);
     };
-
-    const pesquisarEstagiarios = () => {
-      if (nomeEstagiario.value) {
-        estagiariosFiltrados.value = estagiarios.value.filter((item) =>
-          item.nome.toLowerCase().includes(nomeEstagiario.value.toLowerCase())
-        );
-      } else {
-        estagiariosFiltrados.value = estagiarios.value;
-      }
-      pagina.value = 1;
-    };
-
-    const totalPaginas = computed(() => {
-      return Math.ceil(estagiariosFiltrados.value.length / itensPorPagina.value);
-    });
-
-    const estagiarioPaginado = computed(() => {
-      const start = (pagina.value - 1) * itensPorPagina.value;
-      const end = start + itensPorPagina.value;
-      return estagiariosFiltrados.value.slice(start, end);
-    });
-
-    watch(nomeEstagiario, (newValue) => {
-      pesquisarEstagiarios();
-    });
 
     onMounted(() => {
-      loadEstagiarios();
+      loadEstg();
+    });
+
+    watch(pagina, () => {
+      loadEstg();
     });
 
     return {
       height,
-      nomeEstagiario,
+      estagiarios,
       pagina,
-      itensPorPagina,
-      totalPaginas,
-      estagiarioPaginado,
+      totalPaginas
     };
   },
 };

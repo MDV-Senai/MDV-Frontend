@@ -28,7 +28,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="item in instituicaoPaginada" :key="item.id">
+          <tr v-for="item in instituicoes" :key="item.id">
             <td class="text-left">{{ item.nomeFantasia }}</td>
             <td class="text-left">{{ item.responsavelLegal }}</td>
             <td class="text-left">{{ item.email }}</td>
@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import { ref, computed, onMounted, watch } from "vue";
+import { ref, onMounted, watch } from "vue";
 import { useResponsiveHeight } from "../../composables/useResponsiveHeight.js";
 import { fetchInstituicoes } from "../../services/InstituicoesService.js";
 
@@ -61,53 +61,29 @@ export default {
   setup() {
     const { height } = useResponsiveHeight();
     const instituicoes = ref([]);
-    const nomeInstituicao = ref("");
     const pagina = ref(1);
-    const itensPorPagina = ref(10);
-    const instituicoesFiltradas = ref([]);
+    const itensPorPagina = 10;
+    const totalPaginas = ref(1);
 
-    const loadInstituicoes = async () => {
-      const response = await fetchInstituicoes();
-      instituicoes.value = response;
-      instituicoesFiltradas.value = response;
+    const loadInst = async () => {
+      const response = await fetchInstituicoes(pagina.value, itensPorPagina);
+      instituicoes.value = response.data;
+      totalPaginas.value = Math.ceil(response.total / itensPorPagina);
     };
-
-    const pesquisarInstituicoes = () => {
-      if (nomeInstituicao.value) {
-        instituicoesFiltradas.value = instituicoes.value.filter((item) =>
-          item.instituicao.toLowerCase().includes(nomeInstituicao.value.toLowerCase())
-        );
-      } else {
-        instituicoesFiltradas.value = instituicoes.value;
-      }
-      pagina.value = 1;
-    };
-
-    const totalPaginas = computed(() => {
-      return Math.ceil(instituicoesFiltradas.value.length / itensPorPagina.value);
-    });
-
-    const instituicaoPaginada = computed(() => {
-      const start = (pagina.value - 1) * itensPorPagina.value;
-      const end = start + itensPorPagina.value;
-      return instituicoesFiltradas.value.slice(start, end);
-    });
-
-    watch(nomeInstituicao, (newValue) => {
-      pesquisarInstituicoes();
-    });
 
     onMounted(() => {
-      loadInstituicoes();
+      loadInst();
+    });
+
+    watch(pagina, () => {
+      loadInst();
     });
 
     return {
       height,
-      nomeInstituicao,
+      instituicoes,
       pagina,
-      itensPorPagina,
-      totalPaginas,
-      instituicaoPaginada,
+      totalPaginas
     };
   },
 };

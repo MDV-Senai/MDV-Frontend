@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
 import { useResponsiveHeight } from "../../composables/useResponsiveHeight.js";
 import { fetchOrganizacaoConcedente } from "../../services/OrganizacaoService.js";
 
@@ -61,19 +61,29 @@ export default {
   setup() {
     const { height } = useResponsiveHeight();
     const organizacoes = ref([]);
+    const pagina = ref(1);
+    const itensPorPagina = 10;
+    const totalPaginas = ref(1);
 
     const loadOrg = async () => {
-      const response = await fetchOrganizacaoConcedente();
-      organizacoes.value = response;
+      const response = await fetchOrganizacaoConcedente(pagina.value, itensPorPagina);
+      organizacoes.value = response.data;
+      totalPaginas.value = Math.ceil(response.total / itensPorPagina);
     };
 
     onMounted(() => {
       loadOrg();
     });
 
+    watch(pagina, () => {
+      loadOrg();
+    });
+
     return {
       height,
-      organizacoes
+      organizacoes,
+      pagina,
+      totalPaginas
     };
   },
 };

@@ -1,22 +1,20 @@
 import axios from "axios";
 
-export async function fetchCursos(instId) {
+export async function fetchCursos(pagina, itensPorPagina) {
   try {
-    let token = sessionStorage.getItem("authToken");
-    console.log(instId);
-    const response = await axios.get(
-      import.meta.env.VITE_BACKEND_URL + "/instituicao-ensino/" + instId,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-
-    return response.data;
+      const response = await axios.get(
+          `${import.meta.env.VITE_BACKEND_URL}/curso-homologado`,
+          {
+              params: {
+                  page: pagina,
+                  limit: itensPorPagina
+              }
+          }
+      );
+      return response.data;
   } catch (error) {
-    console.error("Erro ao buscar cursos:", error);
-    return null;
+      console.error("Erro ao buscar cursos:", error);
+      return null;
   }
 }
 
