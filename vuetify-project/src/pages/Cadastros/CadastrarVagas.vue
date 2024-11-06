@@ -139,19 +139,6 @@ export default {
     reset() {
       this.$refs.form.reset();
     },
-    async getUfs() {
-      try {
-        const response = await axios.get(
-          "https://run.mocky.io/v3/e1351e5c-3a81-4b3c-8dd3-31f6811e3539"
-        );
-        const data = response.data;
-        const estagiarios = data.items.estagiarios;
-        this.estagiarios = estagiarios;
-        console.log(this.estagiarios);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    },
     async enviarDados() {
       if (this.$refs.form.validate()) {
         try {
@@ -178,9 +165,6 @@ export default {
         }
       }
     },
-  },
-  mounted() {
-    this.getUfs();
   },
 };
 </script>
