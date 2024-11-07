@@ -10,15 +10,16 @@
       <v-form ref="form" id="form" class="mx-auto mt-8">
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="12">
-            <v-select
-              v-model="cursoVaga"
-              :items="estagiarios"
-              :item-title="'titulo'"
-              :item-value="'id'"
+             <v-select
               label="Curso do Posto de Trabalho (Vaga)"
+              :rules="[rules.required]"
+              v-model="idCurso"
               class="text-grey-darken-4"
               variant="outlined"
-              readonly
+              :items="cursoVaga"
+              item-title="nomeCurso"
+              item-value="id"
+              multiple
             ></v-select>
           </v-col>
         </v-row>
@@ -119,16 +120,17 @@
 </template>
 
 <script>
-import axios from "axios";
 import Swal from "sweetalert2";
 import { cadastrarVagas } from '../../services/VagasService';
+import { fetchCursosHomologados } from "../../services/CursosService.js";
 export default {
   data() {
     return {
       rules: {
         required: (value) => !!value || "Obrigatório.",
       },
-      cursoVaga: null,
+      idCurso: [],
+      cursoVaga: [],
       setor: null,
       ano: null,
       qtdVagas: null,
@@ -143,7 +145,7 @@ export default {
       if (this.$refs.form.validate()) {
         try {
           const data = {
-            cursosId: ['35b06d37-dd9a-4e4f-9c6e-8d0027460310'],
+            cursosId: idCurso,
             setorId: '92e7a384-9ff3-4621-97ca-e5bd83a5da94',
             ano: this.ano,
             semestre: this.semestre,
@@ -165,7 +167,17 @@ export default {
         }
       }
     },
+
+    async listarCursosInstituicaoId() {
+        const response = await fetchCursosHomologados();
+        this.cursoVaga = response;
+        console.log(this.cursoVaga);
+    },
   },
+
+  mounted(){
+    this.listarCursosInstituicaoId();
+  }
 };
 </script>
 
