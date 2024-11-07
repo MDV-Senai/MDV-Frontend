@@ -28,12 +28,15 @@
             <v-select
               label="Setor Disponível"
               :rules="[rules.required]"
-              v-model="setor"
+              v-model="setorId"
               maxlength="255"
               counter
               clearable
               class="text-grey-darken-4"
               variant="outlined"
+              :items="setores"
+              item-title="nomeSetor"
+              item-value="id"
             ></v-select>
           </v-col>
         </v-row>
@@ -123,6 +126,7 @@
 import Swal from "sweetalert2";
 import { cadastrarVagas } from '../../services/VagasService';
 import { fetchCursosHomologados } from "../../services/CursosService.js";
+import { fetchSetores } from '../../services/SetoresService';
 export default {
   data() {
     return {
@@ -131,7 +135,8 @@ export default {
       },
       idCurso: [],
       cursoVaga: [],
-      setor: null,
+      setores: [],
+      setorId: null,
       ano: null,
       qtdVagas: null,
       semestre: null,
@@ -145,8 +150,8 @@ export default {
       if (this.$refs.form.validate()) {
         try {
           const data = {
-            cursosId: idCurso,
-            setorId: '92e7a384-9ff3-4621-97ca-e5bd83a5da94',
+            cursosId: this.idCurso,
+            setores: this.setorId,
             ano: this.ano,
             semestre: this.semestre,
             vagasDisponiveis: this.qtdVagas,
@@ -168,15 +173,20 @@ export default {
       }
     },
 
-    async listarCursosInstituicaoId() {
-        const response = await fetchCursosHomologados();
-        this.cursoVaga = response;
-        console.log(this.cursoVaga);
+    async listarCursosHomologados() {
+      const response = await fetchCursosHomologados();
+      this.cursoVaga = response;
     },
+
+    async listarSetores() {
+      const response = await fetchSetores();
+      this.setores = response;
+    }
   },
 
   mounted(){
-    this.listarCursosInstituicaoId();
+    this.listarCursosHomologados();
+    this.listarSetores();
   }
 };
 </script>
