@@ -64,27 +64,6 @@
               ></v-text-field>
             </v-col>
           </v-row>
-
-          <!-- Adicionando a lista de cursos -->
-          <v-row class="mx-5 my-5">
-            <v-col cols="12">
-              <v-subheader>Cursos</v-subheader>
-              <v-list>
-                <v-list-item-group v-if="coordenador.cursos && coordenador.cursos.length > 0">
-                  <v-list-item v-for="(curso, index) in coordenador.cursos" :key="index">
-                    <v-list-item-content>
-                      <v-list-item-title>{{ curso }}</v-list-item-title>
-                    </v-list-item-content>
-                  </v-list-item>
-                </v-list-item-group>
-                <v-list-item v-else>
-                  <v-list-item-content>
-                    <v-list-item-title>Nenhum curso disponível.</v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list>
-            </v-col>
-          </v-row>
           
         </v-card-text>
         <v-card-actions>
