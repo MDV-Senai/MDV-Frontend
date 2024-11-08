@@ -34,7 +34,7 @@
             <td class="text-left">{{ item.email }}</td>
             <td class="text-center">
               <VisualizarCoordenadorCurso :coordId="item.id"/>
-              <EditarResponsavel />
+              <EditarCoordenadorCurso :coordId="item.id" />
               <DeletarItem :itemKey="'coordenador-instituicao-ensino'" :id="item.id" />
             </td>
           </tr>
