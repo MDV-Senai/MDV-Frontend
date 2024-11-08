@@ -33,7 +33,7 @@
             <td class="text-left">{{ item.fone }}</td>
             <td class="text-left">{{ item.email }}</td>
             <td class="text-center">
-              <VisualizarResponsavel />
+              <VisualizarCoordenadorCurso :coordId="item.id"/>
               <EditarResponsavel />
               <DeletarItem :itemKey="'coordenador-instituicao-ensino'" :id="item.id" />
             </td>

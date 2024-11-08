@@ -36,3 +36,14 @@ export async function cadastrarCoordenadorCurso(data) {
         return null;
     }
 }
+
+export async function fetchCoordenadorPorId(coordId) {
+  try {
+      const response = await axios.get(import.meta.env.VITE_BACKEND_URL + "/coordenador-instituicao-ensino/" + coordId);
+
+      return response.data;
+  } catch (error) {
+      console.error("Erro ao buscar coordenador:", error);
+      return null;
+  }
+}

@@ -10,55 +10,61 @@
     </template>
 
     <template v-slot:default="{ isActive }">
-      <v-card class="d-flex justify-center text-center">
-        <div>
+      <v-card>
+        <v-card-text style="max-height: 500px; overflow-y: auto; padding: 16px">
           <v-row class="mx-5 my-5">
-            <v-col cols="12" md="12">
+            <v-col cols="12">
               <v-text-field
-                id="nome_prof"
-                placeholder="Digite o nome do professor"
+                v-model="coordenador.nome"
+                placeholder="Nome"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
+                readonly
               ></v-text-field>
             </v-col>
           </v-row>
           <v-row class="mx-5 my-5">
-            <v-col cols="12" md="6">
+            <v-col cols="12">
               <v-text-field
-                id="numero_mat"
-                placeholder="Digite o número da matrícula"
+                v-model="coordenador.nomeSocial"
+                placeholder="Razão social"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
-              ></v-text-field>
-            </v-col>
-            <v-col cols="12" md="6">
-              <v-text-field
-                id="inscricao"
-                placeholder="Digite o número da inscrição"
-                class="text-grey-darken-1"
-                color="grey-darken-4"
+                readonly
               ></v-text-field>
             </v-col>
           </v-row>
-          <v-row class="mx-5">
-            <v-col cols="12" md="6">
+
+          <v-row class="mx-5 my-5">
+            <v-col cols="12" md="4">
               <v-text-field
-                id="instituicao_ensino"
-                placeholder="Digite o nome da instituição de ensino"
+                v-model="coordenador.email"
+                placeholder="complemento"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
+                readonly
               ></v-text-field>
             </v-col>
-            <v-col cols="12" md="6">
+            <v-col cols="12" md="4">
               <v-text-field
-                id="curso"
-                placeholder="Digite o nome do curso"
+                v-model="coordenador.fone"
+                placeholder="responsavelLegal"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
+                readonly
+              ></v-text-field>
+            </v-col>
+            <v-col cols="12" md="4">
+              <v-text-field
+                v-model="coordenador.instituicaoEnsino"
+                placeholder="responsavelLegalContato"
+                class="text-grey-darken-1"
+                color="grey-darken-4"
+                readonly
               ></v-text-field>
             </v-col>
           </v-row>
-        </div>
+        </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn text="Fechar" @click="isActive.value = false"></v-btn>
@@ -69,8 +75,36 @@
 </template>
 
 <script>
+import { ref, onMounted } from "vue";
+import { fetchCoordenadorPorId } from "../../../services/CoordenadorCursoService";
+
 export default {
-  name: "VisualizarResponsavel",
+  props: {
+    coordId: {
+      type: String,
+      required: true,
+    },
+  },
+  setup(props) {
+    const coordenador = ref({});
+
+    const loadCoordenador = async () => {
+      const response = await fetchCoordenadorPorId(props.coordId);
+      if (response) {
+        coordenador.value = response;
+      } else {
+        console.error("Erro ao buscar coordenador.");
+      }
+    };
+
+    onMounted(() => {
+      loadCoordenador();
+    });
+
+    return {
+      coordenador,
+    };
+  },
 };
 </script>
 
