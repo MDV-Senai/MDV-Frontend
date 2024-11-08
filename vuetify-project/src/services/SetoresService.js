@@ -11,7 +11,7 @@ export async function fetchSetores(pagina, itensPorPagina) {
               }
           }
       );
-      return response.data;
+      return response.data.data;
   } catch (error) {
       console.error("Erro ao buscar setores:", error);
       return null;
