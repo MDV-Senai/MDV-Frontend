@@ -116,13 +116,14 @@ export default {
       const response = await fetchCoordenadorPorId(props.coordId);
       if (response) {
         coordenador.value = response;
+        loadInstituicao(response.instituicaoEnsino);
       } else {
         console.error("Erro ao buscar coordenador.");
       }
     };
 
-    const loadInstituicao = async () => {
-      const response = await fetchInstituicoesPorId(coordenador.instituicaoEnsino);
+    const loadInstituicao = async (instituicaoId) => {
+      const response = await fetchInstituicoesPorId(instituicaoId);
       if (response) {
         instituicao.value = response;
       } else {
@@ -132,7 +133,6 @@ export default {
 
     onMounted(() => {
       loadCoordenador();
-      loadInstituicao();
     });
 
     return {
