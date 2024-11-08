@@ -56,8 +56,8 @@
             </v-col>
             <v-col cols="12" md="4">
               <v-text-field
-                v-model="coordenador.instituicaoEnsino"
-                placeholder="responsavelLegalContato"
+                v-model="instituicao.nomeFantasia"
+                placeholder="nomeFantasia"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
                 readonly
@@ -99,6 +99,7 @@
 <script>
 import { ref, onMounted } from "vue";
 import { fetchCoordenadorPorId } from "../../../services/CoordenadorCursoService";
+import { fetchInstituicoesPorId } from "../../../services/InstituicoesService";
 
 export default {
   props: {
@@ -109,6 +110,7 @@ export default {
   },
   setup(props) {
     const coordenador = ref({});
+    const instituicao = ref({});
 
     const loadCoordenador = async () => {
       const response = await fetchCoordenadorPorId(props.coordId);
@@ -119,12 +121,23 @@ export default {
       }
     };
 
+    const loadInstituicao = async () => {
+      const response = await fetchInstituicoesPorId(coordenador.instituicaoEnsino);
+      if (response) {
+        instituicao.value = response;
+      } else {
+        console.error("Erro ao buscar instituicao.");
+      }
+    };
+
     onMounted(() => {
       loadCoordenador();
+      loadInstituicao();
     });
 
     return {
       coordenador,
+      instituicao
     };
   },
 };
