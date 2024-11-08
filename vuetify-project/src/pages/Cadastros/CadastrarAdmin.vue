@@ -68,7 +68,12 @@
           </v-col>
         </v-row>
 
-        <v-row v-if="tipoUsuario == 'INST_ENSINO' || tipoUsuario == 'COORD_INST_ENSINO'" class="d-flex justify-center">
+        <v-row
+          v-if="
+            tipoUsuario == 'INST_ENSINO' || tipoUsuario == 'COORD_INST_ENSINO'
+          "
+          class="d-flex justify-center"
+        >
           <v-col cols="12" md="12">
             <v-autocomplete
               label="Instituição De Ensino"
@@ -208,6 +213,7 @@
                 width="183"
                 height="62"
                 id="botaoEntrar"
+                @click="enviarDados"
               >
                 Cadastrar
 
@@ -283,7 +289,6 @@
         </v-data-table>
       </v-card>
     </v-container>
-    
   </v-main>
 </template>
 
@@ -294,6 +299,7 @@ import {
   emailValidation,
 } from "@/validations/formValidations";
 import { fetchInstituicoes } from "@/services/InstituicoesService.js";
+import { cadastrarAdmin } from "../../services/AdminService";
 
 export default {
   data() {
@@ -320,9 +326,9 @@ export default {
         fullname: (value) => fullNameValidation(value),
       },
       items: [
-        { tipos: 'Admin', id: 'ADMIN' },
-        { tipos: 'Organização Concedente', id: 'ORG_CONCEDENTE_ADMIN' },
-        { tipos: 'Instituição De Ensino', id: 'INST_ENSINO' },
+        { tipos: "Admin", id: "ADMIN" },
+        { tipos: "Organização Concedente", id: "ORG_CONCEDENTE_ADMIN" },
+        { tipos: "Instituição De Ensino", id: "INST_ENSINO" },
       ],
       search: "",
       headers: [
@@ -401,30 +407,32 @@ export default {
     },
 
     async enviarDados() {
-
-      const removeMascara = (valor) => valor ? valor.replace(/\D/g, '') : '';
+      const removeMascara = (valor) => (valor ? valor.replace(/\D/g, "") : "");
 
       if (this.$refs.form.validate()) {
-        try {
-          const data = {
-            nome: this.nome,
-            nomeSocial: this.nomeSocial,
-            senha:this.senha,
-            cpf: removeMascara(this.cpf),
-            numeroMatriculaTrabalho: this.numeroMatriculaTrabalho,
-            fone: removeMascara(this.telefone),
-            celular: removeMascara(this.celular),
-            email: this.email,
-          };
+        const data = {
+          nome: this.nome,
+          tipoUsuario: this.tipoUsuario,
+          instEns: this.instituicaoEnsino,
+          nomeSocial: this.nomeSocial,
+          senha: this.senha,
+          cpf: removeMascara(this.cpf),
+          numeroMatriculaTrabalho: this.numeroMatriculaTrabalho,
+          fone: removeMascara(this.telefone),
+          celular: removeMascara(this.celular),
+          email: this.email,
+        };
 
-          const url = import.meta.env.VITE_BACKEND_URL + "/instituicaoEnsino";
-          console.log(url);
+        console.log(data);
 
-          const req = await axios.post(url, data);
+        const response = await cadastrarAdmin(data);
 
-          console.log("Resposta: ", req);
-        } catch (error) {
-          console.error("Erro ao enviar dados:", error);
+        if (response) {
+          Swal.fire({
+            title: "Cadastro Realizado com Sucesso!",
+            icon: "success",
+          });
+          this.$refs.form.reset();
         }
       }
     },
@@ -434,13 +442,13 @@ export default {
       this.instituicoes = response;
       console.log(this.instituicoes);
     },
-    
+
     handleButtonClick(item) {
       alert("Button clicked for:" + item);
     },
   },
 
-   mounted() {
+  mounted() {
     this.loadInstituicaoEnsino();
   },
 };
