@@ -70,7 +70,7 @@
 
         <v-row
           v-if="
-            tipoUsuario == 'INST_ENSINO' || tipoUsuario == 'COORD_INST_ENSINO'
+            tipoUsuario == 'INST_ENSINO'
           "
           class="d-flex justify-center"
         >
