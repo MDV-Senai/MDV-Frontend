@@ -53,6 +53,37 @@
         </v-row>
 
         <v-row class="d-flex justify-center">
+          <v-col cols="12" md="12">
+            <v-select
+              label="Tipo de Usuário"
+              v-model="tipoUsuario"
+              :rules="[rules.required]"
+              clearable
+              :items="items"
+              item-title="tipos"
+              item-value="id"
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-select>
+          </v-col>
+        </v-row>
+
+        <v-row v-if="tipoUsuario == 'INST_ENSINO' || tipoUsuario == 'COORD_INST_ENSINO'" class="d-flex justify-center">
+          <v-col cols="12" md="12">
+            <v-autocomplete
+              label="Instituição De Ensino"
+              :rules="[rules.required]"
+              v-model="instituicaoEnsino"
+              class="text-grey-darken-4"
+              variant="outlined"
+              :items="instituicoes"
+              item-title="nomeFantasia"
+              item-value="id"
+            ></v-autocomplete>
+          </v-col>
+        </v-row>
+
+        <v-row class="d-flex justify-center">
           <v-col cols="6" md="6">
             <v-text-field
               label="CPF"
@@ -262,10 +293,14 @@ import {
   confirmPasswordValidation,
   emailValidation,
 } from "@/validations/formValidations";
+import { fetchInstituicoes } from "@/services/InstituicoesService.js";
 
 export default {
   data() {
     return {
+      instituicaoEnsino: null,
+      instituicoes: [],
+      tipoUsuario: null,
       senha: null,
       nome: null,
       nomeSocial: null,
@@ -284,6 +319,11 @@ export default {
         email: (value) => emailValidation(value),
         fullname: (value) => fullNameValidation(value),
       },
+      items: [
+        { tipos: 'Admin', id: 'ADMIN' },
+        { tipos: 'Organização Concedente', id: 'ORG_CONCEDENTE_ADMIN' },
+        { tipos: 'Instituição De Ensino', id: 'INST_ENSINO' },
+      ],
       search: "",
       headers: [
         { title: "Nome", align: "start", key: "name" },
@@ -389,9 +429,19 @@ export default {
       }
     },
 
+    async loadInstituicaoEnsino() {
+      const response = await fetchInstituicoes();
+      this.instituicoes = response;
+      console.log(this.instituicoes);
+    },
+    
     handleButtonClick(item) {
       alert("Button clicked for:" + item);
     },
+  },
+
+   mounted() {
+    this.loadInstituicaoEnsino();
   },
 };
 </script>
