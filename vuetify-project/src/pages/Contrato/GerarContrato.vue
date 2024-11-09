@@ -11,8 +11,171 @@
         <v-row class="d-flex justify-center mt-8">
           <v-col cols="12" md="12">
             <v-text-field
-              label="Nome"
-              v-model="nome"
+              label="Cidade Geração contrato"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row class="d-flex justify-center mt-8">
+          <v-col cols="12" md="12">
+            <v-text-field
+              label="Número Cooperacao Técnica Instituicao de Ensino"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row class="d-flex justify-center mt-8">
+          <v-col cols="12" md="12">
+            <v-text-field
+              label="Fase/Série do Estagiário"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row class="d-flex justify-center mt-8">
+          <v-col cols="12" md="12">
+            <v-text-field
+              label="Número de Registro do Orgão de Classe Profissional do Estado de Santa Catarina"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row class="d-flex justify-center mt-8">
+          <v-col cols="12" md="12">
+            <v-text-field
+              label="Nome da Seguradora"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row class="d-flex justify-center mt-8">
+          <v-col cols="12" md="12">
+            <v-text-field
+              label="Data Inicio da Vigência do Seguro"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+
+        <v-row class="d-flex justify-center mt-8">
+          <v-col cols="12" md="12">
+            <v-text-field
+              label="Carga Horária Total do Estágio"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+
+        <v-row class="d-flex justify-center mt-8">
+          <v-col cols="12" md="12">
+            <v-text-field
+              label="Horário de Entrada do Estágio"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+
+        <v-row class="d-flex justify-center mt-8">
+          <v-col cols="12" md="12">
+            <v-text-field
+              label="Horário de Saída do Estágio"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+
+        <v-row class="d-flex justify-center mt-8">
+          <v-col cols="12" md="12">
+            <v-text-field
+              label="Data de Inicio do Estágio"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+
+        <v-row class="d-flex justify-center mt-8">
+          <v-col cols="12" md="12">
+            <v-text-field
+              label="Data de Fim do Estágio"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+
+        <v-row class="d-flex justify-center mt-8">
+          <v-col cols="12" md="12">
+            <v-text-field
+              label="Datas de Recesso do Estágio"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+
+        <v-row class="d-flex justify-center mt-8">
+          <v-col cols="12" md="12">
+            <v-text-field
+              label="CPF do Professor Orientador"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+
+        <v-row class="d-flex justify-center mt-8">
+          <v-col cols="12" md="12">
+            <v-text-field
+              label="Dias da Semana do Estágio"
               maxlength="255"
               counter
               clearable
