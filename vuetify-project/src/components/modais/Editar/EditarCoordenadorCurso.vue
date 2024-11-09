@@ -63,7 +63,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn text="Salvar" @click="editConcedente">Salvar</v-btn>
+          <v-btn text="Salvar" @click="editCoordenador">Salvar</v-btn>
           <v-btn text="Fechar" @click="isDialogActive = false">Fechar</v-btn>
         </v-card-actions>
       </v-card>
@@ -73,7 +73,7 @@
 
 <script>
 import { ref, onMounted } from "vue";
-import { fetchCoordenadorPorId } from "../../../services/CoordenadorCursoService";
+import { fetchCoordenadorPorId, updateCoordenador } from "../../../services/CoordenadorCursoService";
 import { fetchInstituicoesPorId } from "../../../services/InstituicoesService";
 
 export default {
@@ -107,6 +107,24 @@ export default {
       }
     };
 
+    const editCoordenador = async () => {
+      const response = await updateCoordenador(props.coordId, coordenador.value);
+      if (response) {
+        coordenador.value = response;
+        isDialogActive.value = false;
+        Swal.fire({
+          title: "Atualização bem-sucedida!",
+          text: "O coordenador foi atualizado com sucesso.",
+          icon: "success",
+          confirmButtonText: "Ok",
+        }).then(() => {
+          window.location.reload();
+        });
+      } else {
+        console.error("Erro ao atualizar coordenador.");
+      }
+    };
+
     onMounted(() => {
       loadCoordenador();
     });
@@ -114,7 +132,8 @@ export default {
     return {
       coordenador,
       instituicao,
-      isDialogActive
+      isDialogActive,
+      editCoordenador
     };
   },
 };

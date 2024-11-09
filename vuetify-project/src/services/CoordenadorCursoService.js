@@ -47,3 +47,17 @@ export async function fetchCoordenadorPorId(coordId) {
       return null;
   }
 }
+
+export async function updateCoordenador(coordId, coordData) {
+  try {
+      const response = await axios.patch(
+          `${import.meta.env.VITE_BACKEND_URL}/coordenador-instituicao-ensino/${coordId}`,
+          coordData
+      );
+
+      return response.data;
+  } catch (error) {
+      console.error("Erro ao atualizar coordenador:", error);
+      return null;
+  }
+}
