@@ -75,6 +75,7 @@
 import { ref, onMounted } from "vue";
 import { fetchCoordenadorPorId, updateCoordenador } from "../../../services/CoordenadorCursoService";
 import { fetchInstituicoesPorId } from "../../../services/InstituicoesService";
+import Swal from "sweetalert2";
 
 export default {
   props: {
