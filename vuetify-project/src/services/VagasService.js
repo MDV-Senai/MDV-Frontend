@@ -2,19 +2,23 @@ import axios from "axios";
 
 export async function fetchVagas(pagina, itensPorPagina) {
   try {
-      const response = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/vaga`,
-          {
-              params: {
-                  page: pagina,
-                  limit: itensPorPagina
-              }
-          }
-      );
-      return response.data;
+    const token = sessionStorage.getItem('authToken');
+    const response = await axios.get(
+      `${import.meta.env.VITE_BACKEND_URL}/vaga`,
+      {
+        params: {
+          page: pagina,
+          limit: itensPorPagina
+        },
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      }
+    );
+    return response.data;
   } catch (error) {
-      console.error("Erro ao buscar vagas:", error);
-      return null;
+    console.error("Erro ao buscar vagas:", error);
+    return null;
   }
 }
 
@@ -39,26 +43,36 @@ export async function cadastrarSolcitacaoVagas(data) {
 
 export async function fetchVagaPorId(vagaId) {
   try {
-      const response = await axios.get(import.meta.env.VITE_BACKEND_URL + "/vaga/" + vagaId);
+    const token = sessionStorage.getItem("authToken");
+    const response = await axios.get(import.meta.env.VITE_BACKEND_URL + "/vaga/" + vagaId, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    });
 
-      return response.data;
+    return response.data;
   } catch (error) {
-      console.error("Erro ao buscar vaga:", error);
-      return null;
+    console.error("Erro ao buscar vaga:", error);
+    return null;
   }
 }
 
 export async function updateVaga(vagaId, vagaData) {
   try {
-      const response = await axios.patch(
-          `${import.meta.env.VITE_BACKEND_URL}/vaga/${vagaId}`,
-          vagaData
-      );
+    const token = sessionStorage.getItem("authToken");
+    const response = await axios.patch(
+      `${import.meta.env.VITE_BACKEND_URL}/vaga/${vagaId}`,
+      vagaData, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+    );
 
-      return response.data;
+    return response.data;
   } catch (error) {
-      console.error("Erro ao atualizar vaga:", error);
-      return null;
+    console.error("Erro ao atualizar vaga:", error);
+    return null;
   }
 }
 

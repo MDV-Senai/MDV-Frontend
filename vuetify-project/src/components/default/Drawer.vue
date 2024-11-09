@@ -142,9 +142,9 @@ export default {
         "/consultarEstagiario",
       ],
       [
-        "Consultar Professor Responsável",
-        "mdi-clipboard-text-search-outline",
-        "/consultarResponsavel",
+        "Consultar Coordenador de Instituição de Ensino",
+        "mdi-account-tie",
+        "/consultarCoordenadorCurso",
       ],
       ["Consultar Setor", "mdi-file-search-outline", "/consultarSetor"],
       ["Consultar Vagas", "mdi-account-supervisor-outline", "/consultarVagas"],
