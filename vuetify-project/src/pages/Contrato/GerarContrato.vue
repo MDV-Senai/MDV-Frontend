@@ -1,6 +1,7 @@
 <template>
   <v-container>
-    <v-form ref="form">
+    <v-form ref="form" id="imagem" :height="height">
+      <Header />
       <!-- Título da página -->
       <v-row>
         <v-col>
@@ -65,7 +66,7 @@
     </v-form>
 
     <!-- Conteúdo invisível que será convertido para PDF -->
-    <div id="pdf-content" style="">
+    <div id="pdf-content" style="display: none">
       <div class="pdf-header">
         <img
           src="../../assets/img/logocontrato.png"
@@ -505,9 +506,11 @@
 <script>
 import { ref, onMounted } from "vue";
 import html2pdf from "html2pdf.js";
+import { useResponsiveHeight } from "../../composables/useResponsiveHeight.js";
 
 export default {
   setup() {
+    const { height } = useResponsiveHeight();
     // Dados do formulário
     const formData = ref({
       name: "",
@@ -547,6 +550,7 @@ export default {
     return {
       formData,
       generatePDF,
+      height,
     };
   },
 };
