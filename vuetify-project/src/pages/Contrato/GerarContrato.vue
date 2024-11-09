@@ -8,8 +8,9 @@
     </div>
     <div id="fundoCards">
       <v-form ref="form" id="form" class="mx-auto">
+        <!-- Área de Informações do Contrato -->
         <v-row class="d-flex justify-center mt-8">
-          <v-col cols="12" md="12">
+          <v-col cols="12" md="6">
             <v-text-field
               label="Cidade Geração contrato"
               maxlength="255"
@@ -19,11 +20,9 @@
               variant="outlined"
             ></v-text-field>
           </v-col>
-        </v-row>
-        <v-row class="d-flex justify-center mt-8">
-          <v-col cols="12" md="12">
+          <v-col cols="12" md="6">
             <v-text-field
-              label="Número Cooperacao Técnica Instituicao de Ensino"
+              label="Número Cooperação Técnica Instituição de Ensino"
               maxlength="255"
               counter
               clearable
@@ -32,8 +31,10 @@
             ></v-text-field>
           </v-col>
         </v-row>
+
+        <!-- Área de Informações do Estagiário -->
         <v-row class="d-flex justify-center mt-8">
-          <v-col cols="12" md="12">
+          <v-col cols="12" md="4">
             <v-text-field
               label="Fase/Série do Estagiário"
               maxlength="255"
@@ -43,11 +44,9 @@
               variant="outlined"
             ></v-text-field>
           </v-col>
-        </v-row>
-        <v-row class="d-flex justify-center mt-8">
-          <v-col cols="12" md="12">
+          <v-col cols="12" md="8">
             <v-text-field
-              label="Número de Registro do Orgão de Classe Profissional do Estado de Santa Catarina"
+              label="Número de Registro do Orgão de Classe Profissional SC"
               maxlength="255"
               counter
               clearable
@@ -56,8 +55,10 @@
             ></v-text-field>
           </v-col>
         </v-row>
+
+        <!-- Área de Informações do Seguro -->
         <v-row class="d-flex justify-center mt-8">
-          <v-col cols="12" md="12">
+          <v-col cols="12" md="6">
             <v-text-field
               label="Nome da Seguradora"
               maxlength="255"
@@ -67,11 +68,9 @@
               variant="outlined"
             ></v-text-field>
           </v-col>
-        </v-row>
-        <v-row class="d-flex justify-center mt-8">
-          <v-col cols="12" md="12">
+          <v-col cols="12" md="6">
             <v-text-field
-              label="Data Inicio da Vigência do Seguro"
+              label="Data Início da Vigência do Seguro"
               type="date"
               maxlength="10"
               counter
@@ -82,8 +81,9 @@
           </v-col>
         </v-row>
 
+        <!-- Área de Informações do Estágio -->
         <v-row class="d-flex justify-center mt-8">
-          <v-col cols="12" md="12">
+          <v-col cols="12" md="4">
             <v-text-field
               label="Carga Horária Total do Estágio"
               maxlength="255"
@@ -93,10 +93,7 @@
               variant="outlined"
             ></v-text-field>
           </v-col>
-        </v-row>
-
-        <v-row class="d-flex justify-center mt-8">
-          <v-col cols="12" md="12">
+          <v-col cols="12" md="4">
             <v-text-field
               label="Horário de Entrada do Estágio"
               maxlength="255"
@@ -106,10 +103,7 @@
               variant="outlined"
             ></v-text-field>
           </v-col>
-        </v-row>
-
-        <v-row class="d-flex justify-center mt-8">
-          <v-col cols="12" md="12">
+          <v-col cols="12" md="4">
             <v-text-field
               label="Horário de Saída do Estágio"
               maxlength="255"
@@ -121,10 +115,11 @@
           </v-col>
         </v-row>
 
+        <!-- Área de Datas -->
         <v-row class="d-flex justify-center mt-8">
-          <v-col cols="12" md="12">
+          <v-col cols="12" md="6">
             <v-text-field
-              label="Data de Inicio do Estágio"
+              label="Data de Início do Estágio"
               type="date"
               maxlength="10"
               counter
@@ -133,10 +128,7 @@
               variant="outlined"
             ></v-text-field>
           </v-col>
-        </v-row>
-
-        <v-row class="d-flex justify-center mt-8">
-          <v-col cols="12" md="12">
+          <v-col cols="12" md="6">
             <v-text-field
               label="Data de Fim do Estágio"
               type="date"
@@ -147,9 +139,6 @@
               variant="outlined"
             ></v-text-field>
           </v-col>
-        </v-row>
-
-        <v-row class="d-flex justify-center mt-8">
           <v-col cols="12" md="12">
             <v-textarea
               label="Datas de Recesso do Estágio"
@@ -163,8 +152,19 @@
           </v-col>
         </v-row>
 
+        <!-- Área de Orientador -->
         <v-row class="d-flex justify-center mt-8">
-          <v-col cols="12" md="12">
+          <v-col cols="12" md="6">
+            <v-text-field
+              label="Nome do Professor Orientador"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12" md="6">
             <v-text-field
               label="CPF do Professor Orientador"
               maxlength="14"
@@ -177,6 +177,7 @@
           </v-col>
         </v-row>
 
+        <!-- Área de Dias da Semana -->
         <v-card class="pt-8">
           <v-container fluid>
             <v-row id="inputResponsivo" class="d-flex justify-center ml-12">
@@ -676,7 +677,7 @@ import { useResponsiveHeight } from "../../composables/useResponsiveHeight.js";
 export default {
   setup() {
     const { height } = useResponsiveHeight();
-    
+
     // Variáveis para cada checkbox do dia da semana
     const domingo = ref(false);
     const segunda = ref(false);
@@ -693,7 +694,7 @@ export default {
       phone: "",
       date: "",
     });
-    
+
     // Função para gerar o PDF
     const generatePDF = () => {
       const pdfContent = document.getElementById("pdf-content");
@@ -727,7 +728,7 @@ export default {
       quarta,
       quinta,
       sexta,
-      sabado
+      sabado,
     };
   },
 };
