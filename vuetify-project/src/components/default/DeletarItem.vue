@@ -19,7 +19,11 @@
         </div>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="red" text="Confirmar" @click="deletarItem(isActive)"></v-btn>
+          <v-btn
+            color="red"
+            text="Confirmar"
+            @click="deletarItem(isActive)"
+          ></v-btn>
           <v-btn text="Fechar" @click="isActive.value = false"></v-btn>
         </v-card-actions>
       </v-card>
@@ -45,17 +49,24 @@ export default {
   methods: {
     async deletarItem(isActive) {
       try {
-        const url = `${import.meta.env.VITE_BACKEND_URL}/${this.itemKey}/${this.id}`;
-        console.log(url)
-        const response = await axios.delete(url);
+        const url = `${import.meta.env.VITE_BACKEND_URL}/${this.itemKey}/${
+          this.id
+        }`;
+        console.log(url);
+        const token = sessionStorage.getItem("authToken");
+        const response = await axios.delete(url, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         if (response.status === 200) {
           Swal.fire({
             title: "Item deletado com sucesso!",
             icon: "success",
             confirmButtonText: "Ok",
           }).then(() => {
-          window.location.reload();
-        });
+            window.location.reload();
+          });
         }
       } catch (error) {
         Swal.fire({
