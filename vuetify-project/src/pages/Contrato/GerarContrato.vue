@@ -72,7 +72,8 @@
           <v-col cols="12" md="12">
             <v-text-field
               label="Data Inicio da Vigência do Seguro"
-              maxlength="255"
+              type="date"
+              maxlength="10"
               counter
               clearable
               class="text-grey-darken-4"
@@ -124,7 +125,8 @@
           <v-col cols="12" md="12">
             <v-text-field
               label="Data de Inicio do Estágio"
-              maxlength="255"
+              type="date"
+              maxlength="10"
               counter
               clearable
               class="text-grey-darken-4"
@@ -137,7 +139,8 @@
           <v-col cols="12" md="12">
             <v-text-field
               label="Data de Fim do Estágio"
-              maxlength="255"
+              type="date"
+              maxlength="10"
               counter
               clearable
               class="text-grey-darken-4"
@@ -148,14 +151,15 @@
 
         <v-row class="d-flex justify-center mt-8">
           <v-col cols="12" md="12">
-            <v-text-field
+            <v-textarea
               label="Datas de Recesso do Estágio"
+              hint="Separe as datas por vírgula"
               maxlength="255"
               counter
               clearable
               class="text-grey-darken-4"
               variant="outlined"
-            ></v-text-field>
+            ></v-textarea>
           </v-col>
         </v-row>
 
@@ -163,27 +167,53 @@
           <v-col cols="12" md="12">
             <v-text-field
               label="CPF do Professor Orientador"
-              maxlength="255"
+              maxlength="14"
               counter
               clearable
               class="text-grey-darken-4"
               variant="outlined"
+              v-mask="'###.###.###-##'"
             ></v-text-field>
           </v-col>
         </v-row>
 
-        <v-row class="d-flex justify-center mt-8">
-          <v-col cols="12" md="12">
-            <v-text-field
-              label="Dias da Semana do Estágio"
-              maxlength="255"
-              counter
-              clearable
-              class="text-grey-darken-4"
-              variant="outlined"
-            ></v-text-field>
-          </v-col>
-        </v-row>
+        <v-card class="pt-8">
+          <v-container fluid>
+            <v-row id="inputResponsivo" class="d-flex justify-center ml-12">
+              <v-col class="d-flex align-center">Domingo</v-col>
+              <v-col class="d-flex align-center">Segunda</v-col>
+              <v-col class="d-flex align-center">Terça</v-col>
+              <v-col class="d-flex align-center">Quarta</v-col>
+              <v-col class="d-flex align-center">Quinta</v-col>
+              <v-col class="d-flex align-center">Sexta</v-col>
+              <v-col class="d-flex align-center">Sábado</v-col>
+            </v-row>
+
+            <v-row id="inputResponsivo" class="d-flex justify-center ml-12">
+              <v-col class="d-flex align-center">
+                <v-checkbox v-model="domingo"></v-checkbox>
+              </v-col>
+              <v-col class="d-flex align-center">
+                <v-checkbox v-model="segunda"></v-checkbox>
+              </v-col>
+              <v-col class="d-flex align-center">
+                <v-checkbox v-model="terca"></v-checkbox>
+              </v-col>
+              <v-col class="d-flex align-center">
+                <v-checkbox v-model="quarta"></v-checkbox>
+              </v-col>
+              <v-col class="d-flex align-center">
+                <v-checkbox v-model="quinta"></v-checkbox>
+              </v-col>
+              <v-col class="d-flex align-center">
+                <v-checkbox v-model="sexta"></v-checkbox>
+              </v-col>
+              <v-col class="d-flex align-center">
+                <v-checkbox v-model="sabado"></v-checkbox>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-card>
 
         <!-- Botão para Gerar PDF -->
         <v-btn
@@ -653,6 +683,7 @@ export default {
       phone: "",
       date: "",
     });
+    
 
     // Função para gerar o PDF
     const generatePDF = () => {
