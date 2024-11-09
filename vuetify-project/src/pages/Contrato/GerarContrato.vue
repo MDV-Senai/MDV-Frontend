@@ -676,6 +676,16 @@ import { useResponsiveHeight } from "../../composables/useResponsiveHeight.js";
 export default {
   setup() {
     const { height } = useResponsiveHeight();
+    
+    // Variáveis para cada checkbox do dia da semana
+    const domingo = ref(false);
+    const segunda = ref(false);
+    const terca = ref(false);
+    const quarta = ref(false);
+    const quinta = ref(false);
+    const sexta = ref(false);
+    const sabado = ref(false);
+
     // Dados do formulário
     const formData = ref({
       name: "",
@@ -684,16 +694,11 @@ export default {
       date: "",
     });
     
-
     // Função para gerar o PDF
     const generatePDF = () => {
-      // Seleciona o conteúdo invisível
       const pdfContent = document.getElementById("pdf-content");
-
-      // Torna o conteúdo visível
       pdfContent.style.display = "block";
 
-      // Configuração para gerar o PDF
       const options = {
         margin: [0.5, 0.5, 0.5, 0.5],
         filename: "termo_de_compromisso.pdf",
@@ -703,7 +708,6 @@ export default {
         pagebreak: { mode: ["avoid-all", "css", "legacy"] },
       };
 
-      // Gera o PDF
       html2pdf()
         .set(options)
         .from(pdfContent)
@@ -717,6 +721,13 @@ export default {
       formData,
       generatePDF,
       height,
+      domingo,
+      segunda,
+      terca,
+      quarta,
+      quinta,
+      sexta,
+      sabado
     };
   },
 };
