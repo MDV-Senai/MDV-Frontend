@@ -503,21 +503,21 @@
 </template>
 
 <script>
+import { ref, onMounted } from "vue";
 import html2pdf from "html2pdf.js";
 
 export default {
-  data() {
-    return {
-      formData: {
-        name: "",
-        address: "",
-        phone: "",
-        date: "",
-      },
-    };
-  },
-  methods: {
-    generatePDF() {
+  setup() {
+    // Dados do formulário
+    const formData = ref({
+      name: "",
+      address: "",
+      phone: "",
+      date: "",
+    });
+
+    // Função para gerar o PDF
+    const generatePDF = () => {
       // Seleciona o conteúdo invisível
       const pdfContent = document.getElementById("pdf-content");
 
@@ -542,7 +542,12 @@ export default {
         .then(() => {
           pdfContent.style.display = "none";
         });
-    },
+    };
+
+    return {
+      formData,
+      generatePDF,
+    };
   },
 };
 </script>
