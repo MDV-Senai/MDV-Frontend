@@ -1,69 +1,41 @@
 <template>
-  <v-container>
-    <v-form ref="form" id="imagem" :height="height">
-      <Header />
-      <!-- Título da página -->
-      <v-row>
-        <v-col>
-          <h1>Preencha os dados abaixo:</h1>
-        </v-col>
-      </v-row>
+  <div id="imagem" :height="height">
+    <Header />
+    <div class="d-flex justify-center align-center">
+      <v-card class="d-flex justify-center align-center" id="card_titulo">
+        <h3>Gerar Contrato</h3>
+      </v-card>
+    </div>
+    <div id="fundoCards">
+      <v-form ref="form" id="form" class="mx-auto">
+        <v-row class="d-flex justify-center mt-8">
+          <v-col cols="12" md="12">
+            <v-text-field
+              label="Nome"
+              v-model="nome"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+        </v-row>
 
-      <!-- Campo de Nome -->
-      <v-row>
-        <v-col>
-          <v-text-field
-            v-model="formData.name"
-            label="Nome Completo"
-            outlined
-            required
-          ></v-text-field>
-        </v-col>
-      </v-row>
-
-      <!-- Campo de Endereço -->
-      <v-row>
-        <v-col>
-          <v-text-field
-            v-model="formData.address"
-            label="Endereço"
-            outlined
-            required
-          ></v-text-field>
-        </v-col>
-      </v-row>
-
-      <!-- Campo de Telefone -->
-      <v-row>
-        <v-col>
-          <v-text-field
-            v-model="formData.phone"
-            label="Telefone"
-            outlined
-            required
-          ></v-text-field>
-        </v-col>
-      </v-row>
-
-      <!-- Campo de Data -->
-      <v-row>
-        <v-col>
-          <v-text-field
-            v-model="formData.date"
-            label="Data"
-            outlined
-            required
-          ></v-text-field>
-        </v-col>
-      </v-row>
-
-      <!-- Botão para Gerar PDF -->
-      <v-row>
-        <v-col>
-          <v-btn color="primary" @click="generatePDF">Gerar PDF</v-btn>
-        </v-col>
-      </v-row>
-    </v-form>
+        <!-- Botão para Gerar PDF -->
+        <v-btn
+          append-icon="mdi-chevron-right"
+          variant="outlined"
+          class="my-10"
+          width="183"
+          height="62"
+          id="botaoGerar"
+          @click="generatePDF"
+        >
+          Gerar Contrato
+        </v-btn>
+      </v-form>
+    </div>
 
     <!-- Conteúdo invisível que será convertido para PDF -->
     <div id="pdf-content" style="display: none">
@@ -500,7 +472,7 @@
         <p style="font-size: 16px">Nome do Estagiário</p>
       </div>
     </div>
-  </v-container>
+  </div>
 </template>
 
 <script>
@@ -556,7 +528,9 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped  lang="scss">
+@import "@/styles/shared";
+
 .pdf-header {
   width: 100%;
   text-align: left;
