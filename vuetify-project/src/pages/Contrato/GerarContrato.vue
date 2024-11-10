@@ -18,6 +18,7 @@
               clearable
               class="text-grey-darken-4"
               variant="outlined"
+              v-model="formData.cidadeGeracao"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="6">
@@ -246,8 +247,8 @@
       </div>
 
       <p>
-        Aos ____ dias do mês de _____ de ____ , na cidade de ______ neste ato,
-        as partes seguintes nomeadas:
+        {{ formData.date }}, na cidade de {{ formData.cidadeGeracao }}, neste
+        ato, as partes seguintes nomeadas:
       </p>
 
       <h5 class="highlight">
@@ -687,12 +688,26 @@ export default {
     const sexta = ref(false);
     const sabado = ref(false);
 
-    // Dados do formulário
+    // Dados do formulário com a data atual preenchida automaticamente
     const formData = ref({
-      name: "",
+      cidadeGeracao: "",
       address: "",
       phone: "",
-      date: "",
+      date: "", // Campo para armazenar a data
+    });
+
+    // Função para definir a data atual no formato desejado
+    const setDate = () => {
+      const dataAtual = new Date();
+      const dia = dataAtual.getDate();
+      const mes = dataAtual.toLocaleString("pt-BR", { month: "long" });
+      const ano = dataAtual.getFullYear();
+      formData.value.date = `Aos ${dia} dias do mês de ${mes} de ${ano}`;
+    };
+
+    // Definir a data automaticamente ao montar o componente
+    onMounted(() => {
+      setDate();
     });
 
     // Função para gerar o PDF
