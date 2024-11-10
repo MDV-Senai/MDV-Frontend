@@ -33,6 +33,41 @@
             ></v-text-field>
           </v-col>
         </v-row>
+        <!-- Área de Orientador -->
+        <v-row class="d-flex justify-center mt-8">
+          <v-col cols="12" md="4">
+            <v-text-field
+              label="Nome do Professor Orientador"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12" md="4">
+            <v-text-field
+              label="CPF do Professor Orientador"
+              maxlength="14"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+              v-mask="'###.###.###-##'"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12" md="4">
+            <v-text-field
+              label="Nº Registro do Orgão de Classe Profissional SC"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+              v-model="formData.numRegistroOrgaoClasseEstadoProfOrientador"
+            ></v-text-field>
+          </v-col>
+        </v-row>
 
         <!-- Área de Informações do Estagiário -->
         <v-row class="d-flex justify-center mt-8">
@@ -156,42 +191,6 @@
               class="text-grey-darken-4"
               variant="outlined"
             ></v-textarea>
-          </v-col>
-        </v-row>
-
-        <!-- Área de Orientador -->
-        <v-row class="d-flex justify-center mt-8">
-          <v-col cols="12" md="4">
-            <v-text-field
-              label="Nome do Professor Orientador"
-              maxlength="255"
-              counter
-              clearable
-              class="text-grey-darken-4"
-              variant="outlined"
-            ></v-text-field>
-          </v-col>
-          <v-col cols="12" md="4">
-            <v-text-field
-              label="CPF do Professor Orientador"
-              maxlength="14"
-              counter
-              clearable
-              class="text-grey-darken-4"
-              variant="outlined"
-              v-mask="'###.###.###-##'"
-            ></v-text-field>
-          </v-col>
-          <v-col cols="12" md="4">
-            <v-text-field
-              label="Nº Registro do Orgão de Classe Profissional SC"
-              maxlength="255"
-              counter
-              clearable
-              class="text-grey-darken-4"
-              variant="outlined"
-              v-model="formData.numRegistroOrgaoClasseEstadoProfOrientador"
-            ></v-text-field>
           </v-col>
         </v-row>
 
