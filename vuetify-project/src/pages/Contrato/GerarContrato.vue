@@ -195,16 +195,17 @@
         </v-row>
 
         <!-- Área de Dias da Semana -->
+        <h4 class="text-left">Selecione os dias de estágio</h4>
         <v-card class="pt-8">
           <v-container fluid>
             <v-row id="inputResponsivo" class="d-flex justify-center ml-12">
-              <v-col class="d-flex align-center">Domingo</v-col>
-              <v-col class="d-flex align-center">Segunda</v-col>
-              <v-col class="d-flex align-center">Terça</v-col>
-              <v-col class="d-flex align-center">Quarta</v-col>
-              <v-col class="d-flex align-center">Quinta</v-col>
-              <v-col class="d-flex align-center">Sexta</v-col>
-              <v-col class="d-flex align-center">Sábado</v-col>
+              <v-col class="d-flex align-center">Dom</v-col>
+              <v-col class="d-flex align-center">Seg</v-col>
+              <v-col class="d-flex align-center">Ter</v-col>
+              <v-col class="d-flex align-center">Qua</v-col>
+              <v-col class="d-flex align-center">Qui</v-col>
+              <v-col class="d-flex align-center">Sex</v-col>
+              <v-col class="d-flex align-center">Sab</v-col>
             </v-row>
 
             <v-row id="inputResponsivo" class="d-flex justify-center ml-12">
@@ -444,7 +445,7 @@
             <td style="height: 30px"></td>
             <td>{{ formatDate(formData.dataInicioEstagio) }}</td>
             <td>{{ formatDate(formData.dataFimEstagio) }}</td>
-            <td></td>
+            <td>{{ diasSelecionados }}</td>
             <td>
               {{ formData.horarioEntradaEstagio }} -
               {{ formData.horarioSaidaEstagio }}
@@ -697,7 +698,7 @@
 </template>
 
 <script>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed  } from "vue";
 import html2pdf from "html2pdf.js";
 import { useResponsiveHeight } from "../../composables/useResponsiveHeight.js";
 
@@ -713,6 +714,19 @@ export default {
     const quinta = ref(false);
     const sexta = ref(false);
     const sabado = ref(false);
+
+    const diasSelecionados = computed(() => {
+      const dias = [];
+      if (domingo.value) dias.push("Dom");
+      if (segunda.value) dias.push("Seg");
+      if (terca.value) dias.push("Ter");
+      if (quarta.value) dias.push("Qua");
+      if (quinta.value) dias.push("Qui");
+      if (sexta.value) dias.push("Sex");
+      if (sabado.value) dias.push("Sab");
+
+      return dias.join(", ");
+    });
 
     // Dados do formulário com a data atual preenchida automaticamente
     const formData = ref({
@@ -788,6 +802,7 @@ export default {
       sexta,
       sabado,
       formatDate,
+      diasSelecionados
     };
   },
 };
