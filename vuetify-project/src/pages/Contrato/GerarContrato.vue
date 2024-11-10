@@ -131,6 +131,7 @@
               clearable
               class="text-grey-darken-4"
               variant="outlined"
+              v-model="formData.dataInicioEstagio"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="6">
@@ -142,6 +143,7 @@
               clearable
               class="text-grey-darken-4"
               variant="outlined"
+              v-model="formData.dataFimEstagio"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="12">
@@ -262,7 +264,7 @@
       </div>
 
       <p>
-        {{ formData.date }}, na cidade de {{ formData.cidadeGeracao }}, neste
+        {{ formData.dataGeracaoContrato }}, na cidade de {{ formData.cidadeGeracao }}, neste
         ato, as partes seguintes nomeadas:
       </p>
 
@@ -441,8 +443,8 @@
         <tbody>
           <tr>
             <td style="height: 30px"></td>
-            <td></td>
-            <td></td>
+            <td>{{ formData.dataInicioEstagio }}</td>
+            <td>{{ formData.dataFimEstagio }}</td>
             <td></td>
             <td>{{ formData.horarioEntradaEstagio }} - {{ formData.horarioSaidaEstagio }}</td>
             <td></td>
@@ -720,7 +722,9 @@ export default {
       cargaHorariaTotalEstagio: "",
       horarioEntradaEstagio: "",
       horarioSaidaEstagio: "",
-      date: "", // Campo para armazenar a data
+      dataInicioEstagio: "",
+      dataFimEstagio: "",
+      dataGeracaoContrato: "",
     });
 
     // Função para definir a data atual no formato desejado
@@ -729,7 +733,7 @@ export default {
       const dia = dataAtual.getDate();
       const mes = dataAtual.toLocaleString("pt-BR", { month: "long" });
       const ano = dataAtual.getFullYear();
-      formData.value.date = `Aos ${dia} dias do mês de ${mes} de ${ano}`;
+      formData.value.dataGeracaoContrato = `Aos ${dia} dias do mês de ${mes} de ${ano}`;
     };
 
     // Definir a data automaticamente ao montar o componente
