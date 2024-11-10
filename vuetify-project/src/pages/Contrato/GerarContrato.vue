@@ -54,6 +54,7 @@
               class="text-grey-darken-4"
               variant="outlined"
               v-mask="'###.###.###-##'"
+              v-model="formData.cpfProfessorOrientador"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
@@ -190,6 +191,7 @@
               clearable
               class="text-grey-darken-4"
               variant="outlined"
+              v-model="formData.datasRecesso"
             ></v-textarea>
           </v-col>
         </v-row>
@@ -341,7 +343,7 @@
         <tbody>
           <tr>
             <td style="height: 30px">NOME</td>
-            <td>CPF</td>
+            <td>{{ formData.cpfProfessorOrientador }}</td>
             <td>{{ formData.numRegistroOrgaoClasseEstadoProfOrientador }}</td>
           </tr>
           <tr>
@@ -494,7 +496,7 @@
           </tr>
           <tr>
             <td style="text-align: left" colspan="6">
-              <strong>DATAS DE RECESSO:</strong>
+              <strong>DATAS DE RECESSO: {{ formData.datasRecesso }}</strong>
             </td>
           </tr>
         </tbody>
@@ -740,6 +742,8 @@ export default {
       horarioSaidaEstagio: "",
       dataInicioEstagio: "",
       dataFimEstagio: "",
+      datasRecesso: "",
+      cpfProfessorOrientador: "",
       dataGeracaoContrato: "",
     });
 
