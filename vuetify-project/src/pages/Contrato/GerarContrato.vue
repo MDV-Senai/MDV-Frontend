@@ -264,8 +264,8 @@
       </div>
 
       <p>
-        {{ formData.dataGeracaoContrato }}, na cidade de {{ formData.cidadeGeracao }}, neste
-        ato, as partes seguintes nomeadas:
+        {{ formData.dataGeracaoContrato }}, na cidade de
+        {{ formData.cidadeGeracao }}, neste ato, as partes seguintes nomeadas:
       </p>
 
       <h5 class="highlight">
@@ -443,10 +443,13 @@
         <tbody>
           <tr>
             <td style="height: 30px"></td>
-            <td>{{ formData.dataInicioEstagio }}</td>
-            <td>{{ formData.dataFimEstagio }}</td>
+            <td>{{ formatDate(formData.dataInicioEstagio) }}</td>
+            <td>{{ formatDate(formData.dataFimEstagio) }}</td>
             <td></td>
-            <td>{{ formData.horarioEntradaEstagio }} - {{ formData.horarioSaidaEstagio }}</td>
+            <td>
+              {{ formData.horarioEntradaEstagio }} -
+              {{ formData.horarioSaidaEstagio }}
+            </td>
             <td></td>
           </tr>
           <tr>
@@ -764,6 +767,16 @@ export default {
         });
     };
 
+    // Função para formatar datas no formato DD/MM/AAAA
+    const formatDate = (dateString) => {
+      if (!dateString) return "";
+      const date = new Date(dateString);
+      const day = String(date.getDate()).padStart(2, "0");
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const year = date.getFullYear();
+      return `${day}/${month}/${year}`;
+    };
+
     return {
       formData,
       generatePDF,
@@ -775,6 +788,7 @@ export default {
       quinta,
       sexta,
       sabado,
+      formatDate,
     };
   },
 };
