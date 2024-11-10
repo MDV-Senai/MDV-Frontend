@@ -29,12 +29,23 @@
               clearable
               class="text-grey-darken-4"
               variant="outlined"
+              v-model="formData.numeroCooperacaoTecnicaInstituicaoEnsino"
             ></v-text-field>
           </v-col>
         </v-row>
 
         <!-- Área de Informações do Estagiário -->
         <v-row class="d-flex justify-center mt-8">
+          <v-col cols="12" md="8">
+            <v-text-field
+              label="Estagiário"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
           <v-col cols="12" md="4">
             <v-text-field
               label="Fase/Série do Estagiário"
@@ -43,16 +54,7 @@
               clearable
               class="text-grey-darken-4"
               variant="outlined"
-            ></v-text-field>
-          </v-col>
-          <v-col cols="12" md="8">
-            <v-text-field
-              label="Número de Registro do Orgão de Classe Profissional SC"
-              maxlength="255"
-              counter
-              clearable
-              class="text-grey-darken-4"
-              variant="outlined"
+              v-model="formData.faseSerieEstagiario"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -67,6 +69,7 @@
               clearable
               class="text-grey-darken-4"
               variant="outlined"
+              v-model="formData.nomeSeguradora"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="6">
@@ -155,7 +158,7 @@
 
         <!-- Área de Orientador -->
         <v-row class="d-flex justify-center mt-8">
-          <v-col cols="12" md="6">
+          <v-col cols="12" md="4">
             <v-text-field
               label="Nome do Professor Orientador"
               maxlength="255"
@@ -165,7 +168,7 @@
               variant="outlined"
             ></v-text-field>
           </v-col>
-          <v-col cols="12" md="6">
+          <v-col cols="12" md="4">
             <v-text-field
               label="CPF do Professor Orientador"
               maxlength="14"
@@ -174,6 +177,17 @@
               class="text-grey-darken-4"
               variant="outlined"
               v-mask="'###.###.###-##'"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12" md="4">
+            <v-text-field
+              label="Nº Registro do Orgão de Classe Profissional SC"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+              v-model="formData.numRegistroOrgaoClasseEstadoProfOrientador"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -232,8 +246,8 @@
       </v-form>
     </div>
 
-    <!-- Conteúdo invisível que será convertido para PDF -->
-    <div id="pdf-content" style="display: none">
+    <!-- Conteúdo invisível que será convertido para PDF style="display: none" -->
+    <div id="pdf-content" style="">
       <div class="pdf-header">
         <img
           src="../../assets/img/logocontrato.png"
@@ -272,7 +286,10 @@
       <h5 class="highlight">INSTITUIÇÃO DE ENSINO:</h5>
 
       <p>Razão Social: ______</p>
-      <p>Cooperação Técnica Nº: _______</p>
+      <p>
+        Cooperação Técnica Nº:
+        {{ formData.numeroCooperacaoTecnicaInstituicaoEnsino }}
+      </p>
       <div style="display: flex; justify-content: flex-start">
         <p style="margin-right: 337px">Representante Legal:_______</p>
         <p style="margin: 0">Cargo:_______</p>
@@ -289,7 +306,9 @@
 
       <div style="display: flex; justify-content: flex-start">
         <p style="margin-right: 60px">Curso:________</p>
-        <p style="margin-right: 60px">Fase/Série: ________</p>
+        <p style="margin-right: 60px">
+          Fase/Série: {{ formData.faseSerieEstagiario }}
+        </p>
         <p style="margin-right: 0px">Matrícula: ________</p>
       </div>
 
@@ -318,9 +337,9 @@
         </thead>
         <tbody>
           <tr>
-            <td style="height: 30px"></td>
-            <td></td>
-            <td></td>
+            <td style="height: 30px">NOME</td>
+            <td>CPF</td>
+            <td>{{ formData.numRegistroOrgaoClasseEstadoProfOrientador }}</td>
           </tr>
           <tr>
             <td style="height: 30px"></td>
@@ -577,7 +596,7 @@
       <p>
         <strong>Cláusula 19ª -</strong> O estagiário está segurado contra
         acidentes pessoais, proporcionado pela apólice nº ______ , sob a
-        Responsabilidade da Seguradora _______ durante o período compreendido de
+        Responsabilidade da Seguradora {{ formData.nomeSeguradora }} durante o período compreendido de
         _____/______ /_______ à ______/_______ /_______ .
       </p>
 
@@ -691,8 +710,10 @@ export default {
     // Dados do formulário com a data atual preenchida automaticamente
     const formData = ref({
       cidadeGeracao: "",
-      address: "",
-      phone: "",
+      numeroCooperacaoTecnicaInstituicaoEnsino: "",
+      faseSerieEstagiario: "",
+      numRegistroOrgaoClasseEstadoProfOrientador: "",
+      nomeSeguradora: "",
       date: "", // Campo para armazenar a data
     });
 
