@@ -101,21 +101,21 @@
           <v-col cols="12" md="4">
             <v-text-field
               label="Horário de Entrada do Estágio"
-              maxlength="255"
-              counter
+              type="time"
               clearable
               class="text-grey-darken-4"
               variant="outlined"
+              v-model="formData.horarioEntradaEstagio"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
             <v-text-field
               label="Horário de Saída do Estágio"
-              maxlength="255"
-              counter
+              type="time"
               clearable
               class="text-grey-darken-4"
               variant="outlined"
+              v-model="formData.horarioSaidaEstagio"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -444,7 +444,7 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
+            <td>{{ formData.horarioEntradaEstagio }} - {{ formData.horarioSaidaEstagio }}</td>
             <td></td>
           </tr>
           <tr>
@@ -502,7 +502,8 @@
       </p>
       <p>
         <strong>Cláusula 7ª -</strong> O estágio obrigatório regido pelo
-        presente Termo terá carga horária total {{ formData.cargaHorariaTotalEstagio }} horas por aluno.
+        presente Termo terá carga horária total
+        {{ formData.cargaHorariaTotalEstagio }} horas por aluno.
       </p>
       <p>
         <strong>Cláusula 8ª -</strong> O estagiário desenvolverá na Unidade
@@ -597,8 +598,9 @@
       <p>
         <strong>Cláusula 19ª -</strong> O estagiário está segurado contra
         acidentes pessoais, proporcionado pela apólice nº ______ , sob a
-        Responsabilidade da Seguradora {{ formData.nomeSeguradora }} durante o período compreendido de
-        _____/______ /_______ à ______/_______ /_______ .
+        Responsabilidade da Seguradora {{ formData.nomeSeguradora }} durante o
+        período compreendido de _____/______ /_______ à ______/_______ /_______
+        .
       </p>
 
       <p>
@@ -715,7 +717,9 @@ export default {
       faseSerieEstagiario: "",
       numRegistroOrgaoClasseEstadoProfOrientador: "",
       nomeSeguradora: "",
-      cargaHorariaTotalEstagio:"",
+      cargaHorariaTotalEstagio: "",
+      horarioEntradaEstagio: "",
+      horarioSaidaEstagio: "",
       date: "", // Campo para armazenar a data
     });
 
