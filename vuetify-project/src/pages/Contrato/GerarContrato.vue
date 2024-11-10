@@ -89,12 +89,13 @@
         <v-row class="d-flex justify-center mt-8">
           <v-col cols="12" md="4">
             <v-text-field
-              label="Carga Horária Total do Estágio"
+              label="Carga Horária Total do Estágio Por Aluno"
               maxlength="255"
               counter
               clearable
               class="text-grey-darken-4"
               variant="outlined"
+              v-model="formData.cargaHorariaTotalEstagio"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
@@ -501,7 +502,7 @@
       </p>
       <p>
         <strong>Cláusula 7ª -</strong> O estágio obrigatório regido pelo
-        presente Termo terá carga horária total _______ horas por aluno.
+        presente Termo terá carga horária total {{ formData.cargaHorariaTotalEstagio }} horas por aluno.
       </p>
       <p>
         <strong>Cláusula 8ª -</strong> O estagiário desenvolverá na Unidade
@@ -714,6 +715,7 @@ export default {
       faseSerieEstagiario: "",
       numRegistroOrgaoClasseEstadoProfOrientador: "",
       nomeSeguradora: "",
+      cargaHorariaTotalEstagio:"",
       date: "", // Campo para armazenar a data
     });
 
