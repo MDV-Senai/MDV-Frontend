@@ -286,7 +286,7 @@
         <p style="margin-right: 250px">
           Responsável do Setor de Estágio:_______
         </p>
-        <p style="margin: 0">Cargo:Coordenador</p>
+        <p style="margin: 0">Cargo: Coordenador</p>
       </div>
 
       <h5 class="highlight">INSTITUIÇÃO DE ENSINO:</h5>
