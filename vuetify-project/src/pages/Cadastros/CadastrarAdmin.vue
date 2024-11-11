@@ -3,7 +3,7 @@
     <Header />
     <div class="d-flex justify-center align-center">
       <v-card class="d-flex justify-center align-center" id="card_titulo"
-        ><h3>Cadastrar Administrador</h3></v-card
+        ><h3>Cadastrar Usuário</h3></v-card
       >
     </div>
     <div id="fundoCards">
@@ -24,7 +24,7 @@
           </v-col>
         </v-row>
 
-        <v-row class="d-flex justify-center">
+        <!-- <v-row class="d-flex justify-center">
           <v-col cols="12" md="12">
             <v-text-field
               label="Nome social"
@@ -50,7 +50,7 @@
               id="toggleSwitch"
             ></v-switch>
           </v-col>
-        </v-row>
+        </v-row> -->
 
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="12">
@@ -88,7 +88,7 @@
           </v-col>
         </v-row>
 
-        <v-row class="d-flex justify-center">
+        <!-- <v-row class="d-flex justify-center">
           <v-col cols="6" md="6">
             <v-text-field
               label="CPF"
@@ -114,9 +114,9 @@
               variant="outlined"
             ></v-text-field>
           </v-col>
-        </v-row>
+        </v-row> -->
 
-        <v-row id="inputResponsivo" class="d-flex justify-center">
+        <!-- <v-row id="inputResponsivo" class="d-flex justify-center">
           <v-col cols="6" md="4">
             <v-text-field
               label="Telefone"
@@ -154,10 +154,22 @@
               variant="outlined"
             ></v-text-field>
           </v-col>
-        </v-row>
+        </v-row> -->
 
         <v-row id="inputResponsivo" class="d-flex justify-center">
-          <v-col cols="12" md="6">
+          <v-col cols="12" md="4">
+            <v-text-field
+              label="E-mail"
+              :rules="[rules.required, rules.email]"
+              v-model="email"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12" md="4">
             <v-text-field
               label="Senha"
               id="senha"
@@ -173,7 +185,7 @@
               @click:append="show1 = !show1"
             ></v-text-field>
           </v-col>
-          <v-col cols="12" md="6">
+          <v-col cols="12" md="4">
             <v-text-field
               label="Confirmação de Senha"
               id="confirmarSenha"
@@ -300,6 +312,7 @@ import {
 } from "@/validations/formValidations";
 import { fetchInstituicoes } from "@/services/InstituicoesService.js";
 import { cadastrarAdmin } from "../../services/AdminService";
+import Swal from "sweetalert2";
 
 export default {
   data() {
@@ -411,16 +424,11 @@ export default {
 
       if (this.$refs.form.validate()) {
         const data = {
-          nome: this.nome,
-          tipoUsuario: this.tipoUsuario,
-          instEns: this.instituicaoEnsino,
-          nomeSocial: this.nomeSocial,
-          senha: this.senha,
-          cpf: removeMascara(this.cpf),
-          numeroMatriculaTrabalho: this.numeroMatriculaTrabalho,
-          fone: removeMascara(this.telefone),
-          celular: removeMascara(this.celular),
+          name: this.nome,
           email: this.email,
+          password: this.senha,
+          role: this.tipoUsuario,
+          instituicaoEnsinoId: this.instituicaoEnsino
         };
 
         console.log(data);
