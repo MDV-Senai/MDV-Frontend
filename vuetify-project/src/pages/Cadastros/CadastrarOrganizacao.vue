@@ -150,6 +150,21 @@
             ></v-text-field>
           </v-col>
         </v-row>
+
+        <v-row id="inputResponsivo" class="d-flex justify-center">
+          <v-col cols="6" md="12">
+            <v-text-field
+              label="Logradouro"
+              v-model="rua"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+
         <v-row>
           <v-col cols="6" md="4">
             <v-text-field
@@ -163,18 +178,7 @@
               variant="outlined"
             ></v-text-field>
           </v-col>
-          <v-col cols="6" md="4">
-            <v-text-field
-              label="Rua"
-              v-model="rua"
-              maxlength="255"
-              counter
-              clearable
-              class="text-grey-darken-4"
-              variant="outlined"
-            ></v-text-field>
-          </v-col>
-          <v-col cols="6" md="4">
+          <v-col cols="6" md="8">
             <v-text-field
               label="Complemento"
               v-model="complemento"
@@ -273,8 +277,8 @@ import {
   fullNameValidation,
 } from "@/validations/formValidations";
 import { buscaCep } from "@/util/buscaCep";
-import {cadastrarOrganizacao} from "../../services/OrganizacaoService"
-import Swal from 'sweetalert2'
+import { cadastrarOrganizacao } from "../../services/OrganizacaoService";
+import Swal from "sweetalert2";
 
 export default {
   data() {
@@ -319,8 +323,7 @@ export default {
     },
 
     async enviarDados() {
-
-      const removeMascara = (valor) => valor ? valor.replace(/\D/g, '') : '';
+      const removeMascara = (valor) => (valor ? valor.replace(/\D/g, "") : "");
 
       if (this.$refs.form.validate()) {
         try {
@@ -343,7 +346,7 @@ export default {
             responsavelLegalContato: removeMascara(this.contatoRespLegal),
           };
           console.log(data);
-          
+
           const response = await cadastrarOrganizacao(data);
 
           if (response) {

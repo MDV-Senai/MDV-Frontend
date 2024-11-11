@@ -18,16 +18,22 @@ export async function cadastrarOrganizacao(data) {
     }
 }
 
-export async function fetchOrganizacaoConcedente() {
+export async function fetchOrganizacaoConcedente(pagina, itensPorPagina) {
     try {
-
+        let token = sessionStorage.getItem("authToken");
         const response = await axios.get(
-            import.meta.env.VITE_BACKEND_URL + "/organizacao-concedente",
+            `${import.meta.env.VITE_BACKEND_URL}/organizacao-concedente`,
             {
+                params: {
+                    page: pagina,
+                    limit: itensPorPagina
+                },
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
             }
         );
-
-        return response.data.data;
+        return response.data;
     } catch (error) {
         console.error("Erro ao buscar organizações:", error);
         return null;
@@ -36,7 +42,12 @@ export async function fetchOrganizacaoConcedente() {
 
 export async function fetchConcedentePorId(instId) {
     try {
-        const response = await axios.get(import.meta.env.VITE_BACKEND_URL + "/organizacao-concedente/" + instId);
+        let token = sessionStorage.getItem("authToken");
+        const response = await axios.get(import.meta.env.VITE_BACKEND_URL + "/organizacao-concedente/" + instId, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }
+        });
 
         return response.data;
     } catch (error) {
@@ -47,9 +58,15 @@ export async function fetchConcedentePorId(instId) {
 
 export async function updateConcedente(instId, organizacaoData) {
     try {
+        let token = sessionStorage.getItem("authToken");
         const response = await axios.patch(
             `${import.meta.env.VITE_BACKEND_URL}/organizacao-concedente/${instId}`,
-            organizacaoData
+            organizacaoData,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+            }
         );
 
         return response.data;

@@ -25,14 +25,17 @@
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="4">
             <v-select
-              v-model="setor"
-              :items="estagiarios"
-              :item-title="'titulo'"
-              :item-value="'id'"
-              label="Setor"
+              label="Setor Disponível"
+              :rules="[rules.required]"
+              v-model="setorId"
+              maxlength="255"
+              counter
+              clearable
               class="text-grey-darken-4"
               variant="outlined"
-              readonly
+              :items="setores"
+              item-title="nomeSetor"
+              item-value="id"
             ></v-select>
           </v-col>
           <v-col cols="12" md="4">
@@ -174,6 +177,7 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 import { cadastrarSolcitacaoVagas } from '../../services/VagasService';
+import { fetchSetores } from '../../services/SetoresService';
 export default {
   data() {
     return {
@@ -182,7 +186,8 @@ export default {
       },
       estagiario: null,
       estagiarios: [],
-      setor: null,
+      setores: [],
+      setorId: null,
       turno: null,
       qtdVagas: null,
       situacao: null,
@@ -203,25 +208,12 @@ export default {
     reset() {
       this.$refs.form.reset();
     },
-    async getUfs() {
-      try {
-        const response = await axios.get(
-          "https://run.mocky.io/v3/e1351e5c-3a81-4b3c-8dd3-31f6811e3539"
-        );
-        const data = response.data;
-        const estagiarios = data.items.estagiarios;
-        this.estagiarios = estagiarios;
-        console.log(this.estagiarios);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    },
     async enviarDados() {
       if (this.$refs.form.validate()) {
         try {
           const data = {
             cursoHomologadoId: '0afccf21-637c-47b1-bbf2-25c7ef995930',//this.cursoSolicitado,
-            setorId: '92e7a384-9ff3-4621-97ca-e5bd83a5da94',//this.setor,
+            setorId: this.setorId,
             instEnsinoId: '62b266ca-714e-4ccc-928d-1fa995fa9b4e',
             quantidadeVagas: this.qtdVagas,
             periodo: this.turno,
@@ -247,10 +239,16 @@ export default {
         }
       }
     },
+
+    async listarSetores() {
+      const response = await fetchSetores();
+      this.setores = response;
+    },
   },
-  mounted() {
-    this.getUfs();
-  },
+
+  mounted(){
+    this.listarSetores();
+  }
 };
 </script>
 

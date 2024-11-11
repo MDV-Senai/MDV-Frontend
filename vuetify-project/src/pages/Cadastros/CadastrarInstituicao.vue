@@ -231,51 +231,6 @@
             ></v-select>
           </v-col>
         </v-row>
-        <v-row class="d-flex justify-center">
-          <v-col cols="12" md="4">
-            <v-text-field
-              label="Usuário"
-              :rules="[rules.required]"
-              v-model="usuario"
-              maxlength="255"
-              counter
-              clearable
-              class="text-grey-darken-3"
-              variant="outlined"
-            ></v-text-field>
-          </v-col>
-          <v-col cols="12" md="4">
-            <v-text-field
-              label="Senha"
-              id="senha"
-              :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-              :rules="[rules.required, rules.min]"
-              :type="show1 ? 'text' : 'password'"
-              v-model="senha"
-              maxlength="255"
-              counter
-              clearable
-              class="text-grey-darken-3"
-              variant="outlined"
-              @click:append="show1 = !show1"
-            ></v-text-field>
-          </v-col>
-          <v-col cols="12" md="4">
-            <v-text-field
-              label="Confirmação de Senha"
-              id="confirmarSenha"
-              :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
-              :rules="[rules.required, rules.identic]"
-              :type="show2 ? 'text' : 'password'"
-              maxlength="255"
-              counter
-              clearable
-              class="text-grey-darken-3"
-              variant="outlined"
-              @click:append="show2 = !show2"
-            ></v-text-field>
-          </v-col>
-        </v-row>
 
         <div class="d-flex justify-center">
           <v-row class="d-flex justify-center">
@@ -346,8 +301,6 @@ export default {
       cidade: null,
       uf: null,
       rua: null,
-      usuario: null,
-      senha: null,
       contatoRespLegal: null,
       ufs: [],
       show1: false,

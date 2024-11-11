@@ -1,19 +1,21 @@
 import axios from "axios";
 
-export async function fetchEstagiarios() {
+export async function fetchEstagiarios(pagina, itensPorPagina) {
   try {
-    let token = sessionStorage.getItem("authToken");
-
+    const token = sessionStorage.getItem('authToken');
     const response = await axios.get(
-      import.meta.env.VITE_BACKEND_URL + "/aluno",
+      `${import.meta.env.VITE_BACKEND_URL}/aluno`,
       {
-        headers: {
-          Authorization: `Bearer ${token}`,
+        params: {
+          page: pagina,
+          limit: itensPorPagina
         },
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
       }
     );
-
-    return response.data.data;
+    return response.data;
   } catch (error) {
     console.error("Erro ao buscar alunos:", error);
     return null;
@@ -26,10 +28,12 @@ export async function cadastrarEstagiario(data) {
 
     console.log('Dados enviados:', data.file);
     console.log('URL:', url);
+    const token = sessionStorage.getItem('authToken');
 
     const req = await axios.post(url, data, {
       headers: {
-        'Content-Type': 'multipart/form-data'
+        'Content-Type': 'multipart/form-data',
+        'Authorization': `Bearer ${token}`
       }
     });
     return req;
@@ -41,7 +45,12 @@ export async function cadastrarEstagiario(data) {
 
 export async function fetchEstagiarioPorId(estgId) {
   try {
-    const response = await axios.get(import.meta.env.VITE_BACKEND_URL + "/aluno/" + estgId);
+    const token = sessionStorage.getItem('authToken');
+    const response = await axios.get(import.meta.env.VITE_BACKEND_URL + "/aluno/" + estgId, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
 
     return response.data;
   } catch (error) {
@@ -60,9 +69,14 @@ export async function atualizarEstagiarioPorId(estgId, data) {
     data.cep = removeMascara(data.cep);
     data.dataNascimento = new Date(data.dataNascimento).toISOString();
     data.dataFimApolice = new Date(data.dataFimApolice).toISOString();
-    
+
+    const token = sessionStorage.getItem('authToken');
     const url = import.meta.env.VITE_BACKEND_URL + "/aluno/" + estgId;
-    const response = await axios.patch(url, data);
+    const response = await axios.patch(url, data, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
 
     return response.data;
   } catch (error) {

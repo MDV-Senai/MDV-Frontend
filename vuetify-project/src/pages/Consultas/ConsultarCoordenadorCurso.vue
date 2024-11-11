@@ -3,13 +3,13 @@
     <Header />
     <div class="d-flex justify-center align-center">
       <v-card class="d-flex justify-center align-center" id="card_titulo">
-        <h3>Consultar Vagas</h3>
+        <h3>Consultar Coordenador de Instituição de Ensino</h3>
       </v-card>
     </div>
     <div id="fundoCards">
       <div class="d-flex">
         <v-text-field
-          v-model="setor"
+          v-model="nomeResponsavel"
           label="Pesquise"
           variant="outlined"
           prepend-inner-icon="mdi-magnify"
@@ -21,20 +21,21 @@
       <v-table>
         <thead>
           <tr>
-            <th class="text-left">Setor</th>
-            <th class="text-left">Vagas disponíveis</th>
-            <th class="text-left">Situação</th>
+            <th class="text-left">Nome</th>
+            <th class="text-left">Fone</th>
+            <th class="text-left">Email</th>
             <th class="text-center">Ações</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="item in vagas" :key="item.id">
-            <td class="text-left">{{ item.setor.nomeSetor }}</td>
-            <td class="text-left">{{ item.vagasDisponiveis }}</td>
-            <td class="text-left">{{ item.statusVaga }}</td>
+          <tr v-for="item in coordenadores" :key="item.id">
+            <td class="text-left">{{ item.nome }}</td>
+            <td class="text-left">{{ item.fone }}</td>
+            <td class="text-left">{{ item.email }}</td>
             <td class="text-center">
-              <VisualizarVaga :vagaId="item.id"/>
-              <DeletarItem :itemKey="'vaga'" :id="item.id" />
+              <VisualizarCoordenadorCurso :coordId="item.id"/>
+              <EditarCoordenadorCurso :coordId="item.id" />
+              <DeletarItem :itemKey="'coordenador-instituicao-ensino'" :id="item.id" />
             </td>
           </tr>
         </tbody>
@@ -54,33 +55,34 @@
 <script>
 import { ref, onMounted, watch } from "vue";
 import { useResponsiveHeight } from "../../composables/useResponsiveHeight.js";
-import { fetchVagas } from "../../services/VagasService.js";
+import { fetchCoordenadorCurso } from "../../services/CoordenadorCursoService.js";
 
 export default {
   setup() {
     const { height } = useResponsiveHeight();
-    const vagas = ref([]);
+    const coordenadores = ref([]);
     const pagina = ref(1);
     const itensPorPagina = 10;
     const totalPaginas = ref(1);
 
-    const loadVagas = async () => {
-      const response = await fetchVagas(pagina.value, itensPorPagina);
-      vagas.value = response.data;
+    const loadCoord = async () => {
+      const response = await fetchCoordenadorCurso(pagina.value, itensPorPagina);
+      coordenadores.value = response.data;
+      console.log(coordenadores.value)
       totalPaginas.value = Math.ceil(response.total / itensPorPagina);
     };
 
     onMounted(() => {
-      loadVagas();
+      loadCoord();
     });
 
     watch(pagina, () => {
-      loadVagas();
+      loadCoord();
     });
 
     return {
       height,
-      vagas,
+      coordenadores,
       pagina,
       totalPaginas
     };

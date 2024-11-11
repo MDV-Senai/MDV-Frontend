@@ -15,8 +15,8 @@
           <v-row class="mx-5 my-5">
             <v-col cols="12">
               <v-text-field
-                v-model="vaga.setor.nomeSetor"
-                placeholder="nomeSetor"
+                v-model="coordenador.nome"
+                placeholder="Nome"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
                 readonly
@@ -26,54 +26,45 @@
           <v-row class="mx-5 my-5">
             <v-col cols="12">
               <v-text-field
-                v-model="vaga.setor.nomeCoordenador"
-                placeholder="nomeCoordenador"
+                v-model="coordenador.nomeSocial"
+                placeholder="Razão social"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
                 readonly
               ></v-text-field>
             </v-col>
           </v-row>
+
           <v-row class="mx-5 my-5">
-            <v-col cols="12" md="6">
+            <v-col cols="12" md="4">
               <v-text-field
-                v-model="vaga.ano"
-                placeholder="ano"
+                v-model="coordenador.email"
+                placeholder="complemento"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
                 readonly
               ></v-text-field>
             </v-col>
-            <v-col cols="12" md="6">
+            <v-col cols="12" md="4">
               <v-text-field
-                v-model="vaga.semestre"
-                placeholder="semestre"
+                v-model="coordenador.fone"
+                placeholder="responsavelLegal"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
                 readonly
               ></v-text-field>
             </v-col>
-          </v-row>
-          <v-row class="mx-5 my-5">
-            <v-col cols="12" md="6">
+            <v-col cols="12" md="4">
               <v-text-field
-                v-model="vaga.vagasDisponiveis"
-                placeholder="vagasDisponiveis"
-                class="text-grey-darken-1"
-                color="grey-darken-4"
-                readonly
-              ></v-text-field>
-            </v-col>
-            <v-col cols="12" md="6">
-              <v-text-field
-                v-model="vaga.statusVaga"
-                placeholder="statusVaga"
+                v-model="instituicao.nomeFantasia"
+                placeholder="nomeFantasia"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
                 readonly
               ></v-text-field>
             </v-col>
           </v-row>
+          
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -86,33 +77,46 @@
 
 <script>
 import { ref, onMounted } from "vue";
-import { fetchVagaPorId } from "../../../services/VagasService";
+import { fetchCoordenadorPorId } from "../../../services/CoordenadorCursoService";
+import { fetchInstituicoesPorId } from "../../../services/InstituicoesService";
 
 export default {
   props: {
-    vagaId: {
+    coordId: {
       type: String,
       required: true,
     },
   },
   setup(props) {
-    const vaga = ref({});
+    const coordenador = ref({});
+    const instituicao = ref({});
 
-    const loadVaga = async () => {
-      const response = await fetchVagaPorId(props.vagaId);
+    const loadCoordenador = async () => {
+      const response = await fetchCoordenadorPorId(props.coordId);
       if (response) {
-        vaga.value = response;
+        coordenador.value = response;
+        loadInstituicao(response.instituicaoEnsino);
       } else {
-        console.error("Erro ao buscar vaga.");
+        console.error("Erro ao buscar coordenador.");
+      }
+    };
+
+    const loadInstituicao = async (instituicaoId) => {
+      const response = await fetchInstituicoesPorId(instituicaoId);
+      if (response) {
+        instituicao.value = response;
+      } else {
+        console.error("Erro ao buscar instituicao.");
       }
     };
 
     onMounted(() => {
-      loadVaga();
+      loadCoordenador();
     });
 
     return {
-      vaga,
+      coordenador,
+      instituicao
     };
   },
 };

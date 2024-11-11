@@ -1,19 +1,21 @@
 import axios from "axios";
 
-export async function fetchInstituicoes() {
+export async function fetchInstituicoes(pagina, itensPorPagina) {
   try {
-    let token = sessionStorage.getItem("authToken");
-
+    const token = sessionStorage.getItem('authToken');
     const response = await axios.get(
-      import.meta.env.VITE_BACKEND_URL + "/instituicao-ensino",
+      `${import.meta.env.VITE_BACKEND_URL}/instituicao-ensino`,
       {
-        headers: {
-          Authorization: `Bearer ${token}`,
+        params: {
+          page: pagina,
+          limit: itensPorPagina
         },
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
       }
     );
-
-    return response.data.data;
+    return response.data;
   } catch (error) {
     console.error("Erro ao buscar instituições:", error);
     return null;
@@ -22,7 +24,12 @@ export async function fetchInstituicoes() {
 
 export async function fetchInstituicoesPorId(instId) {
   try {
-    const response = await axios.get(import.meta.env.VITE_BACKEND_URL + "/instituicao-ensino/" + instId);
+    const token = sessionStorage.getItem('authToken');
+    const response = await axios.get(import.meta.env.VITE_BACKEND_URL + "/instituicao-ensino/" + instId, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
 
     return response.data;
   } catch (error) {
@@ -45,21 +52,27 @@ export async function cadastrarInstituicaoEnsino(data) {
 
     return req;
   } catch (error) {
-    console.log('Erro ao cadastrar Instuição de Ensino: '+error);
+    console.log('Erro ao cadastrar Instuição de Ensino: ' + error);
     return null;
   }
 }
 
 export async function updateInstituicaoEnsino(instId, instituicaoData) {
   try {
-      const response = await axios.patch(
-          `${import.meta.env.VITE_BACKEND_URL}/instituicao-ensino/${instId}`,
-          instituicaoData
-      );
+    const token = sessionStorage.getItem('authToken');
+    const response = await axios.patch(
+      `${import.meta.env.VITE_BACKEND_URL}/instituicao-ensino/${instId}`,
+      instituicaoData,
+      {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      }
+    );
 
-      return response.data;
+    return response.data;
   } catch (error) {
-      console.error("Erro ao atualizar instituicao:", error);
-      return null;
+    console.error("Erro ao atualizar instituicao:", error);
+    return null;
   }
 }

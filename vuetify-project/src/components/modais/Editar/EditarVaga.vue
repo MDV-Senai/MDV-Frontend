@@ -1,57 +1,23 @@
 <template>
-  <v-dialog max-width="800">
+  <v-dialog v-model="isDialogActive" max-width="400">
     <template v-slot:activator="{ props: activatorProps }">
       <v-icon
         v-bind="activatorProps"
         density="compact"
         icon="mdi-pencil"
         class="my-icon-spacing light-green-darken-3-var"
+        @click="showAlert"
       ></v-icon>
     </template>
 
-    <template v-slot:default="{ isActive }">
-      <v-card class="d-flex justify-center text-center">
-        <div>
-          <v-row class="mx-5 my-5">
-            <v-col cols="12" md="6">
-              <v-text-field
-                id="nome_prof"
-                placeholder="Digite o nome do setor"
-                class="text-grey-darken-1"
-                color="grey-darken-4"
-              ></v-text-field>
-            </v-col>
-            <v-col cols="12" md="6">
-              <v-text-field
-                id="numero_mat"
-                placeholder="Digite o turno"
-                class="text-grey-darken-1"
-                color="grey-darken-4"
-              ></v-text-field>
-            </v-col>
-          </v-row>
-          <v-row class="mx-5 my-5">
-            <v-col cols="12" md="6">
-              <v-text-field
-                id="numero_mat"
-                placeholder="Digite a situação"
-                class="text-grey-darken-1"
-                color="grey-darken-4"
-              ></v-text-field>
-            </v-col>
-            <v-col cols="12" md="6">
-              <v-text-field
-                id="inscricao"
-                placeholder="Digite a quantidade"
-                class="text-grey-darken-1"
-                color="grey-darken-4"
-              ></v-text-field>
-            </v-col>
-          </v-row>
-        </div>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn text="Fechar" @click="isActive.value = false"></v-btn>
+    <template v-slot:default>
+      <v-card>
+        <v-card-text class="text-center" style="padding: 24px">
+          <h3>Operação não permitida</h3>
+          <p>Não é possível editar esta vaga.</p>
+        </v-card-text>
+        <v-card-actions class="justify-center">
+          <v-btn color="primary" @click="isDialogActive = false">Fechar</v-btn>
         </v-card-actions>
       </v-card>
     </template>
@@ -59,11 +25,26 @@
 </template>
 
 <script>
+import { ref } from "vue";
+
 export default {
-  name: "EditarVaga",
+  setup() {
+    const isDialogActive = ref(false);
+
+    const showAlert = () => {
+      isDialogActive.value = true;
+    };
+
+    return {
+      isDialogActive,
+      showAlert,
+    };
+  },
 };
 </script>
 
-<style lang="scss">
-@import "@/styles/shared";
+<style scoped>
+.my-icon-spacing {
+  cursor: pointer;
+}
 </style>
