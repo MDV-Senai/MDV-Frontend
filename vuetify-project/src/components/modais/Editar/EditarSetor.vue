@@ -1,7 +1,8 @@
 <template>
   <v-dialog max-width="800">
     <template v-slot:activator="{ props: activatorProps }">
-      <v-icon v-bind="activatorProps" density="compact" icon="mdi-pencil" class="my-icon-spacing light-green-darken-3-var"></v-icon>
+      <v-icon v-bind="activatorProps" density="compact" icon="mdi-pencil"
+        class="my-icon-spacing light-green-darken-3-var"></v-icon>
     </template>
 
     <template v-slot:default="{ isActive }">
@@ -10,35 +11,35 @@
           <div>
             <v-row class="mx-5 my-5">
               <v-col cols="12">
-                <v-text-field v-model="setor.nomeSetor" placeholder="Nome do setor" class="text-grey-darken-1"
+                <v-text-field label="Nome do Setor" v-model="setor.nomeSetor" placeholder="Nome do setor" class="text-grey-darken-1"
                   color="grey-darken-4"></v-text-field>
               </v-col>
             </v-row>
             <v-row class="mx-5 my-5">
               <v-col cols="12">
-                <v-text-field v-model="setor.nomeCoordenador" placeholder="Nome do coordenador"
+                <v-text-field label="Nome do Coordenador" v-model="setor.nomeCoordenador" placeholder="Nome do coordenador"
                   class="text-grey-darken-1" color="grey-darken-4"></v-text-field>
               </v-col>
             </v-row>
             <v-row class="mx-5 my-5">
               <v-col cols="12">
-                <v-text-field v-model="setor.nomeSocialCoordenador" placeholder="Nome social do coordenador"
+                <v-text-field label="Nome Social do Coordenador" v-model="setor.nomeSocialCoordenador" placeholder="Nome social do coordenador"
                   class="text-grey-darken-1" color="grey-darken-4"></v-text-field>
               </v-col>
             </v-row>
             <v-row class="mx-5 my-5">
               <v-col cols="12">
-                <v-text-field v-model="setor.emailCoordenador" placeholder="E-mail do coordenador"
+                <v-text-field label="E-mail do Coordenador" v-model="setor.emailCoordenador" placeholder="E-mail do coordenador"
                   class="text-grey-darken-1" color="grey-darken-4"></v-text-field>
               </v-col>
             </v-row>
             <v-row class="mx-5 my-5">
               <v-col cols="12" md="6">
-                <v-text-field v-model="setor.telefoneCoordenador" placeholder="Telefone do coordenador"
+                <v-text-field label="Telefone do Coordenador" v-mask="'(##) #####-####'" v-model="setor.telefoneCoordenador" placeholder="Telefone do coordenador"
                   class="text-grey-darken-1" color="grey-darken-4"></v-text-field>
               </v-col>
               <v-col cols="12" md="6">
-                <v-text-field v-model="setor.vagasTotais" placeholder="Quantidade de vagas" class="text-grey-darken-1"
+                <v-text-field label="Quantidade de vagas" v-model="setor.vagasTotais" placeholder="Quantidade de vagas" class="text-grey-darken-1"
                   color="grey-darken-4"></v-text-field>
               </v-col>
             </v-row>

@@ -442,19 +442,21 @@ export default {
     },
 
     async enviarDados() {
+      const removeMascara = (valor) => (valor ? valor.replace(/\D/g, "") : "");
+
       if (this.$refs.form.validate()) {
         const data = {
           nome: this.nome,
           nomeSocial: this.nomeSocial,
-          documento: this.cpf,
+          documento: removeMascara(this.cpf),
           dataNascimento: new Date(this.dataNasc).toISOString(),
-          fone: this.telefone,
-          celular: this.celular,
+          fone: removeMascara(this.telefone),
+          celular: removeMascara(this.celular),
           email: this.email,
           matricula: this.numeroMatriEstu,
-          contatoEmergencia: this.numeroContatoEmerg,
+          contatoEmergencia: removeMascara(this.numeroContatoEmerg),
           nomeContatoEmergencia: this.nomeContatoEmerg,
-          cep: this.cep,
+          cep: removeMascara(this.cep),
           cidade: this.cidade,
           uf: this.uf,
           numeroResidencia: this.numero,
