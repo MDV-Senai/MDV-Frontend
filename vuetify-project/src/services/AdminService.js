@@ -2,7 +2,7 @@ import axios from "axios";
 
 export async function cadastrarAdmin(data) {
     try {
-      const url = import.meta.env.VITE_BACKEND_URL + "/admin";
+      const url = import.meta.env.VITE_BACKEND_URL + "/user";
   
       const token = sessionStorage.getItem("authToken");
   

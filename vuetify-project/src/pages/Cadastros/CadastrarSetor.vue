@@ -230,7 +230,6 @@ export default {
       }
     },
     async enviarDados() {
-
       const removeMascara = (valor) => valor ? valor.replace(/\D/g, '') : '';
 
       if (this.$refs.form.validate()) {

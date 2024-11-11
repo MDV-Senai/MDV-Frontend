@@ -40,6 +40,7 @@
                 label="Documento"
                 v-model="estagiario.documento"
                 placeholder="Documento"
+                v-mask="'###.###.###-##'"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
               ></v-text-field>
@@ -60,6 +61,7 @@
                 label="Celular"
                 v-model="estagiario.celular"
                 placeholder="Celular"
+                v-mask="'(##) #####-####'"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
               ></v-text-field>
@@ -68,6 +70,7 @@
               <v-text-field
                 label="Fone"
                 v-model="estagiario.fone"
+                v-mask="'(##) ####-####'"
                 placeholder="Fone"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -108,6 +111,7 @@
               <v-text-field
                 label="Contato Emergência"
                 v-model="estagiario.contatoEmergencia"
+                v-mask="'(##) #####-####'"
                 placeholder="Contato Emergência"
                 class="text-grey-darken-1"
                 color="grey-darken-4"

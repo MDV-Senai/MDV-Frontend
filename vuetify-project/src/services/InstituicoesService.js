@@ -15,7 +15,7 @@ export async function fetchInstituicoes(pagina, itensPorPagina) {
         }
       }
     );
-    return response.data;
+    return response.data.data;
   } catch (error) {
     console.error("Erro ao buscar instituições:", error);
     return null;

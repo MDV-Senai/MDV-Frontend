@@ -61,6 +61,15 @@ export async function fetchEstagiarioPorId(estgId) {
 
 export async function atualizarEstagiarioPorId(estgId, data) {
   try {
+    const removeMascara = (valor) => (valor ? valor.replace(/\D/g, "") : "");
+
+    data.documento = removeMascara(data.cpf);
+    data.fone = removeMascara(data.rg);
+    data.celular = removeMascara(data.cep);
+    data.cep = removeMascara(data.cep);
+    data.dataNascimento = new Date(data.dataNascimento).toISOString();
+    data.dataFimApolice = new Date(data.dataFimApolice).toISOString();
+
     const token = sessionStorage.getItem('authToken');
     const url = import.meta.env.VITE_BACKEND_URL + "/aluno/" + estgId;
     const response = await axios.patch(url, data, {

@@ -15,6 +15,7 @@
           <v-row class="mx-5 my-5">
             <v-col cols="12">
               <v-text-field
+                label="Nome Setor"
                 v-model="setor.nomeSetor"
                 placeholder="Nome do setor"
                 class="text-grey-darken-1"
@@ -26,6 +27,7 @@
           <v-row class="mx-5 my-5">
             <v-col cols="12">
               <v-text-field
+                label="Nome do Coordenador"
                 v-model="setor.nomeCoordenador"
                 placeholder="Nome do coordenador"
                 class="text-grey-darken-1"
@@ -37,6 +39,7 @@
           <v-row class="mx-5 my-5">
             <v-col cols="12">
               <v-text-field
+                label="Nome Social do Coordenador"
                 v-model="setor.nomeSocialCoordenador"
                 placeholder="Nome social do coordenador"
                 class="text-grey-darken-1"
@@ -48,6 +51,7 @@
           <v-row class="mx-5 my-5">
             <v-col cols="12">
               <v-text-field
+                label="E-mail do Coordenador"
                 v-model="setor.emailCoordenador"
                 placeholder="E-mail do coordenador"
                 class="text-grey-darken-1"
@@ -59,7 +63,9 @@
           <v-row class="mx-5 my-5">
             <v-col cols="12" md="6">
               <v-text-field
+                label="Telefone do Coordenador"
                 v-model="setor.telefoneCoordenador"
+                v-mask="'(##) #####-####'"
                 placeholder="Telefone do coordenador"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -68,6 +74,7 @@
             </v-col>
             <v-col cols="12" md="6">
               <v-text-field
+                label="Quantidade de vagas"
                 v-model="setor.vagasTotais"
                 placeholder="Quantidade de vagas"
                 class="text-grey-darken-1"
