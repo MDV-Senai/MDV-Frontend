@@ -117,6 +117,7 @@
               clearable
               class="text-grey-darken-4"
               variant="outlined"
+              v-model="formData.dataInicioVigenciaSeguro"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -606,7 +607,7 @@
         <strong>Cláusula 19ª -</strong> O estagiário está segurado contra
         acidentes pessoais, proporcionado pela apólice nº ______ , sob a
         Responsabilidade da Seguradora {{ formData.nomeSeguradora }} durante o
-        período compreendido de _____/______ /_______ à ______/_______ /_______
+        período compreendido de {{ formatDate(formData.dataInicioVigenciaSeguro) }} à _____/______ /_______
         .
       </p>
 
@@ -741,6 +742,7 @@ export default {
       horarioEntradaEstagio: "",
       horarioSaidaEstagio: "",
       dataInicioEstagio: "",
+      dataInicioVigenciaSeguro: "",
       dataFimEstagio: "",
       datasRecesso: "",
       cpfProfessorOrientador: "",
