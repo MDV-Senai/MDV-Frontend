@@ -607,8 +607,9 @@
         <strong>Cláusula 19ª -</strong> O estagiário está segurado contra
         acidentes pessoais, proporcionado pela apólice nº ______ , sob a
         Responsabilidade da Seguradora {{ formData.nomeSeguradora }} durante o
-        período compreendido de {{ formatDate(formData.dataInicioVigenciaSeguro) }} à _____/______ /_______
-        .
+        período compreendido de
+        {{ formatDate(formData.dataInicioVigenciaSeguro) }} à _____/______
+        /_______ .
       </p>
 
       <p>
@@ -701,7 +702,7 @@
 </template>
 
 <script>
-import { ref, onMounted, computed  } from "vue";
+import { ref, onMounted, computed } from "vue";
 import html2pdf from "html2pdf.js";
 import { useResponsiveHeight } from "../../composables/useResponsiveHeight.js";
 
@@ -786,10 +787,10 @@ export default {
         });
     };
 
-    // Função para formatar datas no formato DD/MM/AAAA
     const formatDate = (dateString) => {
       if (!dateString) return "";
-      const date = new Date(dateString);
+      const dateParts = dateString.split("-"); // Considerando formato 'AAAA-MM-DD'
+      const date = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
       const day = String(date.getDate()).padStart(2, "0");
       const month = String(date.getMonth() + 1).padStart(2, "0");
       const year = date.getFullYear();
@@ -808,7 +809,7 @@ export default {
       sexta,
       sabado,
       formatDate,
-      diasSelecionados
+      diasSelecionados,
     };
   },
 };
