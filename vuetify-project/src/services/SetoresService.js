@@ -23,8 +23,12 @@ export async function fetchSetoresPorId(setorId) {
 }
 
 export async function updateSetor(setorId, setor) {
+  const removeMascara = (valor) => (valor ? valor.replace(/\D/g, "") : "");
+
   try {
     const url = `${import.meta.env.VITE_BACKEND_URL}/setor/${setorId}`;
+
+    setor.telefoneCoordenador = removeMascara(setor.telefoneCoordenador);
 
     const response = await axios.patch(url, setor);
 
