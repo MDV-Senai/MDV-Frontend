@@ -35,7 +35,7 @@
           <v-col cols="12" md="4">
             <v-select
               label="Organização Concedente"
-              v-model="organizacoes.id"
+              v-model="id"
               clearable
               class="text-grey-darken-4"
               variant="outlined"
@@ -287,7 +287,7 @@
         UNIDADE DA SECRETARIA DE ESTADO DA SAÚDE DE SANTA CATARINA (SES/SC):
       </h5>
 
-      <p>Unidade da SES/SC Concedente de Estágio Obrigatório:______</p>
+      <p>Unidade da SES/SC Concedente de Estágio Obrigatório: {{ orgId }}</p>
 
       <div style="display: flex; justify-content: flex-start">
         <p style="margin-right: 337px">Representante Legal:_______</p>
@@ -757,7 +757,7 @@ export default {
       console.log(response);
     };
 
-    const loadConcedente = async () => {
+    const loadConcedente = async (id) => {
       const response = await fetchConcedentePorId(organizacoes.id);
       if (response) {
         organizacao.value = response;
