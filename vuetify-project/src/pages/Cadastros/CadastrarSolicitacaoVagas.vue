@@ -8,18 +8,34 @@
     </div>
     <div id="fundoCards">
       <v-form ref="form" id="form" class="mx-auto">
-        <v-row class="d-flex justify-center mt-8">
+        <v-row v-if="roleUsuario == 'ADMIN'" class="d-flex justify-center mt-8">
           <v-col cols="12" md="12">
-            <v-select
-              v-model="cursoSolicitado"
-              :items="estagiarios"
-              :item-title="'titulo'"
-              :item-value="'id'"
-              label="Escolher Curso"
+            <v-autocomplete
+              label="Instituição De Ensino"
+              :rules="[rules.required]"
+              v-model="instituicaoEnsino"
               class="text-grey-darken-4"
               variant="outlined"
-              readonly
-            ></v-select>
+              :items="instituicoes"
+              item-title="nomeFantasia"
+              item-value="id"
+              @input="onInstituicaoChange"
+            ></v-autocomplete>
+          </v-col>
+        </v-row>
+
+        <v-row class="d-flex justify-center mt-8">
+          <v-col cols="12" md="12">
+            <v-autocomplete
+              v-model="idCurso"
+              label="Curso"
+              :rules="[rules.required]"
+              class="text-grey-darken-4"
+              variant="outlined"
+              :items="cursos"
+              :item-title="'cursoHomologado.nomeCurso'"
+              :item-value="'id'"
+            ></v-autocomplete>
           </v-col>
         </v-row>
         <v-row class="d-flex justify-center">
@@ -93,44 +109,6 @@
           </v-col>
         </v-row>
 
-        <v-card class="pt-8">
-          <v-container fluid>
-            <v-row id="inputResponsivo" class="d-flex justify-center ml-12">
-              <v-col class="d-flex align-center">Domingo</v-col>
-              <v-col class="d-flex align-center">Segunda</v-col>
-              <v-col class="d-flex align-center">Terça</v-col>
-              <v-col class="d-flex align-center">Quarta</v-col>
-              <v-col class="d-flex align-center">Quinta</v-col>
-              <v-col class="d-flex align-center">Sexta</v-col>
-              <v-col class="d-flex align-center">Sábado</v-col>
-            </v-row>
-
-            <v-row id="inputResponsivo" class="d-flex justify-center ml-12">
-              <v-col class="d-flex align-center">
-                <v-checkbox v-model="domingo"></v-checkbox>
-              </v-col>
-              <v-col class="d-flex align-center">
-                <v-checkbox v-model="segunda"></v-checkbox>
-              </v-col>
-              <v-col class="d-flex align-center">
-                <v-checkbox v-model="terca"></v-checkbox>
-              </v-col>
-              <v-col class="d-flex align-center">
-                <v-checkbox v-model="quarta"></v-checkbox>
-              </v-col>
-              <v-col class="d-flex align-center">
-                <v-checkbox v-model="quinta"></v-checkbox>
-              </v-col>
-              <v-col class="d-flex align-center">
-                <v-checkbox v-model="sexta"></v-checkbox>
-              </v-col>
-              <v-col class="d-flex align-center">
-                <v-checkbox v-model="sabado"></v-checkbox>
-              </v-col>
-            </v-row>
-          </v-container>
-        </v-card>
-
         <div class="d-flex justify-center">
           <v-row class="d-flex justify-center">
             <v-col cols="6" md="3">
@@ -174,10 +152,11 @@
 </template>
 
 <script>
-import axios from "axios";
 import Swal from "sweetalert2";
-import { cadastrarSolcitacaoVagas } from '../../services/VagasService';
-import { fetchSetores } from '../../services/SetoresService';
+import { cadastrarSolcitacaoVagas } from "../../services/VagasService";
+import { fetchSetores } from "../../services/SetoresService";
+import { fetchInstituicoes } from "@/services/InstituicoesService.js";
+import { fetchCursosPorInstuicaoId } from "../../services/CursosService.js";
 export default {
   data() {
     return {
@@ -194,6 +173,11 @@ export default {
       descricaoVaga: null,
       inicioEstagio: null,
       fimEstagio: null,
+      roleUsuario: null,
+      instituicaoEnsino: null,
+      instituicoes: [],
+      idCurso: null,
+      cursos: [],
 
       domingo: false,
       segunda: false,
@@ -212,9 +196,9 @@ export default {
       if (this.$refs.form.validate()) {
         try {
           const data = {
-            cursoHomologadoId: '0afccf21-637c-47b1-bbf2-25c7ef995930',//this.cursoSolicitado,
+            cursoHomologadoId: "0afccf21-637c-47b1-bbf2-25c7ef995930", //this.cursoSolicitado,
             setorId: this.setorId,
-            instEnsinoId: '62b266ca-714e-4ccc-928d-1fa995fa9b4e',
+            instEnsinoId: "62b266ca-714e-4ccc-928d-1fa995fa9b4e",
             quantidadeVagas: this.qtdVagas,
             periodo: this.turno,
             dataInicio: this.inicioEstagio,
@@ -244,10 +228,44 @@ export default {
       const response = await fetchSetores();
       this.setores = response;
     },
+
+    async getRoleUsuario() {
+      const userRole = sessionStorage.getItem("userRole");
+      this.roleUsuario = userRole;
+    },
+
+    async listarCursosInstituicaoId(instId) {
+      if (instId) {
+        const response = await fetchCursosPorInstuicaoId(instId);
+        this.cursos = response.cursos;
+        console.log(this.cursos);
+      }
+    },
+
+    async loadInstituicaoEnsino() {
+      const response = await fetchInstituicoes();
+      this.instituicoes = response;
+      console.log(this.instituicoes);
+    },
+
+    onInstituicaoChange(selectedItem) {
+
+      console.log('Instituição selecionada (via método):', selectedItem);
+    },
   },
 
-  mounted(){
+  mounted() {
     this.listarSetores();
+    this.getRoleUsuario();
+    this.loadInstituicaoEnsino();
+  },
+
+  watch: {
+    instituicaoEnsino(newValue, oldValue) {
+      if (newValue !== oldValue) {
+        this.listarCursosInstituicaoId(newValue)
+      }
+    }
   }
 };
 </script>
