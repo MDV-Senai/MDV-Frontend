@@ -10,7 +10,7 @@
       <v-form ref="form" id="form" class="mx-auto">
         <!-- Área de Informações do Contrato -->
         <v-row class="d-flex justify-center mt-8">
-          <v-col cols="12" md="6">
+          <v-col cols="12" md="4">
             <v-text-field
               label="Cidade Geração contrato"
               maxlength="255"
@@ -21,7 +21,7 @@
               v-model="formData.cidadeGeracao"
             ></v-text-field>
           </v-col>
-          <v-col cols="12" md="6">
+          <v-col cols="12" md="4">
             <v-text-field
               label="Número Cooperação Técnica Instituição de Ensino"
               maxlength="255"
@@ -31,6 +31,18 @@
               variant="outlined"
               v-model="formData.numeroCooperacaoTecnicaInstituicaoEnsino"
             ></v-text-field>
+          </v-col>
+          <v-col cols="12" md="4">
+            <v-select
+              label="Organização Concedente"
+              v-model="organizacoes.id"
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+              :items="organizacoes"
+              item-title="razaoSocial"
+              item-value="id"
+            ></v-select>
           </v-col>
         </v-row>
         <!-- Área de Orientador -->
@@ -705,10 +717,13 @@
 import { ref, onMounted, computed } from "vue";
 import html2pdf from "html2pdf.js";
 import { useResponsiveHeight } from "../../composables/useResponsiveHeight.js";
+import { fetchOrganizacaoConcedente } from "../../services/OrganizacaoService.js";
 
 export default {
   setup() {
     const { height } = useResponsiveHeight();
+    const organizacoes = ref([]);
+    let orgId = null
 
     // Variáveis para cada checkbox do dia da semana
     const domingo = ref(false);
@@ -730,6 +745,16 @@ export default {
       if (sabado.value) dias.push("Sab");
 
       return dias.join(", ");
+    });
+
+    const loadOrg = async () => {
+      const response = await fetchOrganizacaoConcedente();
+      organizacoes.value = response;
+      console.log(response);
+    };
+
+    onMounted(() => {
+      loadOrg();
     });
 
     // Dados do formulário com a data atual preenchida automaticamente
@@ -810,6 +835,8 @@ export default {
       sabado,
       formatDate,
       diasSelecionados,
+      organizacoes,
+      orgId
     };
   },
 };
