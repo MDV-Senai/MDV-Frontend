@@ -152,10 +152,10 @@
         </v-row>
 
         <v-row id="inputResponsivo" class="d-flex justify-center">
-          <v-col cols="6" md="12">
+          <v-col cols="12" md="12">
             <v-text-field
               label="Logradouro"
-              v-model="rua"
+              v-model="logradouro"
               maxlength="255"
               counter
               clearable
@@ -292,12 +292,11 @@ export default {
       celular: null,
       telefone: null,
       cep: null,
-      rua: null,
+      logradouro: null,
       complemento: null,
       uf: null,
       cidade: null,
       bairro: null,
-      logradouro: null,
       numero: null,
       responsavelLegal: null,
       contatoRespLegal: null,
@@ -340,7 +339,7 @@ export default {
             uf: this.uf,
             bairro: this.bairro,
             numero: this.numero,
-            rua: this.rua,
+            logradouro: this.logradouro,
             complemento: this.complemento,
             responsavelLegal: this.responsavelLegal,
             responsavelLegalContato: removeMascara(this.contatoRespLegal),
