@@ -717,13 +717,17 @@
 import { ref, onMounted, computed } from "vue";
 import html2pdf from "html2pdf.js";
 import { useResponsiveHeight } from "../../composables/useResponsiveHeight.js";
-import { fetchOrganizacaoConcedente } from "../../services/OrganizacaoService.js";
+import {
+  fetchOrganizacaoConcedente,
+  fetchConcedentePorId,
+} from "../../services/OrganizacaoService.js";
 
 export default {
   setup() {
     const { height } = useResponsiveHeight();
     const organizacoes = ref([]);
-    let orgId = null
+    const organizacao = ref({});
+    let orgId = null;
 
     // Variáveis para cada checkbox do dia da semana
     const domingo = ref(false);
@@ -751,6 +755,15 @@ export default {
       const response = await fetchOrganizacaoConcedente();
       organizacoes.value = response;
       console.log(response);
+    };
+
+    const loadConcedente = async () => {
+      const response = await fetchConcedentePorId(organizacoes.id);
+      if (response) {
+        organizacao.value = response;
+      } else {
+        console.error("Erro ao buscar organização.");
+      }
     };
 
     onMounted(() => {
@@ -836,7 +849,8 @@ export default {
       formatDate,
       diasSelecionados,
       organizacoes,
-      orgId
+      orgId,
+      organizacao
     };
   },
 };
