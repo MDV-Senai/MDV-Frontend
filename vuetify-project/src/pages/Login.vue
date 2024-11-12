@@ -211,6 +211,7 @@
 </template>
 
 <script>
+import Swal from "sweetalert2";
 import axios from "axios";
 import { emailValidation } from "@/validations/formValidations";
 import {login} from "../auth/auth.js"
@@ -257,9 +258,17 @@ export default {
 
         if (dadosLogin) {
           console.log("Login realizado com sucesso, token:", dadosLogin);
-          this.$router.push('/home');
+          Swal.fire({
+            title: "Login realizado com Sucesso!",
+            icon: "success",
+          });
+          setTimeout(() => this.$router.push('/home'), 2000);
         } else {
           console.error("Falha no login");
+          Swal.fire({
+            title: "O usuário ou senha é inválido!",
+            icon: "error",
+          });
         }
       } catch (error) {
         console.error("Erro ao enviar os dados:", error);
