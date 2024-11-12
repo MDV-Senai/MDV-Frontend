@@ -388,7 +388,7 @@
 <script>
 import { emailValidation, fullNameValidation, fileSizeValidation } from "@/validations/formValidations";
 import { buscaCep } from "@/util/buscaCep";
-import { fetchCursos } from "../../services/CursosService.js";
+import { fetchCursosPorInstuicaoId } from "../../services/CursosService.js";
 import Swal from "sweetalert2";
 import { cadastrarEstagiario } from "../../services/EstagiariosService.js";
 import { fetchInstituicoes } from "@/services/InstituicoesService.js";
@@ -486,7 +486,7 @@ export default {
 
     async listarCursosInstituicaoId(instId) {
       if (instId) {
-        const response = await fetchCursos(instId);
+        const response = await fetchCursosPorInstuicaoId(instId);
         this.cursos = response.cursos;
         console.log(this.cursos);
       }
