@@ -318,7 +318,7 @@ export default {
       this.cidade = address.localidade;
       this.uf = address.uf;
       this.bairro = address.bairro;
-      this.logradouro = address.logradouro;
+      this.rua = address.logradouro;
     },
 
     async enviarDados() {
