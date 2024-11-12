@@ -13,9 +13,12 @@ export async function login(email, password) {
     );
 
     const token = response.data.token;
-    sessionStorage.setItem('authToken', token);
+    const userRole = response.data.user.role;  
 
-    return token;
+    sessionStorage.setItem('authToken', token);
+    sessionStorage.setItem('userRole', userRole);
+
+    return { token, userRole }; 
   } catch (error) {
     console.error("Erro ao fazer login:", error);
     return null;

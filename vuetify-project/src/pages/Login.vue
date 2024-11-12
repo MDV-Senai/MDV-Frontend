@@ -253,10 +253,10 @@ export default {
 
     async enviarDados() {
       try {
-        const token = await login(this.email, this.senha);
+        const dadosLogin = await login(this.email, this.senha);
 
-        if (token) {
-          console.log("Login realizado com sucesso, token:", token);
+        if (dadosLogin) {
+          console.log("Login realizado com sucesso, token:", dadosLogin);
           this.$router.push('/home');
         } else {
           console.error("Falha no login");
