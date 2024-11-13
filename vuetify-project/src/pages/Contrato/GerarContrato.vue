@@ -472,7 +472,7 @@
         </thead>
         <tbody>
           <tr>
-            <td style="height: 30px"></td>
+            <td v-if="solicitacao && solicitacao.setor && solicitacao.setor.nomeSetor" style="height: 30px">{{ solicitacao.setor.nomeSetor }}</td>
             <td>{{ formatDate(formData.dataInicioEstagio) }}</td>
             <td>{{ formatDate(formData.dataFimEstagio) }}</td>
             <td>{{ diasSelecionados }}</td>
