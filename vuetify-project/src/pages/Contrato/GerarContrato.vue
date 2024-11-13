@@ -76,7 +76,7 @@
             <v-autocomplete
               v-model="selectedEstagiario"
               :items="filteredEstagiarios"
-              item-title="nome"
+              :item-title="formatarEstagiario"
               item-value="id"
               label="Estagiário"
               maxlength="255"
@@ -779,13 +779,16 @@ export default {
       searchQuery.value = query;
     };
 
+    const formatarEstagiario = (estagiario) => {
+      return estagiario ? `${estagiario.nome} - ${estagiario.documento}` : "";
+    };
+
     onMounted(() => {
       loadOrg();
       loadEstg();
       setDate();
     });
 
-    // Dados do formulário com a data atual preenchida automaticamente
     const formData = ref({
       cidadeGeracao: "",
       numeroCooperacaoTecnicaInstituicaoEnsino: "",
@@ -864,6 +867,7 @@ export default {
       searchQuery,
       filteredEstagiarios,
       filtrarEstagiarios,
+      formatarEstagiario,
     };
   },
 };
