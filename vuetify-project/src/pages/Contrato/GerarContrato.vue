@@ -36,14 +36,19 @@
         <!-- Área de Orientador -->
         <v-row class="d-flex justify-center mt-8">
           <v-col cols="12" md="4">
-            <v-text-field
-              label="Nome do Professor Orientador"
+            <v-autocomplete
+              v-model="selectedProfessor"
+              :items="filteredProfessor"
+              :item-title="formatarProfessor"
+              item-value="id"
+              label="Professor Orientador"
               maxlength="255"
               counter
               clearable
               class="text-grey-darken-4"
               variant="outlined"
-            ></v-text-field>
+              @input="filtrarProfessor"
+            ></v-autocomplete>
           </v-col>
           <v-col cols="12" md="4">
             <v-text-field
