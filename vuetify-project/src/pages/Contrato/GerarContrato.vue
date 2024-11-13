@@ -780,6 +780,7 @@ export default {
     onMounted(() => {
       loadOrg();
       loadEstg();
+      setDate();
     });
 
     // Dados do formulário com a data atual preenchida automaticamente
@@ -808,11 +809,6 @@ export default {
       const ano = dataAtual.getFullYear();
       formData.value.dataGeracaoContrato = `Aos ${dia} dias do mês de ${mes} de ${ano}`;
     };
-
-    // Definir a data automaticamente ao montar o componente
-    onMounted(() => {
-      setDate();
-    });
 
     // Função para gerar o PDF
     const generatePDF = () => {
