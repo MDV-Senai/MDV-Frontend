@@ -308,21 +308,47 @@
       </div>
 
       <div style="display: flex; justify-content: flex-start">
-        <p v-if="solicitacao && solicitacao.setor && solicitacao.setor.nomeCoordenador" style="margin-right: 250px">
-          Responsável do Setor de Estágio: {{ solicitacao.setor.nomeCoordenador }}
+        <p
+          v-if="
+            solicitacao &&
+            solicitacao.setor &&
+            solicitacao.setor.nomeCoordenador
+          "
+          style="margin-right: 250px"
+        >
+          Responsável do Setor de Estágio:
+          {{ solicitacao.setor.nomeCoordenador }}
         </p>
         <p style="margin: 0">Cargo: Coordenador</p>
       </div>
 
       <h5 class="highlight">INSTITUIÇÃO DE ENSINO:</h5>
 
-      <p v-if="solicitacao && solicitacao.instituicaoEnsino && solicitacao.instituicaoEnsino.razaoSocial">Razão Social: {{ solicitacao.instituicaoEnsino.razaoSocial }}</p>
+      <p
+        v-if="
+          solicitacao &&
+          solicitacao.instituicaoEnsino &&
+          solicitacao.instituicaoEnsino.razaoSocial
+        "
+      >
+        Razão Social: {{ solicitacao.instituicaoEnsino.razaoSocial }}
+      </p>
       <p>
         Cooperação Técnica Nº:
         {{ formData.numeroCooperacaoTecnicaInstituicaoEnsino }}
       </p>
       <div style="display: flex; justify-content: flex-start">
-        <p v-if="solicitacao && solicitacao.instituicaoEnsino && solicitacao.instituicaoEnsino.responsavelLegal" style="margin-right: 337px">Representante Legal: {{ solicitacao.instituicaoEnsino.responsavelLegal }}</p>
+        <p
+          v-if="
+            solicitacao &&
+            solicitacao.instituicaoEnsino &&
+            solicitacao.instituicaoEnsino.responsavelLegal
+          "
+          style="margin-right: 337px"
+        >
+          Representante Legal:
+          {{ solicitacao.instituicaoEnsino.responsavelLegal }}
+        </p>
         <p style="margin: 0">Cargo: Diretor</p>
       </div>
       <p>Coordenador Geral de Estágio:______</p>
@@ -472,7 +498,14 @@
         </thead>
         <tbody>
           <tr>
-            <td v-if="solicitacao && solicitacao.setor && solicitacao.setor.nomeSetor" style="height: 30px">{{ solicitacao.setor.nomeSetor }}</td>
+            <td
+              v-if="
+                solicitacao && solicitacao.setor && solicitacao.setor.nomeSetor
+              "
+              style="height: 30px"
+            >
+              {{ solicitacao.setor.nomeSetor }}
+            </td>
             <td>{{ formatDate(formData.dataInicioEstagio) }}</td>
             <td>{{ formatDate(formData.dataFimEstagio) }}</td>
             <td>{{ diasSelecionados }}</td>
@@ -548,9 +581,21 @@
 
       <br />
 
-      <p v-if="solicitacao && solicitacao.setor &&solicitacao.setor.atividades"><strong>a)</strong> {{ solicitacao.setor.atividades[0].nome }}</p>
-      <p v-if="solicitacao && solicitacao.setor &&solicitacao.setor.atividades"><strong>b)</strong> {{ solicitacao.setor.atividades[1].nome }}</p>
-      <p v-if="solicitacao && solicitacao.setor &&solicitacao.setor.atividades"><strong>c)</strong> {{ solicitacao.setor.atividades[2].nome }}</p>
+      <p
+        v-if="solicitacao && solicitacao.setor && solicitacao.setor.atividades[0]"
+      >
+        <strong>a)</strong> {{ solicitacao.setor.atividades[0].nome }}
+      </p>
+      <p
+        v-if="solicitacao && solicitacao.setor && solicitacao.setor.atividades[1]"
+      >
+        <strong>b)</strong> {{ solicitacao.setor.atividades[1].nome }}
+      </p>
+      <p
+        v-if="solicitacao && solicitacao.setor && solicitacao.setor.atividades[2]"
+      >
+        <strong>c)</strong> {{ solicitacao.setor.atividades[2].nome }}
+      </p>
 
       <br />
 
@@ -735,7 +780,10 @@ import { ref, onMounted, computed, watch } from "vue";
 import html2pdf from "html2pdf.js";
 import { useResponsiveHeight } from "../../composables/useResponsiveHeight.js";
 import { fetchOrganizacaoConcedente } from "../../services/OrganizacaoService.js";
-import { fetchSolicitacaoVaga, fetchSolicitacaoVagaPorId } from "../../services/VagasService.js";
+import {
+  fetchSolicitacaoVaga,
+  fetchSolicitacaoVagaPorId,
+} from "../../services/VagasService.js";
 import {
   fetchEstagiarios,
   fetchEstagiarioPorId,
@@ -796,7 +844,10 @@ export default {
 
     const loadSolicitacao = async () => {
       if (selectedSolicitacao.value) {
-        const response = await fetchSolicitacaoVagaPorId(selectedSolicitacao.value);
+        solicitacao.value = null; // Opcional: limpa antes do fetch
+        const response = await fetchSolicitacaoVagaPorId(
+          selectedSolicitacao.value
+        );
         if (response) {
           solicitacao.value = response;
         } else {
@@ -838,7 +889,9 @@ export default {
             : "";
 
         return (
-          solicitacao.instituicaoEnsino.razaoSocial.toLowerCase().includes(searchValue) ||
+          solicitacao.instituicaoEnsino.razaoSocial
+            .toLowerCase()
+            .includes(searchValue) ||
           solicitacao.setor.nomeSetor.toLowerCase().includes(searchValue)
         );
       });
@@ -857,10 +910,11 @@ export default {
     };
 
     const formatarSolicitacao = (solicitacao) => {
-      return solicitacao ? `${solicitacao.instituicaoEnsino.razaoSocial} - ${solicitacao.setor.nomeSetor}` : "";
+      return solicitacao
+        ? `${solicitacao.instituicaoEnsino.razaoSocial} - ${solicitacao.setor.nomeSetor}`
+        : "";
     };
 
-  
     watch(selectedEstagiario, loadEstagiario);
     watch(selectedSolicitacao, loadSolicitacao);
 
