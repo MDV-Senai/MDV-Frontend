@@ -800,18 +800,27 @@ import {
   fetchEstagiarioPorId,
 } from "../../services/EstagiariosService.js";
 
+import {
+  fetchCoordenadorCurso,
+  fetchCoordenadorPorId,
+} from "../../services/CoordenadorCursoService.js";
+
 export default {
   setup() {
     const { height } = useResponsiveHeight();
     const organizacao = ref({});
     const estagiarios = ref([]);
     const solicitacoes = ref([]);
+    const professores = ref([]);
+    const selectedProfessor = ref(null);
     const selectedEstagiario = ref(null);
     const selectedSolicitacao = ref(null);
     const searchQueryEstg = ref("");
+    const searchQueryProf = ref("");
     const searchQuerySol = ref("");
     const estagiario = ref({});
     const solicitacao = ref({});
+    const professor = ref({});
 
     // Variáveis para cada checkbox do dia da semana
     const domingo = ref(false);
@@ -851,6 +860,22 @@ export default {
     const loadSol = async () => {
       const response = await fetchSolicitacaoVaga();
       solicitacoes.value = response;
+    };
+
+    const loadProf = async () => {
+      const response = await fetchCoordenadorCurso();
+      professores.value = response;
+    };
+
+    const loadProfessor = async () => {
+      if (selectedProfessor.value) {
+        const response = await fetchCoordenadorPorId(selectedProfessor.value);
+        if (response) {
+          professor.value = response;
+        } else {
+          console.error("Erro ao buscar professor.");
+        }
+      }
     };
 
     const loadSolicitacao = async () => {
@@ -908,12 +933,29 @@ export default {
       });
     });
 
+    const filteredProfessor = computed(() => {
+      return professores.value.filter((professor) => {
+        const searchValue =
+          searchQueryProf.value && typeof searchQueryProf.value === "string"
+            ? searchQueryProf.value.toLowerCase()
+            : "";
+
+        return (
+          professor.nome.toLowerCase().includes(searchValue)
+        );
+      });
+    });
+
     const filtrarEstagiarios = (query) => {
       searchQueryEstg.value = query;
     };
 
     const filtrarSolicitacao = (query) => {
       searchQuerySol.value = query;
+    };
+
+    const filtrarProfessor = (query) => {
+      searchQueryProf.value = query;
     };
 
     const formatarEstagiario = (estagiario) => {
@@ -926,14 +968,20 @@ export default {
         : "";
     };
 
+    const formatarProfessor = (professor) => {
+      return professor ? `${professor.nome}` : "";
+    };
+
     watch(selectedEstagiario, loadEstagiario);
     watch(selectedSolicitacao, loadSolicitacao);
+    watch(selectedProfessor, loadProfessor);
 
     onMounted(() => {
       loadOrg();
       loadEstg();
       setDate();
       loadSol();
+      loadProf();
     });
 
     const formData = ref({
@@ -1021,6 +1069,13 @@ export default {
       searchQuerySol,
       filteredEstagiarios,
       filteredSolicitacao,
+      professores,
+      professor,
+      selectedProfessor,
+      searchQueryProf,
+      filteredProfessor,
+      filtrarProfessor,
+      formatarProfessor,
       filtrarEstagiarios,
       formatarEstagiario,
       formatarSolicitacao,
