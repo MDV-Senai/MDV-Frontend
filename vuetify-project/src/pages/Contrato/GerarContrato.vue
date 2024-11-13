@@ -356,7 +356,7 @@
         </p>
         <p style="margin: 0">Cargo: Diretor</p>
       </div>
-      <p>Coordenador Geral de Estágio:______</p>
+      <p>Coordenador Geral de Estágio: {{ professor.nome }}</p>
 
       <h5 class="highlight">ESTAGIÁRIO:</h5>
 
@@ -389,7 +389,7 @@
               style="
                 text-align: center;
                 font-size: smaller;
-                width: 300px;
+                width: 500px;
                 word-wrap: break-word;
               "
             >
@@ -401,7 +401,7 @@
         </thead>
         <tbody>
           <tr>
-            <td style="height: 30px">NOME</td>
+            <td style="height: 30px">{{ professor.nome }}</td>
             <td>{{ formData.cpfProfessorOrientador }}</td>
             <td>{{ formData.numRegistroOrgaoClasseEstadoProfOrientador }}</td>
           </tr>
@@ -518,7 +518,7 @@
               {{ formData.horarioEntradaEstagio }} -
               {{ formData.horarioSaidaEstagio }}
             </td>
-            <td></td>
+            <td>{{ professor.nome }}</td>
           </tr>
           <tr>
             <td style="height: 30px"></td>
