@@ -39,22 +39,26 @@ export async function fetchInstituicoesPorId(instId) {
 }
 
 export async function cadastrarInstituicaoEnsino(data) {
+  let req;
+
   try {
     const url = import.meta.env.VITE_BACKEND_URL + "/instituicao-ensino";
-
     const token = sessionStorage.getItem("authToken");
 
-    const req = await axios.post(url, data, {
+    req = await axios.post(url, data, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
-
-    return req;
   } catch (error) {
-    console.log('Erro ao cadastrar Instuição de Ensino: ' + error);
-    return null;
+    if (error.response) {
+      return error.response.data;
+    } else {
+        console.log('Erro desconhecido:', error);
+    }
   }
+
+  return req;
 }
 
 export async function updateInstituicaoEnsino(instId, instituicaoData) {

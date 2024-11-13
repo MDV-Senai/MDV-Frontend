@@ -307,62 +307,106 @@ export default {
       show2: false,
       rules: {
         required: (value) => !!value || "Obrigatório.",
-        // min: v => v.length  6 || 'Minimo 6 caracteres',
         email: (value) => emailValidation(value),
         fullname: (value) => fullNameValidation(value),
         identic: (value) => confirmPasswordValidation(value),
       },
     };
   },
+
   methods: {
     async getUfs() {
       try {
         const response = await axios.get("./db/db.json");
-        const data = response.data;
-        this.ufs = data.items.ufs;
+        this.ufs = response.data.items.ufs;
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("Erro ao buscar UFs:", error);
       }
     },
 
     async preencheCep(cep) {
-      let address = await buscaCep(cep);
-      this.cidade = address.localidade;
-      this.uf = address.uf;
-      this.bairro = address.bairro;
-      this.logradouro = address.logradouro;
+      try {
+        const address = await buscaCep(cep);
+        this.cidade = address.localidade;
+        this.uf = address.uf;
+        this.bairro = address.bairro;
+        this.logradouro = address.logradouro;
+      } catch (error) {
+        console.error("Erro ao buscar endereço pelo CEP:", error);
+      }
+    },
+
+    removeMascara(valor) {
+      return valor ? valor.replace(/\D/g, "") : "";
+    },
+
+    exibirMensagemSucesso() {
+      Swal.fire({
+        title: "Cadastro Realizado com Sucesso!",
+        icon: "success",
+      });
+    },
+
+    exibirErroGenerico() {
+      Swal.fire({
+        title: "Ocorreu um erro ao realizar o cadastro.",
+        icon: "error",
+      });
+    },
+
+    exibirErros(response) {
+      let errors = "";
+      if (Array.isArray(response.message)) {
+        response.message.forEach((item, index) => {
+          errors += `<li class="text-left">${index + 1}. ${item}</li>`;
+        });
+      } else {
+        errors = `<li class="text-left">${response.message}</li>`;
+      }
+
+      Swal.fire({
+        title: "Ocorreu os seguintes erros ao realizar o cadastro:",
+        html: `<ul>${errors}</ul>`,
+        icon: "error",
+      });
     },
 
     async enviarDados() {
-      const removeMascara = (valor) => (valor ? valor.replace(/\D/g, "") : "");
-
       if (this.$refs.form.validate()) {
-        const data = {
-          nomeFantasia: this.instituacao,
-          razaoSocial: this.razaoSocial,
-          cnpj: removeMascara(this.cnpj),
-          inscricaoEstadual: this.inscricaoEstadual,
-          telefone: removeMascara(this.telefone),
-          email: this.email,
-          cep: removeMascara(this.cep),
-          cidade: this.cidade,
-          estado: this.uf,
-          bairro: this.bairro,
-          numero: this.numero,
-          rua: this.logradouro,
-          complemento: this.complemento,
-          responsavelLegal: this.diretor,
-          responsavelLegalContato: removeMascara(this.contatoRespLegal),
-        };
+        try {
+          const dadosCadastro = {
+            nomeFantasia: this.instituacao,
+            razaoSocial: this.razaoSocial,
+            cnpj: this.removeMascara(this.cnpj),
+            inscricaoEstadual: this.inscricaoEstadual,
+            telefone: this.removeMascara(this.telefone),
+            email: this.email,
+            cep: this.removeMascara(this.cep),
+            cidade: this.cidade,
+            estado: this.uf,
+            bairro: this.bairro,
+            numero: this.numero,
+            rua: this.logradouro,
+            complemento: this.complemento,
+            responsavelLegal: this.diretor,
+            responsavelLegalContato: this.removeMascara(this.contatoRespLegal),
+          };
 
-        const response = await cadastrarInstituicaoEnsino(data);
+          const response = await cadastrarInstituicaoEnsino(dadosCadastro);
 
-        if (response) {
-          Swal.fire({
-            title: "Cadastro Realizado com Sucesso!",
-            icon: "success",
-          });
-          this.$refs.form.reset();
+          if (!response.error) {
+            this.exibirMensagemSucesso();
+            this.reset();
+          } else {
+            if (response.statusCode >= 500) {
+              this.exibirErroGenerico();
+            } else {
+              this.exibirErros(response);
+            }
+          }
+        } catch (error) {
+          console.error(error);
+          this.exibirErroGenerico();
         }
       }
     },
@@ -371,6 +415,7 @@ export default {
       this.$refs.form.reset();
     },
   },
+
   mounted() {
     this.getUfs();
   },
