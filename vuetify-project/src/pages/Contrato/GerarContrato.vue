@@ -733,6 +733,7 @@ import { ref, onMounted, computed, watch } from "vue";
 import html2pdf from "html2pdf.js";
 import { useResponsiveHeight } from "../../composables/useResponsiveHeight.js";
 import { fetchOrganizacaoConcedente } from "../../services/OrganizacaoService.js";
+import { fetchSolicitacaoVaga, fetchSolicitacaoVagaPorId } from "../../services/VagasService.js";
 import {
   fetchEstagiarios,
   fetchEstagiarioPorId,
@@ -743,9 +744,13 @@ export default {
     const { height } = useResponsiveHeight();
     const organizacao = ref({});
     const estagiarios = ref([]);
+    const solicitacoes = ref([]);
     const selectedEstagiario = ref(null);
-    const searchQuery = ref("");
+    const selectedSolicitacao = ref(null);
+    const searchQueryEstg = ref("");
+    const searchQuerySol = ref("");
     const estagiario = ref({});
+    const solicitacao = ref({});
 
     // Variáveis para cada checkbox do dia da semana
     const domingo = ref(false);
@@ -782,6 +787,22 @@ export default {
       estagiarios.value = response.data;
     };
 
+    const loadSol = async () => {
+      const response = await fetchSolicitacaoVaga();
+      solicitacoes.value = response;
+    };
+
+    const loadSolicitacao = async () => {
+      if (selectedSolicitacao.value) {
+        const response = await fetchSolicitacaoVagaPorId(selectedSolicitacao.value);
+        if (response) {
+          solicitacao.value = response;
+        } else {
+          console.error("Erro ao buscar solicitacao.");
+        }
+      }
+    };
+
     const loadEstagiario = async () => {
       if (selectedEstagiario.value) {
         const response = await fetchEstagiarioPorId(selectedEstagiario.value);
@@ -796,8 +817,8 @@ export default {
     const filteredEstagiarios = computed(() => {
       return estagiarios.value.filter((estagiario) => {
         const searchValue =
-          searchQuery.value && typeof searchQuery.value === "string"
-            ? searchQuery.value.toLowerCase()
+          searchQueryEstg.value && typeof searchQueryEstg.value === "string"
+            ? searchQueryEstg.value.toLowerCase()
             : "";
 
         return (
@@ -807,21 +828,45 @@ export default {
       });
     });
 
+    const filteredSolicitacao = computed(() => {
+      return solicitacoes.value.filter((solicitacao) => {
+        const searchValue =
+          searchQueryEstg.value && typeof searchQueryEstg.value === "string"
+            ? searchQueryEstg.value.toLowerCase()
+            : "";
+
+        return (
+          solicitacao.instituicaoEnsino.razaoSocial.toLowerCase().includes(searchValue) ||
+          solicitacao.setor.nomeSetor.toLowerCase().includes(searchValue)
+        );
+      });
+    });
+
     const filtrarEstagiarios = (query) => {
-      searchQuery.value = query;
+      searchQueryEstg.value = query;
+    };
+
+    const filtrarSolicitacao = (query) => {
+      searchQuerySol.value = query;
     };
 
     const formatarEstagiario = (estagiario) => {
       return estagiario ? `${estagiario.nome} - ${estagiario.documento}` : "";
     };
 
-    // Watch para monitorar mudanças em selectedEstagiario
+    const formatarSolicitacao = (solicitacao) => {
+      return solicitacao ? `${solicitacao.instituicaoEnsino.razaoSocial} - ${solicitacao.setor.nomeSetor}` : "";
+    };
+
+  
     watch(selectedEstagiario, loadEstagiario);
+    watch(selectedSolicitacao, loadSolicitacao);
 
     onMounted(() => {
       loadOrg();
       loadEstg();
       setDate();
+      loadSol();
     });
 
     const formData = ref({
@@ -901,11 +946,18 @@ export default {
       organizacao,
       estagiarios,
       estagiario,
+      solicitacoes,
+      solicitacao,
+      selectedSolicitacao,
       selectedEstagiario,
-      searchQuery,
+      searchQueryEstg,
+      searchQuerySol,
       filteredEstagiarios,
+      filteredSolicitacao,
       filtrarEstagiarios,
       formatarEstagiario,
+      formatarSolicitacao,
+      filtrarSolicitacao,
     };
   },
 };
