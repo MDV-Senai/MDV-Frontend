@@ -72,7 +72,7 @@
 
         <!-- Área de Informações do Estagiário -->
         <v-row class="d-flex justify-center mt-8">
-          <v-col cols="12" md="8">
+          <v-col cols="12" md="4">
             <v-autocomplete
               v-model="selectedEstagiario"
               :items="filteredEstagiarios"
@@ -97,6 +97,21 @@
               variant="outlined"
               v-model="formData.faseSerieEstagiario"
             ></v-text-field>
+          </v-col>
+          <v-col cols="12" md="4">
+            <v-autocomplete
+              v-model="selectedSolicitacao"
+              :items="filteredSolicitacao"
+              :item-title="formatarSolicitacao"
+              item-value="id"
+              label="Solicitação de Vaga"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+              @input="filtrarSolicitacao"
+            ></v-autocomplete>
           </v-col>
         </v-row>
 
