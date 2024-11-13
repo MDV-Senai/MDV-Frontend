@@ -314,7 +314,7 @@
 
       <h5 class="highlight">ESTAGIÁRIO:</h5>
 
-      <p>Nome Completo: _______</p>
+      <p>Nome Completo: {{ estagiario.nome }}</p>
       <div style="display: flex; justify-content: flex-start">
         <p style="margin-right: 283px">CPF:_______</p>
         <p style="margin: 0">Data de Nascimento:________</p>
@@ -712,11 +712,11 @@
 </template>
 
 <script>
-import { ref, onMounted, computed } from "vue";
+import { ref, onMounted, computed, watch } from "vue";
 import html2pdf from "html2pdf.js";
 import { useResponsiveHeight } from "../../composables/useResponsiveHeight.js";
 import { fetchOrganizacaoConcedente } from "../../services/OrganizacaoService.js";
-import { fetchEstagiarios } from "../../services/EstagiariosService.js";
+import { fetchEstagiarios, fetchEstagiarioPorId } from "../../services/EstagiariosService.js";
 
 export default {
   setup() {
@@ -725,6 +725,7 @@ export default {
     const estagiarios = ref([]);
     const selectedEstagiario = ref(null);
     const searchQuery = ref("");
+    const estagiario = ref({});
 
     // Variáveis para cada checkbox do dia da semana
     const domingo = ref(false);
@@ -761,6 +762,17 @@ export default {
       estagiarios.value = response.data;
     };
 
+    const loadEstagiario = async () => {
+      if (selectedEstagiario.value) {
+        const response = await fetchEstagiarioPorId(selectedEstagiario.value);
+        if (response) {
+          estagiario.value = response;
+        } else {
+          console.error("Erro ao buscar estagiário.");
+        }
+      }
+    };
+
     const filteredEstagiarios = computed(() => {
       return estagiarios.value.filter((estagiario) => {
         const searchValue =
@@ -782,6 +794,9 @@ export default {
     const formatarEstagiario = (estagiario) => {
       return estagiario ? `${estagiario.nome} - ${estagiario.documento}` : "";
     };
+
+    // Watch para monitorar mudanças em selectedEstagiario
+    watch(selectedEstagiario, loadEstagiario);
 
     onMounted(() => {
       loadOrg();
@@ -863,6 +878,7 @@ export default {
       diasSelecionados,
       organizacao,
       estagiarios,
+      estagiario,
       selectedEstagiario,
       searchQuery,
       filteredEstagiarios,
