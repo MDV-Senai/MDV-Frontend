@@ -76,8 +76,8 @@
             <v-autocomplete
               v-model="selectedEstagiario"
               :items="filteredEstagiarios"
-              item-text="nome"
-              item-value="documento"
+              item-title="nome"
+              item-value="id"
               label="Estagiário"
               maxlength="255"
               counter
