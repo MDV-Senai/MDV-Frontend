@@ -59,6 +59,28 @@ export async function cadastrarSolcitacaoVagas(data) {
   }
 }
 
+export async function fetchSolicitacaoVaga(pagina, itensPorPagina) {
+  try {
+    const token = sessionStorage.getItem('authToken');
+    const response = await axios.get(
+      `${import.meta.env.VITE_BACKEND_URL}/solicitacao-vaga`,
+      {
+        params: {
+          page: pagina,
+          limit: itensPorPagina
+        },
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      }
+    );
+    return response.data.data;
+  } catch (error) {
+    console.error("Erro ao buscar solicitacao:", error);
+    return null;
+  }
+}
+
 export async function fetchVagaPorId(vagaId) {
   try {
     const token = sessionStorage.getItem("authToken");
