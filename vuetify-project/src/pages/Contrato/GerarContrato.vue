@@ -327,7 +327,7 @@
         <p style="margin-right: 60px">
           Fase/Série: {{ formData.faseSerieEstagiario }}
         </p>
-        <p style="margin-right: 0px">Matrícula: ________</p>
+        <p style="margin-right: 0px">Matrícula: {{ estagiario.matricula }}</p>
       </div>
 
       <h5 class="highlight">PROFESSOR ORIENTADOR:</h5>
