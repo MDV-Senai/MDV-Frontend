@@ -316,8 +316,8 @@
 
       <p>Nome Completo: {{ estagiario.nome }}</p>
       <div style="display: flex; justify-content: flex-start">
-        <p style="margin-right: 283px">CPF:_______</p>
-        <p style="margin: 0">Data de Nascimento:________</p>
+        <p style="margin-right: 283px">CPF: {{ estagiario.documento }}</p>
+        <p style="margin: 0">Data de Nascimento: {{ formatDate(estagiario.dataNascimento) }}</p>
       </div>
 
       <div style="display: flex; justify-content: flex-start">
