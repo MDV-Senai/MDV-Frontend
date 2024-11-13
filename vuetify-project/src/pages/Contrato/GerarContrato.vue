@@ -864,7 +864,7 @@ export default {
 
     const loadProf = async () => {
       const response = await fetchCoordenadorCurso();
-      professores.value = response;
+      professores.value = response.data;
     };
 
     const loadProfessor = async () => {
