@@ -548,9 +548,11 @@
 
       <br />
 
-      <p><strong>a)</strong> ______</p>
-      <p><strong>b)</strong> ______</p>
-      <p><strong>c)</strong> ______</p>
+      <p v-if="solicitacao && solicitacao.setor &&solicitacao.setor.atividades"><strong>a)</strong> {{ solicitacao.setor.atividades[0].nome }}</p>
+      <p v-if="solicitacao && solicitacao.setor &&solicitacao.setor.atividades"><strong>b)</strong> {{ solicitacao.setor.atividades[1].nome }}</p>
+      <p v-if="solicitacao && solicitacao.setor &&solicitacao.setor.atividades"><strong>c)</strong> {{ solicitacao.setor.atividades[2].nome }}</p>
+
+      <br />
 
       <p>
         <strong>Cláusula 9ª -</strong> O estagiário deverá observar e obedecer
