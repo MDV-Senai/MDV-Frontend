@@ -10,7 +10,7 @@
       <v-form ref="form" id="form" class="mx-auto">
         <!-- Área de Informações do Contrato -->
         <v-row class="d-flex justify-center mt-8">
-          <v-col cols="12" md="4">
+          <v-col cols="12" md="6">
             <v-text-field
               label="Cidade Geração contrato"
               maxlength="255"
@@ -21,7 +21,7 @@
               v-model="formData.cidadeGeracao"
             ></v-text-field>
           </v-col>
-          <v-col cols="12" md="4">
+          <v-col cols="12" md="6">
             <v-text-field
               label="Número Cooperação Técnica Instituição de Ensino"
               maxlength="255"
@@ -31,18 +31,6 @@
               variant="outlined"
               v-model="formData.numeroCooperacaoTecnicaInstituicaoEnsino"
             ></v-text-field>
-          </v-col>
-          <v-col cols="12" md="4">
-            <v-select
-              label="Organização Concedente"
-              v-model="id"
-              clearable
-              class="text-grey-darken-4"
-              variant="outlined"
-              :items="organizacoes"
-              item-title="razaoSocial"
-              item-value="id"
-            ></v-select>
           </v-col>
         </v-row>
         <!-- Área de Orientador -->
@@ -287,10 +275,10 @@
         UNIDADE DA SECRETARIA DE ESTADO DA SAÚDE DE SANTA CATARINA (SES/SC):
       </h5>
 
-      <p>Unidade da SES/SC Concedente de Estágio Obrigatório: {{ orgId }}</p>
+      <p>Unidade da SES/SC Concedente de Estágio Obrigatório: {{ organizacao.razaoSocial }}</p>
 
       <div style="display: flex; justify-content: flex-start">
-        <p style="margin-right: 337px">Representante Legal:_______</p>
+        <p style="margin-right: 337px">Representante Legal: {{ organizacao.responsavelLegal }}</p>
         <p style="margin: 0">Cargo: Diretor</p>
       </div>
 
@@ -725,9 +713,7 @@ import {
 export default {
   setup() {
     const { height } = useResponsiveHeight();
-    const organizacoes = ref([]);
     const organizacao = ref({});
-    let orgId = null;
 
     // Variáveis para cada checkbox do dia da semana
     const domingo = ref(false);
@@ -753,17 +739,10 @@ export default {
 
     const loadOrg = async () => {
       const response = await fetchOrganizacaoConcedente();
-      organizacoes.value = response;
-      console.log(response);
-    };
-
-    const loadConcedente = async (id) => {
-      const response = await fetchConcedentePorId(organizacoes.id);
-      if (response) {
-        organizacao.value = response;
-      } else {
-        console.error("Erro ao buscar organização.");
+      if (response && response.length > 0) {
+        organizacao.value = response[0]; // Pega o primeiro item da lista
       }
+      console.log(organizacao.value);
     };
 
     onMounted(() => {
@@ -848,9 +827,7 @@ export default {
       sabado,
       formatDate,
       diasSelecionados,
-      organizacoes,
-      orgId,
-      organizacao
+      organizacao,
     };
   },
 };
