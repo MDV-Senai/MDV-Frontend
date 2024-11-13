@@ -309,20 +309,20 @@
 
       <div style="display: flex; justify-content: flex-start">
         <p style="margin-right: 250px">
-          Responsável do Setor de Estágio:_______
+          Responsável do Setor de Estágio: {{ solicitacao.setor.nomeCoordenador }}
         </p>
         <p style="margin: 0">Cargo: Coordenador</p>
       </div>
 
       <h5 class="highlight">INSTITUIÇÃO DE ENSINO:</h5>
 
-      <p>Razão Social: ______</p>
+      <p>Razão Social: {{ solicitacao.instituicaoEnsino.razaoSocial }}</p>
       <p>
         Cooperação Técnica Nº:
         {{ formData.numeroCooperacaoTecnicaInstituicaoEnsino }}
       </p>
       <div style="display: flex; justify-content: flex-start">
-        <p style="margin-right: 337px">Representante Legal:_______</p>
+        <p style="margin-right: 337px">Representante Legal: {{ solicitacao.instituicaoEnsino.responsavelLegal }}</p>
         <p style="margin: 0">Cargo: Diretor</p>
       </div>
       <p>Coordenador Geral de Estágio:______</p>
