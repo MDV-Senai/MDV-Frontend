@@ -73,14 +73,19 @@
         <!-- Área de Informações do Estagiário -->
         <v-row class="d-flex justify-center mt-8">
           <v-col cols="12" md="8">
-            <v-text-field
+            <v-autocomplete
+              v-model="selectedEstagiario"
+              :items="filteredEstagiarios"
+              item-text="nome"
+              item-value="documento"
               label="Estagiário"
               maxlength="255"
               counter
               clearable
               class="text-grey-darken-4"
               variant="outlined"
-            ></v-text-field>
+              @input="filtrarEstagiarios"
+            ></v-autocomplete>
           </v-col>
           <v-col cols="12" md="4">
             <v-text-field
@@ -718,6 +723,8 @@ export default {
     const { height } = useResponsiveHeight();
     const organizacao = ref({});
     const estagiarios = ref([]);
+    const selectedEstagiario = ref(null);
+    const searchQuery = ref("");
 
     // Variáveis para cada checkbox do dia da semana
     const domingo = ref(false);
@@ -752,7 +759,22 @@ export default {
     const loadEstg = async () => {
       const response = await fetchEstagiarios();
       estagiarios.value = response.data;
-      console.log(estagiarios.value)
+    };
+
+    const filteredEstagiarios = computed(() => {
+      return estagiarios.value.filter(
+        (estagiario) =>
+          estagiario.nome
+            .toLowerCase()
+            .includes(searchQuery.value.toLowerCase()) ||
+          estagiario.documento
+            .toLowerCase()
+            .includes(searchQuery.value.toLowerCase())
+      );
+    });
+
+    const filtrarEstagiarios = (query) => {
+      searchQuery.value = query;
     };
 
     onMounted(() => {
@@ -839,7 +861,11 @@ export default {
       formatDate,
       diasSelecionados,
       organizacao,
-      estagiarios
+      estagiarios,
+      selectedEstagiario,
+      searchQuery,
+      filteredEstagiarios,
+      filtrarEstagiarios,
     };
   },
 };
