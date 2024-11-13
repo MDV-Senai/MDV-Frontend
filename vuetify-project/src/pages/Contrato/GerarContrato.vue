@@ -317,7 +317,9 @@
       <p>Nome Completo: {{ estagiario.nome }}</p>
       <div style="display: flex; justify-content: flex-start">
         <p style="margin-right: 283px">CPF: {{ estagiario.documento }}</p>
-        <p style="margin: 0">Data de Nascimento: {{ formatDate(estagiario.dataNascimento) }}</p>
+        <p style="margin: 0">
+          Data de Nascimento: {{ formatDate(estagiario.dataNascimento) }}
+        </p>
       </div>
 
       <div style="display: flex; justify-content: flex-start">
@@ -716,7 +718,10 @@ import { ref, onMounted, computed, watch } from "vue";
 import html2pdf from "html2pdf.js";
 import { useResponsiveHeight } from "../../composables/useResponsiveHeight.js";
 import { fetchOrganizacaoConcedente } from "../../services/OrganizacaoService.js";
-import { fetchEstagiarios, fetchEstagiarioPorId } from "../../services/EstagiariosService.js";
+import {
+  fetchEstagiarios,
+  fetchEstagiarioPorId,
+} from "../../services/EstagiariosService.js";
 
 export default {
   setup() {
@@ -855,11 +860,13 @@ export default {
 
     const formatDate = (dateString) => {
       if (!dateString) return "";
-      const dateParts = dateString.split("-");
-      const date = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
-      const day = String(date.getDate()).padStart(2, "0");
-      const month = String(date.getMonth() + 1).padStart(2, "0");
-      const year = date.getFullYear();
+      const date = new Date(dateString);
+      if (isNaN(date)) return "";
+
+      const day = String(date.getUTCDate()).padStart(2, "0");
+      const month = String(date.getUTCMonth() + 1).padStart(2, "0");
+      const year = date.getUTCFullYear();
+
       return `${day}/${month}/${year}`;
     };
 
