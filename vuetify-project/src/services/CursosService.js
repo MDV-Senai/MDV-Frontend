@@ -22,6 +22,24 @@ export async function fetchCursos(pagina, itensPorPagina) {
   }
 }
 
+export async function fetchCursosPorInstuicaoId(instId) {
+  try {
+    const token = sessionStorage.getItem('authToken');
+    const response = await axios.get(
+      `${import.meta.env.VITE_BACKEND_URL}/instituicao-ensino/${instId}`,
+      {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar cursos:", error);
+    return null;
+  }
+}
+
 export async function fetchCursosHomologados() {
   try {
     let token = sessionStorage.getItem("authToken");

@@ -164,41 +164,26 @@
             >
               <div class="d-flex flex-row flex-wrap" id="responsive-cards">
                 <v-col cols="12" md="6" v-for="vaga in vagas" :key="vaga.id">
-                  <v-card>
+                  <v-card class="py-3">
                     <v-card-title v-model="titulo">
-                      {{ vaga.titulo }}
+                      {{
+                        vaga.cursosHabilitados
+                          .map((curso) => curso.nomeCurso)
+                          .join(", ")
+                      }}
                     </v-card-title>
 
+                    <v-card-subtitle v-model="nomeSetor">
+                      Setor: {{ vaga.setor.nomeSetor }}
+                    </v-card-subtitle>
+
                     <v-card-subtitle v-model="quantidade">
-                      {{ vaga.quantidade }}
+                      Vagas Disponíveis: {{ vaga.vagasDisponiveis }}
                     </v-card-subtitle>
 
                     <v-card-subtitle v-model="turno">
-                      {{ vaga.turno }}
+                      {{ vaga.ano }}/{{ vaga.semestre }}
                     </v-card-subtitle>
-
-                    <v-card-actions>
-                      <v-btn color="grey-darken-4" text="Descrição"></v-btn>
-
-                      <v-spacer></v-spacer>
-
-                      <v-btn
-                        :icon="
-                          vaga.show ? 'mdi-chevron-up' : 'mdi-chevron-down'
-                        "
-                        @click="vaga.show = !vaga.show"
-                      ></v-btn>
-                    </v-card-actions>
-
-                    <v-expand-transition>
-                      <div v-show="vaga.show">
-                        <v-divider></v-divider>
-
-                        <v-card-text v-model="descricao">
-                          {{ vaga.descricao }}
-                        </v-card-text>
-                      </div>
-                    </v-expand-transition>
                   </v-card>
                 </v-col>
               </div>
@@ -211,9 +196,11 @@
 </template>
 
 <script>
+import Swal from "sweetalert2";
 import axios from "axios";
 import { emailValidation } from "@/validations/formValidations";
-import {login} from "../auth/auth.js"
+import { login } from "../auth/auth.js";
+import { fetchVagasParaExibicao } from "../services/VagasService.js";
 
 export default {
   data() {
@@ -239,27 +226,28 @@ export default {
 
   methods: {
     async listarVagas() {
-      try {
-        const response = await axios.get(
-          `https://run.mocky.io/v3/2aa2c1c0-22bf-4614-8cc9-32b3943d6c3b`
-        );
-        const info = response.data;
-        const vagas = info.items.vagas;
-        this.vagas = vagas;
-      } catch (error) {
-        console.error("Erro :", error);
-      }
+      const response = await fetchVagasParaExibicao();
+      this.vagas = response;
+      console.log(this.vagas);
     },
 
     async enviarDados() {
       try {
-        const token = await login(this.email, this.senha);
+        const dadosLogin = await login(this.email, this.senha);
 
-        if (token) {
-          console.log("Login realizado com sucesso, token:", token);
-          this.$router.push('/home');
+        if (dadosLogin) {
+          console.log("Login realizado com sucesso, token:", dadosLogin);
+          Swal.fire({
+            title: "Login realizado com Sucesso!",
+            icon: "success",
+          });
+          setTimeout(() => this.$router.push("/home"), 2000);
         } else {
           console.error("Falha no login");
+          Swal.fire({
+            title: "O usuário ou senha é inválido!",
+            icon: "error",
+          });
         }
       } catch (error) {
         console.error("Erro ao enviar os dados:", error);
@@ -320,6 +308,6 @@ export default {
 }
 
 #fundoCardVagas {
-  opacity: 93%;
+  opacity: 98%;
 }
 </style>

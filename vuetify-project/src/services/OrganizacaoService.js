@@ -1,22 +1,28 @@
 import axios from "axios";
 
 export async function cadastrarOrganizacao(data) {
-    try {
-        const url = import.meta.env.VITE_BACKEND_URL + "/organizacao-concedente";
+  let req;
 
-        let token = sessionStorage.getItem("authToken");
+  try {
+      const url = import.meta.env.VITE_BACKEND_URL + "/organizacao-concedente";
+      let token = sessionStorage.getItem("authToken");
 
-        const req = await axios.post(url, data, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        });
-        return req;
-    } catch (error) {
-        console.log('Erro ao cadastrar Organização: ' + error);
-        return null;
-    }
+      req = await axios.post(url, data, {
+          headers: {
+              Authorization: `Bearer ${token}`,
+          },
+      });
+  } catch (error) {
+      if (error.response) {
+          return error.response.data;
+      } else {
+          console.log('Erro desconhecido:', error);
+      }
+  }
+
+  return req;
 }
+
 
 export async function fetchOrganizacaoConcedente(pagina, itensPorPagina) {
     try {

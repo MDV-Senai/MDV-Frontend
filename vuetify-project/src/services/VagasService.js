@@ -22,6 +22,24 @@ export async function fetchVagas(pagina, itensPorPagina) {
   }
 }
 
+export async function fetchVagasParaExibicao() {
+  try {
+    const token = sessionStorage.getItem('authToken');
+    const response = await axios.get(
+      `${import.meta.env.VITE_BACKEND_URL}/vaga`,
+      {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      }
+    );
+    return response.data.data;
+  } catch (error) {
+    console.error("Erro ao buscar vagas:", error);
+    return null;
+  }
+}
+
 export async function cadastrarSolcitacaoVagas(data) {
   try {
     const url = import.meta.env.VITE_BACKEND_URL + "/solicitacao-vaga";

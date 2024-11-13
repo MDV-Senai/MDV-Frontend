@@ -30,7 +30,14 @@ export default {
   methods: {
     async fetchSetores() {
       try {
-        const response = await axios.get('https://run.mocky.io/v3/7e745f34-d6de-438d-88cb-d7f7093edf50');
+
+        const token = sessionStorage.getItem('authToken');
+        const response = await axios.get(import.meta.env.VITE_BACKEND_URL + '/solicitacao-vaga/info/calendar', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+
         this.setores = response.data.setores;
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -38,8 +45,8 @@ export default {
     },
     getDates(periodo) {
       return periodo.map(item => ({
-        startDate: item.startDate,
-        endDate: item.endDate,
+        startDate: item.startDate.split("T")[0],
+        endDate: item.endDate.split("T")[0],
         nomeInstituicaoEnsino: item.nomeInstituicaoEnsino
       }));
     },
