@@ -762,15 +762,17 @@ export default {
     };
 
     const filteredEstagiarios = computed(() => {
-      return estagiarios.value.filter(
-        (estagiario) =>
-          estagiario.nome
-            .toLowerCase()
-            .includes(searchQuery.value.toLowerCase()) ||
-          estagiario.documento
-            .toLowerCase()
-            .includes(searchQuery.value.toLowerCase())
-      );
+      return estagiarios.value.filter((estagiario) => {
+        const searchValue =
+          searchQuery.value && typeof searchQuery.value === "string"
+            ? searchQuery.value.toLowerCase()
+            : "";
+
+        return (
+          estagiario.nome.toLowerCase().includes(searchValue) ||
+          estagiario.documento.toLowerCase().includes(searchValue)
+        );
+      });
     });
 
     const filtrarEstagiarios = (query) => {
