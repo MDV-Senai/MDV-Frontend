@@ -155,7 +155,7 @@
           <v-col cols="12" md="12">
             <v-text-field
               label="Logradouro"
-              v-model="logradouro"
+              v-model="rua"
               maxlength="255"
               counter
               clearable
@@ -292,9 +292,10 @@ export default {
       celular: null,
       telefone: null,
       cep: null,
-      logradouro: null,
+      rua: null,
       complemento: null,
       uf: null,
+      ufs: [],
       cidade: null,
       bairro: null,
       numero: null,
@@ -321,42 +322,78 @@ export default {
       this.rua = address.logradouro;
     },
 
-    async enviarDados() {
-      const removeMascara = (valor) => (valor ? valor.replace(/\D/g, "") : "");
+    removeMascara(valor) {
+      return valor ? valor.replace(/\D/g, "") : "";
+    },
 
+    exibirMensagemSucesso() {
+      Swal.fire({
+        title: "Cadastro Realizado com Sucesso!",
+        icon: "success",
+      });
+    },
+
+    exibirErroGenerico() {
+      Swal.fire({
+        title: "Ocorreu um erro ao realizar o cadastro.",
+        icon: "error",
+      });
+    },
+
+    exibirErros(response) {
+      let errors = "";
+      if (Array.isArray(response.message)) {
+        response.message.forEach((item, index) => {
+          errors += `<li class="text-left">${index + 1}. ${item}</li>`;
+        });
+      } else {
+        errors = `<li class="text-left">${response.message}</li>`;
+      }
+
+      Swal.fire({
+        title: "Ocorreu os seguintes erros ao realizar o cadastro:",
+        html: `<ul>${errors}</ul>`,
+        icon: "error",
+      });
+    },
+
+    async enviarDados() {
       if (this.$refs.form.validate()) {
         try {
           const data = {
             nomeFantasia: this.nomeFantasia,
             razaoSocial: this.razaoSocial,
-            cnpj: removeMascara(this.cnpj),
+            cnpj: this.removeMascara(this.cnpj),
             inscricaoEstado: this.inscricaoEstadual,
-            fone: removeMascara(this.telefone),
-            celular: removeMascara(this.celular),
+            fone: this.removeMascara(this.telefone),
+            celular: this.removeMascara(this.celular),
             email: this.email,
-            cep: removeMascara(this.cep),
+            cep: this.removeMascara(this.cep),
             cidade: this.cidade,
             uf: this.uf,
             bairro: this.bairro,
             numero: this.numero,
-            logradouro: this.logradouro,
+            rua: this.rua,
             complemento: this.complemento,
             responsavelLegal: this.responsavelLegal,
-            responsavelLegalContato: removeMascara(this.contatoRespLegal),
+            responsavelLegalContato: this.removeMascara(this.contatoRespLegal),
           };
-          console.log(data);
 
           const response = await cadastrarOrganizacao(data);
 
-          if (response) {
-            Swal.fire({
-              title: "Cadastro Realizado com Sucesso!",
-              icon: "success",
-            });
-            this.$refs.form.reset();
+          if (!response.error) {
+            this.exibirMensagemSucesso();
+            this.reset();
+          } else {
+            if (response.statusCode >= 500) {
+              this.exibirErroGenerico();
+            } else {
+              this.exibirErros(response);
+            }
           }
         } catch (error) {
-          console.error("Erro ao enviar dados:", error);
+          console.error(error);
+          this.exibirErroGenerico();
         }
       }
     },
