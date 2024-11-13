@@ -19,7 +19,6 @@
               :items="cursoVaga"
               item-title="nomeCurso"
               item-value="id"
-              multiple
             ></v-select>
           </v-col>
         </v-row>
@@ -150,7 +149,7 @@ export default {
       if (this.$refs.form.validate()) {
         try {
           const data = {
-            cursosId: this.idCurso,
+            cursosId: [this.idCurso],
             setores: this.setorId,
             ano: this.ano,
             semestre: this.semestre,
