@@ -587,17 +587,23 @@
       <br />
 
       <p
-        v-if="solicitacao && solicitacao.setor && solicitacao.setor.atividades[0]"
+        v-if="
+          solicitacao && solicitacao.setor && solicitacao.setor.atividades[0]
+        "
       >
         <strong>a)</strong> {{ solicitacao.setor.atividades[0].nome }}
       </p>
       <p
-        v-if="solicitacao && solicitacao.setor && solicitacao.setor.atividades[1]"
+        v-if="
+          solicitacao && solicitacao.setor && solicitacao.setor.atividades[1]
+        "
       >
         <strong>b)</strong> {{ solicitacao.setor.atividades[1].nome }}
       </p>
       <p
-        v-if="solicitacao && solicitacao.setor && solicitacao.setor.atividades[2]"
+        v-if="
+          solicitacao && solicitacao.setor && solicitacao.setor.atividades[2]
+        "
       >
         <strong>c)</strong> {{ solicitacao.setor.atividades[2].nome }}
       </p>
