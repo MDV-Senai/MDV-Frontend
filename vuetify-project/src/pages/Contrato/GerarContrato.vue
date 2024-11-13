@@ -275,10 +275,15 @@
         UNIDADE DA SECRETARIA DE ESTADO DA SAÚDE DE SANTA CATARINA (SES/SC):
       </h5>
 
-      <p>Unidade da SES/SC Concedente de Estágio Obrigatório: {{ organizacao.razaoSocial }}</p>
+      <p>
+        Unidade da SES/SC Concedente de Estágio Obrigatório:
+        {{ organizacao.razaoSocial }}
+      </p>
 
       <div style="display: flex; justify-content: flex-start">
-        <p style="margin-right: 337px">Representante Legal: {{ organizacao.responsavelLegal }}</p>
+        <p style="margin-right: 337px">
+          Representante Legal: {{ organizacao.responsavelLegal }}
+        </p>
         <p style="margin: 0">Cargo: Diretor</p>
       </div>
 
@@ -705,15 +710,14 @@
 import { ref, onMounted, computed } from "vue";
 import html2pdf from "html2pdf.js";
 import { useResponsiveHeight } from "../../composables/useResponsiveHeight.js";
-import {
-  fetchOrganizacaoConcedente,
-  fetchConcedentePorId,
-} from "../../services/OrganizacaoService.js";
+import { fetchOrganizacaoConcedente } from "../../services/OrganizacaoService.js";
+import { fetchEstagiarios } from "../../services/EstagiariosService.js";
 
 export default {
   setup() {
     const { height } = useResponsiveHeight();
     const organizacao = ref({});
+    const estagiarios = ref([]);
 
     // Variáveis para cada checkbox do dia da semana
     const domingo = ref(false);
@@ -740,13 +744,20 @@ export default {
     const loadOrg = async () => {
       const response = await fetchOrganizacaoConcedente();
       if (response && response.length > 0) {
-        organizacao.value = response[0]; // Pega o primeiro item da lista
+        organizacao.value = response[0];
       }
       console.log(organizacao.value);
     };
 
+    const loadEstg = async () => {
+      const response = await fetchEstagiarios();
+      estagiarios.value = response.data;
+      console.log(estagiarios.value)
+    };
+
     onMounted(() => {
       loadOrg();
+      loadEstg();
     });
 
     // Dados do formulário com a data atual preenchida automaticamente
@@ -806,7 +817,7 @@ export default {
 
     const formatDate = (dateString) => {
       if (!dateString) return "";
-      const dateParts = dateString.split("-"); // Considerando formato 'AAAA-MM-DD'
+      const dateParts = dateString.split("-");
       const date = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
       const day = String(date.getDate()).padStart(2, "0");
       const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -828,14 +839,13 @@ export default {
       formatDate,
       diasSelecionados,
       organizacao,
+      estagiarios
     };
   },
 };
 </script>
 
-<style scoped  lang="scss">
-@import "@/styles/shared";
-
+<style scoped >
 .pdf-header {
   width: 100%;
   text-align: left;
