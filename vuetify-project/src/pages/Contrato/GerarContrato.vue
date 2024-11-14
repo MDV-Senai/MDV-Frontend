@@ -687,13 +687,17 @@
         obrigatório.
       </p>
 
-      <p>
+      <p
+        v-if="
+          estagiario && estagiario.apoliceSeguro && estagiario.apoliceSeguro.dataFim
+        "
+      >
         <strong>Cláusula 19ª -</strong> O estagiário está segurado contra
-        acidentes pessoais, proporcionado pela apólice nº ______ , sob a
+        acidentes pessoais, proporcionado pela apólice nº {{ estagiario.apoliceSeguro.numero }} , sob a
         Responsabilidade da Seguradora {{ formData.nomeSeguradora }} durante o
         período compreendido de
-        {{ formatDate(formData.dataInicioVigenciaSeguro) }} à _____/______
-        /_______ .
+        {{ formatDate(formData.dataInicioVigenciaSeguro) }} à
+        {{ formatDate(estagiario.apoliceSeguro.dataFim) }}.
       </p>
 
       <p>
@@ -904,7 +908,9 @@ export default {
     };
 
     const loadInstituicao = async () => {
-      const response = await fetchInstituicoesPorId(solicitacao.value.instituicaoEnsino.id);
+      const response = await fetchInstituicoesPorId(
+        solicitacao.value.instituicaoEnsino.id
+      );
       if (response) {
         instituicao.value = response;
       } else {
