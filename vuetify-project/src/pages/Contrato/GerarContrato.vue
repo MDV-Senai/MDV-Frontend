@@ -791,6 +791,7 @@ import { ref, onMounted, computed, watch } from "vue";
 import html2pdf from "html2pdf.js";
 import { useResponsiveHeight } from "../../composables/useResponsiveHeight.js";
 import { fetchOrganizacaoConcedente } from "../../services/OrganizacaoService.js";
+import { fetchInstituicoesPorId } from "../../services/InstituicoesService.js";
 import {
   fetchSolicitacaoVaga,
   fetchSolicitacaoVagaPorId,
@@ -821,6 +822,7 @@ export default {
     const estagiario = ref({});
     const solicitacao = ref({});
     const professor = ref({});
+    const instituicao = ref({});
 
     // Variáveis para cada checkbox do dia da semana
     const domingo = ref(false);
@@ -849,7 +851,6 @@ export default {
       if (response && response.length > 0) {
         organizacao.value = response[0];
       }
-      console.log(organizacao.value);
     };
 
     const loadEstg = async () => {
@@ -903,6 +904,15 @@ export default {
       }
     };
 
+    const loadInstituicao = async () => {
+      const response = await fetchInstituicoesPorId(solicitacao.value.instituicaoEnsino.id);
+      if (response) {
+        instituicao.value = response;
+      } else {
+        console.error("Erro ao buscar instituicao.");
+      }
+    };
+
     const filteredEstagiarios = computed(() => {
       return estagiarios.value.filter((estagiario) => {
         const searchValue =
@@ -940,9 +950,7 @@ export default {
             ? searchQueryProf.value.toLowerCase()
             : "";
 
-        return (
-          professor.nome.toLowerCase().includes(searchValue)
-        );
+        return professor.nome.toLowerCase().includes(searchValue);
       });
     });
 
@@ -975,6 +983,11 @@ export default {
     watch(selectedEstagiario, loadEstagiario);
     watch(selectedSolicitacao, loadSolicitacao);
     watch(selectedProfessor, loadProfessor);
+    watch(loadSolicitacao, (newValue, oldValue) => {
+      setTimeout(() => {
+        loadInstituicao(newValue);
+      }, 1000);
+    });
 
     onMounted(() => {
       loadOrg();
@@ -1080,6 +1093,7 @@ export default {
       formatarEstagiario,
       formatarSolicitacao,
       filtrarSolicitacao,
+      instituicao,
     };
   },
 };
