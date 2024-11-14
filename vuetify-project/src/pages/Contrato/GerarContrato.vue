@@ -874,7 +874,7 @@ export default {
 
     const loadEstg = async () => {
       const response = await fetchEstagiarios();
-      estagiarios.value = response.data;
+      estagiarios.value = response;
     };
 
     const loadSol = async () => {
@@ -884,7 +884,7 @@ export default {
 
     const loadProf = async () => {
       const response = await fetchCoordenadorCurso();
-      professores.value = response.data;
+      professores.value = response;
     };
 
     const loadProfessor = async () => {

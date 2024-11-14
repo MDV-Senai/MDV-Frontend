@@ -15,7 +15,7 @@ export async function fetchEstagiarios(pagina, itensPorPagina) {
         }
       }
     );
-    return response.data;
+    return response.data.data;
   } catch (error) {
     console.error("Erro ao buscar alunos:", error);
     return null;
