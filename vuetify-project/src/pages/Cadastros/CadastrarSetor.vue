@@ -66,7 +66,7 @@
               label="Telefone do Coordenador"
               v-model="telefoneCoordenador"
               :rules="[rules.required, rules.fullname]"
-              maxlength="255"
+              maxlength="15"
               counter
               clearable
               v-mask="'(##) #####-####'"
