@@ -67,7 +67,7 @@ export default {
 
     const loadInst = async () => {
       const response = await fetchInstituicoes(pagina.value, itensPorPagina);
-      instituicoes.value = response.data;
+      instituicoes.value = response;
       totalPaginas.value = Math.ceil(response.total / itensPorPagina);
     };
 

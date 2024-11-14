@@ -69,7 +69,7 @@ export default {
 
     const loadEstg = async () => {
       const response = await fetchEstagiarios(pagina.value, itensPorPagina);
-      estagiarios.value = response.data;
+      estagiarios.value = response;
       totalPaginas.value = Math.ceil(response.total / itensPorPagina);
     };
 
