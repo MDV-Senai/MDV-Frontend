@@ -211,7 +211,6 @@
           <v-col cols="12" md="12">
             <v-textarea
               label="Datas de Recesso do Estágio"
-              hint="Separe as datas por vírgula"
               maxlength="255"
               counter
               clearable
