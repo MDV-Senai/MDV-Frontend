@@ -22,7 +22,9 @@
         id="nome_usuario"
         v-model="nome_usuario"
       ></v-title>
-
+      <v-btn >
+        <v-title @click="logout()" class="nome_usuario">Sair</v-title>
+      </v-btn>
       <v-app-bar-nav-icon
         @click.stop="toggleDrawer"
         color="red-darken-4"
@@ -37,7 +39,7 @@
 export default {
   data() {
     return {
-      nome_usuario: "João da Silva",
+      nome_usuario: sessionStorage.getItem('username').toUpperCase(),
       drawer: false,
     };
   },
@@ -45,6 +47,7 @@ export default {
     toggleDrawer() {
       this.drawer = !this.drawer;
     },
+
     ajustarNome() {
       const elementoNome = document.getElementById("nome_usuario");
 
@@ -55,10 +58,14 @@ export default {
         elementoNome.textContent = this.nome_usuario;
       }
     },
+
+    logout() {
+      sessionStorage.clear();
+      this.$router.push('/');
+    }
   },
   mounted() {
     this.ajustarNome();
-
     window.addEventListener("resize", this.ajustarNome);
   },
 };
