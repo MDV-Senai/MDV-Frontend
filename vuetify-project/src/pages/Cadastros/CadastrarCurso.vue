@@ -14,7 +14,7 @@
               label="Nome do Curso"
               v-model="nomeCurso"
               :rules="[rules.required]"
-              maxlength="255"
+              maxlength="150"
               counter
               clearable
               class="text-grey-darken-4"
@@ -78,21 +78,59 @@ export default {
   },
 
   methods: {
+    exibirMensagemSucesso() {
+      Swal.fire({
+        title: "Cadastro Realizado com Sucesso!",
+        icon: "success",
+      });
+    },
+
+    exibirErroGenerico() {
+      Swal.fire({
+        title: "Ocorreu um erro ao realizar o cadastro.",
+        icon: "error",
+      });
+    },
+
+    exibirErros(response) {
+      let errors = "";
+      if (Array.isArray(response.message)) {
+        response.message.forEach((item, index) => {
+          errors += `<li class="text-left">${index + 1}. ${item}</li>`;
+        });
+      } else {
+        errors = `<li class="text-left">${response.message}</li>`;
+      }
+
+      Swal.fire({
+        title: "Ocorreu os seguintes erros ao realizar o cadastro:",
+        html: `<ul>${errors}</ul>`,
+        icon: "error",
+      });
+    },
+
     async enviarDados() {
       if (this.$refs.form.validate()) {
-        const data = {
-          nomeCurso: this.nomeCurso,
-        };
+        try {
+          const dadosCadastro = {
+            nomeCurso: this.nomeCurso
+          };
 
-        const response = await cadastrarCurso(data);
-        console.log(response);
+          const response = await cadastrarCurso(dadosCadastro);
 
-        if (response) {
-          Swal.fire({
-            title: "Cadastro Realizado com Sucesso!",
-            icon: "success"
-          });
-          this.$refs.form.reset();
+          if (!response.error) {
+            this.exibirMensagemSucesso();
+            this.reset();
+          } else {
+            if (response.statusCode >= 500) {
+              this.exibirErroGenerico();
+            } else {
+              this.exibirErros(response);
+            }
+          }
+        } catch (error) {
+          console.error(error);
+          this.exibirErroGenerico();
         }
       }
     },

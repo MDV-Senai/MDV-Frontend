@@ -29,7 +29,7 @@
             <v-autocomplete
               v-model="idCurso"
               label="Curso"
-              :rules="[rules.required]"
+              :rules="[rules.verificaCurso]"
               class="text-grey-darken-4"
               variant="outlined"
               :items="cursos"
@@ -162,6 +162,12 @@ export default {
     return {
       rules: {
         required: (value) => !!value || "Obrigatório.",
+        verificaCurso: (value) => {
+          if (!this.cursos || this.cursos.length === 0) {
+            return "Nenhum curso homologado para essa Instituição de Ensino";
+          }
+          return true;
+        },
       },
       estagiario: null,
       estagiarios: [],
@@ -196,9 +202,9 @@ export default {
       if (this.$refs.form.validate()) {
         try {
           const data = {
-            cursoHomologadoId: "0afccf21-637c-47b1-bbf2-25c7ef995930", //this.cursoSolicitado,
+            cursoHomologadoId: this.idCurso,
             setorId: this.setorId,
-            instEnsinoId: "62b266ca-714e-4ccc-928d-1fa995fa9b4e",
+            instEnsinoId: this.instituicaoEnsino,
             quantidadeVagas: this.qtdVagas,
             periodo: this.turno,
             dataInicio: this.inicioEstagio,
@@ -217,7 +223,7 @@ export default {
             this.$refs.form.reset();
           }
 
-          console.log("Resposta: ", req);
+          console.log("Resposta: ", response);
         } catch (error) {
           console.error("Erro ao enviar dados:", error);
         }
@@ -237,7 +243,13 @@ export default {
     async listarCursosInstituicaoId(instId) {
       if (instId) {
         const response = await fetchCursosPorInstuicaoId(instId);
-        this.cursos = response.cursos;
+        this.cursos = [
+          {
+            id: null,
+            cursoHomologado: { nomeCurso: "Selecione um curso" }
+          },
+          ...response.cursos
+        ];
         console.log(this.cursos);
       }
     },
@@ -249,8 +261,7 @@ export default {
     },
 
     onInstituicaoChange(selectedItem) {
-
-      console.log('Instituição selecionada (via método):', selectedItem);
+      console.log("Instituição selecionada (via método):", selectedItem);
     },
   },
 
@@ -263,10 +274,10 @@ export default {
   watch: {
     instituicaoEnsino(newValue, oldValue) {
       if (newValue !== oldValue) {
-        this.listarCursosInstituicaoId(newValue)
+        this.listarCursosInstituicaoId(newValue);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
