@@ -184,7 +184,7 @@
 
         <!-- Área de Datas -->
         <v-row class="d-flex justify-center mt-8">
-          <v-col cols="12" md="6">
+          <v-col cols="12" md="4">
             <v-text-field
               label="Data de Início do Estágio"
               type="date"
@@ -196,7 +196,7 @@
               v-model="formData.dataInicioEstagio"
             ></v-text-field>
           </v-col>
-          <v-col cols="12" md="6">
+          <v-col cols="12" md="4">
             <v-text-field
               label="Data de Fim do Estágio"
               type="date"
@@ -207,6 +207,16 @@
               variant="outlined"
               v-model="formData.dataFimEstagio"
             ></v-text-field>
+          </v-col>
+          <v-col cols="12" md="4">
+            <v-select
+              label="Curso do Estágio"
+              :items="cursos"
+              item-title="cursoHomologado.nomeCurso"
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+            ></v-select>
           </v-col>
           <v-col cols="12" md="12">
             <v-textarea
@@ -689,14 +699,16 @@
 
       <p
         v-if="
-          estagiario && estagiario.apoliceSeguro && estagiario.apoliceSeguro.dataFim
+          estagiario &&
+          estagiario.apoliceSeguro &&
+          estagiario.apoliceSeguro.dataFim
         "
       >
         <strong>Cláusula 19ª -</strong> O estagiário está segurado contra
-        acidentes pessoais, proporcionado pela apólice nº {{ estagiario.apoliceSeguro.numero }} , sob a
-        Responsabilidade da Seguradora {{ formData.nomeSeguradora }} durante o
-        período compreendido de
-        {{ formatDate(formData.dataInicioVigenciaSeguro) }} à
+        acidentes pessoais, proporcionado pela apólice nº
+        {{ estagiario.apoliceSeguro.numero }} , sob a Responsabilidade da
+        Seguradora {{ formData.nomeSeguradora }} durante o período compreendido
+        de {{ formatDate(formData.dataInicioVigenciaSeguro) }} à
         {{ formatDate(estagiario.apoliceSeguro.dataFim) }}.
       </p>
 
@@ -816,6 +828,7 @@ export default {
     const estagiarios = ref([]);
     const solicitacoes = ref([]);
     const professores = ref([]);
+    const cursos = ref([]);
     const selectedProfessor = ref(null);
     const selectedEstagiario = ref(null);
     const selectedSolicitacao = ref(null);
@@ -908,13 +921,18 @@ export default {
     };
 
     const loadInstituicao = async () => {
-      const response = await fetchInstituicoesPorId(
-        solicitacao.value.instituicaoEnsino.id
-      );
-      if (response) {
-        instituicao.value = response;
-      } else {
-        console.error("Erro ao buscar instituicao.");
+      try {
+        const response = await fetchInstituicoesPorId(
+          solicitacao.value.instituicaoEnsino.id
+        );
+        if (response) {
+          instituicao.value = response;
+          cursos.value = instituicao.value.cursos; // Atualiza cursos corretamente usando .value
+        } else {
+          console.error("Erro ao buscar instituição.");
+        }
+      } catch (error) {
+        console.error("Erro na requisição:", error);
       }
     };
 
@@ -1099,6 +1117,7 @@ export default {
       formatarSolicitacao,
       filtrarSolicitacao,
       instituicao,
+      cursos,
     };
   },
 };
