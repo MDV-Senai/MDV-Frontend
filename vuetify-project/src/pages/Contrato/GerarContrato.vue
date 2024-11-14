@@ -388,7 +388,7 @@
               style="
                 text-align: center;
                 font-size: smaller;
-                width: 500px;
+                width: 200px;
                 word-wrap: break-word;
               "
             >
