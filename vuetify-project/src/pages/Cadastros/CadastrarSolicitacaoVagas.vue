@@ -243,8 +243,13 @@ export default {
     async listarCursosInstituicaoId(instId) {
       if (instId) {
         const response = await fetchCursosPorInstuicaoId(instId);
-        this.cursos = response.cursos;
-        this.idCurso = this.cursos[0];
+        this.cursos = [
+          {
+            id: null,
+            cursoHomologado: { nomeCurso: "Selecione um curso" }
+          },
+          ...response.cursos
+        ];
         console.log(this.cursos);
       }
     },
