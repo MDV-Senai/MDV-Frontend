@@ -213,6 +213,8 @@
               label="Curso do Estágio"
               :items="cursos"
               item-title="cursoHomologado.nomeCurso"
+              item-value="cursoHomologado"
+              v-model="selectedCurso"
               clearable
               class="text-grey-darken-4"
               variant="outlined"
@@ -378,7 +380,7 @@
       </div>
 
       <div style="display: flex; justify-content: flex-start">
-        <p style="margin-right: 60px">Curso:________</p>
+        <p style="margin-right: 60px">Curso: {{ selectedCurso?.nomeCurso || '________' }}</p>
         <p style="margin-right: 60px">
           Fase/Série: {{ formData.faseSerieEstagiario }}
         </p>
@@ -832,6 +834,7 @@ export default {
     const selectedProfessor = ref(null);
     const selectedEstagiario = ref(null);
     const selectedSolicitacao = ref(null);
+    const selectedCurso = ref(null);
     const searchQueryEstg = ref("");
     const searchQueryProf = ref("");
     const searchQuerySol = ref("");
@@ -1118,6 +1121,7 @@ export default {
       filtrarSolicitacao,
       instituicao,
       cursos,
+      selectedCurso
     };
   },
 };
