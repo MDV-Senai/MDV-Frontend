@@ -289,7 +289,7 @@
     </div>
 
     <!-- Conteúdo invisível que será convertido para PDF style="display: none" -->
-    <div id="pdf-content" style="">
+    <div id="pdf-content" style="display: none">
       <div class="pdf-header">
         <img
           src="../../assets/img/logocontrato.png"
