@@ -380,7 +380,9 @@
       </div>
 
       <div style="display: flex; justify-content: flex-start">
-        <p style="margin-right: 60px">Curso: {{ selectedCurso?.nomeCurso || '________' }}</p>
+        <p style="margin-right: 60px">
+          Curso: {{ selectedCurso?.nomeCurso || "________" }}
+        </p>
         <p style="margin-right: 60px">
           Fase/Série: {{ formData.faseSerieEstagiario }}
         </p>
@@ -1049,7 +1051,6 @@ export default {
       formData.value.dataGeracaoContrato = `Aos ${dia} dias do mês de ${mes} de ${ano}`;
     };
 
-    // Função para gerar o PDF
     const generatePDF = () => {
       const pdfContent = document.getElementById("pdf-content");
       pdfContent.style.display = "block";
@@ -1068,8 +1069,53 @@ export default {
         .from(pdfContent)
         .save()
         .then(() => {
-          pdfContent.style.display = "none";
+          pdfContent.style.display = "none"; // Esconde o conteúdo após salvar o PDF
+          resetForm(); // Chama a função para limpar o formulário
         });
+    };
+
+    // Função para resetar o formulário
+    const resetForm = () => {
+      // Limpa os dados do formData
+      formData.value = {
+        cidadeGeracao: "",
+        numeroCooperacaoTecnicaInstituicaoEnsino: "",
+        faseSerieEstagiario: "",
+        numRegistroOrgaoClasseEstadoProfOrientador: "",
+        nomeSeguradora: "",
+        cargaHorariaTotalEstagio: "",
+        horarioEntradaEstagio: "",
+        horarioSaidaEstagio: "",
+        dataInicioEstagio: "",
+        dataInicioVigenciaSeguro: "",
+        dataFimEstagio: "",
+        datasRecesso: "",
+        cpfProfessorOrientador: "",
+        dataGeracaoContrato: "", // Definido pelo setDate()
+      };
+
+      // Redefine a data do contrato
+      setDate();
+
+      // Limpa seleções de solicitação, curso e dias da semana
+      selectedSolicitacao.value = null;
+      selectedCurso.value = null;
+      selectedEstagiario.value = null;
+      selectedProfessor.value = null;
+
+      // Limpa os checkboxes dos dias da semana
+      domingo.value = false;
+      segunda.value = false;
+      terca.value = false;
+      quarta.value = false;
+      quinta.value = false;
+      sexta.value = false;
+      sabado.value = false;
+
+      // Limpa o estado de validação, se estiver usando Vuetify
+      if (this.$refs.form) {
+        this.$refs.form.resetValidation();
+      }
     };
 
     const formatDate = (dateString) => {
@@ -1121,7 +1167,7 @@ export default {
       filtrarSolicitacao,
       instituicao,
       cursos,
-      selectedCurso
+      selectedCurso,
     };
   },
 };
