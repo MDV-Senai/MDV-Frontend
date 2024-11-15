@@ -138,4 +138,16 @@ const router = createRouter({
   ]
 })
 
+router.beforeEach((to, from, next) => {
+  const isAuthenticated = sessionStorage.getItem('authToken');
+
+  if (to.name === 'Login') {
+    next();
+  } else if (!isAuthenticated) {
+    next({ name: 'Login' });
+  } else {
+    next();
+  }
+});
+
 export default router

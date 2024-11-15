@@ -67,7 +67,7 @@ export default {
 
     const loadCoord = async () => {
       const response = await fetchCoordenadorCurso(pagina.value, itensPorPagina);
-      coordenadores.value = response.data;
+      coordenadores.value = response;
       console.log(coordenadores.value)
       totalPaginas.value = Math.ceil(response.total / itensPorPagina);
     };

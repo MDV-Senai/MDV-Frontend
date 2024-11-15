@@ -66,7 +66,7 @@ export default {
 
     const loadSetor = async () => {
       const response = await fetchSetores(pagina.value, itensPorPagina);
-      setores.value = response.data;
+      setores.value = response;
       totalPaginas.value = Math.ceil(response.total / itensPorPagina);
     };
 
