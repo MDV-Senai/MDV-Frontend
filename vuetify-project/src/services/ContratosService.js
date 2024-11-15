@@ -11,3 +11,22 @@ export async function fetchContratos() {
     return null;
   }
 }
+
+export async function cadastrarContratos(data) {
+  try {
+    const url = import.meta.env.VITE_BACKEND_URL + "/contrato";
+
+    const token = sessionStorage.getItem('authToken');
+
+    console.log(data);
+    const req = await axios.post(url, data, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+
+    return req;
+  } catch (error) {
+    console.log('Erro ao cadastrar curso: ' + error);
+  }
+}
