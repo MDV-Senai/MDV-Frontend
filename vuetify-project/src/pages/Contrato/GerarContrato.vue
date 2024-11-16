@@ -19,6 +19,7 @@
               class="text-grey-darken-4"
               variant="outlined"
               v-model="formData.cidadeGeracao"
+              :rules="[rules.required]"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="6">
@@ -30,6 +31,7 @@
               class="text-grey-darken-4"
               variant="outlined"
               v-model="formData.numeroCooperacaoTecnicaInstituicaoEnsino"
+              :rules="[rules.required]"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -48,6 +50,7 @@
               class="text-grey-darken-4"
               variant="outlined"
               @input="filtrarProfessor"
+              :rules="[rules.required]"
             ></v-autocomplete>
           </v-col>
           <v-col cols="12" md="4">
@@ -60,6 +63,7 @@
               variant="outlined"
               v-mask="'###.###.###-##'"
               v-model="formData.cpfProfessorOrientador"
+              :rules="[rules.required]"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
@@ -71,6 +75,7 @@
               class="text-grey-darken-4"
               variant="outlined"
               v-model="formData.numRegistroOrgaoClasseEstadoProfOrientador"
+              :rules="[rules.required]"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -90,6 +95,7 @@
               class="text-grey-darken-4"
               variant="outlined"
               @input="filtrarEstagiarios"
+              :rules="[rules.required]"
             ></v-autocomplete>
           </v-col>
           <v-col cols="12" md="4">
@@ -101,6 +107,7 @@
               class="text-grey-darken-4"
               variant="outlined"
               v-model="formData.faseSerieEstagiario"
+              :rules="[rules.required]"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
@@ -116,6 +123,7 @@
               class="text-grey-darken-4"
               variant="outlined"
               @input="filtrarSolicitacao"
+              :rules="[rules.required]"
             ></v-autocomplete>
           </v-col>
         </v-row>
@@ -131,6 +139,7 @@
               class="text-grey-darken-4"
               variant="outlined"
               v-model="formData.nomeSeguradora"
+              :rules="[rules.required]"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="6">
@@ -143,6 +152,7 @@
               class="text-grey-darken-4"
               variant="outlined"
               v-model="formData.dataInicioVigenciaSeguro"
+              :rules="[rules.required]"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -158,6 +168,7 @@
               class="text-grey-darken-4"
               variant="outlined"
               v-model="formData.cargaHorariaTotalEstagio"
+              :rules="[rules.required]"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
@@ -168,6 +179,7 @@
               class="text-grey-darken-4"
               variant="outlined"
               v-model="formData.horarioEntradaEstagio"
+              :rules="[rules.required]"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
@@ -178,6 +190,7 @@
               class="text-grey-darken-4"
               variant="outlined"
               v-model="formData.horarioSaidaEstagio"
+              :rules="[rules.required]"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -194,6 +207,7 @@
               class="text-grey-darken-4"
               variant="outlined"
               v-model="formData.dataInicioEstagio"
+              :rules="[rules.required]"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
@@ -206,6 +220,7 @@
               class="text-grey-darken-4"
               variant="outlined"
               v-model="formData.dataFimEstagio"
+              :rules="[rules.required]"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
@@ -218,6 +233,7 @@
               clearable
               class="text-grey-darken-4"
               variant="outlined"
+              :rules="[rules.required]"
             ></v-select>
           </v-col>
           <v-col cols="12" md="12">
@@ -229,6 +245,7 @@
               class="text-grey-darken-4"
               variant="outlined"
               v-model="formData.datasRecesso"
+              :rules="[rules.required]"
             ></v-textarea>
           </v-col>
         </v-row>
@@ -1010,6 +1027,10 @@ export default {
       return professor ? `${professor.nome}` : "";
     };
 
+    const rules = {
+      required: (value) => !!value || "Obrigatório.",
+    };
+
     watch(selectedEstagiario, loadEstagiario);
     watch(selectedSolicitacao, loadSolicitacao);
     watch(selectedProfessor, loadProfessor);
@@ -1246,6 +1267,7 @@ export default {
       cursos,
       selectedCurso,
       cadastrarContrato,
+      rules
     };
   },
 };
