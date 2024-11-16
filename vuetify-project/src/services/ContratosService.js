@@ -21,26 +21,14 @@ export async function cadastrarContratos(contrato) {
     const req = await axios.post(url, contrato, {
       headers: {
         'Authorization': `Bearer ${token}`,
-        'Content-Type': 'multipart/form-data', // Define o tipo como multipart
+        'Content-Type': 'multipart/form-data',
       },
     });
-
     return req;
   } catch (error) {
-    // Verifica se é um erro de resposta do Axios
-    if (error.response) {
-      console.error('Erro ao cadastrar contrato:');
-      console.error('Status:', error.response.status); // Código HTTP
-      console.error('Dados:', error.response.data); // Corpo da resposta
-      console.error('Headers:', error.response.headers); // Cabeçalhos da resposta
-    } else if (error.request) {
-      // Se a requisição foi feita, mas não houve resposta
-      console.error('Nenhuma resposta recebida do backend:', error.request);
-    } else {
-      // Erros ao configurar a requisição
-      console.error('Erro na configuração da requisição:', error.message);
-    }
-
-    throw error; // Propaga o erro para tratamento em outro lugar
+    console.error('Erro ao cadastrar contrato:');
+    console.error('Status:', error.response.status);
+    console.error('Dados:', error.response.data);
+    console.error('Headers:', error.response.headers);
   }
 }
