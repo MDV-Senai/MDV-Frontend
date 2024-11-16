@@ -26,9 +26,8 @@ export async function cadastrarContratos(contrato) {
     });
     return req;
   } catch (error) {
-    console.error('Erro ao cadastrar contrato:');
-    console.error('Status:', error.response.status);
-    console.error('Dados:', error.response.data);
-    console.error('Headers:', error.response.headers);
+    const errorMessage = error.response?.data?.message?.[0] || error.message || "Erro desconhecido.";
+
+    return errorMessage;
   }
 }

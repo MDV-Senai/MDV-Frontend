@@ -1205,11 +1205,11 @@ export default {
 
         // Faz a requisição ao backend
         const response = await cadastrarContratos(contrato);
-        const nome = estagiario.value.nome
-          .trim()
-          .replace(/[^a-zA-Z0-9áàãâéèêíïóôõúüçÇ]/g, "_");
 
         if (response.status === 201) {
+          const nome = estagiario.value.nome
+            .trim()
+            .replace(/[^a-zA-Z0-9áàãâéèêíïóôõúüçÇ]/g, "_");
           // Criar link de download
           const link = document.createElement("a");
           link.href = URL.createObjectURL(contrato.file);
@@ -1229,6 +1229,7 @@ export default {
           Swal.fire({
             title: "Ocorreu um problema ao gerar o contrato.",
             icon: "error",
+            text: response,
             confirmButtonText: "Ok",
           });
         }
@@ -1236,7 +1237,7 @@ export default {
         Swal.fire({
           title: "Ocorreu um problema ao gerar o contrato.",
           icon: "error",
-          confirmButtonText: "Ok",
+          confirmButtonText: "Ok"
         });
       }
     };
