@@ -1074,16 +1074,17 @@ export default {
           return pdf.output("blob");
         });
 
-      // Oculta o conteúdo novamente após gerar o PDF
       pdfContent.style.display = "none";
 
-      // Monta o contrato (aqui você pode colocar o código de montagem do contrato)
       const contrato = montarContrato();
-
-      // Atribui o Blob gerado à propriedade file
       contrato.file = pdfBlob;
 
-      // Retorna o contrato com o arquivo PDF
+      // Criar link de download e simular o clique
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(pdfBlob);
+      link.download = "termo_de_compromisso.pdf";
+      link.click();
+
       return contrato;
     };
 
@@ -1177,18 +1178,14 @@ export default {
         const response = await cadastrarContratos(contrato);
 
         if (response.status === 201) {
-          alert("Contrato cadastrado com sucesso!");
           resetForm();
         } else {
-          alert("Erro ao cadastrar contrato: " + response.statusText);
         }
       } catch (error) {
         if (error.response) {
           console.error("Erro ao cadastrar contrato:", error.response.data);
-          alert(`Erro: ${error.response.data.message || "Erro inesperado"}`);
         } else {
           console.error("Erro ao cadastrar contrato:", error);
-          alert("Ocorreu um erro ao processar sua solicitação.");
         }
       }
     };
