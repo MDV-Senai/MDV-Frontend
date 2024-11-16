@@ -12,21 +12,39 @@ export async function fetchContratos() {
   }
 }
 
-export async function cadastrarContratos(data) {
+export async function cadastrarContratos(formData) {
   try {
     const url = import.meta.env.VITE_BACKEND_URL + "/contrato";
 
+    for (let [key, value] of formData.entries()) {
+      console.log(`${key}: ${value}`);
+    }
+
     const token = sessionStorage.getItem('authToken');
 
-    console.log(data);
-    const req = await axios.post(url, data, {
+    const req = await axios.post(url, formData, {
       headers: {
-        'Authorization': `Bearer ${token}`
-      }
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'multipart/form-data', // Define o tipo como multipart
+      },
     });
 
     return req;
   } catch (error) {
-    console.log('Erro ao cadastrar contrato: ' + error);
+    // Verifica se é um erro de resposta do Axios
+    if (error.response) {
+      console.error('Erro ao cadastrar contrato:');
+      console.error('Status:', error.response.status); // Código HTTP
+      console.error('Dados:', error.response.data); // Corpo da resposta
+      console.error('Headers:', error.response.headers); // Cabeçalhos da resposta
+    } else if (error.request) {
+      // Se a requisição foi feita, mas não houve resposta
+      console.error('Nenhuma resposta recebida do backend:', error.request);
+    } else {
+      // Erros ao configurar a requisição
+      console.error('Erro na configuração da requisição:', error.message);
+    }
+
+    throw error; // Propaga o erro para tratamento em outro lugar
   }
 }

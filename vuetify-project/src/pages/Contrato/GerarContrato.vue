@@ -1051,7 +1051,7 @@ export default {
       formData.value.dataGeracaoContrato = `Aos ${dia} dias do mês de ${mes} de ${ano}`;
     };
 
-    const generatePDF = () => {
+    const generatePDF = async () => {
       const pdfContent = document.getElementById("pdf-content");
       pdfContent.style.display = "block";
 
@@ -1064,14 +1064,21 @@ export default {
         pagebreak: { mode: ["avoid-all", "css", "legacy"] },
       };
 
-      html2pdf()
+      let pdfBlob;
+
+      // Gera e salva o PDF localmente
+      await html2pdf()
         .set(options)
         .from(pdfContent)
-        .save()
-        .then(() => {
-          pdfContent.style.display = "none"; // Esconde o conteúdo após salvar o PDF
-          resetForm(); // Chama a função para limpar o formulário
-        });
+        .toPdf()
+        .get("pdf")
+        .then((pdf) => {
+          pdfBlob = pdf.output("blob"); // Salva o PDF em memória como Blob
+        })
+        .save(); // Salva o arquivo localmente no cliente
+
+      pdfContent.style.display = "none"; // Esconde o conteúdo após salvar o PDF
+      return pdfBlob; // Retorna o Blob gerado
     };
 
     // Função para resetar o formulário
@@ -1135,7 +1142,7 @@ export default {
         solicitacaoVagaId: solicitacao.value.id,
         alunoId: estagiario.value.id,
         cidadeGeracao: formData.value.cidadeGeracao,
-        dataGeracaoContrato: new Date().toISOString().split('T')[0],
+        dataGeracaoContrato: new Date().toISOString().split("T")[0],
         numeroCooperacaoTecnicaInstituicaoEnsino:
         formData.value.numeroCooperacaoTecnicaInstituicaoEnsino,
         faseSerieEstagiario: formData.value.faseSerieEstagiario,
@@ -1149,24 +1156,43 @@ export default {
         dataInicioEstagio: formData.value.dataInicioEstagio,
         dataFimEstagio: formData.value.dataFimEstagio,
         datasRecesso: formData.value.datasRecesso,
-        cpfProfessorOrientador: formData.value.cpfProfessorOrientador.replace(/\D/g, ''),
+        cpfProfessorOrientador: formData.value.cpfProfessorOrientador.replace(
+          /\D/g,
+          ""
+        ),
         diasSemanaEstagio: diasSelecionados.value,
       };
     };
 
     const cadastrarContrato = async () => {
-      const contrato = montarContrato();
+      const contrato = montarContrato(); // Monta o contrato com os dados necessários
+
       try {
-        const response = await cadastrarContratos(contrato);
+        // Gera o PDF (salva localmente e retorna o Blob)
+        const pdfBlob = await generatePDF();
+
+        // Cria o FormData e adiciona os campos corretos
+        const formData = new FormData();
+        formData.append("contrato", JSON.stringify(contrato)); // Campo JSON esperado pelo backend
+        formData.append("file", pdfBlob, "termo_de_compromisso.pdf"); // Campo do PDF
+
+        // Faz a requisição ao backend
+        const response = await cadastrarContratos(formData);
+
         if (response.status === 201) {
           alert("Contrato cadastrado com sucesso!");
           resetForm();
         } else {
-          alert("Erro ao cadastrar contrato: " + response);
+          alert("Erro ao cadastrar contrato: " + response.statusText);
         }
       } catch (error) {
-        console.error("Erro ao cadastrar contrato:", error);
-        alert("Ocorreu um erro ao processar sua solicitação.");
+        if (error.response) {
+          console.error("Erro ao cadastrar contrato:", error.response.data);
+          alert(`Erro: ${error.response.data.message || "Erro inesperado"}`);
+        } else {
+          console.error("Erro ao cadastrar contrato:", error);
+          alert("Ocorreu um erro ao processar sua solicitação.");
+        }
       }
     };
 
@@ -1208,7 +1234,7 @@ export default {
       instituicao,
       cursos,
       selectedCurso,
-      cadastrarContrato
+      cadastrarContrato,
     };
   },
 };
