@@ -1064,19 +1064,26 @@ export default {
         pagebreak: { mode: ["avoid-all", "css", "legacy"] },
       };
 
-      // Gera o PDF e realiza o download diretamente
-      await html2pdf().set(options).from(pdfContent).save(); // Salva o PDF diretamente
+      // Gera o PDF e pega o Blob do arquivo gerado
+      const pdfBlob = await html2pdf()
+        .set(options)
+        .from(pdfContent)
+        .toPdf()
+        .get("pdf")
+        .then(function (pdf) {
+          return pdf.output("blob");
+        });
 
-      pdfContent.style.display = "none"; // Esconde o conteúdo após salvar o PDF
+      // Oculta o conteúdo novamente após gerar o PDF
+      pdfContent.style.display = "none";
 
-      // Monta o contrato com os dados necessários
+      // Monta o contrato (aqui você pode colocar o código de montagem do contrato)
       const contrato = montarContrato();
 
-      // Agora você pode adicionar o PDF como um arquivo ou base64 ao contrato
-      // Exemplo de como adicionar o PDF ao objeto de contrato:
-      contrato.pdfArquivo = "termo_de_compromisso.pdf"; // Aqui você pode associar o nome do arquivo ou o conteúdo base64
+      // Atribui o Blob gerado à propriedade file
+      contrato.file = pdfBlob;
 
-      // Retorna o contrato com o arquivo associado
+      // Retorna o contrato com o arquivo PDF
       return contrato;
     };
 
@@ -1143,10 +1150,10 @@ export default {
         cidadeGeracao: formData.value.cidadeGeracao,
         dataGeracaoContrato: new Date().toISOString().split("T")[0],
         numeroCooperacaoTecnicaInstituicaoEnsino:
-        formData.value.numeroCooperacaoTecnicaInstituicaoEnsino,
+          formData.value.numeroCooperacaoTecnicaInstituicaoEnsino,
         faseSerieEstagiario: formData.value.faseSerieEstagiario,
         numRegistroOrgaoClasseEstadoProfOrientador:
-        formData.value.numRegistroOrgaoClasseEstadoProfOrientador,
+          formData.value.numRegistroOrgaoClasseEstadoProfOrientador,
         nomeSeguradora: formData.value.nomeSeguradora,
         dataInicioVigenciaSeguro: formData.value.dataInicioVigenciaSeguro,
         cargaHorariaTotalEstagio: formData.value.cargaHorariaTotalEstagio,
@@ -1160,6 +1167,7 @@ export default {
           ""
         ),
         diasSemanaEstagio: diasSelecionados.value,
+        file: null,
       };
     };
 
