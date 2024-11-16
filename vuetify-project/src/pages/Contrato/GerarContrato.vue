@@ -811,6 +811,7 @@ import html2pdf from "html2pdf.js";
 import { useResponsiveHeight } from "../../composables/useResponsiveHeight.js";
 import { fetchOrganizacaoConcedente } from "../../services/OrganizacaoService.js";
 import { fetchInstituicoesPorId } from "../../services/InstituicoesService.js";
+import { cadastrarContratos } from "../../services/ContratosService";
 import {
   fetchSolicitacaoVaga,
   fetchSolicitacaoVagaPorId,
