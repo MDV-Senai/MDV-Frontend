@@ -1081,12 +1081,6 @@ export default {
       const contrato = montarContrato();
       contrato.file = pdfBlob;
 
-      // Criar link de download e simular o clique
-      const link = document.createElement("a");
-      link.href = URL.createObjectURL(pdfBlob);
-      link.download = "termo_de_compromisso.pdf";
-      link.click();
-
       return contrato;
     };
 
@@ -1179,6 +1173,12 @@ export default {
         const response = await cadastrarContratos(contrato);
 
         if (response.status === 201) {
+          // Criar link de download
+          const link = document.createElement("a");
+          link.href = URL.createObjectURL(contrato.file);
+          link.download = "termo_de_compromisso.pdf";
+          link.click();
+          
           Swal.fire({
             title: "Contrato Gerado!",
             text: "O contrato foi gerado com sucesso.",
