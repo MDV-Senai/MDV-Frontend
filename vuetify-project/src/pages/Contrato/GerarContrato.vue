@@ -1171,14 +1171,17 @@ export default {
 
         // Faz a requisição ao backend
         const response = await cadastrarContratos(contrato);
+        const nome = estagiario.value.nome
+          .trim()
+          .replace(/[^a-zA-Z0-9áàãâéèêíïóôõúüçÇ]/g, "_");
 
         if (response.status === 201) {
           // Criar link de download
           const link = document.createElement("a");
           link.href = URL.createObjectURL(contrato.file);
-          link.download = "termo_de_compromisso.pdf";
+          link.download = `termo_de_compromisso_${nome}.pdf`;
           link.click();
-          
+
           Swal.fire({
             title: "Contrato Gerado!",
             text: "O contrato foi gerado com sucesso.",
