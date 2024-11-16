@@ -807,6 +807,7 @@
 
 <script>
 import { ref, onMounted, computed, watch } from "vue";
+import Swal from "sweetalert2";
 import html2pdf from "html2pdf.js";
 import { useResponsiveHeight } from "../../composables/useResponsiveHeight.js";
 import { fetchOrganizacaoConcedente } from "../../services/OrganizacaoService.js";
@@ -828,6 +829,7 @@ import {
 
 export default {
   setup() {
+    const errorMessage = ref("");
     const { height } = useResponsiveHeight();
     const organizacao = ref({});
     const estagiarios = ref([]);
@@ -1168,8 +1170,7 @@ export default {
     };
 
     const cadastrarContrato = async () => {
-      const contrato = montarContrato(); // Monta o contrato com os dados necessários
-
+      errorMessage.value = "";
       try {
         // Gera o PDF (salva localmente e retorna o Blob)
         const contrato = await generatePDF();
@@ -1178,15 +1179,28 @@ export default {
         const response = await cadastrarContratos(contrato);
 
         if (response.status === 201) {
-          resetForm();
+          Swal.fire({
+            title: "Contrato Gerado!",
+            text: "O contrato foi gerado com sucesso.",
+            icon: "success",
+            confirmButtonText: "Ok",
+          }).then(() => {
+            window.location.reload();
+            resetForm();
+          });
         } else {
+          Swal.fire({
+            title: "Ocorreu um problema ao gerar o contrato.",
+            icon: "error",
+            confirmButtonText: "Ok",
+          });
         }
       } catch (error) {
-        if (error.response) {
-          console.error("Erro ao cadastrar contrato:", error.response.data);
-        } else {
-          console.error("Erro ao cadastrar contrato:", error);
-        }
+        Swal.fire({
+          title: "Ocorreu um problema ao gerar o contrato.",
+          icon: "error",
+          confirmButtonText: "Ok",
+        });
       }
     };
 
