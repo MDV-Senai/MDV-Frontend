@@ -1135,7 +1135,7 @@ export default {
         solicitacaoVagaId: solicitacao.value.id,
         alunoId: selectedEstagiario.value?.id,
         cidadeGeracao: formData.value.cidadeGeracao,
-        dataGeracaoContrato: formData.value.dataGeracaoContrato,
+        dataGeracaoContrato: new Date().toISOString().split('T')[0],
         numeroCooperacaoTecnicaInstituicaoEnsino:
         formData.value.numeroCooperacaoTecnicaInstituicaoEnsino,
         faseSerieEstagiario: formData.value.faseSerieEstagiario,
@@ -1149,7 +1149,7 @@ export default {
         dataInicioEstagio: formData.value.dataInicioEstagio,
         dataFimEstagio: formData.value.dataFimEstagio,
         datasRecesso: formData.value.datasRecesso,
-        cpfProfessorOrientador: formData.value.cpfProfessorOrientador,
+        cpfProfessorOrientador: formData.value.cpfProfessorOrientador.replace(/\D/g, ''),
         diasSemanaEstagio: diasSelecionados.value,
       };
     };
@@ -1162,7 +1162,7 @@ export default {
           alert("Contrato cadastrado com sucesso!");
           resetForm();
         } else {
-          alert("Erro ao cadastrar contrato: " + response.message);
+          alert("Erro ao cadastrar contrato: " + response);
         }
       } catch (error) {
         console.error("Erro ao cadastrar contrato:", error);

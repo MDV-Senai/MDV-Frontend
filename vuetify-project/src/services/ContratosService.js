@@ -27,6 +27,6 @@ export async function cadastrarContratos(data) {
 
     return req;
   } catch (error) {
-    console.log('Erro ao cadastrar curso: ' + error);
+    console.log('Erro ao cadastrar contrato: ' + error);
   }
 }
