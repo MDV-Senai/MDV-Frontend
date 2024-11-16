@@ -19,6 +19,7 @@
               class="text-grey-darken-4"
               variant="outlined"
               v-model="formData.cidadeGeracao"
+              :rules="[rules.required]"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="6">
@@ -30,6 +31,7 @@
               class="text-grey-darken-4"
               variant="outlined"
               v-model="formData.numeroCooperacaoTecnicaInstituicaoEnsino"
+              :rules="[rules.required]"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -48,6 +50,7 @@
               class="text-grey-darken-4"
               variant="outlined"
               @input="filtrarProfessor"
+              :rules="[rules.required]"
             ></v-autocomplete>
           </v-col>
           <v-col cols="12" md="4">
@@ -60,6 +63,7 @@
               variant="outlined"
               v-mask="'###.###.###-##'"
               v-model="formData.cpfProfessorOrientador"
+              :rules="[rules.required]"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
@@ -71,6 +75,7 @@
               class="text-grey-darken-4"
               variant="outlined"
               v-model="formData.numRegistroOrgaoClasseEstadoProfOrientador"
+              :rules="[rules.required]"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -90,6 +95,7 @@
               class="text-grey-darken-4"
               variant="outlined"
               @input="filtrarEstagiarios"
+              :rules="[rules.required]"
             ></v-autocomplete>
           </v-col>
           <v-col cols="12" md="4">
@@ -101,6 +107,7 @@
               class="text-grey-darken-4"
               variant="outlined"
               v-model="formData.faseSerieEstagiario"
+              :rules="[rules.required]"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
@@ -116,6 +123,7 @@
               class="text-grey-darken-4"
               variant="outlined"
               @input="filtrarSolicitacao"
+              :rules="[rules.required]"
             ></v-autocomplete>
           </v-col>
         </v-row>
@@ -131,6 +139,7 @@
               class="text-grey-darken-4"
               variant="outlined"
               v-model="formData.nomeSeguradora"
+              :rules="[rules.required]"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="6">
@@ -143,6 +152,7 @@
               class="text-grey-darken-4"
               variant="outlined"
               v-model="formData.dataInicioVigenciaSeguro"
+              :rules="[rules.required]"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -158,6 +168,7 @@
               class="text-grey-darken-4"
               variant="outlined"
               v-model="formData.cargaHorariaTotalEstagio"
+              :rules="[rules.required]"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
@@ -168,6 +179,7 @@
               class="text-grey-darken-4"
               variant="outlined"
               v-model="formData.horarioEntradaEstagio"
+              :rules="[rules.required]"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
@@ -178,6 +190,7 @@
               class="text-grey-darken-4"
               variant="outlined"
               v-model="formData.horarioSaidaEstagio"
+              :rules="[rules.required]"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -194,6 +207,7 @@
               class="text-grey-darken-4"
               variant="outlined"
               v-model="formData.dataInicioEstagio"
+              :rules="[rules.required]"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
@@ -206,6 +220,7 @@
               class="text-grey-darken-4"
               variant="outlined"
               v-model="formData.dataFimEstagio"
+              :rules="[rules.required]"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
@@ -218,6 +233,7 @@
               clearable
               class="text-grey-darken-4"
               variant="outlined"
+              :rules="[rules.required]"
             ></v-select>
           </v-col>
           <v-col cols="12" md="12">
@@ -229,6 +245,7 @@
               class="text-grey-darken-4"
               variant="outlined"
               v-model="formData.datasRecesso"
+              :rules="[rules.required]"
             ></v-textarea>
           </v-col>
         </v-row>
@@ -281,7 +298,7 @@
           width="183"
           height="62"
           id="botaoGerar"
-          @click="generatePDF"
+          @click="cadastrarContrato"
         >
           Gerar Contrato
         </v-btn>
@@ -621,6 +638,19 @@
         <strong>c)</strong> {{ solicitacao.setor.atividades[2].nome }}
       </p>
 
+      <!-- caso deseje mostrar todas as atvds do setor -->
+      <!-- <div
+        v-if="solicitacao && solicitacao.setor && solicitacao.setor.atividades"
+      >
+        <p
+          v-for="(atividade, index) in solicitacao.setor.atividades"
+          :key="index"
+        >
+          <strong>{{ String.fromCharCode(97 + index) }})</strong>
+          {{ atividade.nome }}
+        </p>
+      </div> -->
+
       <br />
 
       <p>
@@ -807,10 +837,12 @@
 
 <script>
 import { ref, onMounted, computed, watch } from "vue";
+import Swal from "sweetalert2";
 import html2pdf from "html2pdf.js";
 import { useResponsiveHeight } from "../../composables/useResponsiveHeight.js";
 import { fetchOrganizacaoConcedente } from "../../services/OrganizacaoService.js";
 import { fetchInstituicoesPorId } from "../../services/InstituicoesService.js";
+import { cadastrarContratos } from "../../services/ContratosService";
 import {
   fetchSolicitacaoVaga,
   fetchSolicitacaoVagaPorId,
@@ -827,6 +859,7 @@ import {
 
 export default {
   setup() {
+    const errorMessage = ref("");
     const { height } = useResponsiveHeight();
     const organizacao = ref({});
     const estagiarios = ref([]);
@@ -902,7 +935,6 @@ export default {
 
     const loadSolicitacao = async () => {
       if (selectedSolicitacao.value) {
-        solicitacao.value = null; // Opcional: limpa antes do fetch
         const response = await fetchSolicitacaoVagaPorId(
           selectedSolicitacao.value
         );
@@ -1008,6 +1040,10 @@ export default {
       return professor ? `${professor.nome}` : "";
     };
 
+    const rules = {
+      required: (value) => !!value || "Obrigatório.",
+    };
+
     watch(selectedEstagiario, loadEstagiario);
     watch(selectedSolicitacao, loadSolicitacao);
     watch(selectedProfessor, loadProfessor);
@@ -1051,7 +1087,7 @@ export default {
       formData.value.dataGeracaoContrato = `Aos ${dia} dias do mês de ${mes} de ${ano}`;
     };
 
-    const generatePDF = () => {
+    const generatePDF = async () => {
       const pdfContent = document.getElementById("pdf-content");
       pdfContent.style.display = "block";
 
@@ -1064,14 +1100,22 @@ export default {
         pagebreak: { mode: ["avoid-all", "css", "legacy"] },
       };
 
-      html2pdf()
+      // Gera o PDF e pega o Blob do arquivo gerado
+      const pdfBlob = await html2pdf()
         .set(options)
         .from(pdfContent)
-        .save()
-        .then(() => {
-          pdfContent.style.display = "none"; // Esconde o conteúdo após salvar o PDF
-          resetForm(); // Chama a função para limpar o formulário
+        .toPdf()
+        .get("pdf")
+        .then(function (pdf) {
+          return pdf.output("blob");
         });
+
+      pdfContent.style.display = "none";
+
+      const contrato = montarContrato();
+      contrato.file = pdfBlob;
+
+      return contrato;
     };
 
     // Função para resetar o formulário
@@ -1111,11 +1155,6 @@ export default {
       quinta.value = false;
       sexta.value = false;
       sabado.value = false;
-
-      // Limpa o estado de validação, se estiver usando Vuetify
-      if (this.$refs.form) {
-        this.$refs.form.resetValidation();
-      }
     };
 
     const formatDate = (dateString) => {
@@ -1128,6 +1167,79 @@ export default {
       const year = date.getUTCFullYear();
 
       return `${day}/${month}/${year}`;
+    };
+
+    const montarContrato = () => {
+      return {
+        solicitacaoVagaId: solicitacao.value.id,
+        alunoId: estagiario.value.id,
+        cidadeGeracao: formData.value.cidadeGeracao,
+        dataGeracaoContrato: new Date().toISOString().split("T")[0],
+        numeroCooperacaoTecnicaInstituicaoEnsino:
+          formData.value.numeroCooperacaoTecnicaInstituicaoEnsino,
+        faseSerieEstagiario: formData.value.faseSerieEstagiario,
+        numRegistroOrgaoClasseEstadoProfOrientador:
+          formData.value.numRegistroOrgaoClasseEstadoProfOrientador,
+        nomeSeguradora: formData.value.nomeSeguradora,
+        dataInicioVigenciaSeguro: formData.value.dataInicioVigenciaSeguro,
+        cargaHorariaTotalEstagio: formData.value.cargaHorariaTotalEstagio,
+        horarioEntradaEstagio: formData.value.horarioEntradaEstagio,
+        horarioSaidaEstagio: formData.value.horarioSaidaEstagio,
+        dataInicioEstagio: formData.value.dataInicioEstagio,
+        dataFimEstagio: formData.value.dataFimEstagio,
+        datasRecesso: formData.value.datasRecesso,
+        cpfProfessorOrientador: formData.value.cpfProfessorOrientador.replace(
+          /\D/g,
+          ""
+        ),
+        diasSemanaEstagio: diasSelecionados.value,
+        file: null,
+      };
+    };
+
+    const cadastrarContrato = async () => {
+      errorMessage.value = "";
+      try {
+        // Gera o PDF (salva localmente e retorna o Blob)
+        const contrato = await generatePDF();
+
+        // Faz a requisição ao backend
+        const response = await cadastrarContratos(contrato);
+
+        if (response.status === 201) {
+          const nome = estagiario.value.nome
+            .trim()
+            .replace(/[^a-zA-Z0-9áàãâéèêíïóôõúüçÇ]/g, "_");
+          // Criar link de download
+          const link = document.createElement("a");
+          link.href = URL.createObjectURL(contrato.file);
+          link.download = `termo_de_compromisso_${nome}.pdf`;
+          link.click();
+
+          Swal.fire({
+            title: "Contrato Gerado!",
+            text: "O contrato foi gerado com sucesso.",
+            icon: "success",
+            confirmButtonText: "Ok",
+          }).then(() => {
+            window.location.reload();
+            resetForm();
+          });
+        } else {
+          Swal.fire({
+            title: "Ocorreu um problema ao gerar o contrato.",
+            icon: "error",
+            text: response,
+            confirmButtonText: "Ok",
+          });
+        }
+      } catch (error) {
+        Swal.fire({
+          title: "Ocorreu um problema ao gerar o contrato.",
+          icon: "error",
+          confirmButtonText: "Ok"
+        });
+      }
     };
 
     return {
@@ -1168,6 +1280,8 @@ export default {
       instituicao,
       cursos,
       selectedCurso,
+      cadastrarContrato,
+      rules,
     };
   },
 };

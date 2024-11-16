@@ -12,21 +12,22 @@ export async function fetchContratos() {
   }
 }
 
-export async function cadastrarContratos(data) {
+export async function cadastrarContratos(contrato) {
   try {
     const url = import.meta.env.VITE_BACKEND_URL + "/contrato";
 
     const token = sessionStorage.getItem('authToken');
 
-    console.log(data);
-    const req = await axios.post(url, data, {
+    const req = await axios.post(url, contrato, {
       headers: {
-        'Authorization': `Bearer ${token}`
-      }
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'multipart/form-data',
+      },
     });
-
     return req;
   } catch (error) {
-    console.log('Erro ao cadastrar curso: ' + error);
+    const errorMessage = error.response?.data?.message?.[0] || error.message || "Erro desconhecido.";
+
+    return errorMessage;
   }
 }
