@@ -163,7 +163,13 @@
                       </v-list-item-title>
                     </v-col>
                     <v-col class="ml-auto" cols="auto">
-                      <DeletarItem :itemKey="`instituicao-ensino/${instituicao.id}/cursos-homologados`" :id="curso.cursoHomologado.id" />
+                      <v-icon
+                        v-bind="activatorProps"
+                        density="compact"
+                        icon="mdi-delete"
+                        class="my-icon-spacing light-red-darken-3-var"
+                        @click="desfazerHomologacao(instituicao.id, curso.id)"
+                      ></v-icon>
                     </v-col>
                   </v-row>
                 </v-list-item-content>
@@ -210,7 +216,8 @@ import { ref, onMounted } from "vue";
 import {
   fetchInstituicoesPorId,
   updateInstituicaoEnsino,
-  homologarCursoNaInstituicaoEnsino
+  homologarCursoNaInstituicaoEnsino,
+  desfazerHomologacaoCurso
 } from "../../../services/InstituicoesService";
 import Swal from "sweetalert2";
 import { fetchCursos } from "@/services/CursosService";
@@ -238,7 +245,7 @@ export default {
 
     const listarCursos = async () => {
       try {
-        const response = await fetchCursos(1, 600); 
+        const response = await fetchCursos(1, 600);
         cursos.value = response.data;
       } catch (error) {
         console.error("Erro ao listar cursos:", error);
@@ -306,6 +313,28 @@ export default {
       }
     };
 
+    const desfazerHomologacao = async (instituicaoId, cursoId) => {
+      try {
+        const response = await desfazerHomologacaoCurso(instituicaoId, cursoId);
+        console.log(response);
+        if (response) {
+          isDialogActive.value = false;
+          Swal.fire({
+            title: "Atualização bem-sucedida!",
+            text: "A homologação do curso foi desfeita com sucesso.",
+            icon: "success",
+            confirmButtonText: "Ok",
+          }).then(() => {
+            window.location.reload();
+          });
+        } else {
+          throw new Error("Erro ao homologar curso na instituição.");
+        }
+      } catch (error) {
+        console.error(error.message);
+      }
+    };
+
     onMounted(() => {
       loadInstituicao();
       listarCursos();
@@ -316,6 +345,7 @@ export default {
       isDialogActive,
       editInstituicao,
       homologarCurso,
+      desfazerHomologacao,
       cursos
     };
   },
