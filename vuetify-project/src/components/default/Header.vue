@@ -17,13 +17,14 @@
       <v-btn icon>
         <v-icon color="red-darken-4">mdi-bell-outline</v-icon>
       </v-btn>
-      <v-title
+      <v-card-title
         class="nome_usuario"
         id="nome_usuario"
         v-model="nome_usuario"
-      ></v-title>
-      <v-btn >
-        <v-title @click="logout()" class="nome_usuario">Sair</v-title>
+      ></v-card-title>
+      <v-btn @click="logout">
+        <v-icon color="red-darken-4">mdi-logout</v-icon>
+        <span class="nome_usuario">Sair</span>
       </v-btn>
       <v-app-bar-nav-icon
         @click.stop="toggleDrawer"

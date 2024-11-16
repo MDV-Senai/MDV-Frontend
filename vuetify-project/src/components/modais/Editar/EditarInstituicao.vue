@@ -152,31 +152,47 @@
             <h3 class="text-grey-darken-4">Cursos Homologados</h3>
             <v-list>
               <v-list-item
-                v-for="(curso, index) in instituicao.cursosHomologados"
-                :key="index"
+                v-for="(curso, index) in instituicao.cursos"
+                :key="curso.id"
               >
                 <v-list-item-content>
-                  <v-list-item-title>
-                    {{ curso.nomeCurso }}
-                    <v-icon
-                      density="compact"
-                      icon="mdi-check"
-                      class="my-icon-spacing light-green-darken-3-var"
-                    ></v-icon>
-                    <v-icon
-                      density="compact"
-                      icon="mdi-pencil"
-                      class="my-icon-spacing light-green-darken-3-var"
-                    ></v-icon>
-                    <v-icon
-                      density="compact"
-                      icon="mdi-delete"
-                      class="my-icon-spacing light-red-darken-3-var"
-                    ></v-icon>
-                  </v-list-item-title>
+                  <v-row class="d-flex align-center">
+                    <v-col class="d-flex" cols="auto">
+                      <v-list-item-title>
+                        {{ curso.cursoHomologado.nomeCurso }}
+                      </v-list-item-title>
+                    </v-col>
+                    <v-col class="ml-auto" cols="auto">
+                      <DeletarItem :itemKey="`instituicao-ensino/${instituicao.id}/cursos-homologados`" :id="curso.cursoHomologado.id" />
+                    </v-col>
+                  </v-row>
                 </v-list-item-content>
               </v-list-item>
             </v-list>
+          </v-col>
+        </v-row>
+        <v-row class="mx-5 my-5">
+          <v-col cols="6" md="9">
+            <h3 class="text-grey-darken-4 mb-1">Homologar cursos</h3>
+            <v-autocomplete
+              v-model="idCurso"
+              label="Curso"
+              :rules="[rules.required]"
+              class="text-grey-darken-4"
+              variant="outlined"
+              :items="cursos"
+              :item-title="'nomeCurso'"
+              :item-value="'id'"
+            ></v-autocomplete>
+          </v-col>
+          <v-col cols="6" md="3" class="d-flex align-center">
+            <v-btn
+              color="primary"
+              @click="homologarCurso(instituicao.id, idCurso)"
+              :disabled="!idCurso"
+            >
+              Homologar
+            </v-btn>
           </v-col>
         </v-row>
       </v-card-text>
@@ -194,23 +210,45 @@ import { ref, onMounted } from "vue";
 import {
   fetchInstituicoesPorId,
   updateInstituicaoEnsino,
+  homologarCursoNaInstituicaoEnsino
 } from "../../../services/InstituicoesService";
 import Swal from "sweetalert2";
+import { fetchCursos } from "@/services/CursosService";
 
 export default {
+  data() {
+    return {
+      idCurso: null,
+      rules: {
+        required: (value) =>!!value || "Este campo é obrigatório.",
+      },
+    };
+  },
   props: {
     instId: {
       type: String,
       required: true,
     },
   },
+
   setup(props) {
     const instituicao = ref({});
     const isDialogActive = ref(false);
+    const cursos = ref([]);
+
+    const listarCursos = async () => {
+      try {
+        const response = await fetchCursos(1, 600); 
+        cursos.value = response.data;
+      } catch (error) {
+        console.error("Erro ao listar cursos:", error);
+      }
+    };
 
     const loadInstituicao = async () => {
       try {
         const response = await fetchInstituicoesPorId(props.instId);
+
         if (response) {
           instituicao.value = response;
         } else {
@@ -246,14 +284,39 @@ export default {
       }
     };
 
+    const homologarCurso = async (instituicaoId, cursoId) => {
+      try {
+        const response = await homologarCursoNaInstituicaoEnsino(instituicaoId, cursoId);
+        console.log(response);
+        if (response) {
+          isDialogActive.value = false;
+          Swal.fire({
+            title: "Atualização bem-sucedida!",
+            text: "O curso foi homologado com sucesso.",
+            icon: "success",
+            confirmButtonText: "Ok",
+          }).then(() => {
+            window.location.reload();
+          });
+        } else {
+          throw new Error("Erro ao homologar curso na instituição.");
+        }
+      } catch (error) {
+        console.error(error.message);
+      }
+    };
+
     onMounted(() => {
       loadInstituicao();
+      listarCursos();
     });
 
     return {
       instituicao,
       isDialogActive,
       editInstituicao,
+      homologarCurso,
+      cursos
     };
   },
 };
