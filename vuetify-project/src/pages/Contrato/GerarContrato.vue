@@ -638,6 +638,19 @@
         <strong>c)</strong> {{ solicitacao.setor.atividades[2].nome }}
       </p>
 
+      <!-- caso deseje mostrar todas as atvds do setor -->
+      <!-- <div
+        v-if="solicitacao && solicitacao.setor && solicitacao.setor.atividades"
+      >
+        <p
+          v-for="(atividade, index) in solicitacao.setor.atividades"
+          :key="index"
+        >
+          <strong>{{ String.fromCharCode(97 + index) }})</strong>
+          {{ atividade.nome }}
+        </p>
+      </div> -->
+
       <br />
 
       <p>
@@ -1267,7 +1280,7 @@ export default {
       cursos,
       selectedCurso,
       cadastrarContrato,
-      rules
+      rules,
     };
   },
 };
