@@ -1133,7 +1133,7 @@ export default {
     const montarContrato = () => {
       return {
         solicitacaoVagaId: solicitacao.value.id,
-        alunoId: selectedEstagiario.value?.id,
+        alunoId: estagiario.value.id,
         cidadeGeracao: formData.value.cidadeGeracao,
         dataGeracaoContrato: new Date().toISOString().split('T')[0],
         numeroCooperacaoTecnicaInstituicaoEnsino:
