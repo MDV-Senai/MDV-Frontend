@@ -1124,11 +1124,6 @@ export default {
       quinta.value = false;
       sexta.value = false;
       sabado.value = false;
-
-      // Limpa o estado de validação, se estiver usando Vuetify
-      if (this.$refs.form) {
-        this.$refs.form.resetValidation();
-      }
     };
 
     const formatDate = (dateString) => {
