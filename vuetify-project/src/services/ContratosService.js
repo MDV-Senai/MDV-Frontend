@@ -12,17 +12,13 @@ export async function fetchContratos() {
   }
 }
 
-export async function cadastrarContratos(formData) {
+export async function cadastrarContratos(contrato) {
   try {
     const url = import.meta.env.VITE_BACKEND_URL + "/contrato";
 
-    for (let [key, value] of formData.entries()) {
-      console.log(`${key}: ${value}`);
-    }
-
     const token = sessionStorage.getItem('authToken');
 
-    const req = await axios.post(url, formData, {
+    const req = await axios.post(url, contrato, {
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'multipart/form-data', // Define o tipo como multipart

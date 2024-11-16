@@ -1064,21 +1064,20 @@ export default {
         pagebreak: { mode: ["avoid-all", "css", "legacy"] },
       };
 
-      let pdfBlob;
-
-      // Gera e salva o PDF localmente
-      await html2pdf()
-        .set(options)
-        .from(pdfContent)
-        .toPdf()
-        .get("pdf")
-        .then((pdf) => {
-          pdfBlob = pdf.output("blob"); // Salva o PDF em memória como Blob
-        })
-        .save(); // Salva o arquivo localmente no cliente
+      // Gera o PDF e realiza o download diretamente
+      await html2pdf().set(options).from(pdfContent).save(); // Salva o PDF diretamente
 
       pdfContent.style.display = "none"; // Esconde o conteúdo após salvar o PDF
-      return pdfBlob; // Retorna o Blob gerado
+
+      // Monta o contrato com os dados necessários
+      const contrato = montarContrato();
+
+      // Agora você pode adicionar o PDF como um arquivo ou base64 ao contrato
+      // Exemplo de como adicionar o PDF ao objeto de contrato:
+      contrato.pdfArquivo = "termo_de_compromisso.pdf"; // Aqui você pode associar o nome do arquivo ou o conteúdo base64
+
+      // Retorna o contrato com o arquivo associado
+      return contrato;
     };
 
     // Função para resetar o formulário
@@ -1169,15 +1168,10 @@ export default {
 
       try {
         // Gera o PDF (salva localmente e retorna o Blob)
-        const pdfBlob = await generatePDF();
-
-        // Cria o FormData e adiciona os campos corretos
-        const formData = new FormData();
-        formData.append("contrato", JSON.stringify(contrato)); // Campo JSON esperado pelo backend
-        formData.append("file", pdfBlob, "termo_de_compromisso.pdf"); // Campo do PDF
+        const contrato = await generatePDF();
 
         // Faz a requisição ao backend
-        const response = await cadastrarContratos(formData);
+        const response = await cadastrarContratos(contrato);
 
         if (response.status === 201) {
           alert("Contrato cadastrado com sucesso!");
