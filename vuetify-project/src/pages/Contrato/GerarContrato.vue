@@ -281,7 +281,7 @@
           width="183"
           height="62"
           id="botaoGerar"
-          @click="generatePDF"
+          @click="cadastrarContrato"
         >
           Gerar Contrato
         </v-btn>
@@ -903,7 +903,6 @@ export default {
 
     const loadSolicitacao = async () => {
       if (selectedSolicitacao.value) {
-        solicitacao.value = null; // Opcional: limpa antes do fetch
         const response = await fetchSolicitacaoVagaPorId(
           selectedSolicitacao.value
         );
@@ -1131,6 +1130,46 @@ export default {
       return `${day}/${month}/${year}`;
     };
 
+    const montarContrato = () => {
+      return {
+        solicitacaoVagaId: solicitacao.value.id,
+        alunoId: selectedEstagiario.value?.id,
+        cidadeGeracao: formData.value.cidadeGeracao,
+        dataGeracaoContrato: formData.value.dataGeracaoContrato,
+        numeroCooperacaoTecnicaInstituicaoEnsino:
+        formData.value.numeroCooperacaoTecnicaInstituicaoEnsino,
+        faseSerieEstagiario: formData.value.faseSerieEstagiario,
+        numRegistroOrgaoClasseEstadoProfOrientador:
+        formData.value.numRegistroOrgaoClasseEstadoProfOrientador,
+        nomeSeguradora: formData.value.nomeSeguradora,
+        dataInicioVigenciaSeguro: formData.value.dataInicioVigenciaSeguro,
+        cargaHorariaTotalEstagio: formData.value.cargaHorariaTotalEstagio,
+        horarioEntradaEstagio: formData.value.horarioEntradaEstagio,
+        horarioSaidaEstagio: formData.value.horarioSaidaEstagio,
+        dataInicioEstagio: formData.value.dataInicioEstagio,
+        dataFimEstagio: formData.value.dataFimEstagio,
+        datasRecesso: formData.value.datasRecesso,
+        cpfProfessorOrientador: formData.value.cpfProfessorOrientador,
+        diasSemanaEstagio: diasSelecionados.value,
+      };
+    };
+
+    const cadastrarContrato = async () => {
+      const contrato = montarContrato();
+      try {
+        const response = await cadastrarContratos(contrato);
+        if (response.status === 201) {
+          alert("Contrato cadastrado com sucesso!");
+          resetForm();
+        } else {
+          alert("Erro ao cadastrar contrato: " + response.message);
+        }
+      } catch (error) {
+        console.error("Erro ao cadastrar contrato:", error);
+        alert("Ocorreu um erro ao processar sua solicitação.");
+      }
+    };
+
     return {
       formData,
       generatePDF,
@@ -1169,6 +1208,7 @@ export default {
       instituicao,
       cursos,
       selectedCurso,
+      cadastrarContrato
     };
   },
 };
