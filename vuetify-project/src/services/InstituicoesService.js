@@ -80,3 +80,48 @@ export async function updateInstituicaoEnsino(instId, instituicaoData) {
     return null;
   }
 }
+
+export async function homologarCursoNaInstituicaoEnsino(instituicaoId, cursoId) {
+  try {
+    const token = sessionStorage.getItem('authToken');
+    console.log(token);
+    console.log(`${import.meta.env.VITE_BACKEND_URL}/instituicao-ensino/${instituicaoId}/cursos-homologados/${cursoId}`)
+    const response = await axios.post(
+      `${import.meta.env.VITE_BACKEND_URL}/instituicao-ensino/${instituicaoId}/cursos-homologados/${cursoId}`, {},
+      {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      }
+    );
+    console.log(response);
+
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao atualizar instituicao:", error);
+    return null;
+  }
+}
+
+export async function desfazerHomologacaoCurso(instituicaoId, cursoId) {
+  try {
+    const token = sessionStorage.getItem('authToken');
+    console.log(token);
+    console.log(`${import.meta.env.VITE_BACKEND_URL}/instituicao-ensino/${instituicaoId}/cursos-homologados/${cursoId}`)
+    const response = await axios.delete(
+      `${import.meta.env.VITE_BACKEND_URL}/instituicao-ensino/${instituicaoId}/cursos-homologados/${cursoId}`,
+      {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      }
+    );
+    console.log(response);
+
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao atualizar instituicao:", error);
+    return null;
+  }
+}
+desfazerHomologacaoCurso
