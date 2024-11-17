@@ -36,7 +36,19 @@ export async function cadastrarContratos(contrato) {
     });
     return req;
   } catch (error) {
-    const errorMessage = error.response?.data?.message?.[0] || error.message || "Erro desconhecido.";
+    console.log(error);
+
+    let errorMessage;
+
+    const message = error.response?.data?.message;
+
+    if (Array.isArray(message)) {
+      errorMessage = message[0];
+    } else if (typeof message === "string") {
+      errorMessage = message;
+    } else {
+      errorMessage = error.message || "Erro desconhecido.";
+    }
 
     return errorMessage;
   }
