@@ -34,7 +34,7 @@
             <td class="text-left">{{ item.status }}</td>
             <td class="text-center">
               <VisualizarSolicitacao :solId="item.id" />
-              <EditarSetor :setorId="item.id"  />
+              <EditarSolicitacao :solId="item.id"  />
               <DeletarItem :itemKey="'setor'" :id="item.id" />
             </td>
           </tr>

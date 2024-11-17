@@ -38,22 +38,31 @@ export async function fetchSolicitacaoVagaPorId(solId) {
   }
 }
 
-export async function updateSolicitacaoVaga(solId, solicitacaoVagaData) {
+export async function updateSolicitacaoVaga(solId, status) {
   try {
+    const url = `${import.meta.env.VITE_BACKEND_URL}/solicitacao-vaga/${solId}/alterar-status`;
     const token = sessionStorage.getItem('authToken');
-    const response = await axios.patch(
-      `${import.meta.env.VITE_BACKEND_URL}/solicitacao-vaga/${solId}`,
-      solicitacaoVagaData,
-      {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
+    const response = await axios.patch(url, status, {
+      headers: {
+        'Authorization': `Bearer ${token}`
       }
-    );
+    });
 
-    return response.data;
+    return response;
   } catch (error) {
-    console.error("Erro ao atualizar solicitação:", error);
-    return null;
+
+    let errorMessage;
+
+    const message = error.response?.data?.message;
+
+    if (Array.isArray(message)) {
+      errorMessage = message[0];
+    } else if (typeof message === "string") {
+      errorMessage = message;
+    } else {
+      errorMessage = error.message || "Erro desconhecido.";
+    }
+
+    return errorMessage;
   }
 }
