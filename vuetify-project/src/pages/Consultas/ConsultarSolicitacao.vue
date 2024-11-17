@@ -35,7 +35,7 @@
             <td class="text-center">
               <VisualizarSolicitacao :solId="item.id" />
               <EditarSolicitacao :solId="item.id"  />
-              <DeletarItem :itemKey="'setor'" :id="item.id" />
+              <ReprovarSolicitacao :solId="item.id" />
             </td>
           </tr>
         </tbody>
