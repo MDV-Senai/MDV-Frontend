@@ -3,7 +3,7 @@
     <Header />
     <div class="d-flex justify-center align-center">
       <v-card class="d-flex justify-center align-center" id="card_titulo">
-        <h3>Consultar Setor</h3>
+        <h3>Consultar Solicitação de Vaga</h3>
       </v-card>
     </div>
     <div id="fundoCards">
@@ -33,7 +33,7 @@
             <td class="text-left">{{ formatDate(item.dataSolicitacao) }}</td>
             <td class="text-left">{{ item.status }}</td>
             <td class="text-center">
-              <VisualizarSetor :setorId="item.id" />
+              <VisualizarSolicitacao :solId="item.id" />
               <EditarSetor :setorId="item.id"  />
               <DeletarItem :itemKey="'setor'" :id="item.id" />
             </td>
