@@ -3,13 +3,13 @@
     <Header />
     <div class="d-flex justify-center align-center">
       <v-card class="d-flex justify-center align-center" id="card_titulo">
-        <h3>Consultar Contrato</h3>
+        <h3>Consultar Solicitação de Vaga</h3>
       </v-card>
     </div>
     <div id="fundoCards">
       <div class="d-flex">
         <v-text-field
-          v-model="numeroContrato"
+          v-model="nomeSetor"
           label="Pesquise"
           variant="outlined"
           prepend-inner-icon="mdi-magnify"
@@ -21,21 +21,21 @@
       <v-table>
         <thead>
           <tr>
-            <th class="text-left">Nome Estagiário</th>
             <th class="text-left">Setor</th>
-            <th class="text-left">Data Inicio Contrato</th>
+            <th class="text-left">Data Solicitação</th>
+            <th class="text-left">Status</th>
             <th class="text-center">Ações</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="item in contratos" :key="item.id">
-            <td class="text-left">{{ item.nomeEstagiario }}</td>
-            <td class="text-left">{{ item.nomeSetor }}</td>
-            <td class="text-left">
-              {{ formatDate(item.dataGeracaoContrato) }}
-            </td>
+          <tr v-for="item in solicitacoes" :key="item.id">
+            <td class="text-left">{{ item.setor.nomeSetor }}</td>
+            <td class="text-left">{{ formatDate(item.dataSolicitacao) }}</td>
+            <td class="text-left">{{ item.status }}</td>
             <td class="text-center">
-              <VisualizarContrato :contratoId="item.id" />
+              <VisualizarSolicitacao :solId="item.id" />
+              <EditarSolicitacao :solId="item.id"  />
+              <ReprovarSolicitacao :solId="item.id" />
             </td>
           </tr>
         </tbody>
@@ -54,37 +54,37 @@
 <script>
 import { ref, onMounted, watch } from "vue";
 import { useResponsiveHeight } from "../../composables/useResponsiveHeight.js";
-import { fetchContratos } from "../../services/ContratosService";
+import { fetchSolicitacaoVaga } from "../../services/SolicitacaoService.js";
 import { formatDate } from "@/util/tools";
 
 export default {
   setup() {
     const { height } = useResponsiveHeight();
-    const contratos = ref([]);
+    const solicitacoes = ref([]);
     const pagina = ref(1);
     const itensPorPagina = 10;
     const totalPaginas = ref(1);
 
-    const loadContratos = async () => {
-      const response = await fetchContratos(pagina.value, itensPorPagina);
-      contratos.value = response;
+    const loadSolicitacao = async () => {
+      const response = await fetchSolicitacaoVaga(pagina.value, itensPorPagina);
+      solicitacoes.value = response;
       totalPaginas.value = Math.ceil(response.total / itensPorPagina);
     };
 
     onMounted(() => {
-      loadContratos();
+      loadSolicitacao();
     });
 
     watch(pagina, () => {
-      loadContratos();
+      loadSolicitacao();
     });
 
     return {
       height,
-      contratos,
+      solicitacoes,
       pagina,
       totalPaginas,
-      formatDate
+      formatDate,
     };
   },
 };
