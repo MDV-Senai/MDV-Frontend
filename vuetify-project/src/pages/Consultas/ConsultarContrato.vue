@@ -35,9 +35,7 @@
               {{ formatDate(item.dataGeracaoContrato) }}
             </td>
             <td class="text-center">
-              <VisualizarContrato />
-              <EditarContrato />
-              <DeletarItem />
+              <VisualizarContrato :contratoId="item.id" />
             </td>
           </tr>
         </tbody>

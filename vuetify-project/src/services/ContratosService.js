@@ -53,3 +53,20 @@ export async function cadastrarContratos(contrato) {
     return errorMessage;
   }
 }
+
+export async function fetchContratoPorId(contratoId) {
+  try {
+    const token = sessionStorage.getItem('authToken');
+    const response = await axios.get(import.meta.env.VITE_BACKEND_URL + "/contrato/" + contratoId, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar contrato:", error);
+    return null;
+  }
+}
