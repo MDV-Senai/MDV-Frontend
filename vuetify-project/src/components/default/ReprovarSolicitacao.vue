@@ -23,7 +23,7 @@ export default {
 
     const updateStatus = async () => {
       try {
-        status.value = "APROVADA";
+        status.value = "REPROVADA";
 
         const response = await updateSolicitacaoVaga(props.solId, {
           status: status.value,
