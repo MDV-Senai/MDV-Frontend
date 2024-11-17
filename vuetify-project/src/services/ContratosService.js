@@ -1,11 +1,21 @@
 import axios from "axios";
 
-export async function fetchContratos() {
+export async function fetchContratos(pagina, itensPorPagina) {
   try {
+    const token = sessionStorage.getItem('authToken');
     const response = await axios.get(
-      "http://localhost:3000/items"
+      `${import.meta.env.VITE_BACKEND_URL}/contrato`,
+      {
+        params: {
+          page: pagina,
+          limit: itensPorPagina
+        },
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      }
     );
-    return response.data.contrato;
+    return response.data.data;
   } catch (error) {
     console.error("Erro ao buscar contratos:", error);
     return null;
