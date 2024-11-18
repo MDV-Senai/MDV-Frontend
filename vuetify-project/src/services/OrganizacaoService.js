@@ -39,7 +39,7 @@ export async function fetchOrganizacaoConcedente(pagina, itensPorPagina) {
                 }
             }
         );
-        return response.data;
+        return response.data.data;
     } catch (error) {
         console.error("Erro ao buscar organizações:", error);
         return null;

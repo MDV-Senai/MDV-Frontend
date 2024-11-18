@@ -1,71 +1,312 @@
 <template>
-  <v-container>
-    <v-form ref="form">
-      <!-- Título da página -->
-      <v-row>
-        <v-col>
-          <h1>Preencha os dados abaixo:</h1>
-        </v-col>
-      </v-row>
+  <div id="imagem" :height="height">
+    <Header />
+    <div class="d-flex justify-center align-center">
+      <v-card class="d-flex justify-center align-center" id="card_titulo">
+        <h3>Gerar Contrato</h3>
+      </v-card>
+    </div>
+    <div id="fundoCards">
+      <v-form ref="form" id="form" class="mx-auto">
+        <!-- Área de Informações do Contrato -->
+        <v-row class="d-flex justify-center mt-8">
+          <v-col cols="12" md="6">
+            <v-text-field
+              label="Cidade Geração contrato"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+              v-model="formData.cidadeGeracao"
+              :rules="[rules.required]"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12" md="6">
+            <v-text-field
+              label="Número Cooperação Técnica Instituição de Ensino"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+              v-model="formData.numeroCooperacaoTecnicaInstituicaoEnsino"
+              :rules="[rules.required]"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <!-- Área de Orientador -->
+        <v-row class="d-flex justify-center mt-8">
+          <v-col cols="12" md="4">
+            <v-autocomplete
+              v-model="selectedProfessor"
+              :items="filteredProfessor"
+              :item-title="formatarProfessor"
+              item-value="id"
+              label="Professor Orientador"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+              @input="filtrarProfessor"
+              :rules="[rules.required]"
+            ></v-autocomplete>
+          </v-col>
+          <v-col cols="12" md="4">
+            <v-text-field
+              label="CPF do Professor Orientador"
+              maxlength="14"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+              v-mask="'###.###.###-##'"
+              v-model="formData.cpfProfessorOrientador"
+              :rules="[rules.required]"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12" md="4">
+            <v-text-field
+              label="Nº Registro do Orgão de Classe Profissional SC"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+              v-model="formData.numRegistroOrgaoClasseEstadoProfOrientador"
+              :rules="[rules.required]"
+            ></v-text-field>
+          </v-col>
+        </v-row>
 
-      <!-- Campo de Nome -->
-      <v-row>
-        <v-col>
-          <v-text-field
-            v-model="formData.name"
-            label="Nome Completo"
-            outlined
-            required
-          ></v-text-field>
-        </v-col>
-      </v-row>
+        <!-- Área de Informações do Estagiário -->
+        <v-row class="d-flex justify-center mt-8">
+          <v-col cols="12" md="4">
+            <v-autocomplete
+              v-model="selectedEstagiario"
+              :items="filteredEstagiarios"
+              :item-title="formatarEstagiario"
+              item-value="id"
+              label="Estagiário"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+              @input="filtrarEstagiarios"
+              :rules="[rules.required]"
+            ></v-autocomplete>
+          </v-col>
+          <v-col cols="12" md="4">
+            <v-text-field
+              label="Fase/Série do Estagiário"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+              v-model="formData.faseSerieEstagiario"
+              :rules="[rules.required]"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12" md="4">
+            <v-autocomplete
+              v-model="selectedSolicitacao"
+              :items="filteredSolicitacao"
+              :item-title="formatarSolicitacao"
+              item-value="id"
+              label="Solicitação de Vaga"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+              @input="filtrarSolicitacao"
+              :rules="[rules.required]"
+            ></v-autocomplete>
+          </v-col>
+        </v-row>
 
-      <!-- Campo de Endereço -->
-      <v-row>
-        <v-col>
-          <v-text-field
-            v-model="formData.address"
-            label="Endereço"
-            outlined
-            required
-          ></v-text-field>
-        </v-col>
-      </v-row>
+        <!-- Área de Informações do Seguro -->
+        <v-row class="d-flex justify-center mt-8">
+          <v-col cols="12" md="6">
+            <v-text-field
+              label="Nome da Seguradora"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+              v-model="formData.nomeSeguradora"
+              :rules="[rules.required]"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12" md="6">
+            <v-text-field
+              label="Data Início da Vigência do Seguro"
+              type="date"
+              maxlength="10"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+              v-model="formData.dataInicioVigenciaSeguro"
+              :rules="[rules.required]"
+            ></v-text-field>
+          </v-col>
+        </v-row>
 
-      <!-- Campo de Telefone -->
-      <v-row>
-        <v-col>
-          <v-text-field
-            v-model="formData.phone"
-            label="Telefone"
-            outlined
-            required
-          ></v-text-field>
-        </v-col>
-      </v-row>
+        <!-- Área de Informações do Estágio -->
+        <v-row class="d-flex justify-center mt-8">
+          <v-col cols="12" md="4">
+            <v-text-field
+              label="Carga Horária Total do Estágio Por Aluno"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+              v-model="formData.cargaHorariaTotalEstagio"
+              :rules="[rules.required]"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12" md="4">
+            <v-text-field
+              label="Horário de Entrada do Estágio"
+              type="time"
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+              v-model="formData.horarioEntradaEstagio"
+              :rules="[rules.required]"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12" md="4">
+            <v-text-field
+              label="Horário de Saída do Estágio"
+              type="time"
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+              v-model="formData.horarioSaidaEstagio"
+              :rules="[rules.required]"
+            ></v-text-field>
+          </v-col>
+        </v-row>
 
-      <!-- Campo de Data -->
-      <v-row>
-        <v-col>
-          <v-text-field
-            v-model="formData.date"
-            label="Data"
-            outlined
-            required
-          ></v-text-field>
-        </v-col>
-      </v-row>
+        <!-- Área de Datas -->
+        <v-row class="d-flex justify-center mt-8">
+          <v-col cols="12" md="4">
+            <v-text-field
+              label="Data de Início do Estágio"
+              type="date"
+              maxlength="10"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+              v-model="formData.dataInicioEstagio"
+              :rules="[rules.required]"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12" md="4">
+            <v-text-field
+              label="Data de Fim do Estágio"
+              type="date"
+              maxlength="10"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+              v-model="formData.dataFimEstagio"
+              :rules="[rules.required]"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12" md="4">
+            <v-select
+              label="Curso do Estágio"
+              :items="cursos"
+              item-title="cursoHomologado.nomeCurso"
+              item-value="cursoHomologado"
+              v-model="selectedCurso"
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+              :rules="[rules.required]"
+            ></v-select>
+          </v-col>
+          <v-col cols="12" md="12">
+            <v-textarea
+              label="Datas de Recesso do Estágio"
+              maxlength="255"
+              counter
+              clearable
+              class="text-grey-darken-4"
+              variant="outlined"
+              v-model="formData.datasRecesso"
+              :rules="[rules.required]"
+            ></v-textarea>
+          </v-col>
+        </v-row>
 
-      <!-- Botão para Gerar PDF -->
-      <v-row>
-        <v-col>
-          <v-btn color="primary" @click="generatePDF">Gerar PDF</v-btn>
-        </v-col>
-      </v-row>
-    </v-form>
+        <!-- Área de Dias da Semana -->
+        <h4 class="text-left">Selecione os dias de estágio</h4>
+        <v-card class="pt-8">
+          <v-container fluid>
+            <v-row id="inputResponsivo" class="d-flex justify-center ml-12">
+              <v-col class="d-flex align-center">Dom</v-col>
+              <v-col class="d-flex align-center">Seg</v-col>
+              <v-col class="d-flex align-center">Ter</v-col>
+              <v-col class="d-flex align-center">Qua</v-col>
+              <v-col class="d-flex align-center">Qui</v-col>
+              <v-col class="d-flex align-center">Sex</v-col>
+              <v-col class="d-flex align-center">Sab</v-col>
+            </v-row>
 
-    <!-- Conteúdo invisível que será convertido para PDF -->
-    <div id="pdf-content" style="">
+            <v-row id="inputResponsivo" class="d-flex justify-center ml-12">
+              <v-col class="d-flex align-center">
+                <v-checkbox v-model="domingo"></v-checkbox>
+              </v-col>
+              <v-col class="d-flex align-center">
+                <v-checkbox v-model="segunda"></v-checkbox>
+              </v-col>
+              <v-col class="d-flex align-center">
+                <v-checkbox v-model="terca"></v-checkbox>
+              </v-col>
+              <v-col class="d-flex align-center">
+                <v-checkbox v-model="quarta"></v-checkbox>
+              </v-col>
+              <v-col class="d-flex align-center">
+                <v-checkbox v-model="quinta"></v-checkbox>
+              </v-col>
+              <v-col class="d-flex align-center">
+                <v-checkbox v-model="sexta"></v-checkbox>
+              </v-col>
+              <v-col class="d-flex align-center">
+                <v-checkbox v-model="sabado"></v-checkbox>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-card>
+
+        <!-- Botão para Gerar PDF -->
+        <v-btn
+          append-icon="mdi-chevron-right"
+          variant="outlined"
+          class="my-10"
+          width="183"
+          height="62"
+          id="botaoGerar"
+          @click="cadastrarContrato"
+        >
+          Gerar Contrato
+        </v-btn>
+      </v-form>
+    </div>
+
+    <!-- Conteúdo invisível que será convertido para PDF style="display: none" -->
+    <div id="pdf-content" style="display: none">
       <div class="pdf-header">
         <img
           src="../../assets/img/logocontrato.png"
@@ -79,50 +320,90 @@
       </div>
 
       <p>
-        Aos ____ dias do mês de _____ de ____ , na cidade de ______ neste ato,
-        as partes seguintes nomeadas:
+        {{ formData.dataGeracaoContrato }}, na cidade de
+        {{ formData.cidadeGeracao }}, neste ato, as partes seguintes nomeadas:
       </p>
 
       <h5 class="highlight">
         UNIDADE DA SECRETARIA DE ESTADO DA SAÚDE DE SANTA CATARINA (SES/SC):
       </h5>
 
-      <p>Unidade da SES/SC Concedente de Estágio Obrigatório:______</p>
+      <p>
+        Unidade da SES/SC Concedente de Estágio Obrigatório:
+        {{ organizacao.razaoSocial }}
+      </p>
 
       <div style="display: flex; justify-content: flex-start">
-        <p style="margin-right: 337px">Representante Legal:_______</p>
-        <p style="margin: 0">Cargo:_______</p>
+        <p style="margin-right: 337px">
+          Representante Legal: {{ organizacao.responsavelLegal }}
+        </p>
+        <p style="margin: 0">Cargo: Diretor</p>
       </div>
 
       <div style="display: flex; justify-content: flex-start">
-        <p style="margin-right: 250px">
-          Responsável do Setor de Estágio:_______
+        <p
+          v-if="
+            solicitacao &&
+            solicitacao.setor &&
+            solicitacao.setor.nomeCoordenador
+          "
+          style="margin-right: 250px"
+        >
+          Responsável do Setor de Estágio:
+          {{ solicitacao.setor.nomeCoordenador }}
         </p>
-        <p style="margin: 0">Cargo:_______</p>
+        <p style="margin: 0">Cargo: Coordenador</p>
       </div>
 
       <h5 class="highlight">INSTITUIÇÃO DE ENSINO:</h5>
 
-      <p>Razão Social: ______</p>
-      <p>Cooperação Técnica Nº: _______</p>
+      <p
+        v-if="
+          solicitacao &&
+          solicitacao.instituicaoEnsino &&
+          solicitacao.instituicaoEnsino.razaoSocial
+        "
+      >
+        Razão Social: {{ solicitacao.instituicaoEnsino.razaoSocial }}
+      </p>
+      <p>
+        Cooperação Técnica Nº:
+        {{ formData.numeroCooperacaoTecnicaInstituicaoEnsino }}
+      </p>
       <div style="display: flex; justify-content: flex-start">
-        <p style="margin-right: 337px">Representante Legal:_______</p>
-        <p style="margin: 0">Cargo:_______</p>
+        <p
+          v-if="
+            solicitacao &&
+            solicitacao.instituicaoEnsino &&
+            solicitacao.instituicaoEnsino.responsavelLegal
+          "
+          style="margin-right: 337px"
+        >
+          Representante Legal:
+          {{ solicitacao.instituicaoEnsino.responsavelLegal }}
+        </p>
+        <p style="margin: 0">Cargo: Diretor</p>
       </div>
-      <p>Coordenador Geral de Estágio:______</p>
+      <p>Coordenador Geral de Estágio: {{ professor.nome }}</p>
 
       <h5 class="highlight">ESTAGIÁRIO:</h5>
 
-      <p>Nome Completo: _______</p>
+      <p>Nome Completo: {{ estagiario.nome }}</p>
       <div style="display: flex; justify-content: flex-start">
-        <p style="margin-right: 283px">CPF:_______</p>
-        <p style="margin: 0">Data de Nascimento:________</p>
+        <p style="margin-right: 283px">CPF: {{ estagiario.documento }}</p>
+        <p style="margin: 0">
+          Data de Nascimento: {{ formatDate(estagiario.dataNascimento) }}
+        </p>
       </div>
 
       <div style="display: flex; justify-content: flex-start">
-        <p style="margin-right: 60px">Curso:________</p>
-        <p style="margin-right: 60px">Fase/Série: ________</p>
-        <p style="margin-right: 0px">Matrícula: ________</p>
+        <p style="margin-right: 60px">
+          Curso: {{ selectedCurso?.nomeCurso || "________" }}
+        </p>
+        <p style="margin-right: 60px">
+          Fase/Série: {{ formData.faseSerieEstagiario }}
+        </p>
+        <p style="margin-right: 0px">Matrícula: {{ estagiario.matricula }}</p>
       </div>
 
       <h5 class="highlight">PROFESSOR ORIENTADOR:</h5>
@@ -138,7 +419,7 @@
               style="
                 text-align: center;
                 font-size: smaller;
-                width: 300px;
+                width: 200px;
                 word-wrap: break-word;
               "
             >
@@ -150,9 +431,9 @@
         </thead>
         <tbody>
           <tr>
-            <td style="height: 30px"></td>
-            <td></td>
-            <td></td>
+            <td style="height: 30px">{{ professor.nome }}</td>
+            <td>{{ formData.cpfProfessorOrientador }}</td>
+            <td>{{ formData.numRegistroOrgaoClasseEstadoProfOrientador }}</td>
           </tr>
           <tr>
             <td style="height: 30px"></td>
@@ -252,12 +533,22 @@
         </thead>
         <tbody>
           <tr>
-            <td style="height: 30px"></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td
+              v-if="
+                solicitacao && solicitacao.setor && solicitacao.setor.nomeSetor
+              "
+              style="height: 30px"
+            >
+              {{ solicitacao.setor.nomeSetor }}
+            </td>
+            <td>{{ formatDate(formData.dataInicioEstagio) }}</td>
+            <td>{{ formatDate(formData.dataFimEstagio) }}</td>
+            <td>{{ diasSelecionados }}</td>
+            <td>
+              {{ formData.horarioEntradaEstagio }} -
+              {{ formData.horarioSaidaEstagio }}
+            </td>
+            <td>{{ professor.nome }}</td>
           </tr>
           <tr>
             <td style="height: 30px"></td>
@@ -301,7 +592,7 @@
           </tr>
           <tr>
             <td style="text-align: left" colspan="6">
-              <strong>DATAS DE RECESSO:</strong>
+              <strong>DATAS DE RECESSO: {{ formData.datasRecesso }}</strong>
             </td>
           </tr>
         </tbody>
@@ -314,7 +605,8 @@
       </p>
       <p>
         <strong>Cláusula 7ª -</strong> O estágio obrigatório regido pelo
-        presente Termo terá carga horária total _______ horas por aluno.
+        presente Termo terá carga horária total
+        {{ formData.cargaHorariaTotalEstagio }} horas por aluno.
       </p>
       <p>
         <strong>Cláusula 8ª -</strong> O estagiário desenvolverá na Unidade
@@ -324,9 +616,42 @@
 
       <br />
 
-      <p><strong>a)</strong> ______</p>
-      <p><strong>b)</strong> ______</p>
-      <p><strong>c)</strong> ______</p>
+      <p
+        v-if="
+          solicitacao && solicitacao.setor && solicitacao.setor.atividades[0]
+        "
+      >
+        <strong>a)</strong> {{ solicitacao.setor.atividades[0].nome }}
+      </p>
+      <p
+        v-if="
+          solicitacao && solicitacao.setor && solicitacao.setor.atividades[1]
+        "
+      >
+        <strong>b)</strong> {{ solicitacao.setor.atividades[1].nome }}
+      </p>
+      <p
+        v-if="
+          solicitacao && solicitacao.setor && solicitacao.setor.atividades[2]
+        "
+      >
+        <strong>c)</strong> {{ solicitacao.setor.atividades[2].nome }}
+      </p>
+
+      <!-- caso deseje mostrar todas as atvds do setor -->
+      <!-- <div
+        v-if="solicitacao && solicitacao.setor && solicitacao.setor.atividades"
+      >
+        <p
+          v-for="(atividade, index) in solicitacao.setor.atividades"
+          :key="index"
+        >
+          <strong>{{ String.fromCharCode(97 + index) }})</strong>
+          {{ atividade.nome }}
+        </p>
+      </div> -->
+
+      <br />
 
       <p>
         <strong>Cláusula 9ª -</strong> O estagiário deverá observar e obedecer
@@ -406,11 +731,19 @@
         obrigatório.
       </p>
 
-      <p>
+      <p
+        v-if="
+          estagiario &&
+          estagiario.apoliceSeguro &&
+          estagiario.apoliceSeguro.dataFim
+        "
+      >
         <strong>Cláusula 19ª -</strong> O estagiário está segurado contra
-        acidentes pessoais, proporcionado pela apólice nº ______ , sob a
-        Responsabilidade da Seguradora _______ durante o período compreendido de
-        _____/______ /_______ à ______/_______ /_______ .
+        acidentes pessoais, proporcionado pela apólice nº
+        {{ estagiario.apoliceSeguro.numero }} , sob a Responsabilidade da
+        Seguradora {{ formData.nomeSeguradora }} durante o período compreendido
+        de {{ formatDate(formData.dataInicioVigenciaSeguro) }} à
+        {{ formatDate(estagiario.apoliceSeguro.dataFim) }}.
       </p>
 
       <p>
@@ -499,32 +832,265 @@
         <p style="font-size: 16px">Nome do Estagiário</p>
       </div>
     </div>
-  </v-container>
+  </div>
 </template>
 
 <script>
+import { ref, onMounted, computed, watch } from "vue";
+import Swal from "sweetalert2";
 import html2pdf from "html2pdf.js";
+import { useResponsiveHeight } from "../../composables/useResponsiveHeight.js";
+import { fetchOrganizacaoConcedente } from "../../services/OrganizacaoService.js";
+import { fetchInstituicoesPorId } from "../../services/InstituicoesService.js";
+import { cadastrarContratos } from "../../services/ContratosService";
+import {
+  fetchSolicitacaoVaga,
+  fetchSolicitacaoVagaPorId,
+} from "../../services/VagasService.js";
+import {
+  fetchEstagiarios,
+  fetchEstagiarioPorId,
+} from "../../services/EstagiariosService.js";
+
+import {
+  fetchCoordenadorCurso,
+  fetchCoordenadorPorId,
+} from "../../services/CoordenadorCursoService.js";
 
 export default {
-  data() {
-    return {
-      formData: {
-        name: "",
-        address: "",
-        phone: "",
-        date: "",
-      },
-    };
-  },
-  methods: {
-    generatePDF() {
-      // Seleciona o conteúdo invisível
-      const pdfContent = document.getElementById("pdf-content");
+  setup() {
+    const errorMessage = ref("");
+    const { height } = useResponsiveHeight();
+    const organizacao = ref({});
+    const estagiarios = ref([]);
+    const solicitacoes = ref([]);
+    const professores = ref([]);
+    const cursos = ref([]);
+    const selectedProfessor = ref(null);
+    const selectedEstagiario = ref(null);
+    const selectedSolicitacao = ref(null);
+    const selectedCurso = ref(null);
+    const searchQueryEstg = ref("");
+    const searchQueryProf = ref("");
+    const searchQuerySol = ref("");
+    const estagiario = ref({});
+    const solicitacao = ref({});
+    const professor = ref({});
+    const instituicao = ref({});
 
-      // Torna o conteúdo visível
+    // Variáveis para cada checkbox do dia da semana
+    const domingo = ref(false);
+    const segunda = ref(false);
+    const terca = ref(false);
+    const quarta = ref(false);
+    const quinta = ref(false);
+    const sexta = ref(false);
+    const sabado = ref(false);
+
+    const diasSelecionados = computed(() => {
+      const dias = [];
+      if (domingo.value) dias.push("Dom");
+      if (segunda.value) dias.push("Seg");
+      if (terca.value) dias.push("Ter");
+      if (quarta.value) dias.push("Qua");
+      if (quinta.value) dias.push("Qui");
+      if (sexta.value) dias.push("Sex");
+      if (sabado.value) dias.push("Sab");
+
+      return dias.join(", ");
+    });
+
+    const loadOrg = async () => {
+      const response = await fetchOrganizacaoConcedente();
+      if (response && response.length > 0) {
+        organizacao.value = response[0];
+      }
+    };
+
+    const loadEstg = async () => {
+      const response = await fetchEstagiarios();
+      estagiarios.value = response;
+    };
+
+    const loadSol = async () => {
+      const response = await fetchSolicitacaoVaga();
+      solicitacoes.value = response;
+    };
+
+    const loadProf = async () => {
+      const response = await fetchCoordenadorCurso();
+      professores.value = response;
+    };
+
+    const loadProfessor = async () => {
+      if (selectedProfessor.value) {
+        const response = await fetchCoordenadorPorId(selectedProfessor.value);
+        if (response) {
+          professor.value = response;
+        } else {
+          console.error("Erro ao buscar professor.");
+        }
+      }
+    };
+
+    const loadSolicitacao = async () => {
+      if (selectedSolicitacao.value) {
+        const response = await fetchSolicitacaoVagaPorId(
+          selectedSolicitacao.value
+        );
+        if (response) {
+          solicitacao.value = response;
+        } else {
+          console.error("Erro ao buscar solicitacao.");
+        }
+      }
+    };
+
+    const loadEstagiario = async () => {
+      if (selectedEstagiario.value) {
+        const response = await fetchEstagiarioPorId(selectedEstagiario.value);
+        if (response) {
+          estagiario.value = response;
+        } else {
+          console.error("Erro ao buscar estagiário.");
+        }
+      }
+    };
+
+    const loadInstituicao = async () => {
+      try {
+        const response = await fetchInstituicoesPorId(
+          solicitacao.value.instituicaoEnsino.id
+        );
+        if (response) {
+          instituicao.value = response;
+          cursos.value = instituicao.value.cursos; // Atualiza cursos corretamente usando .value
+        } else {
+          console.error("Erro ao buscar instituição.");
+        }
+      } catch (error) {
+        console.error("Erro na requisição:", error);
+      }
+    };
+
+    const filteredEstagiarios = computed(() => {
+      return estagiarios.value.filter((estagiario) => {
+        const searchValue =
+          searchQueryEstg.value && typeof searchQueryEstg.value === "string"
+            ? searchQueryEstg.value.toLowerCase()
+            : "";
+
+        return (
+          estagiario.nome.toLowerCase().includes(searchValue) ||
+          estagiario.documento.toLowerCase().includes(searchValue)
+        );
+      });
+    });
+
+    const filteredSolicitacao = computed(() => {
+      return solicitacoes.value.filter((solicitacao) => {
+        const searchValue =
+          searchQueryEstg.value && typeof searchQueryEstg.value === "string"
+            ? searchQueryEstg.value.toLowerCase()
+            : "";
+
+        return (
+          solicitacao.instituicaoEnsino.razaoSocial
+            .toLowerCase()
+            .includes(searchValue) ||
+          solicitacao.setor.nomeSetor.toLowerCase().includes(searchValue)
+        );
+      });
+    });
+
+    const filteredProfessor = computed(() => {
+      return professores.value.filter((professor) => {
+        const searchValue =
+          searchQueryProf.value && typeof searchQueryProf.value === "string"
+            ? searchQueryProf.value.toLowerCase()
+            : "";
+
+        return professor.nome.toLowerCase().includes(searchValue);
+      });
+    });
+
+    const filtrarEstagiarios = (query) => {
+      searchQueryEstg.value = query;
+    };
+
+    const filtrarSolicitacao = (query) => {
+      searchQuerySol.value = query;
+    };
+
+    const filtrarProfessor = (query) => {
+      searchQueryProf.value = query;
+    };
+
+    const formatarEstagiario = (estagiario) => {
+      return estagiario ? `${estagiario.nome} - ${estagiario.documento}` : "";
+    };
+
+    const formatarSolicitacao = (solicitacao) => {
+      return solicitacao
+        ? `${solicitacao.instituicaoEnsino.razaoSocial} - ${solicitacao.setor.nomeSetor}`
+        : "";
+    };
+
+    const formatarProfessor = (professor) => {
+      return professor ? `${professor.nome}` : "";
+    };
+
+    const rules = {
+      required: (value) => !!value || "Obrigatório.",
+    };
+
+    watch(selectedEstagiario, loadEstagiario);
+    watch(selectedSolicitacao, loadSolicitacao);
+    watch(selectedProfessor, loadProfessor);
+    watch(loadSolicitacao, (newValue, oldValue) => {
+      setTimeout(() => {
+        loadInstituicao(newValue);
+      }, 1000);
+    });
+
+    onMounted(() => {
+      loadOrg();
+      loadEstg();
+      setDate();
+      loadSol();
+      loadProf();
+    });
+
+    const formData = ref({
+      cidadeGeracao: "",
+      numeroCooperacaoTecnicaInstituicaoEnsino: "",
+      faseSerieEstagiario: "",
+      numRegistroOrgaoClasseEstadoProfOrientador: "",
+      nomeSeguradora: "",
+      cargaHorariaTotalEstagio: "",
+      horarioEntradaEstagio: "",
+      horarioSaidaEstagio: "",
+      dataInicioEstagio: "",
+      dataInicioVigenciaSeguro: "",
+      dataFimEstagio: "",
+      datasRecesso: "",
+      cpfProfessorOrientador: "",
+      dataGeracaoContrato: "",
+    });
+
+    // Função para definir a data atual no formato desejado
+    const setDate = () => {
+      const dataAtual = new Date();
+      const dia = dataAtual.getDate();
+      const mes = dataAtual.toLocaleString("pt-BR", { month: "long" });
+      const ano = dataAtual.getFullYear();
+      formData.value.dataGeracaoContrato = `Aos ${dia} dias do mês de ${mes} de ${ano}`;
+    };
+
+    const generatePDF = async () => {
+      const pdfContent = document.getElementById("pdf-content");
       pdfContent.style.display = "block";
 
-      // Configuração para gerar o PDF
       const options = {
         margin: [0.5, 0.5, 0.5, 0.5],
         filename: "termo_de_compromisso.pdf",
@@ -534,20 +1100,194 @@ export default {
         pagebreak: { mode: ["avoid-all", "css", "legacy"] },
       };
 
-      // Gera o PDF
-      html2pdf()
+      // Gera o PDF e pega o Blob do arquivo gerado
+      const pdfBlob = await html2pdf()
         .set(options)
         .from(pdfContent)
-        .save()
-        .then(() => {
-          pdfContent.style.display = "none";
+        .toPdf()
+        .get("pdf")
+        .then(function (pdf) {
+          return pdf.output("blob");
         });
-    },
+
+      pdfContent.style.display = "none";
+
+      const contrato = montarContrato();
+      contrato.file = pdfBlob;
+
+      return contrato;
+    };
+
+    // Função para resetar o formulário
+    const resetForm = () => {
+      // Limpa os dados do formData
+      formData.value = {
+        cidadeGeracao: "",
+        numeroCooperacaoTecnicaInstituicaoEnsino: "",
+        faseSerieEstagiario: "",
+        numRegistroOrgaoClasseEstadoProfOrientador: "",
+        nomeSeguradora: "",
+        cargaHorariaTotalEstagio: "",
+        horarioEntradaEstagio: "",
+        horarioSaidaEstagio: "",
+        dataInicioEstagio: "",
+        dataInicioVigenciaSeguro: "",
+        dataFimEstagio: "",
+        datasRecesso: "",
+        cpfProfessorOrientador: "",
+        dataGeracaoContrato: "", // Definido pelo setDate()
+      };
+
+      // Redefine a data do contrato
+      setDate();
+
+      // Limpa seleções de solicitação, curso e dias da semana
+      selectedSolicitacao.value = null;
+      selectedCurso.value = null;
+      selectedEstagiario.value = null;
+      selectedProfessor.value = null;
+
+      // Limpa os checkboxes dos dias da semana
+      domingo.value = false;
+      segunda.value = false;
+      terca.value = false;
+      quarta.value = false;
+      quinta.value = false;
+      sexta.value = false;
+      sabado.value = false;
+    };
+
+    const formatDate = (dateString) => {
+      if (!dateString) return "";
+      const date = new Date(dateString);
+      if (isNaN(date)) return "";
+
+      const day = String(date.getUTCDate()).padStart(2, "0");
+      const month = String(date.getUTCMonth() + 1).padStart(2, "0");
+      const year = date.getUTCFullYear();
+
+      return `${day}/${month}/${year}`;
+    };
+
+    const montarContrato = () => {
+      return {
+        solicitacaoVagaId: solicitacao.value.id,
+        alunoId: estagiario.value.id,
+        cidadeGeracao: formData.value.cidadeGeracao,
+        dataGeracaoContrato: new Date().toISOString().split("T")[0],
+        numeroCooperacaoTecnicaInstituicaoEnsino:
+          formData.value.numeroCooperacaoTecnicaInstituicaoEnsino,
+        faseSerieEstagiario: formData.value.faseSerieEstagiario,
+        numRegistroOrgaoClasseEstadoProfOrientador:
+          formData.value.numRegistroOrgaoClasseEstadoProfOrientador,
+        nomeSeguradora: formData.value.nomeSeguradora,
+        dataInicioVigenciaSeguro: formData.value.dataInicioVigenciaSeguro,
+        cargaHorariaTotalEstagio: formData.value.cargaHorariaTotalEstagio,
+        horarioEntradaEstagio: formData.value.horarioEntradaEstagio,
+        horarioSaidaEstagio: formData.value.horarioSaidaEstagio,
+        dataInicioEstagio: formData.value.dataInicioEstagio,
+        dataFimEstagio: formData.value.dataFimEstagio,
+        datasRecesso: formData.value.datasRecesso,
+        cpfProfessorOrientador: formData.value.cpfProfessorOrientador.replace(
+          /\D/g,
+          ""
+        ),
+        diasSemanaEstagio: diasSelecionados.value,
+        file: null,
+      };
+    };
+
+    const cadastrarContrato = async () => {
+      errorMessage.value = "";
+      try {
+        // Gera o PDF (salva localmente e retorna o Blob)
+        const contrato = await generatePDF();
+
+        // Faz a requisição ao backend
+        const response = await cadastrarContratos(contrato);
+
+        if (response.status === 201) {
+          const nome = estagiario.value.nome
+            .trim()
+            .replace(/[^a-zA-Z0-9áàãâéèêíïóôõúüçÇ]/g, "_");
+          // Criar link de download
+          const link = document.createElement("a");
+          link.href = URL.createObjectURL(contrato.file);
+          link.download = `termo_de_compromisso_${nome}.pdf`;
+          link.click();
+
+          Swal.fire({
+            title: "Contrato Gerado!",
+            text: "O contrato foi gerado com sucesso.",
+            icon: "success",
+            confirmButtonText: "Ok",
+          }).then(() => {
+            window.location.reload();
+            resetForm();
+          });
+        } else {
+          Swal.fire({
+            title: "Ocorreu um problema ao gerar o contrato.",
+            icon: "error",
+            text: response,
+            confirmButtonText: "Ok",
+          });
+        }
+      } catch (error) {
+        Swal.fire({
+          title: "Ocorreu um problema ao gerar o contrato.",
+          icon: "error",
+          confirmButtonText: "Ok"
+        });
+      }
+    };
+
+    return {
+      formData,
+      generatePDF,
+      height,
+      domingo,
+      segunda,
+      terca,
+      quarta,
+      quinta,
+      sexta,
+      sabado,
+      formatDate,
+      diasSelecionados,
+      organizacao,
+      estagiarios,
+      estagiario,
+      solicitacoes,
+      solicitacao,
+      selectedSolicitacao,
+      selectedEstagiario,
+      searchQueryEstg,
+      searchQuerySol,
+      filteredEstagiarios,
+      filteredSolicitacao,
+      professores,
+      professor,
+      selectedProfessor,
+      searchQueryProf,
+      filteredProfessor,
+      filtrarProfessor,
+      formatarProfessor,
+      filtrarEstagiarios,
+      formatarEstagiario,
+      formatarSolicitacao,
+      filtrarSolicitacao,
+      instituicao,
+      cursos,
+      selectedCurso,
+      cadastrarContrato,
+      rules,
+    };
   },
 };
 </script>
 
-<style scoped>
+<style scoped >
 .pdf-header {
   width: 100%;
   text-align: left;

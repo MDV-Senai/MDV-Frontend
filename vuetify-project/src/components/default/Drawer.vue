@@ -127,7 +127,11 @@ export default {
       ["Cadastro de Organização", "mdi-domain", "/cadastrarOrganizacao"],
       ["Cadastro de Vagas", "mdi-handshake-outline", "/cadastrarVagas"],
       ["Cadastro de Curso", "mdi-book-plus-outline", "/cadastrarCurso"],
-      ["Cadastro de Coordenador de Instituição de Ensino", "mdi-account-tie", "/cadastrarCoordenadorCurso"],
+      [
+        "Cadastro de Coordenador de Instituição de Ensino",
+        "mdi-account-tie",
+        "/cadastrarCoordenadorCurso",
+      ],
     ];
 
     const rotasConsulta = [
@@ -159,6 +163,11 @@ export default {
         "mdi-text-box-search-outline",
         "/consultarConcedente",
       ],
+      [
+        "Consultar Solicitação",
+        "mdi-text-search-variant",
+        "/consultarSolicitacao",
+      ],
     ];
 
     return {
@@ -167,7 +176,7 @@ export default {
       rotasCrud,
       rotasConsulta,
       rotaGerarContrato,
-      rotaSolicitarVaga
+      rotaSolicitarVaga,
     };
   },
 };

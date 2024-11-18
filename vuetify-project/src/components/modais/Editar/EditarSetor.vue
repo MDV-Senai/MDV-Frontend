@@ -91,8 +91,12 @@ export default {
         if (response) {
           isActive.value = false;
           Swal.fire({
-            title: "Cadastro atualizado com Sucesso!",
+            title: "Atualização bem-sucedida!",
+            text: "O setor foi atualizado com sucesso.",
             icon: "success",
+            confirmButtonText: "Ok",
+          }).then(() => {
+            window.location.reload();
           });
         } else {
           errorMessage.value = "Erro ao atualizar setor!";

@@ -13,12 +13,20 @@ export async function login(email, password) {
     );
 
     const token = response.data.token;
-    const userRole = response.data.user.role;  
+    const userRole = response.data.user.role;
+    const currentUserId = response.data.user.id;
+    const instituicaoEnsinoId = response.data.user.instituicaoEnsinoId;
+    const username = response.data.user.name;
+    const userEmail = response.data.user.userEmail;
 
     sessionStorage.setItem('authToken', token);
     sessionStorage.setItem('userRole', userRole);
+    sessionStorage.setItem('currentUserId', currentUserId);
+    sessionStorage.setItem('instituicaoEnsinoId', instituicaoEnsinoId)
+    sessionStorage.setItem('username', username)
+    sessionStorage.setItem('userEmail', userEmail)
 
-    return { token, userRole }; 
+    return { token, userRole };
   } catch (error) {
     console.error("Erro ao fazer login:", error);
     return null;

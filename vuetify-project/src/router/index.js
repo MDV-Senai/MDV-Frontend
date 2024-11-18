@@ -20,6 +20,7 @@ import ConsultarVagas from '../pages/Consultas/ConsultarVagas.vue';
 import ConsultarCurso from '../pages/Consultas/ConsultarCurso.vue';
 import ConsultarConcedente from '../pages/Consultas/ConsultarConcedente.vue';
 import ConsultarContrato from '../pages/Consultas/ConsultarContrato.vue';
+import ConsultarSolicitacao from '../pages/Consultas/ConsultarSolicitacao.vue';
 import GerarContrato from '../pages/Contrato/GerarContrato.vue'
 
 const router = createRouter({
@@ -135,7 +136,24 @@ const router = createRouter({
       name: 'CadastrarCoordenadorCurso',
       component: CadastrarCoordenadorCurso
     },
+    {
+      path: '/consultarSolicitacao',
+      name: 'ConsultarSolicitacao',
+      component: ConsultarSolicitacao
+    },
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  const isAuthenticated = sessionStorage.getItem('authToken');
+
+  if (to.name === 'Login') {
+    next();
+  } else if (!isAuthenticated) {
+    next({ name: 'Login' });
+  } else {
+    next();
+  }
+});
 
 export default router

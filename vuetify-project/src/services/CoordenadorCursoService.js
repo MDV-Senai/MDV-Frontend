@@ -34,7 +34,7 @@ export async function fetchCoordenadorCurso(pagina, itensPorPagina) {
         }
       }
     );
-    return response.data;
+    return response.data.data;
   } catch (error) {
     console.error("Erro ao buscar coordenador:", error);
     return null;
