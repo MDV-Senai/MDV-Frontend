@@ -107,16 +107,7 @@ export default {
     const rotaGerarContrato = "/gerarContrato";
     const rotaSolicitarVaga = "/cadastrarSolicitacaoVagas";
 
-    const rotasCrud = [
-      ["Cadastrar Instituição de Ensino", "mdi-store-plus-outline", "/cadastrarInstituicao"],
-      ["Cadastrar Estagiário", "mdi-account-plus-outline", "/cadastrarEstagiario"],
-      ["Cadastrar Setor", "mdi-text-box-plus-outline", "/cadastrarSetor"],
-      ["Cadastrar Usuário", "mdi-file-account-outline", "/cadastrarAdmin"],
-      ["Cadastro de Concedente", "mdi-domain", "/cadastrarOrganizacao"],
-      ["Cadastro de Vagas", "mdi-handshake-outline", "/cadastrarVagas"],
-      ["Cadastro de Curso", "mdi-book-plus-outline", "/cadastrarCurso"],
-      ["Cadastro de Coordenador de Instituição de Ensino", "mdi-account-tie", "/cadastrarCoordenadorCurso"],
-    ];
+    const rotasCrud = [];
 
     const rotasConsulta = [];
 
@@ -127,32 +118,47 @@ export default {
       roleUsuario.value = userRole; // Set the value of roleUsuario using ref
     };
 
+    watch(roleUsuario, (newRole) => {
+      if (newRole === "ADMIN") {
+        rotasCrud.push(
+          ["Cadastrar Instituição de Ensino", "mdi-store-plus-outline", "/cadastrarInstituicao"],
+          ["Cadastrar Setor", "mdi-text-box-plus-outline", "/cadastrarSetor"],
+          ["Cadastro de Curso", "mdi-book-plus-outline", "/cadastrarCurso"],
+          ["Cadastro de Vagas", "mdi-handshake-outline", "/cadastrarVagas"],
+          ["Cadastro de Concedente", "mdi-domain", "/cadastrarOrganizacao"],
+          ["Cadastrar Usuário", "mdi-file-account-outline", "/cadastrarAdmin"],
+        )
+      }
+    });
+
+    rotasCrud.push(
+      ["Cadastrar Estagiário", "mdi-account-plus-outline", "/cadastrarEstagiario"],
+      ["Cadastro de Coordenador de Instituição de Ensino", "mdi-account-tie", "/cadastrarCoordenadorCurso"],
+    );
+
     // Verifique se o usuário é ADMIN
     watch(roleUsuario, (newRole) => {
-      console.log("Role changed to:", newRole); // Debug log to check the role when it changes
       if (newRole === "ADMIN") {
-        console.log('AQUIAQUIAQUIAQUIAQUIAQUIAQUIAQUIAQUIAQUIAQUIAQUIAQUI');
         rotasConsulta.push([
           "Consultar Instituição de Ensino",
           "mdi-store-search-outline",
           "/consultarInstituicao",
-        ]);
+        ],
+        ["Consultar Setor", "mdi-file-search-outline", "/consultarSetor"],
+        ["Consultar Curso", "mdi-bookshelf", "/consultarCurso"],
+        ["Consultar Concedente", "mdi-text-box-search-outline", "/consultarConcedente"],
+        );
       }
     });
 
-    // As demais rotas são comuns para todos os usuários
     rotasConsulta.push(
       ["Consultar Estagiário", "mdi-account-search-outline", "/consultarEstagiario"],
       ["Consultar Coordenador de Instituição de Ensino", "mdi-account-tie", "/consultarCoordenadorCurso"],
-      ["Consultar Setor", "mdi-file-search-outline", "/consultarSetor"],
-      ["Consultar Vagas", "mdi-account-supervisor-outline", "/consultarVagas"],
-      ["Consultar Curso", "mdi-bookshelf", "/consultarCurso"],
+      ["Consultar Solicitação", "mdi-text-search-variant", "/consultarSolicitacao"],
       ["Consultar Contrato", "mdi-text-box-search-outline", "/consultarContrato"],
-      ["Consultar Concedente", "mdi-text-box-search-outline", "/consultarConcedente"],
-      ["Consultar Solicitação", "mdi-text-search-variant", "/consultarSolicitacao"]
+      ["Consultar Vagas", "mdi-account-supervisor-outline", "/consultarVagas"],
     );
 
-    // Use onMounted lifecycle hook to fetch the user role
     onMounted(() => {
       getRoleUsuario();
     });
