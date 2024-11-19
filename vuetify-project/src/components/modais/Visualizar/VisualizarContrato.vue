@@ -63,8 +63,17 @@
                 readonly
               ></v-text-field>
             </v-col>
+            <v-col cols="12" md="6">
+              <a
+                :href="urlContratoLink"
+                target="_blank"
+                class="text-grey-darken-1"
+                color="grey-darken-4"
+              >
+                Visualizar contrato
+              </a>
+            </v-col>
           </v-row>
-          
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -89,13 +98,19 @@ export default {
   },
   setup(props) {
     const contrato = ref({});
+    const urlContratoLink =
+      import.meta.env.VITE_BACKEND_URL + "/contrato/" + props.contratoId;
 
     const loadContrato = async () => {
       const response = await fetchContratoPorId(props.contratoId);
       if (response) {
         contrato.value = response;
-        contrato.value.dataInicioVigenciaSeguro = formatDate(contrato.value.dataInicioVigenciaSeguro);
-        contrato.value.dataFimVigenciaSeguro = formatDate(contrato.value.dataFimVigenciaSeguro);
+        contrato.value.dataInicioVigenciaSeguro = formatDate(
+          contrato.value.dataInicioVigenciaSeguro
+        );
+        contrato.value.dataFimVigenciaSeguro = formatDate(
+          contrato.value.dataFimVigenciaSeguro
+        );
       } else {
         console.error("Erro ao buscar contrato.");
       }
@@ -107,6 +122,7 @@ export default {
 
     return {
       contrato,
+      urlContratoLink,
     };
   },
 };
