@@ -1105,15 +1105,14 @@ export default {
         .set(options)
         .from(pdfContent)
         .toPdf()
-        .get("pdf")
-        .then(function (pdf) {
-          return pdf.output("blob");
-        });
+        .output("blob");
 
       pdfContent.style.display = "none";
 
+      const pdfFile = new File([pdfBlob], "contrato.pdf", { type: "application/pdf" });
+
       const contrato = montarContrato();
-      contrato.file = pdfBlob;
+      contrato.file = pdfFile;
 
       return contrato;
     };
@@ -1237,7 +1236,7 @@ export default {
         Swal.fire({
           title: "Ocorreu um problema ao gerar o contrato.",
           icon: "error",
-          confirmButtonText: "Ok"
+          confirmButtonText: "Ok",
         });
       }
     };
