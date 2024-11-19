@@ -245,7 +245,7 @@
     <v-container>
       <v-card flat>
         <v-card-title class="d-flex align-center pe-2">
-          Consulta de Admin
+          Consulta de Usuários
 
           <v-spacer></v-spacer>
 
