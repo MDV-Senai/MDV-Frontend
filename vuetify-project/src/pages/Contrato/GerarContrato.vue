@@ -1107,7 +1107,7 @@ export default {
         .toPdf()
         .get("pdf")
         .then(function (pdf) {
-          return pdf.output("blob");
+          return pdf;
         });
 
       pdfContent.style.display = "none";
