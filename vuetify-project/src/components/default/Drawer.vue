@@ -13,11 +13,7 @@
 
     <v-list density="compact" nav>
       <v-list-item
-        prepend-icon="mdi-chart-bar"
-        title="Dashboard"
-        value="dashboard"
-      ></v-list-item>
-      <v-list-item
+        v-if="roleUsuario == 'ADMIN'"
         prepend-icon="mdi-information"
         title="Gerar Contrato"
         value="contrato"
@@ -34,11 +30,6 @@
         title="Menu de Vagas"
         value="vagas"
         :to="rotaInfoVagas"
-      ></v-list-item>
-      <v-list-item
-        prepend-icon="mdi-account-group"
-        title="Administradores"
-        value="administradores"
       ></v-list-item>
       <v-list-group value="Actions">
         <template v-slot:activator="{ props }">
@@ -82,7 +73,7 @@
 </template>
 
 <script>
-import { ref, watch } from "vue";
+import { ref, watch, onMounted } from "vue";
 
 export default {
   data() {
@@ -99,6 +90,7 @@ export default {
   },
   setup(props, { emit }) {
     const localValue = ref(props.value);
+    const roleUsuario = ref(""); // Define roleUsuario as a ref
 
     watch(
       () => props.value,
@@ -112,69 +104,64 @@ export default {
     });
 
     const rotaInfoVagas = "/informacaoVagas";
-
     const rotaGerarContrato = "/gerarContrato";
-
     const rotaSolicitarVaga = "/cadastrarSolicitacaoVagas";
 
-    const rotasCrud = [
-      [
-        "Cadastrar Instituição",
-        "mdi-store-plus-outline",
-        "/cadastrarInstituicao",
-      ],
-      [
-        "Cadastrar Estagiário",
-        "mdi-account-plus-outline",
-        "/cadastrarEstagiario",
-      ],
-      ["Cadastrar Setor", "mdi-text-box-plus-outline", "/cadastrarSetor"],
-      ["Cadastrar Admin", "mdi-file-account-outline", "/cadastrarAdmin"],
-      ["Cadastro de Organização", "mdi-domain", "/cadastrarOrganizacao"],
-      ["Cadastro de Vagas", "mdi-handshake-outline", "/cadastrarVagas"],
-      ["Cadastro de Curso", "mdi-book-plus-outline", "/cadastrarCurso"],
-      [
-        "Cadastro de Coordenador de Instituição de Ensino",
-        "mdi-account-tie",
-        "/cadastrarCoordenadorCurso",
-      ],
-    ];
+    const rotasCrud = [];
 
-    const rotasConsulta = [
-      [
-        "Consultar Instituição",
-        "mdi-store-search-outline",
-        "/consultarInstituicao",
-      ],
-      [
-        "Consultar Estagiário",
-        "mdi-account-search-outline",
-        "/consultarEstagiario",
-      ],
-      [
-        "Consultar Coordenador de Instituição de Ensino",
-        "mdi-account-tie",
-        "/consultarCoordenadorCurso",
-      ],
-      ["Consultar Setor", "mdi-file-search-outline", "/consultarSetor"],
+    const rotasConsulta = [];
+
+    // Define a function to get the user role and set it in roleUsuario
+    const getRoleUsuario = () => {
+      const userRole = sessionStorage.getItem("userRole");
+      console.log("userRole from sessionStorage:", userRole); // Add debug log to check the value
+      roleUsuario.value = userRole; // Set the value of roleUsuario using ref
+    };
+
+    watch(roleUsuario, (newRole) => {
+      if (newRole === "ADMIN") {
+        rotasCrud.push(
+          ["Cadastrar Instituição de Ensino", "mdi-store-plus-outline", "/cadastrarInstituicao"],
+          ["Cadastrar Setor", "mdi-text-box-plus-outline", "/cadastrarSetor"],
+          ["Cadastro de Curso", "mdi-book-plus-outline", "/cadastrarCurso"],
+          ["Cadastro de Vagas", "mdi-handshake-outline", "/cadastrarVagas"],
+          ["Cadastro de Concedente", "mdi-domain", "/cadastrarOrganizacao"],
+          ["Cadastrar Usuário", "mdi-file-account-outline", "/cadastrarAdmin"],
+        )
+      }
+    });
+
+    rotasCrud.push(
+      ["Cadastrar Estagiário", "mdi-account-plus-outline", "/cadastrarEstagiario"],
+      ["Cadastro de Coordenador de Instituição de Ensino", "mdi-account-tie", "/cadastrarCoordenadorCurso"],
+    );
+
+    // Verifique se o usuário é ADMIN
+    watch(roleUsuario, (newRole) => {
+      if (newRole === "ADMIN") {
+        rotasConsulta.push([
+          "Consultar Instituição de Ensino",
+          "mdi-store-search-outline",
+          "/consultarInstituicao",
+        ],
+        ["Consultar Setor", "mdi-file-search-outline", "/consultarSetor"],
+        ["Consultar Curso", "mdi-bookshelf", "/consultarCurso"],
+        ["Consultar Concedente", "mdi-text-box-search-outline", "/consultarConcedente"],
+        );
+      }
+    });
+
+    rotasConsulta.push(
+      ["Consultar Estagiário", "mdi-account-search-outline", "/consultarEstagiario"],
+      ["Consultar Coordenador de Instituição de Ensino", "mdi-account-tie", "/consultarCoordenadorCurso"],
+      ["Consultar Solicitação", "mdi-text-search-variant", "/consultarSolicitacao"],
+      ["Consultar Contrato", "mdi-text-box-search-outline", "/consultarContrato"],
       ["Consultar Vagas", "mdi-account-supervisor-outline", "/consultarVagas"],
-      ["Consultar Curso", "mdi-bookshelf", "/consultarCurso"],
-      [
-        "Consultar Contrato",
-        "mdi-text-box-search-outline",
-        "/consultarContrato",
-      ],
-      [
-        "Consultar Concedente",
-        "mdi-text-box-search-outline",
-        "/consultarConcedente",
-      ],
-      [
-        "Consultar Solicitação",
-        "mdi-text-search-variant",
-        "/consultarSolicitacao",
-      ],
-    ];
+    );
+
+    onMounted(() => {
+      getRoleUsuario();
+    });
 
     return {
       localValue,
@@ -183,6 +170,7 @@ export default {
       rotasConsulta,
       rotaGerarContrato,
       rotaSolicitarVaga,
+      roleUsuario, // Return the roleUsuario ref
     };
   },
 };

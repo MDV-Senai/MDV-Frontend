@@ -4,64 +4,48 @@
       <v-icon
         v-bind="activatorProps"
         density="compact"
-        icon="mdi-pencil"
+        icon="mdi-eye-outline"
         class="my-icon-spacing light-green-darken-3-var"
       ></v-icon>
     </template>
 
     <template v-slot:default="{ isActive }">
-      <v-card class="d-flex justify-center text-center">
-        <div>
+      <v-card>
+        <v-card-text style="max-height: 500px; overflow-y: auto; padding: 16px">
           <v-row class="mx-5 my-5">
-            <v-col cols="12" md="12">
+            <v-col cols="12">
               <v-text-field
-                id="nome_prof"
-                placeholder="Digite o nome do professor"
+                v-model="usuario.name"
+                placeholder="Nome"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
+                readonly
               ></v-text-field>
             </v-col>
           </v-row>
           <v-row class="mx-5 my-5">
             <v-col cols="12" md="6">
               <v-text-field
-                id="numero_mat"
-                placeholder="Digite o número da matrícula"
+                v-model="usuario.role"
+                placeholder="Tipo de Usuário"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
+                readonly
               ></v-text-field>
             </v-col>
             <v-col cols="12" md="6">
               <v-text-field
-                id="inscricao"
-                placeholder="Digite o número da inscrição"
+                v-model="usuario.email"
+                placeholder="Email"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
+                readonly
               ></v-text-field>
             </v-col>
           </v-row>
-          <v-row class="mx-5">
-            <v-col cols="12" md="6">
-              <v-text-field
-                id="instituicao_ensino"
-                placeholder="Digite o nome da instituição de ensino"
-                class="text-grey-darken-1"
-                color="grey-darken-4"
-              ></v-text-field>
-            </v-col>
-            <v-col cols="12" md="6">
-              <v-text-field
-                id="curso"
-                placeholder="Digite o nome do curso"
-                class="text-grey-darken-1"
-                color="grey-darken-4"
-              ></v-text-field>
-            </v-col>
-          </v-row>
-        </div>
+        </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn text="Salvar" @click="isActive.value = false"></v-btn>
           <v-btn text="Fechar" @click="isActive.value = false"></v-btn>
         </v-card-actions>
       </v-card>
@@ -70,8 +54,37 @@
 </template>
 
 <script>
+import { ref, onMounted } from "vue";
+import { fetchUsuarioPorId } from '../../../services/AdminService';
+
 export default {
-  name: "EditarContrato",
+  props: {
+    usuarioId: {
+      type: String,
+      required: true,
+    },
+  },
+  setup(props) {
+    const usuario = ref({});
+
+    const loadUsuario = async () => {
+      const response = await fetchUsuarioPorId(props.usuarioId);
+      
+      if (response) {
+        usuario.value = response;
+      } else {
+        console.error("Erro ao buscar usuário.");
+      }
+    };
+
+    onMounted(() => {
+      loadUsuario();
+    });
+
+    return {
+      usuario,
+    };
+  },
 };
 </script>
 

@@ -165,31 +165,52 @@
         <v-row class="mx-5 my-5">
           <v-col cols="12">
             <h3 class="text-grey-darken-4">Cursos Homologados</h3>
-            <v-list>
-              <v-list-item
-                v-for="(curso, index) in instituicao.cursos"
-                :key="curso.id"
-              >
-                <v-list-item-content>
-                  <v-row class="d-flex align-center">
-                    <v-col class="d-flex" cols="auto">
-                      <v-list-item-title>
-                        {{ curso.cursoHomologado.nomeCurso }}
-                      </v-list-item-title>
-                    </v-col>
-                    <v-col class="ml-auto" cols="auto">
-                      <v-icon
-                        v-bind="activatorProps"
-                        density="compact"
-                        icon="mdi-delete"
-                        class="my-icon-spacing light-red-darken-3-var"
-                        @click="desfazerHomologacao(instituicao.id, curso.id)"
-                      ></v-icon>
-                    </v-col>
-                  </v-row>
-                </v-list-item-content>
-              </v-list-item>
-            </v-list>
+            <v-table>
+              <thead>
+                <tr>
+                  <th class="text-left">Nome do Curso</th>
+                  <th class="text-left">Coordenador</th>
+                  <th class="text-center">Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="curso in instituicao.cursos" :key="curso.id">
+                  <td class="text-left">
+                    {{ curso.cursoHomologado.nomeCurso }}
+                  </td>
+                  <td class="text-left">
+                    <select
+                      @change="updateCoordenador(curso, $event.target.value)"
+                    >
+                      <option
+                        v-if="curso.coordenador && curso.coordenador.nome"
+                        :value="curso.coordenador.id"
+                      >
+                        {{ curso.coordenador.nome }}
+                      </option>
+                      <option v-else value="">Coordenador não definido</option>
+                      <option
+                        v-if="!curso.coordenador"
+                        v-for="c in instituicao.coordenadores"
+                        :key="c.id"
+                        :value="c.id"
+                      >
+                        {{ c.nome }}
+                      </option>
+                    </select>
+                  </td>
+                  <td class="text-center">
+                    <v-icon
+                      v-bind="activatorProps"
+                      density="compact"
+                      icon="mdi-delete"
+                      class="my-icon-spacing light-red-darken-3-var"
+                      @click="desfazerHomologacao(instituicao.id, curso.id)"
+                    ></v-icon>
+                  </td>
+                </tr>
+              </tbody>
+            </v-table>
           </v-col>
         </v-row>
         <v-row class="mx-5 my-5">
@@ -232,17 +253,18 @@ import {
   fetchInstituicoesPorId,
   updateInstituicaoEnsino,
   homologarCursoNaInstituicaoEnsino,
-  desfazerHomologacaoCurso
+  desfazerHomologacaoCurso,
 } from "../../../services/InstituicoesService";
 import Swal from "sweetalert2";
 import { fetchCursos } from "@/services/CursosService";
+import { vincularCoordenador } from "@/services/CoordenadorCursoService";
 
 export default {
   data() {
     return {
       idCurso: null,
       rules: {
-        required: (value) =>!!value || "Este campo é obrigatório.",
+        required: (value) => !!value || "Este campo é obrigatório.",
       },
     };
   },
@@ -344,7 +366,6 @@ export default {
     const homologarCurso = async (instituicaoId, cursoId) => {
       try {
         const response = await homologarCursoNaInstituicaoEnsino(instituicaoId, cursoId);
-        console.log(response);
 
         if (!response.statusCode >= 400) {
           isDialogActive.value = false;
@@ -360,13 +381,8 @@ export default {
           throw new Error(response.message);
         }
       } catch (error) {
-        console.log(error);
         isDialogActive.value = false;
-
-        // Tratamento de erro
         const errorMessage = error?.response?.data?.message || error.message || "Erro desconhecido.";
-
-        console.log(errorMessage);
 
         Swal.fire({
           title: "Ocorreu um erro ao homologar o curso na instituição",
@@ -382,7 +398,6 @@ export default {
     const desfazerHomologacao = async (instituicaoId, cursoId) => {
       try {
         const response = await desfazerHomologacaoCurso(instituicaoId, cursoId);
-        console.log(response);
         if (response) {
           isDialogActive.value = false;
           Swal.fire({
@@ -401,6 +416,31 @@ export default {
       }
     };
 
+    const updateCoordenador = async (curso, coordenadorId) => {
+      try {
+        const response = await vincularCoordenador(
+          props.instId,
+          curso.id,
+          coordenadorId
+        );
+        if (response) {
+          isDialogActive.value = false;
+          Swal.fire({
+            title: "Atualização bem-sucedida!",
+            text: "Curso vinculado ao coordenador com sucesso.",
+            icon: "success",
+            confirmButtonText: "Ok",
+          }).then(() => {
+            window.location.reload();
+          });
+        } else {
+          throw new Error("Erro ao vincular curso.");
+        }
+      } catch (error) {
+        console.error(error.message);
+      }
+    };
+
     onMounted(() => {
       loadInstituicao();
       listarCursos();
@@ -412,7 +452,8 @@ export default {
       editInstituicao,
       homologarCurso,
       desfazerHomologacao,
-      cursos
+      cursos,
+      updateCoordenador,
     };
   },
 };
