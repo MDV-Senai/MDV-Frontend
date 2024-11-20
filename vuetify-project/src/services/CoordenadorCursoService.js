@@ -76,3 +76,21 @@ export async function updateCoordenador(coordId, coordData) {
     return null;
   }
 }
+
+export async function vincularCoordenador(instituicaoId, cursoId, coordenadorId) {
+  try {
+    const url = import.meta.env.VITE_BACKEND_URL + "/instituicao-ensino/" + instituicaoId + "/curso-homologado/" + cursoId + "/coordenador/" + coordenadorId;
+    console.log(url)
+    const token = sessionStorage.getItem('authToken');
+
+    const req = await axios.post(url, null, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+
+    return req;
+  } catch (error) {
+    console.log('Erro ao cadastrar curso: ' + error);
+  }
+}

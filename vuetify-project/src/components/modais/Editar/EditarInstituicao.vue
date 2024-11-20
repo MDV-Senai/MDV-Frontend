@@ -240,6 +240,7 @@ import {
 } from "../../../services/InstituicoesService";
 import Swal from "sweetalert2";
 import { fetchCursos } from "@/services/CursosService";
+import { vincularCoordenador } from "@/services/CoordenadorCursoService";
 
 export default {
   data() {
@@ -355,10 +356,9 @@ export default {
       }
     };
 
-    const updateCoordenador = (curso, coordenadorId) => {
-      console.log(curso)
-      console.log(coordenadorId)
-      console.log(instituicao.value)
+    const updateCoordenador = async (curso, coordenadorId) => {
+
+      const response = await vincularCoordenador(props.instId, curso.id, coordenadorId);
 
     };
 
