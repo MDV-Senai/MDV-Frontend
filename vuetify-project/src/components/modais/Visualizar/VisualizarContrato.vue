@@ -63,8 +63,17 @@
                 readonly
               ></v-text-field>
             </v-col>
+            <v-col cols="12" md="6">
+              <a
+                @click.prevent="downloadContrato"
+                class="text-grey-darken-1"
+                color="grey-darken-4"
+                href="#"
+              >
+                Baixar contrato
+              </a>
+            </v-col>
           </v-row>
-          
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -89,15 +98,46 @@ export default {
   },
   setup(props) {
     const contrato = ref({});
+    const urlContratoLink =
+      import.meta.env.VITE_BACKEND_URL +
+      "/contrato/" +
+      props.contratoId +
+      "/arquivo";
 
     const loadContrato = async () => {
       const response = await fetchContratoPorId(props.contratoId);
       if (response) {
         contrato.value = response;
-        contrato.value.dataInicioVigenciaSeguro = formatDate(contrato.value.dataInicioVigenciaSeguro);
-        contrato.value.dataFimVigenciaSeguro = formatDate(contrato.value.dataFimVigenciaSeguro);
+        contrato.value.dataInicioVigenciaSeguro = formatDate(
+          contrato.value.dataInicioVigenciaSeguro
+        );
+        contrato.value.dataFimVigenciaSeguro = formatDate(
+          contrato.value.dataFimVigenciaSeguro
+        );
       } else {
         console.error("Erro ao buscar contrato.");
+      }
+    };
+
+    const downloadContrato = async () => {
+      try {
+        const response = await fetch(urlContratoLink);
+        if (!response.ok) {
+          throw new Error("Erro ao buscar o contrato PDF.");
+        }
+
+        const blob = await response.blob();
+        const blobUrl = URL.createObjectURL(blob);
+
+        const link = document.createElement("a");
+        link.href = blobUrl;
+        link.download = "contrato.pdf";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(blobUrl);
+      } catch (error) {
+        console.error("Erro ao processar o contrato PDF:", error);
       }
     };
 
@@ -107,6 +147,7 @@ export default {
 
     return {
       contrato,
+      downloadContrato,
     };
   },
 };
