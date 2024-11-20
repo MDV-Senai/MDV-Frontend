@@ -166,6 +166,13 @@
                       <v-icon
                         v-bind="activatorProps"
                         density="compact"
+                        icon="mdi-pencil"
+                        class="my-icon-spacing light-green-darken-3-var"
+                        @click="desfazerHomologacao(instituicao.id, curso.id)"
+                      ></v-icon>
+                      <v-icon
+                        v-bind="activatorProps"
+                        density="compact"
                         icon="mdi-delete"
                         class="my-icon-spacing light-red-darken-3-var"
                         @click="desfazerHomologacao(instituicao.id, curso.id)"
@@ -217,7 +224,7 @@ import {
   fetchInstituicoesPorId,
   updateInstituicaoEnsino,
   homologarCursoNaInstituicaoEnsino,
-  desfazerHomologacaoCurso
+  desfazerHomologacaoCurso,
 } from "../../../services/InstituicoesService";
 import Swal from "sweetalert2";
 import { fetchCursos } from "@/services/CursosService";
@@ -227,7 +234,7 @@ export default {
     return {
       idCurso: null,
       rules: {
-        required: (value) =>!!value || "Este campo é obrigatório.",
+        required: (value) => !!value || "Este campo é obrigatório.",
       },
     };
   },
@@ -293,7 +300,10 @@ export default {
 
     const homologarCurso = async (instituicaoId, cursoId) => {
       try {
-        const response = await homologarCursoNaInstituicaoEnsino(instituicaoId, cursoId);
+        const response = await homologarCursoNaInstituicaoEnsino(
+          instituicaoId,
+          cursoId
+        );
         console.log(response);
         if (response) {
           isDialogActive.value = false;
@@ -346,7 +356,7 @@ export default {
       editInstituicao,
       homologarCurso,
       desfazerHomologacao,
-      cursos
+      cursos,
     };
   },
 };
