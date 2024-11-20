@@ -275,10 +275,7 @@
               <td class="text-center">
                 <VisualizarUsuario :usuarioId="item.id" />
                 <EditarUsuario :usuarioId="item.id" />
-                <DeletarItem
-                  :itemKey="'user'"
-                  :id="item.id"
-                />
+                <DeletarItem :itemKey="'user'" :id="item.id" />
               </td>
             </tr>
           </tbody>
@@ -365,6 +362,8 @@ export default {
           Swal.fire({
             title: "Cadastro Realizado com Sucesso!",
             icon: "success",
+          }).then(() => {
+            window.location.reload();
           });
           this.$refs.form.reset();
         }
