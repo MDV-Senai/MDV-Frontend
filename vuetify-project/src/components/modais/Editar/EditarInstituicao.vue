@@ -164,7 +164,7 @@
                     {{ curso.cursoHomologado.nomeCurso }}
                   </td>
                   <td class="text-left">
-                    <select @change="updateCoordenador(curso)">
+                    <select @change="updateCoordenador(curso, $event.target.value)">
                       <option
                         v-if="curso.coordenador && curso.coordenador.nome"
                         :value="curso.coordenador.id"
@@ -355,8 +355,9 @@ export default {
       }
     };
 
-    const updateCoordenador = (curso) => {
+    const updateCoordenador = (curso, coordenadorId) => {
       console.log(curso)
+      console.log(coordenadorId)
       console.log(instituicao.value)
 
     };
