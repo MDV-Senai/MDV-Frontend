@@ -150,38 +150,45 @@
         <v-row class="mx-5 my-5">
           <v-col cols="12">
             <h3 class="text-grey-darken-4">Cursos Homologados</h3>
-            <v-list>
-              <v-list-item
-                v-for="(curso, index) in instituicao.cursos"
-                :key="curso.id"
-              >
-                <v-list-item-content>
-                  <v-row class="d-flex align-center">
-                    <v-col class="d-flex" cols="auto">
-                      <v-list-item-title>
-                        {{ curso.cursoHomologado.nomeCurso }}
-                      </v-list-item-title>
-                    </v-col>
-                    <v-col class="ml-auto" cols="auto">
-                      <v-icon
-                        v-bind="activatorProps"
-                        density="compact"
-                        icon="mdi-pencil"
-                        class="my-icon-spacing light-green-darken-3-var"
-                        @click="desfazerHomologacao(instituicao.id, curso.id)"
-                      ></v-icon>
-                      <v-icon
-                        v-bind="activatorProps"
-                        density="compact"
-                        icon="mdi-delete"
-                        class="my-icon-spacing light-red-darken-3-var"
-                        @click="desfazerHomologacao(instituicao.id, curso.id)"
-                      ></v-icon>
-                    </v-col>
-                  </v-row>
-                </v-list-item-content>
-              </v-list-item>
-            </v-list>
+            <v-table>
+              <thead>
+                <tr>
+                  <th class="text-left">Nome do Curso</th>
+                  <th class="text-left">Coordenador</th>
+                  <th class="text-center">Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="curso in instituicao.cursos" :key="curso.id">
+                  <td class="text-left">
+                    {{ curso.cursoHomologado.nomeCurso }}
+                  </td>
+                  <td class="text-left">
+                    {{
+                      curso.coordenador && curso.coordenador.nome
+                        ? curso.coordenador.nome
+                        : "Coordenador não definido"
+                    }}
+                  </td>
+                  <td class="text-center">
+                    <v-icon
+                      v-bind="activatorProps"
+                      density="compact"
+                      icon="mdi-pencil"
+                      class="my-icon-spacing light-green-darken-3-var"
+                      @click="editar(instituicao.id, curso.id)"
+                    ></v-icon>
+                    <v-icon
+                      v-bind="activatorProps"
+                      density="compact"
+                      icon="mdi-delete"
+                      class="my-icon-spacing light-red-darken-3-var"
+                      @click="desfazerHomologacao(instituicao.id, curso.id)"
+                    ></v-icon>
+                  </td>
+                </tr>
+              </tbody>
+            </v-table>
           </v-col>
         </v-row>
         <v-row class="mx-5 my-5">
