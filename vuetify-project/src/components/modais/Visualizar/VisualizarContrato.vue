@@ -70,7 +70,7 @@
                 class="text-grey-darken-1"
                 color="grey-darken-4"
               >
-                Visualizar contrato
+                Baixar contrato
               </a>
             </v-col>
           </v-row>
