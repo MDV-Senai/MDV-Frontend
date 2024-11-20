@@ -16,6 +16,7 @@
             <v-col cols="12">
               <v-text-field
                 v-model="instituicao.nomeFantasia"
+                label="Nome Fantasia"
                 placeholder="Nome da instituição"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -27,6 +28,7 @@
             <v-col cols="12">
               <v-text-field
                 v-model="instituicao.razaoSocial"
+                label="Razão Social"
                 placeholder="Razão social"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -38,6 +40,7 @@
             <v-col cols="12" md="6">
               <v-text-field
                 v-model="instituicao.cnpj"
+                label="CNPJ"
                 placeholder="cnpj"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -47,6 +50,7 @@
             <v-col cols="12" md="6">
               <v-text-field
                 v-model="instituicao.inscricaoEstadual"
+                label="Inscrição Estadual"
                 placeholder="inscirção estadual"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -58,6 +62,7 @@
             <v-col cols="12" md="6">
               <v-text-field
                 v-model="instituicao.telefone"
+                label="Telefone"
                 placeholder="Telefone"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -67,6 +72,7 @@
             <v-col cols="12" md="6">
               <v-text-field
                 v-model="instituicao.email"
+                label="E-mail"
                 placeholder="Email"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -78,6 +84,7 @@
             <v-col cols="12" md="6">
               <v-text-field
                 v-model="instituicao.cep"
+                label="CEP"
                 placeholder="cep"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -87,6 +94,7 @@
             <v-col cols="12" md="6">
               <v-text-field
                 v-model="instituicao.cidade"
+                label="Cidade"
                 placeholder="cidade"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -98,6 +106,7 @@
             <v-col cols="12" md="6">
               <v-text-field
                 v-model="instituicao.estado"
+                label="Estado"
                 placeholder="estado"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -107,6 +116,7 @@
             <v-col cols="12" md="6">
               <v-text-field
                 v-model="instituicao.bairro"
+                label="Bairro"
                 placeholder="bairro"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -118,6 +128,7 @@
             <v-col cols="12" md="6">
               <v-text-field
                 v-model="instituicao.rua"
+                label="Rua"
                 placeholder="rua"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -127,6 +138,7 @@
             <v-col cols="12" md="6">
               <v-text-field
                 v-model="instituicao.numero"
+                label="Número"
                 placeholder="numero"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -138,6 +150,7 @@
             <v-col cols="12" md="4">
               <v-text-field
                 v-model="instituicao.complemento"
+                label="Complemento"
                 placeholder="complemento"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -147,6 +160,7 @@
             <v-col cols="12" md="4">
               <v-text-field
                 v-model="instituicao.responsavelLegal"
+                label="Responsável Legal"
                 placeholder="responsavelLegal"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -156,6 +170,7 @@
             <v-col cols="12" md="4">
               <v-text-field
                 v-model="instituicao.responsavelLegalContato"
+                label="Contato Responsável Legal"
                 placeholder="responsavelLegalContato"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -168,31 +183,17 @@
               <h3 class="text-grey-darken-4">Cursos Homologados</h3>
               <v-list>
                 <v-list-item
-                  v-for="(curso, index) in instituicao.cursosHomologados"
-                  :key="index"
+                  v-for="(curso, index) in instituicao.cursos"
+                  :key="curso.id"
                 >
                   <v-list-item-content>
-                    <v-list-item-title>
-                      {{ curso.nomeCurso }}
-                      <v-icon
-                        v-bind="activatorProps"
-                        density="compact"
-                        icon="mdi-check"
-                        class="my-icon-spacing light-green-darken-3-var"
-                      ></v-icon>
-                      <v-icon
-                        v-bind="activatorProps"
-                        density="compact"
-                        icon="mdi-pencil"
-                        class="my-icon-spacing light-green-darken-3-var"
-                      ></v-icon>
-                      <v-icon
-                        v-bind="activatorProps"
-                        density="compact"
-                        icon="mdi-delete"
-                        class="my-icon-spacing light-red-darken-3-var"
-                      ></v-icon>
-                    </v-list-item-title>
+                    <v-row class="d-flex align-center">
+                      <v-col class="d-flex" cols="left">
+                        <v-list-item-title>
+                          {{ curso.cursoHomologado.nomeCurso }}
+                        </v-list-item-title>
+                      </v-col>
+                    </v-row>
                   </v-list-item-content>
                 </v-list-item>
               </v-list>

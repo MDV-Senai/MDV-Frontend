@@ -82,11 +82,11 @@ export async function updateInstituicaoEnsino(instId, instituicaoData) {
 }
 
 export async function homologarCursoNaInstituicaoEnsino(instituicaoId, cursoId) {
+  let response = null;
+
   try {
     const token = sessionStorage.getItem('authToken');
-    console.log(token);
-    console.log(`${import.meta.env.VITE_BACKEND_URL}/instituicao-ensino/${instituicaoId}/cursos-homologados/${cursoId}`)
-    const response = await axios.post(
+    response = await axios.post(
       `${import.meta.env.VITE_BACKEND_URL}/instituicao-ensino/${instituicaoId}/cursos-homologados/${cursoId}`, {},
       {
         headers: {
@@ -94,11 +94,15 @@ export async function homologarCursoNaInstituicaoEnsino(instituicaoId, cursoId) 
         }
       }
     );
-    console.log(response);
-
+    
     return response.data;
   } catch (error) {
-    console.error("Erro ao atualizar instituicao:", error);
+    console.error("Erro ao atualizar instituição:", error);
+
+    if (error.response) {
+      return error.response.data;
+    }
+
     return null;
   }
 }

@@ -160,7 +160,7 @@
           </v-col>
         </v-row>
         <v-row id="inputResponsivo" class="d-flex justify-center">
-          <v-col cols="12" md="4">
+          <v-col cols="12" md="6">
             <v-autocomplete
               label="Instituição De Ensino"
               :rules="[rules.required]"
@@ -173,7 +173,7 @@
               @input="onInstituicaoChange"
             ></v-autocomplete>
           </v-col>
-          <v-col cols="6" md="4">
+          <v-col cols="6" md="6">
             <v-autocomplete
               v-model="idCurso"
               label="Curso"
@@ -184,18 +184,6 @@
               :item-title="'cursoHomologado.nomeCurso'"
               :item-value="'id'"
             ></v-autocomplete>
-          </v-col>
-          <v-col cols="6" md="4">
-            <v-text-field
-              label="Período"
-              :rules="[rules.required]"
-              v-model="periodo"
-              maxlength="2"
-              counter
-              clearable
-              class="text-grey-darken-4"
-              variant="outlined"
-            ></v-text-field>
           </v-col>
         </v-row>
 
@@ -413,7 +401,6 @@ export default {
       instituicaoEnsino: null,
       cursos: [],
       instituicoes: [],
-      periodo: null,
       nomeProfessorResp: null,
       cep: null,
       numero: null,
