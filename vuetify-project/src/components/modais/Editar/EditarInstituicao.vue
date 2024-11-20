@@ -164,20 +164,25 @@
                     {{ curso.cursoHomologado.nomeCurso }}
                   </td>
                   <td class="text-left">
-                    {{
-                      curso.coordenador && curso.coordenador.nome
-                        ? curso.coordenador.nome
-                        : "Coordenador não definido"
-                    }}
+                    <select>
+                      <option
+                        v-if="curso.coordenador && curso.coordenador.nome"
+                        :value="curso.coordenador.id"
+                      >
+                        {{ curso.coordenador.nome }}
+                      </option>
+                      <option v-else value="">Coordenador não definido</option>
+                      <option
+                        v-if="!curso.coordenador"
+                        v-for="c in instituicao.cursos"
+                        :key="c.id"
+                        :value="c.id"
+                      >
+                        {{ c.cursoHomologado.nomeCurso }}
+                      </option>
+                    </select>
                   </td>
                   <td class="text-center">
-                    <v-icon
-                      v-bind="activatorProps"
-                      density="compact"
-                      icon="mdi-pencil"
-                      class="my-icon-spacing light-green-darken-3-var"
-                      @click="editar(instituicao.id, curso.id)"
-                    ></v-icon>
                     <v-icon
                       v-bind="activatorProps"
                       density="compact"
