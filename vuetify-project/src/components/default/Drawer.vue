@@ -14,12 +14,6 @@
     <v-list density="compact" nav>
       <v-list-item
         v-if="roleUsuario == 'ADMIN'"
-        prepend-icon="mdi-chart-bar"
-        title="Dashboard"
-        value="dashboard"
-      ></v-list-item>
-      <v-list-item
-        v-if="roleUsuario == 'ADMIN'"
         prepend-icon="mdi-information"
         title="Gerar Contrato"
         value="contrato"
