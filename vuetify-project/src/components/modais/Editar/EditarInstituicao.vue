@@ -367,20 +367,22 @@ export default {
       try {
         const response = await homologarCursoNaInstituicaoEnsino(instituicaoId, cursoId);
 
-        if (!response.statusCode >= 400) {
-          isDialogActive.value = false;
-          Swal.fire({
-            title: "Atualização bem-sucedida!",
-            text: "O curso foi homologado com sucesso.",
-            icon: "success",
-            confirmButtonText: "Ok",
-          }).then(() => {
-            window.location.reload();
-          });
-        } else {
+        if (response.statusCode && response.statusCode >= 400) {
           throw new Error(response.message);
         }
+
+        isDialogActive.value = false;
+        Swal.fire({
+          title: "Atualização bem-sucedida!",
+          text: "O curso foi homologado com sucesso.",
+          icon: "success",
+          confirmButtonText: "Ok",
+        }).then(() => {
+          window.location.reload();
+        });
+
       } catch (error) {
+        
         isDialogActive.value = false;
         const errorMessage = error?.response?.data?.message || error.message || "Erro desconhecido.";
 
