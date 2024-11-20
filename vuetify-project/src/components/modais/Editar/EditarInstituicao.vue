@@ -164,7 +164,9 @@
                     {{ curso.cursoHomologado.nomeCurso }}
                   </td>
                   <td class="text-left">
-                    <select @change="updateCoordenador(curso, $event.target.value)">
+                    <select
+                      @change="updateCoordenador(curso, $event.target.value)"
+                    >
                       <option
                         v-if="curso.coordenador && curso.coordenador.nome"
                         :value="curso.coordenador.id"
@@ -357,9 +359,28 @@ export default {
     };
 
     const updateCoordenador = async (curso, coordenadorId) => {
-
-      const response = await vincularCoordenador(props.instId, curso.id, coordenadorId);
-
+      try {
+        const response = await vincularCoordenador(
+          props.instId,
+          curso.id,
+          coordenadorId
+        );
+        if (response) {
+          isDialogActive.value = false;
+          Swal.fire({
+            title: "Atualização bem-sucedida!",
+            text: "Curso vinculado ao coordenador com sucesso.",
+            icon: "success",
+            confirmButtonText: "Ok",
+          }).then(() => {
+            window.location.reload();
+          });
+        } else {
+          throw new Error("Erro ao vincular curso.");
+        }
+      } catch (error) {
+        console.error(error.message);
+      }
     };
 
     onMounted(() => {
