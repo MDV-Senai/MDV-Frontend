@@ -65,10 +65,10 @@
             </v-col>
             <v-col cols="12" md="6">
               <a
-                :href="urlContratoLink"
-                target="_blank"
+                @click.prevent="downloadContrato"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
+                href="#"
               >
                 Baixar contrato
               </a>
@@ -99,7 +99,10 @@ export default {
   setup(props) {
     const contrato = ref({});
     const urlContratoLink =
-      import.meta.env.VITE_BACKEND_URL + "/contrato/" + props.contratoId;
+      import.meta.env.VITE_BACKEND_URL +
+      "/contrato/" +
+      props.contratoId +
+      "/arquivo";
 
     const loadContrato = async () => {
       const response = await fetchContratoPorId(props.contratoId);
@@ -116,13 +119,35 @@ export default {
       }
     };
 
+    const downloadContrato = async () => {
+      try {
+        const response = await fetch(urlContratoLink);
+        if (!response.ok) {
+          throw new Error("Erro ao buscar o contrato PDF.");
+        }
+
+        const blob = await response.blob();
+        const blobUrl = URL.createObjectURL(blob);
+
+        const link = document.createElement("a");
+        link.href = blobUrl;
+        link.download = "contrato.pdf";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(blobUrl);
+      } catch (error) {
+        console.error("Erro ao processar o contrato PDF:", error);
+      }
+    };
+
     onMounted(() => {
       loadContrato();
     });
 
     return {
       contrato,
-      urlContratoLink,
+      downloadContrato,
     };
   },
 };
