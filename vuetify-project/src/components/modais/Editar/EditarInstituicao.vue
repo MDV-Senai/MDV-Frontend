@@ -164,7 +164,7 @@
                     {{ curso.cursoHomologado.nomeCurso }}
                   </td>
                   <td class="text-left">
-                    <select>
+                    <select @change="updateCoordenador(curso)">
                       <option
                         v-if="curso.coordenador && curso.coordenador.nome"
                         :value="curso.coordenador.id"
@@ -316,7 +316,6 @@ export default {
           instituicaoId,
           cursoId
         );
-        console.log(response);
         if (response) {
           isDialogActive.value = false;
           Swal.fire({
@@ -338,7 +337,6 @@ export default {
     const desfazerHomologacao = async (instituicaoId, cursoId) => {
       try {
         const response = await desfazerHomologacaoCurso(instituicaoId, cursoId);
-        console.log(response);
         if (response) {
           isDialogActive.value = false;
           Swal.fire({
@@ -357,6 +355,12 @@ export default {
       }
     };
 
+    const updateCoordenador = (curso) => {
+      console.log(curso)
+      console.log(instituicao.value)
+
+    };
+
     onMounted(() => {
       loadInstituicao();
       listarCursos();
@@ -369,6 +373,7 @@ export default {
       homologarCurso,
       desfazerHomologacao,
       cursos,
+      updateCoordenador,
     };
   },
 };
