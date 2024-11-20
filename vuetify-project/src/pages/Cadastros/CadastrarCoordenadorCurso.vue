@@ -7,8 +7,24 @@
       >
     </div>
     <div id="fundoCards">
-      <v-form ref="form" id="form" class="mx-auto">
-        <v-row class="d-flex justify-center mt-8">
+      <v-form ref="form" id="form" class="mx-auto mt-12">
+        <v-row v-if="roleUsuario == 'ADMIN'" class="d-flex justify-center">
+          <v-col cols="12" md="12">
+            <v-autocomplete
+              label="Instituição De Ensino"
+              :rules="[rules.required]"
+              v-model="instituicaoEnsino"
+              class="text-grey-darken-4"
+              variant="outlined"
+              :items="instituicoes"
+              item-title="nomeFantasia"
+              item-value="id"
+              @input="onInstituicaoChange"
+            ></v-autocomplete>
+          </v-col>
+        </v-row>
+
+        <v-row class="d-flex justify-center">
           <v-col cols="12" md="12">
             <v-text-field
               label="Nome do Coordenador do Curso"
@@ -114,6 +130,7 @@ import {
 } from "@/validations/formValidations";
 import { cadastrarCoordenadorCurso } from "../../services/CoordenadorCursoService";
 import Swal from 'sweetalert2'
+import { fetchInstituicoes } from "@/services/InstituicoesService.js";
 export default {
   data() {
     return {
@@ -121,13 +138,15 @@ export default {
       nomeSocialCoordenadorCurso: null,
       email: null,
       telefone: null,
-      idInstituicaoEnsino: null,
+
+      instituicaoEnsino: null,
+      instituicoes: [],
+
       rules: {
         required: (value) => !!value || "Obrigatório.",
         email: (value) => emailValidation(value),
         fullname: (value) => fullNameValidation(value),
       },
-      listaInstituicao: [],
     };
   },
   watch: {
@@ -151,7 +170,7 @@ export default {
           nomeSocial: this.nomeSocialCoordenadorCurso,
           email: this.email,
           fone: removeMascara(this.telefone),
-          idInstituicaoEnsino: '62b266ca-714e-4ccc-928d-1fa995fa9b4e',
+          idInstituicaoEnsino: this.instituicaoEnsino,
         };
 
         const response = await cadastrarCoordenadorCurso(data);
@@ -167,9 +186,24 @@ export default {
       }
     },
 
+    async getRoleUsuario() {
+      const userRole = sessionStorage.getItem("userRole");
+      this.roleUsuario = userRole;
+    },
+
+    async loadInstituicaoEnsino() {
+      const response = await fetchInstituicoes();
+      this.instituicoes = response;
+    },
+
     reset() {
       this.$refs.form.reset();
     },
+  },
+
+  mounted() {
+    this.getRoleUsuario();
+    this.loadInstituicaoEnsino();
   },
 };
 </script>
