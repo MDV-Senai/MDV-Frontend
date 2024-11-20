@@ -7,8 +7,8 @@
       >
     </div>
     <div id="fundoCards">
-      <v-form ref="form" id="form" class="mx-auto">
-        <v-row v-if="roleUsuario == 'ADMIN'" class="d-flex justify-center mt-8">
+      <v-form ref="form" id="form" class="mx-auto mt-12">
+        <v-row v-if="roleUsuario == 'ADMIN'" class="d-flex justify-center">
           <v-col cols="12" md="12">
             <v-autocomplete
               label="Instituição De Ensino"
@@ -24,7 +24,7 @@
           </v-col>
         </v-row>
 
-        <v-row class="d-flex justify-center mt-8">
+        <v-row class="d-flex justify-center">
           <v-col cols="12" md="12">
             <v-autocomplete
               v-model="idCurso"

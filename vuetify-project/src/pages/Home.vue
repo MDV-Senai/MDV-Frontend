@@ -11,7 +11,7 @@
                 :class="{ 'on-hover': isHovering }"
                 :elevation="isHovering ? 16 : 2"
                 v-bind="props"
-                class="py-14 my-15 w-100 light-green-darken-3-var"
+                class="py-10 my-15 w-100 light-green-darken-3-var"
                 variant="plain"
               >
                 <v-btn icon flat>
@@ -20,7 +20,7 @@
                   >
                 </v-btn>
                 <div class= "d-flex flex-column">
-                <v-card-title>Cadastrar<br>Instituição</v-card-title> 
+                <v-card-title>Cadastrar<br>Instituição de<br>Ensino</v-card-title> 
                 </div>
               </v-card>
             </RouterLink>
@@ -105,7 +105,7 @@
                   >mdi-file-account-outline</v-icon
                 >
               </v-btn>
-             <v-card-title>Cadastro de<br>Admin</v-card-title> 
+             <v-card-title>Cadastrar<br>Usuário</v-card-title> 
             </v-card>
           </RouterLink>
            </v-hover>
