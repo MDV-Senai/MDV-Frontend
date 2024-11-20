@@ -8,7 +8,7 @@
   >
     <v-list-item
       prepend-icon="mdi-account-circle-outline"
-      title="Nome do Usuário"
+      :title="username"
     ></v-list-item>
 
     <v-list density="compact" nav>
@@ -76,6 +76,12 @@
 import { ref, watch, onMounted } from "vue";
 
 export default {
+  data() {
+    return {
+      username: sessionStorage.getItem('username'),
+    }
+  },
+
   props: {
     value: {
       type: Boolean,

@@ -101,13 +101,12 @@
           <v-col cols="12" md="4">
             <v-text-field
               label="Fase/Série do Estagiário"
-              maxlength="255"
-              counter
+              type="number"
               clearable
               class="text-grey-darken-4"
               variant="outlined"
               v-model="formData.faseSerieEstagiario"
-              :rules="[rules.required]"
+              :rules="[rules.required, rules.maxTwoDigits]"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
@@ -162,13 +161,12 @@
           <v-col cols="12" md="4">
             <v-text-field
               label="Carga Horária Total do Estágio Por Aluno"
-              maxlength="255"
-              counter
+              type="number"
               clearable
               class="text-grey-darken-4"
               variant="outlined"
               v-model="formData.cargaHorariaTotalEstagio"
-              :rules="[rules.required]"
+              :rules="[rules.required, rules.maxFourDigits]"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
@@ -1042,6 +1040,12 @@ export default {
 
     const rules = {
       required: (value) => !!value || "Obrigatório.",
+      maxTwoDigits: (value) => {
+        return value && value.length <= 2 || "Máximo de 2 dígitos";
+      },
+      maxFourDigits: (value) => {
+        return value && value.length <= 4 || "Máximo de 4 dígitos";
+      }
     };
 
     watch(selectedEstagiario, loadEstagiario);
@@ -1064,10 +1068,10 @@ export default {
     const formData = ref({
       cidadeGeracao: "",
       numeroCooperacaoTecnicaInstituicaoEnsino: "",
-      faseSerieEstagiario: "",
+      faseSerieEstagiario: null,
       numRegistroOrgaoClasseEstadoProfOrientador: "",
       nomeSeguradora: "",
-      cargaHorariaTotalEstagio: "",
+      cargaHorariaTotalEstagio: null,
       horarioEntradaEstagio: "",
       horarioSaidaEstagio: "",
       dataInicioEstagio: "",
@@ -1124,10 +1128,10 @@ export default {
       formData.value = {
         cidadeGeracao: "",
         numeroCooperacaoTecnicaInstituicaoEnsino: "",
-        faseSerieEstagiario: "",
+        faseSerieEstagiario: null,
         numRegistroOrgaoClasseEstadoProfOrientador: "",
         nomeSeguradora: "",
-        cargaHorariaTotalEstagio: "",
+        cargaHorariaTotalEstagio: null,
         horarioEntradaEstagio: "",
         horarioSaidaEstagio: "",
         dataInicioEstagio: "",
