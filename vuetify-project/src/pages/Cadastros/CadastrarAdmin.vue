@@ -69,9 +69,7 @@
         </v-row>
 
         <v-row
-          v-if="
-            tipoUsuario == 'INST_ENSINO'
-          "
+          v-if="tipoUsuario == 'INST_ENSINO'"
           class="d-flex justify-center"
         >
           <v-col cols="12" md="12">
@@ -262,42 +260,28 @@
         </v-card-title>
 
         <v-divider></v-divider>
-        <v-data-table
-          :headers="headers"
-          :items="filteredBoats"
-          height="400"
-          item-value="name"
-        >
-          <template v-slot:item="{ item }">
+        <v-data-table height="400" item-value="name">
+          <thead>
             <tr>
-              <td>{{ item.name }}</td>
-              <td>{{ item.speed }}</td>
-              <td>
-                <v-btn
-                  v-bind="activatorProps"
-                  @click="handleButtonClick(item.name)"
-                  density="compact"
-                  icon="mdi-eye-outline"
-                  variant="outlined"
-                  class="light-green-darken-3-var"
-                ></v-btn>
-                <v-btn
-                  v-bind="activatorProps"
-                  density="compact"
-                  icon="mdi-pencil"
-                  class="mx-5 light-green-darken-3-var"
-                  variant="outlined"
-                ></v-btn>
-                <v-btn
-                  v-bind="activatorProps"
-                  density="compact"
-                  icon="mdi-delete"
-                  variant="outlined"
-                  class="light-green-darken-3-var"
-                ></v-btn>
+              <th class="text-left">Nome</th>
+              <th class="text-left">Tipo de Usuário</th>
+              <th class="text-center">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="item in usuarios" :key="item.id">
+              <td class="text-left">{{ item.name }}</td>
+              <td class="text-left">{{ item.role }}</td>
+              <td class="text-center">
+                <VisualizarUsuario :usuarioId="item.id" />
+                <EditarUsuario :usuarioId="item.id" />
+                <DeletarItem
+                  :itemKey="'user'"
+                  :id="item.id"
+                />
               </td>
             </tr>
-          </template>
+          </tbody>
         </v-data-table>
       </v-card>
     </v-container>
@@ -311,7 +295,7 @@ import {
   emailValidation,
 } from "@/validations/formValidations";
 import { fetchInstituicoes } from "@/services/InstituicoesService.js";
-import { cadastrarAdmin } from "../../services/AdminService";
+import { cadastrarAdmin, fetchUsuarios } from "../../services/AdminService";
 import Swal from "sweetalert2";
 
 export default {
@@ -319,6 +303,7 @@ export default {
     return {
       instituicaoEnsino: null,
       instituicoes: [],
+      usuarios: [],
       tipoUsuario: null,
       senha: null,
       nome: null,
@@ -346,89 +331,30 @@ export default {
       search: "",
       headers: [
         { title: "Nome", align: "start", key: "name" },
-        { title: "Nº da matricula", align: "start", key: "speed" },
+        { title: "Tipo do Usuário", align: "start", key: "speed" },
         { title: "Ações", align: "start", sortable: false },
-      ],
-      boats: [
-        {
-          name: "Speedster",
-          speed: 35,
-        },
-        {
-          name: "OceanMaster",
-          speed: 25,
-        },
-        {
-          name: "Voyager",
-          speed: 20,
-        },
-        {
-          name: "WaveRunner",
-          speed: 40,
-        },
-        {
-          name: "SeaBreeze",
-          speed: 28,
-        },
-        {
-          name: "HarborGuard",
-          speed: 18,
-        },
-        {
-          name: "SlickFin",
-          speed: 33,
-        },
-        {
-          name: "StormBreaker",
-          speed: 22,
-        },
-        {
-          name: "WindSail",
-          speed: 15,
-        },
-        {
-          name: "FastTide",
-          speed: 37,
-        },
       ],
     };
   },
 
-  computed: {
-    virtualBoats() {
-      return [...Array(10).keys()].map((i) => {
-        const boat = { ...this.boats[i % this.boats.length] };
-        boat.name = `${boat.name} #${i}`;
-        return boat;
-      });
-    },
-    filteredBoats() {
-      if (!this.search) {
-        return this.virtualBoats;
-      }
-      const searchTerm = this.search.toLowerCase();
-      return this.virtualBoats.filter(
-        (boat) =>
-          boat.name.toLowerCase().includes(searchTerm) ||
-          String(boat.speed).includes(searchTerm)
-      );
-    },
-  },
   methods: {
     reset() {
       this.$refs.form.reset();
     },
 
-    async enviarDados() {
-      const removeMascara = (valor) => (valor ? valor.replace(/\D/g, "") : "");
+    async loadUsuarios() {
+      const response = await fetchUsuarios();
+      this.usuarios = response;
+    },
 
+    async enviarDados() {
       if (this.$refs.form.validate()) {
         const data = {
           name: this.nome,
           email: this.email,
           password: this.senha,
           role: this.tipoUsuario,
-          instituicaoEnsinoId: this.instituicaoEnsino
+          instituicaoEnsinoId: this.instituicaoEnsino,
         };
 
         console.log(data);
@@ -448,7 +374,6 @@ export default {
     async loadInstituicaoEnsino() {
       const response = await fetchInstituicoes();
       this.instituicoes = response;
-      console.log(this.instituicoes);
     },
 
     handleButtonClick(item) {
@@ -458,6 +383,7 @@ export default {
 
   mounted() {
     this.loadInstituicaoEnsino();
+    this.loadUsuarios();
   },
 };
 </script>
