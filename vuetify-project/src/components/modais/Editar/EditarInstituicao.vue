@@ -174,11 +174,11 @@
                       <option v-else value="">Coordenador não definido</option>
                       <option
                         v-if="!curso.coordenador"
-                        v-for="c in instituicao.cursos"
+                        v-for="c in instituicao.coordenadores"
                         :key="c.id"
                         :value="c.id"
                       >
-                        {{ c.cursoHomologado.nomeCurso }}
+                        {{ c.nome }}
                       </option>
                     </select>
                   </td>
