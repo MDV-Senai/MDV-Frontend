@@ -5,11 +5,11 @@ Este é o projeto frontend desenvolvido para a Maternidade Darcy Vargas. Seu pri
 # Índice
 
 1. [Pré-requisitos](#Pré-requisitos)
-   - 1.1. [Docker](#Docker)
+   - 1.1. [Docker](#1.Docker)
 #
 ## Pré-requisitos
 
-### Docker
+### 1.Docker
 [Docker Desktop para Windows](https://docs.docker.com/desktop/setup/install/windows-install/)
 <br>
 [Docker Engine para Linux](https://docs.docker.com/engine/install/ubuntu/)
