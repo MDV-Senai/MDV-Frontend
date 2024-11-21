@@ -256,7 +256,6 @@ export default {
       const response = await fetchEstagiarioPorId(props.estgId);
       if (response) {
         estagiario.value = response;
-        console.log(estagiario.value);
       } else {
         console.error("Erro ao buscar estagiario.");
       }

@@ -228,7 +228,6 @@ export default {
     async listarVagas() {
       const response = await fetchVagasParaExibicao();
       this.vagas = response;
-      console.log(this.vagas);
     },
 
     async enviarDados() {
@@ -236,14 +235,12 @@ export default {
         const dadosLogin = await login(this.email, this.senha);
 
         if (dadosLogin) {
-          console.log("Login realizado com sucesso, token:", dadosLogin);
           Swal.fire({
             title: "Login realizado com Sucesso!",
             icon: "success",
           });
           setTimeout(() => this.$router.push("/home"), 2000);
         } else {
-          console.error("Falha no login");
           Swal.fire({
             title: "O usuário ou senha é inválido!",
             icon: "error",

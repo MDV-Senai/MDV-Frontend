@@ -45,7 +45,7 @@ export async function updateSetor(setorId, setor) {
     const url = `${import.meta.env.VITE_BACKEND_URL}/setor/${setorId}`;
 
     setor.telefoneCoordenador = removeMascara(setor.telefoneCoordenador);
-    
+
     const token = sessionStorage.getItem('authToken');
     const response = await axios.patch(url, setor, {
       headers: {
@@ -63,7 +63,6 @@ export async function updateSetor(setorId, setor) {
 export async function cadastrarSetor(data) {
   try {
     const url = import.meta.env.VITE_BACKEND_URL + "/setor";
-    console.log(data);
     const token = sessionStorage.getItem('authToken');
     const req = await axios.post(url, data, {
       headers: {
@@ -72,7 +71,7 @@ export async function cadastrarSetor(data) {
     });
     return req;
   } catch (error) {
-    console.log('Erro ao cadastrar Setor: ' + error);
+    console.error('Erro ao cadastrar Setor: ' + error);
     return null;
   }
 }
@@ -99,7 +98,7 @@ export async function cadastrarAtividade(data) {
 
     return resultados;
   } catch (error) {
-    console.log('Erro ao cadastrar atividade: ', error);
+    console.error('Erro ao cadastrar atividade: ', error);
     return null;
   }
 }

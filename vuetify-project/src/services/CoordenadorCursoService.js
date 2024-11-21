@@ -5,8 +5,6 @@ export async function cadastrarCoordenadorCurso(data) {
     const url = import.meta.env.VITE_BACKEND_URL + "/coordenador-instituicao-ensino";
 
     const token = sessionStorage.getItem('authToken');
-
-    console.log(data);
     const req = await axios.post(url, data, {
       headers: {
         'Authorization': `Bearer ${token}`
@@ -15,7 +13,7 @@ export async function cadastrarCoordenadorCurso(data) {
 
     return req;
   } catch (error) {
-    console.log('Erro ao cadastrar curso: ' + error);
+    console.error('Erro ao cadastrar curso: ' + error);
   }
 }
 
@@ -80,7 +78,6 @@ export async function updateCoordenador(coordId, coordData) {
 export async function vincularCoordenador(instituicaoId, cursoId, coordenadorId) {
   try {
     const url = import.meta.env.VITE_BACKEND_URL + "/instituicao-ensino/" + instituicaoId + "/curso-homologado/" + cursoId + "/coordenador/" + coordenadorId;
-    console.log(url)
     const token = sessionStorage.getItem('authToken');
 
     const req = await axios.post(url, null, {
@@ -91,6 +88,6 @@ export async function vincularCoordenador(instituicaoId, cursoId, coordenadorId)
 
     return req;
   } catch (error) {
-    console.log('Erro ao cadastrar curso: ' + error);
+    console.error('Erro ao cadastrar curso: ' + error);
   }
 }
