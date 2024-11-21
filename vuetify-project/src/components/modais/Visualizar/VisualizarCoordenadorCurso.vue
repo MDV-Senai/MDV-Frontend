@@ -16,6 +16,7 @@
             <v-col cols="12">
               <v-text-field
                 v-model="coordenador.nome"
+                label="Nome"
                 placeholder="Nome"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -27,6 +28,7 @@
             <v-col cols="12">
               <v-text-field
                 v-model="coordenador.nomeSocial"
+                label="Nome Social"
                 placeholder="Razão social"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -39,7 +41,8 @@
             <v-col cols="12" md="4">
               <v-text-field
                 v-model="coordenador.email"
-                placeholder="complemento"
+                label="E-mail"
+                placeholder="teste@example.com"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
                 readonly
@@ -48,7 +51,8 @@
             <v-col cols="12" md="4">
               <v-text-field
                 v-model="coordenador.fone"
-                placeholder="responsavelLegal"
+                label="Telefone"
+                placeholder="Telefone"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
                 readonly
@@ -57,6 +61,7 @@
             <v-col cols="12" md="4">
               <v-text-field
                 v-model="instituicao.nomeFantasia"
+                label="Nome Fantasia"
                 placeholder="nomeFantasia"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -64,7 +69,7 @@
               ></v-text-field>
             </v-col>
           </v-row>
-          
+
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
