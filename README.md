@@ -2,11 +2,9 @@
 
 Este é o projeto frontend desenvolvido para a Maternidade Darcy Vargas. Seu principal objetivo é possibilitar a interação do usuário com o backend, isso inclui fazer cadastros, consultas e edições.
 
-## Índice
-
 # Índice
 
-1. [Introdução](#introdução)  
+1. [Introdução](#Pré-requisitos)  
 2. [Capítulo 1: Conceitos Básicos](#capítulo-1-conceitos-básicos)  
    2.1. [Definições](#definições)  
    2.2. [Exemplos Práticos](#exemplos-práticos)  
@@ -17,7 +15,7 @@ Este é o projeto frontend desenvolvido para a Maternidade Darcy Vargas. Seu pri
 5. [Referências](#referências)
 
 
-### 📋 Pré-requisitos
+### Pré-requisitos
 
 De que coisas você precisa para instalar o software e como instalá-lo?
 
