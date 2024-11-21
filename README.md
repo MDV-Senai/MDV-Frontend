@@ -4,30 +4,19 @@ Este é o projeto frontend desenvolvido para a Maternidade Darcy Vargas. Seu pri
 
 # Índice
 
-1. [Introdução](#Pré-requisitos)  
-2. [Capítulo 1: Conceitos Básicos](#capítulo-1-conceitos-básicos)  
-   2.1. [Definições](#definições)  
-   2.2. [Exemplos Práticos](#exemplos-práticos)  
-3. [Capítulo 2: Fundamentos](#capítulo-2-fundamentos)  
-   3.1. [Teoria](#teoria)  
-   3.2. [Aplicações](#aplicações)  
-4. [Conclusão](#conclusão)  
-5. [Referências](#referências)
+1. [Pré-requisitos](#Pré-requisitos)
+   1.1. [Docker](#Docker)
+#
+## Pré-requisitos
 
+### 1. Docker
+[Docker Desktop para Windows](https://docs.docker.com/desktop/setup/install/windows-install/)
+<br>
+[Docker Engine para Linux](https://docs.docker.com/engine/install/ubuntu/)
 
-### Pré-requisitos
+## Compilação
 
-De que coisas você precisa para instalar o software e como instalá-lo?
-
-```
-Dar exemplos
-```
-
-### 🔧 Instalação
-
-Uma série de exemplos passo-a-passo que informam o que você deve executar para ter um ambiente de desenvolvimento em execução.
-
-Diga como essa etapa será:
+Siga os seguintes passos para rodar o projeto:
 
 ```
 Dar exemplos
