@@ -19,13 +19,18 @@ export async function cadastrarAdmin(data) {
     }
   }
 
-export async function fetchUsuarios() {
+export async function fetchUsuarios(pagina, itensPorPagina) {
   try {
     const url = import.meta.env.VITE_BACKEND_URL + "/user";
 
     const token = sessionStorage.getItem("authToken");
 
-    const response = await axios.get(url, {
+    const response = await axios.get(url, 
+    {
+      params: {
+        page: pagina,
+        limit: itensPorPagina
+      },
       headers: {
         Authorization: `Bearer ${token}`,
       },

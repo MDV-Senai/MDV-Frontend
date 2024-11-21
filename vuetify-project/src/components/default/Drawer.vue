@@ -147,6 +147,7 @@ export default {
         ["Consultar Setor", "mdi-file-search-outline", "/consultarSetor"],
         ["Consultar Curso", "mdi-bookshelf", "/consultarCurso"],
         ["Consultar Concedente", "mdi-text-box-search-outline", "/consultarConcedente"],
+        ["Consultar Usuários", "mdi-account-tie-outline", "/consultarUsuario"],
         );
       }
     });

@@ -21,6 +21,7 @@ import ConsultarCurso from '../pages/Consultas/ConsultarCurso.vue';
 import ConsultarConcedente from '../pages/Consultas/ConsultarConcedente.vue';
 import ConsultarContrato from '../pages/Consultas/ConsultarContrato.vue';
 import ConsultarSolicitacao from '../pages/Consultas/ConsultarSolicitacao.vue';
+import ConsultarUsuario from '../pages/Consultas/ConsultarUsuario.vue';
 import GerarContrato from '../pages/Contrato/GerarContrato.vue'
 
 const router = createRouter({
@@ -140,6 +141,11 @@ const router = createRouter({
       path: '/consultarSolicitacao',
       name: 'ConsultarSolicitacao',
       component: ConsultarSolicitacao
+    },
+    {
+      path: '/consultarUsuario',
+      name: 'ConsultarUsuario',
+      component: ConsultarUsuario
     },
   ]
 })

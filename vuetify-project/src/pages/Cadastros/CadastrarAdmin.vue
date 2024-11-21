@@ -239,49 +239,6 @@
         </div>
       </v-form>
     </div>
-
-    <v-container>
-      <v-card flat>
-        <v-card-title class="d-flex align-center pe-2">
-          Consulta de Usuários
-
-          <v-spacer></v-spacer>
-
-          <v-text-field
-            v-model="search"
-            density="compact"
-            label="Consultar"
-            prepend-inner-icon="mdi-magnify"
-            variant="solo-filled"
-            flat
-            hide-details
-            single-line
-          ></v-text-field>
-        </v-card-title>
-
-        <v-divider></v-divider>
-        <v-data-table height="400" item-value="name">
-          <thead>
-            <tr>
-              <th class="text-left">Nome</th>
-              <th class="text-left">Tipo de Usuário</th>
-              <th class="text-center">Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="item in usuarios" :key="item.id">
-              <td class="text-left">{{ item.name }}</td>
-              <td class="text-left">{{ item.role }}</td>
-              <td class="text-center">
-                <VisualizarUsuario :usuarioId="item.id" />
-                <EditarUsuario :usuarioId="item.id" />
-                <DeletarItem :itemKey="'user'" :id="item.id" />
-              </td>
-            </tr>
-          </tbody>
-        </v-data-table>
-      </v-card>
-    </v-container>
   </v-main>
 </template>
 
