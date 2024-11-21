@@ -9,7 +9,7 @@ Este é o projeto frontend desenvolvido para a Maternidade Darcy Vargas. Seu pri
 #
 ## Pré-requisitos
 
-### 1.Docker
+### Docker
 [Docker Desktop para Windows](https://docs.docker.com/desktop/setup/install/windows-install/)
 <br>
 [Docker Engine para Linux](https://docs.docker.com/engine/install/ubuntu/)
@@ -18,6 +18,9 @@ Este é o projeto frontend desenvolvido para a Maternidade Darcy Vargas. Seu pri
 
 Siga os seguintes passos para rodar o projeto:
 
+Na pasta `vuetify-project` abra o cmd e execute o seguinte comando:
+
+Para desenvolvimento e hot-reload
 ```
 Dar exemplos
 ```
