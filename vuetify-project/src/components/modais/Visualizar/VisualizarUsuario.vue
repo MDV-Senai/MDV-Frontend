@@ -16,6 +16,7 @@
             <v-col cols="12">
               <v-text-field
                 v-model="usuario.name"
+                label="Nome"
                 placeholder="Nome"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -27,6 +28,7 @@
             <v-col cols="12" md="6">
               <v-text-field
                 v-model="usuario.role"
+                label="Tipo do usuário"
                 placeholder="Tipo de Usuário"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -36,6 +38,7 @@
             <v-col cols="12" md="6">
               <v-text-field
                 v-model="usuario.email"
+                label="E-mail"
                 placeholder="Email"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -69,7 +72,7 @@ export default {
 
     const loadUsuario = async () => {
       const response = await fetchUsuarioPorId(props.usuarioId);
-      
+
       if (response) {
         usuario.value = response;
       } else {
