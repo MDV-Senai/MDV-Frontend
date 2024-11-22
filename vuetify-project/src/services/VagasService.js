@@ -54,7 +54,7 @@ export async function cadastrarSolcitacaoVagas(data) {
 
     return req;
   } catch (error) {
-    console.log('Erro ao cadastrar Solicitação de Vaga: ' + error);
+    console.error('Erro ao cadastrar Solicitação de Vaga: ' + error);
     return null;
   }
 }
@@ -146,7 +146,7 @@ export async function cadastrarVagas(data) {
 
     return req;
   } catch (error) {
-    console.log('Erro ao cadastrar Solicitação de Vaga: ' + error);
+    console.error('Erro ao cadastrar Solicitação de Vaga: ' + error);
     return null;
   }
 }

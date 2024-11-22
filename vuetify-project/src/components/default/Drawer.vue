@@ -27,7 +27,7 @@
       ></v-list-item>
       <v-list-item
         prepend-icon="mdi-dots-horizontal-circle-outline"
-        title="Menu de Vagas"
+        title="Calendário de Vagas"
         value="vagas"
         :to="rotaInfoVagas"
       ></v-list-item>
@@ -111,11 +111,9 @@ export default {
 
     const rotasConsulta = [];
 
-    // Define a function to get the user role and set it in roleUsuario
     const getRoleUsuario = () => {
       const userRole = sessionStorage.getItem("userRole");
-      console.log("userRole from sessionStorage:", userRole); // Add debug log to check the value
-      roleUsuario.value = userRole; // Set the value of roleUsuario using ref
+      roleUsuario.value = userRole;
     };
 
     watch(roleUsuario, (newRole) => {

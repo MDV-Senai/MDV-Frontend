@@ -86,7 +86,7 @@
         </div>
       </v-form>
     </div>
-    
+
   </v-main>
 </template>
 
@@ -127,7 +127,6 @@ export default {
         newPassword: this.newPassword,
         newPasswordConfirmation: this.newPasswordConfirmation,
       };
-      console.log(requestObj);
     },
   },
 };

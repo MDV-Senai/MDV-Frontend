@@ -16,6 +16,7 @@
             <v-col cols="12" md="12">
               <v-text-field
                 v-model="curso.nomeCurso"
+                label="Nome do Curso"
                 placeholder="nome curso"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -28,6 +29,7 @@
               <v-text-field
                 id="numero_mat"
                 v-model="curso.id"
+                label="Id do curso"
                 placeholder="id"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -39,6 +41,7 @@
                 id="inscricao"
                 value="Homologado"
                 placeholder="situação curso"
+                label="Situação do curso"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
                 readonly

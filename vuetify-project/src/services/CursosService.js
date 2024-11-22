@@ -76,7 +76,7 @@ export async function cadastrarCurso(data) {
     if (error.response) {
       return error.response.data;
     } else {
-        console.log('Erro desconhecido:', error);
+        console.error('Erro desconhecido:', error);
     }
   }
 
@@ -95,7 +95,7 @@ export async function atualizarCursoPorId(cursoId, data) {
 
     return req.data;
   } catch (error) {
-    console.log('Erro ao atualizar curso: ' + error);
+    console.error('Erro ao atualizar curso: ' + error);
     throw error;
   }
 }

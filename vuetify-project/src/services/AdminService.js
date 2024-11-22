@@ -3,18 +3,17 @@ import axios from "axios";
 export async function cadastrarAdmin(data) {
     try {
       const url = import.meta.env.VITE_BACKEND_URL + "/user";
-  
+
       const token = sessionStorage.getItem("authToken");
-  
+
       const req = await axios.post(url, data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-  
+
       return req;
     } catch (error) {
-      console.log('Erro ao cadastrar Instuição de Ensino: '+error);
       return null;
     }
   }
@@ -25,7 +24,7 @@ export async function fetchUsuarios(pagina, itensPorPagina) {
 
     const token = sessionStorage.getItem("authToken");
 
-    const response = await axios.get(url, 
+    const response = await axios.get(url,
     {
       params: {
         page: pagina,
@@ -38,7 +37,6 @@ export async function fetchUsuarios(pagina, itensPorPagina) {
 
     return response.data.data;
   } catch (error) {
-    console.log('Erro ao cadastrar Instuição de Ensino: '+error);
     return null;
   }
 }
@@ -57,7 +55,6 @@ export async function fetchUsuarioPorId(userId) {
 
     return response.data;
   } catch (error) {
-    console.log('Erro ao cadastrar Instuição de Ensino: '+error);
     return null;
   }
 }

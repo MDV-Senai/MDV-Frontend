@@ -211,8 +211,6 @@ export default {
             dataFim: this.fimEstagio,
           };
 
-          console.log(data);
-
           const response = await cadastrarSolcitacaoVagas(data);
 
           if (response) {
@@ -222,8 +220,6 @@ export default {
             });
             this.$refs.form.reset();
           }
-
-          console.log("Resposta: ", response);
         } catch (error) {
           console.error("Erro ao enviar dados:", error);
         }
@@ -250,18 +246,15 @@ export default {
           },
           ...response.cursos
         ];
-        console.log(this.cursos);
       }
     },
 
     async loadInstituicaoEnsino() {
       const response = await fetchInstituicoes();
       this.instituicoes = response;
-      console.log(this.instituicoes);
     },
 
     onInstituicaoChange(selectedItem) {
-      console.log("Instituição selecionada (via método):", selectedItem);
     },
   },
 

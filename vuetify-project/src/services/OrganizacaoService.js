@@ -16,7 +16,7 @@ export async function cadastrarOrganizacao(data) {
       if (error.response) {
           return error.response.data;
       } else {
-          console.log('Erro desconhecido:', error);
+          console.error('Erro desconhecido:', error);
       }
   }
 

@@ -311,8 +311,6 @@ export default {
           instituicaoEnsinoId: this.instituicaoEnsino,
         };
 
-        console.log(data);
-
         const response = await cadastrarAdmin(data);
 
         if (response) {

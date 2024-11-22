@@ -54,7 +54,7 @@ export async function cadastrarInstituicaoEnsino(data) {
     if (error.response) {
       return error.response.data;
     } else {
-        console.log('Erro desconhecido:', error);
+        console.error('Erro desconhecido:', error);
     }
   }
 
@@ -94,7 +94,7 @@ export async function homologarCursoNaInstituicaoEnsino(instituicaoId, cursoId) 
         }
       }
     );
-    
+
     return response.data;
   } catch (error) {
     console.error("Erro ao atualizar instituição:", error);
@@ -110,8 +110,6 @@ export async function homologarCursoNaInstituicaoEnsino(instituicaoId, cursoId) 
 export async function desfazerHomologacaoCurso(instituicaoId, cursoId) {
   try {
     const token = sessionStorage.getItem('authToken');
-    console.log(token);
-    console.log(`${import.meta.env.VITE_BACKEND_URL}/instituicao-ensino/${instituicaoId}/cursos-homologados/${cursoId}`)
     const response = await axios.delete(
       `${import.meta.env.VITE_BACKEND_URL}/instituicao-ensino/${instituicaoId}/cursos-homologados/${cursoId}`,
       {
@@ -120,7 +118,6 @@ export async function desfazerHomologacaoCurso(instituicaoId, cursoId) {
         }
       }
     );
-    console.log(response);
 
     return response.data;
   } catch (error) {
