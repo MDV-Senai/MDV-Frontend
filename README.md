@@ -14,7 +14,11 @@ Este é o projeto frontend desenvolvido para a Maternidade Darcy Vargas. Seu pri
 ## Pré-requisitos
 
 ### Docker
+Guia oficial para instalação e configuração do Docker Desktop no Windows.
+<br>
 [Docker Desktop para Windows](https://docs.docker.com/desktop/setup/install/windows-install/)
+<br>
+Guia oficial para instalar o Docker Engine em distribuições Linux baseadas no Ubuntu.
 <br>
 [Docker Engine para Linux](https://docs.docker.com/engine/install/ubuntu/)
 
