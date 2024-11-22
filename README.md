@@ -42,7 +42,11 @@ front-1  |   ➜  Local:   http://localhost:5173/
 front-1  |   ➜  Network: http://172.18.0.2:5173/
 front-1  |   ➜  press h + enter to show help
 ```
-4. Cole a `URL Local` em seu navegador 
+4. Cole a `URL Local` em seu navegador
+### Atenção
+5. Assim que colar a URL mencionada no item 4 você será levado para a tela de login.
+  - Só será possivel fazer login se o projeto backend estiver em execução
+  - Usuário para teste será disponibilizado no projeto backend
 
 ## Tecnologias Usadas
 
