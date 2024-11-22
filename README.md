@@ -6,6 +6,7 @@ Este é o projeto frontend desenvolvido para a Maternidade Darcy Vargas. Seu pri
 
 1. [Pré-requisitos](#Pré-requisitos)
    - 1.1. [Docker](#Docker)
+2. [Compilação](#Compilação)
 #
 ## Pré-requisitos
 
@@ -16,28 +17,18 @@ Este é o projeto frontend desenvolvido para a Maternidade Darcy Vargas. Seu pri
 
 ## Compilação
 
-Siga os seguintes passos para rodar o projeto:
+Com o `Docker` rodando, siga os seguintes passos para executar o projeto:
 
-Na pasta `vuetify-project` abra o cmd e execute o seguinte comando:
-
-Para desenvolvimento e hot-reload
+1. Na pasta `vuetify-project` crie um arquivo chamado `.env` com o seguinte conteúdo:
 ```
-Dar exemplos
+VITE_BACKEND_URL = "http://localhost:3000"
 ```
-
-E repita:
-
+2. Na pasta `vuetify-project` abra o cmd e execute o seguinte comando:
 ```
-Até finalizar
+docker-compose -f docker-compose.prod.yml up --build
 ```
 
-Termine com um exemplo de como obter dados do sistema ou como usá-los para uma pequena demonstração.
-
-## ⚙️ Executando os testes
-
-Explicar como executar os testes automatizados para este sistema.
-
-### 🔩 Analise os testes de ponta a ponta
+### Exibição de 
 
 Explique que eles verificam esses testes e porquê.
 
