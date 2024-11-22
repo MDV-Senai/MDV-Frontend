@@ -39,10 +39,10 @@ docker-compose -f docker-compose.prod.yml up --build
 * [Yarn](https://yarnpkg.com) - Gerenciador de Pacote
 * [Docker](https://www.docker.com) - Gerenciador de Containers
 
-## 📌 Versão
+## Versão
 
 Nós usamos [GitHub](https://github.com) para controle de versão. 
 
-## 📄 Licença
+## Licença
 
-Este projeto está sob a licença (sua licença) - veja o arquivo [LICENSE.md](https://github.com/usuario/projeto/licenca) para detalhes.
+Este projeto está sob a licença - veja o arquivo [LICENSE.md](https://github.com/MDV-Senai/MDV-Frontend/blob/Readme/LICENSE) para detalhes.
