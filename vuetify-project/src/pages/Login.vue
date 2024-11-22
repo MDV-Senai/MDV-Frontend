@@ -8,7 +8,7 @@
               <v-container>
                 <div id="imageLogin">
                   <v-container class="my-16">
-                    <h1 align="center">Nome do Sistema</h1>
+                    <h1 align="center">EstágioPRO</h1>
                     <v-card
                       align="center"
                       class="mx-auto my-16"
