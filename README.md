@@ -34,6 +34,15 @@ VITE_BACKEND_URL = "http://localhost:3000"
 ```
 docker-compose -f docker-compose.dev.yml up --build
 ```
+3. Assim que subir o container você irá receber a seguinte mensagem:
+```
+front-1  |   VITE v5.4.11  ready in 803 ms
+front-1  |
+front-1  |   ➜  Local:   http://localhost:5173/
+front-1  |   ➜  Network: http://172.18.0.2:5173/
+front-1  |   ➜  press h + enter to show help
+```
+4. Cole a `URL Local` em seu navegador 
 
 ## Tecnologias Usadas
 
