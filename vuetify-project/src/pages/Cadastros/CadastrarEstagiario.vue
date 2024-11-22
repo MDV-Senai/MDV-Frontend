@@ -57,7 +57,7 @@
               label="Nº Matrícula do Estudante"
               :rules="[rules.required]"
               v-model="numeroMatriEstu"
-              maxlength="25"
+              maxlength="20"
               counter
               clearable
               class="text-grey-darken-4"
@@ -205,6 +205,7 @@
               label="Número da apólice"
               :rules="[rules.fileSize]"
               v-model="numeroApolice"
+              maxlength="255"
               clearable
               class="text-grey-darken-4"
               variant="outlined"
@@ -216,21 +217,6 @@
               type="date"
               :rules="[rules.required]"
               v-model="dataFimApolice"
-              clearable
-              class="text-grey-darken-4"
-              variant="outlined"
-            ></v-text-field>
-          </v-col>
-        </v-row>
-
-        <v-row id="inputResponsivo" class="d-flex justify-center">
-          <v-col cols="12" md="12">
-            <v-text-field
-              label="Nome do Professor Responsável"
-              :rules="[rules.required, rules.fullname]"
-              v-model="nomeProfessorResp"
-              maxlength="255"
-              counter
               clearable
               class="text-grey-darken-4"
               variant="outlined"
@@ -401,7 +387,6 @@ export default {
       instituicaoEnsino: null,
       cursos: [],
       instituicoes: [],
-      nomeProfessorResp: null,
       cep: null,
       numero: null,
       uf: null,
