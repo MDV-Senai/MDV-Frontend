@@ -27,7 +27,7 @@
       ></v-list-item>
       <v-list-item
         prepend-icon="mdi-dots-horizontal-circle-outline"
-        title="Menu de Vagas"
+        title="Calendário de Vagas"
         value="vagas"
         :to="rotaInfoVagas"
       ></v-list-item>

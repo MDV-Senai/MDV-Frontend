@@ -24,7 +24,7 @@
           <v-col cols="12" md="6">
             <v-text-field
               label="Nome do Coordenador"
-              :rules="[rules.required]"
+              :rules="[rules.required, rules.fullname]"
               v-model="nomeCoordenador"
               maxlength="255"
               counter
@@ -39,7 +39,7 @@
             <v-text-field
               label="Nome Social do Coordenador"
               v-model="nomeSocialCoordenador"
-              :rules="[rules.required, rules.fullname]"
+              :rules="[rules.required]"
               maxlength="255"
               counter
               clearable

@@ -9,8 +9,8 @@ export const fullNameValidation = (fullName) => {
         return "Nome completo obrigatório.";
     }
     for (let name of namesList) {
-        if (name.length < 3) {
-            return "Nome inválido. Minimo de 3 caracteres por nome.";
+        if (name.length < 2) {
+            return "Nome inválido. Minimo de 2 caracteres por nome.";
         }
     }
     return true;
