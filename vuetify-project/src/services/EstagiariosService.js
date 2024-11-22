@@ -26,10 +26,7 @@ export async function cadastrarEstagiario(data) {
   try {
     const url = import.meta.env.VITE_BACKEND_URL + "/aluno";
 
-    console.log('Dados enviados:', data.file);
-    console.log('URL:', url);
     const token = sessionStorage.getItem('authToken');
-
     const req = await axios.post(url, data, {
       headers: {
         'Content-Type': 'multipart/form-data',
@@ -38,7 +35,7 @@ export async function cadastrarEstagiario(data) {
     });
     return req;
   } catch (error) {
-    console.log('Erro ao cadastrar estagiário: ' + error);
+    console.error('Erro ao cadastrar estagiário: ' + error);
     return null;
   }
 }

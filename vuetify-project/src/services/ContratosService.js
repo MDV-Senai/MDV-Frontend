@@ -36,10 +36,7 @@ export async function cadastrarContratos(contrato) {
     });
     return req;
   } catch (error) {
-    console.log(error);
-
     let errorMessage;
-
     const message = error.response?.data?.message;
 
     if (Array.isArray(message)) {

@@ -81,9 +81,6 @@ export default {
     };
 
     const editUsuario = async () => {
-        console.log(props.usuarioId);
-        console.log(usuario.value);
-
       const response = await updateUsuario(props.usuarioId, usuario.value);
       if (response) {
         usuario.value = response;

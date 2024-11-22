@@ -47,7 +47,7 @@
         ></v-pagination>
       </div>
     </div>
-    
+
   </div>
 </template>
 
@@ -67,7 +67,6 @@ export default {
     const loadVagas = async () => {
       const response = await fetchVagas(pagina.value, itensPorPagina);
       vagas.value = response.data;
-      console.log(vagas.value)
       totalPaginas.value = Math.ceil(response.total / itensPorPagina);
     };
 

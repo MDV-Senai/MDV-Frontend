@@ -457,8 +457,6 @@ export default {
           file: this.$refs.apolice.files[0]
         };
 
-        console.log(data);
-
         const response = await cadastrarEstagiario(data);
 
         if (response) {
@@ -475,19 +473,15 @@ export default {
       if (instId) {
         const response = await fetchCursosPorInstuicaoId(instId);
         this.cursos = response.cursos;
-        console.log(this.cursos);
       }
     },
 
     async loadInstituicaoEnsino() {
       const response = await fetchInstituicoes();
       this.instituicoes = response;
-      console.log(this.instituicoes);
     },
 
     onInstituicaoChange(selectedItem) {
-
-      console.log('Instituição selecionada (via método):', selectedItem);
     },
 
     reset() {

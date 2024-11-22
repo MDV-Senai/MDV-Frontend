@@ -246,7 +246,6 @@ export default {
           const response = await cadastrarSetor(data);
 
           this.setorId = response.data.id;
-          console.log(this.setorId);
 
           if (response) {
             Swal.fire({
@@ -264,7 +263,6 @@ export default {
     async enviarAtividades() {
       if (this.$refs.formAtividade.validate()) {
         try {
-          console.log(this.atividade);
           const data = {
             nomeAtividade: this.atividade,
             setorId: this.setorId

@@ -49,13 +49,10 @@ export default {
   methods: {
     async deletarItem(isActive) {
       try {
-        console.log(this.id);
-        console.log(this.itemKey);
-        
         const url = `${import.meta.env.VITE_BACKEND_URL}/${this.itemKey}/${
           this.id
         }`;
-        console.log(url);
+        
         const token = sessionStorage.getItem("authToken");
         const response = await axios.delete(url, {
           headers: {
