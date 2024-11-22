@@ -16,6 +16,7 @@
             <v-col cols="12" md="12">
               <v-text-field
                 v-model="curso.nomeCurso"
+                label="Nome do Curso"
                 placeholder="nome curso"
                 class="text-grey-darken-1"
                 color="grey-darken-4"

@@ -174,7 +174,6 @@ export default {
         };
 
         const response = await cadastrarCoordenadorCurso(data);
-        console.log(response);
 
         if (response) {
           Swal.fire({

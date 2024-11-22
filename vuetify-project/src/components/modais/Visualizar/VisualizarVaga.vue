@@ -16,6 +16,7 @@
             <v-col cols="12">
               <v-text-field
                 v-model="vaga.setor.nomeSetor"
+                label="Nome do Setor"
                 placeholder="nomeSetor"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -27,6 +28,7 @@
             <v-col cols="12">
               <v-text-field
                 v-model="vaga.setor.nomeCoordenador"
+                label="Nome do Coordenador"
                 placeholder="nomeCoordenador"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -38,6 +40,7 @@
             <v-col cols="12" md="6">
               <v-text-field
                 v-model="vaga.ano"
+                label="Ano"
                 placeholder="ano"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -47,6 +50,7 @@
             <v-col cols="12" md="6">
               <v-text-field
                 v-model="vaga.semestre"
+                label="Semestre"
                 placeholder="semestre"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -58,6 +62,7 @@
             <v-col cols="12" md="6">
               <v-text-field
                 v-model="vaga.vagasDisponiveis"
+                label="Vagas Disponiveis"
                 placeholder="vagasDisponiveis"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -67,6 +72,7 @@
             <v-col cols="12" md="6">
               <v-text-field
                 v-model="vaga.statusVaga"
+                label="Situação da Vaga"
                 placeholder="statusVaga"
                 class="text-grey-darken-1"
                 color="grey-darken-4"

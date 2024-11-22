@@ -156,7 +156,6 @@ export default {
             vagasDisponiveis: this.qtdVagas,
           };
 
-          console.log(data);
           const response = await cadastrarVagas(data);
 
           if (response) {

@@ -16,6 +16,7 @@
             <v-col cols="12">
               <v-text-field
                 v-model="organizacao.nomeFantasia"
+                label="Nome Fantasia"
                 placeholder="Nome da organização"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -26,6 +27,7 @@
             <v-col cols="12">
               <v-text-field
                 v-model="organizacao.razaoSocial"
+                label="Razão Social"
                 placeholder="Razão social"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -36,6 +38,7 @@
             <v-col cols="12" md="6">
               <v-text-field
                 v-model="organizacao.cnpj"
+                label="CNPJ"
                 placeholder="cnpj"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -44,6 +47,7 @@
             <v-col cols="12" md="6">
               <v-text-field
                 v-model="organizacao.inscricaoEstado"
+                label="Inscrição Estadual"
                 placeholder="inscrição estadual"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -54,6 +58,7 @@
             <v-col cols="12" md="6">
               <v-text-field
                 v-model="organizacao.fone"
+                label="Telefone"
                 placeholder="Telefone"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -72,6 +77,7 @@
             <v-col cols="12" md="6">
               <v-text-field
                 v-model="organizacao.cep"
+                label="CEP"
                 placeholder="cep"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -80,6 +86,7 @@
             <v-col cols="12" md="6">
               <v-text-field
                 v-model="organizacao.cidade"
+                label="Cidade"
                 placeholder="cidade"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -90,6 +97,7 @@
             <v-col cols="12" md="6">
               <v-text-field
                 v-model="organizacao.uf"
+                label="Estado"
                 placeholder="estado"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -98,6 +106,7 @@
             <v-col cols="12" md="6">
               <v-text-field
                 v-model="organizacao.bairro"
+                label="Bairro"
                 placeholder="bairro"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -108,6 +117,7 @@
             <v-col cols="12" md="6">
               <v-text-field
                 v-model="organizacao.rua"
+                label="Rua"
                 placeholder="rua"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -116,6 +126,7 @@
             <v-col cols="12" md="6">
               <v-text-field
                 v-model="organizacao.numero"
+                label="Número"
                 placeholder="numero"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -126,6 +137,7 @@
             <v-col cols="12" md="4">
               <v-text-field
                 v-model="organizacao.complemento"
+                label="Complemento"
                 placeholder="complemento"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -134,6 +146,7 @@
             <v-col cols="12" md="4">
               <v-text-field
                 v-model="organizacao.responsavelLegal"
+                label="Responsável Legal"
                 placeholder="responsavelLegal"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
@@ -142,6 +155,7 @@
             <v-col cols="12" md="4">
               <v-text-field
                 v-model="organizacao.responsavelLegalContato"
+                label="Contato Responsável Legal"
                 placeholder="responsavelLegalContato"
                 class="text-grey-darken-1"
                 color="grey-darken-4"
