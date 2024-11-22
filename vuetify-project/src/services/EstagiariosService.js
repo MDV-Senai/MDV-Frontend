@@ -61,11 +61,13 @@ export async function atualizarEstagiarioPorId(estgId, data) {
     const removeMascara = (valor) => (valor ? valor.replace(/\D/g, "") : "");
 
     data.documento = removeMascara(data.cpf);
-    data.fone = removeMascara(data.rg);
-    data.celular = removeMascara(data.cep);
+    data.fone = removeMascara(data.fone);
+    data.celular = removeMascara(data.celular);
+    data.contatoEmergencia = removeMascara(data.contatoEmergencia);
     data.cep = removeMascara(data.cep);
     data.dataNascimento = new Date(data.dataNascimento).toISOString();
-    data.dataFimApolice = new Date(data.dataFimApolice).toISOString();
+    data.apoliceSeguro.dataFim = new Date(data.apoliceSeguro.dataFim).toISOString();
+    
 
     const token = sessionStorage.getItem('authToken');
     const url = import.meta.env.VITE_BACKEND_URL + "/aluno/" + estgId;

@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="isDialogActive" max-width="800">
+  <v-dialog max-width="800">
     <template v-slot:activator="{ props: activatorProps }">
       <v-icon
         v-bind="activatorProps"
@@ -9,7 +9,7 @@
       ></v-icon>
     </template>
 
-    <template v-slot:default>
+    <template v-slot:default="{ isActive }">
       <v-card>
         <v-card-text style="max-height: 500px; overflow-y: auto; padding: 16px">
           <v-row class="mx-5 my-5">
@@ -224,8 +224,8 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn text="Salvar" @click="handleUpdateEstagiario()"></v-btn>
-          <v-btn text="Fechar" @click="isDialogActive.value = false"></v-btn>
+          <v-btn text="Salvar" @click="handleUpdateEstagiario(isActive)"></v-btn>
+          <v-btn text="Fechar" @click="isActive.value = false"></v-btn>
         </v-card-actions>
       </v-card>
     </template>
@@ -247,7 +247,6 @@ export default {
     },
   },
   setup(props) {
-    const isDialogActive = ref(false);
     const estagiario = ref({});
     const errorMessage = ref("");
     const urlApoliceLink = import.meta.env.VITE_BACKEND_URL + "/aluno/" + props.estgId + "/apolice"
@@ -261,12 +260,13 @@ export default {
       }
     };
 
-    const handleUpdateEstagiario = async () => {
+    const handleUpdateEstagiario = async (isActive) => {
       errorMessage.value = "";
       try {
+        console.log(estagiario.value)
         const response = await atualizarEstagiarioPorId(props.estgId, estagiario.value);
         if (response) {
-          isDialogActive.value = false;
+          isActive.value = false;
           Swal.fire({
             title: "Cadastro atualizado com Sucesso!",
             icon: "success",
@@ -290,7 +290,6 @@ export default {
     return {
       estagiario,
       urlApoliceLink,
-      isDialogActive,
       handleUpdateEstagiario,
       errorMessage
     };
