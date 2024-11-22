@@ -28,7 +28,7 @@ VITE_BACKEND_URL = "http://localhost:3000"
 ```
 2. Na pasta `vuetify-project` abra o cmd e execute o seguinte comando:
 ```
-docker-compose -f docker-compose.prod.yml up --build
+docker-compose -f docker-compose.dev.yml up --build
 ```
 
 ## Tecnologias Usadas
