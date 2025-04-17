@@ -51,6 +51,11 @@ export default defineConfig({
   server: {
     port: 5173,
     host: '0.0.0.0',
+
+    allowedHosts: [
+      'estagio.saude.sc.gov.br'
+    ],
+
     watch: {
       usePolling: true,
       interval: 1000,
